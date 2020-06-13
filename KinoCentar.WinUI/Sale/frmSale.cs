@@ -1,6 +1,7 @@
 ﻿using KinoCentar.PCL.Models;
 using KinoCentar.PCL.Util;
 using KinoCentar.Shared.Models;
+using KinoCentar.WinUI.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -32,18 +33,11 @@ namespace KinoCentar.WinUI.Sale
 
         private void BindGrid(string name = null)
         {
-            HttpResponseMessage response = saleService.GetActionResponse("SearchByName", name);
-
+            var response = saleService.GetActionResponse("SearchByName", name).Handle();            
             if (response.IsSuccessStatusCode)
             {
-                var jsonObject = response.Content.ReadAsStringAsync();
-                List<Sala> sale = JsonConvert.DeserializeObject<List<Sala>>(jsonObject.Result);
-                dgvSale.DataSource = sale;
+                dgvSale.DataSource = response.GetResponseResult<List<Sala>>();
                 dgvSale.ClearSelection();
-            }
-            else
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
             }
         }
 
@@ -71,19 +65,13 @@ namespace KinoCentar.WinUI.Sale
             var id = Convert.ToInt32(dgvSale.SelectedRows[0].Cells[0].Value);
 
             DialogResult result = MessageBox.Show(Messages.del_sale_prompt, Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
             {
-                HttpResponseMessage response = saleService.DeleteResponse(id);
-
+                var response = saleService.DeleteResponse(id).Handle();
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(Messages.del_sale_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BindGrid();
-                }
-                else
-                {
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
                 }
             }
         }

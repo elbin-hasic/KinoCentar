@@ -1,5 +1,6 @@
 ﻿using KinoCentar.PCL.Models;
 using KinoCentar.PCL.Util;
+using KinoCentar.WinUI.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,18 +32,11 @@ namespace KinoCentar.WinUI.Zanrovi
 
         private void BindGrid(string name = null)
         {
-            HttpResponseMessage response = zanroviService.GetActionResponse("SearchByName", name);
-
+            HttpResponseMessage response = zanroviService.GetActionResponse("SearchByName", name).Handle();
             if (response.IsSuccessStatusCode)
             {
-                var jsonObject = response.Content.ReadAsStringAsync();
-                List<Zanr> zanrovi = JsonConvert.DeserializeObject<List<Zanr>>(jsonObject.Result);
-                dgvZanrovi.DataSource = zanrovi;
+                dgvZanrovi.DataSource = response.GetResponseResult<List<Zanr>>();
                 dgvZanrovi.ClearSelection();
-            }
-            else
-            {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
             }
         }
 
@@ -70,19 +64,13 @@ namespace KinoCentar.WinUI.Zanrovi
             var id = Convert.ToInt32(dgvZanrovi.SelectedRows[0].Cells[0].Value);
 
             DialogResult result = MessageBox.Show(Messages.del_genre_prompt, Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
             {
-                HttpResponseMessage response = zanroviService.DeleteResponse(id);
-
+                HttpResponseMessage response = zanroviService.DeleteResponse(id).Handle();
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(Messages.del_genre_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BindGrid();
-                }
-                else
-                {
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
                 }
             }
         }

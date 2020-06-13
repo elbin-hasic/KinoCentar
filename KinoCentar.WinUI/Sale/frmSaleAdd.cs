@@ -1,6 +1,7 @@
 ﻿using KinoCentar.PCL.Models;
 using KinoCentar.PCL.Util;
 using KinoCentar.Shared.Models;
+using KinoCentar.WinUI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,21 +33,11 @@ namespace KinoCentar.WinUI.Sale
                 sala.Naziv = txtNaziv.Text;
                 sala.BrojSjedista = int.Parse(txtBrojSjedista.Text);
 
-                HttpResponseMessage response = saleService.PostResponse(sala);
-
+                HttpResponseMessage response = saleService.PostResponse(sala).Handle();
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(Messages.add_sale_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                }
-                else
-                {
-                    string msg = response.ReasonPhrase;
-
-                    if (!String.IsNullOrEmpty(Messages.ResourceManager.GetString(response.ReasonPhrase)))
-                        msg = Messages.ResourceManager.GetString(response.ReasonPhrase);
-
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + msg);
                 }
             }
         }
@@ -85,11 +76,11 @@ namespace KinoCentar.WinUI.Sale
             if (string.IsNullOrEmpty(txtBrojSjedista.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.sale_brojSjedista_req);
+                errorProvider.SetError(txtBrojSjedista, Messages.sale_brojSjedista_req);
             }
             else
             {
-                errorProvider.SetError(txtNaziv, null);
+                errorProvider.SetError(txtBrojSjedista, null);
             }
         }
 

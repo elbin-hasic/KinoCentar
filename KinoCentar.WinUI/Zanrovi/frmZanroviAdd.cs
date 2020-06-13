@@ -1,5 +1,6 @@
 ﻿using KinoCentar.PCL.Models;
 using KinoCentar.PCL.Util;
+using KinoCentar.WinUI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,29 +32,18 @@ namespace KinoCentar.WinUI.Zanrovi
                 zanr.Naziv = txtNaziv.Text;
                 zanr.Opis = txtOpis.Text;
 
-                HttpResponseMessage response = zanroviService.PostResponse(zanr);
-
+                HttpResponseMessage response = zanroviService.PostResponse(zanr).Handle();
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(Messages.add_genre_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                }
-                else
-                {
-                    string msg = response.ReasonPhrase;
-
-                    if (!String.IsNullOrEmpty(Messages.ResourceManager.GetString(response.ReasonPhrase)))
-                        msg = Messages.ResourceManager.GetString(response.ReasonPhrase);
-
-                    MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + msg);
                 }
             }
         }
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Da li ste sigurni da želite odustati", Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+            DialogResult result = MessageBox.Show(Messages.msg_cancel_que, Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 this.Close();

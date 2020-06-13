@@ -1,6 +1,7 @@
 ﻿using KinoCentar.PCL.Models;
 using KinoCentar.PCL.Util;
 using KinoCentar.Shared.Models;
+using KinoCentar.WinUI.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,12 +34,10 @@ namespace KinoCentar.WinUI.Sale
 
         private void frmSaleEdit_Load(object sender, EventArgs e)
         {
-            HttpResponseMessage response = saleService.GetResponse(_id.ToString());
-
+            HttpResponseMessage response = saleService.GetResponse(_id.ToString()).Handle();
             if (response.IsSuccessStatusCode)
             {
-                var jsonObject = response.Content.ReadAsStringAsync();
-                _sala = JsonConvert.DeserializeObject<Sala>(jsonObject.Result);
+                _sala = response.GetResponseResult<Sala>();
                 FillForm();
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -60,22 +59,11 @@ namespace KinoCentar.WinUI.Sale
                 _sala.Naziv = txtNaziv.Text;
                 _sala.BrojSjedista = int.Parse(txtBrojSjedista.Text);
 
-                HttpResponseMessage response = saleService.PutResponse(_id, _sala);
-
+                HttpResponseMessage response = saleService.PutResponse(_id, _sala).Handle();
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(Messages.edit_sale_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                }
-                else
-                {
-                    string msg = response.ReasonPhrase;
-
-                    if (!String.IsNullOrEmpty(Messages.ResourceManager.GetString(response.ReasonPhrase)))
-                        msg = Messages.ResourceManager.GetString(response.ReasonPhrase);
-
-                    MessageBox.Show("Error Code" +
-                    response.StatusCode + " : Message - " + msg);
                 }
             }
         }
@@ -114,11 +102,11 @@ namespace KinoCentar.WinUI.Sale
             if (string.IsNullOrEmpty(txtBrojSjedista.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.sale_brojSjedista_req);
+                errorProvider.SetError(txtBrojSjedista, Messages.sale_brojSjedista_req);
             }
             else
             {
-                errorProvider.SetError(txtNaziv, null);
+                errorProvider.SetError(txtBrojSjedista, null);
             }
         }
 

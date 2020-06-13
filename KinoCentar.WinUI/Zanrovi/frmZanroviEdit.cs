@@ -1,5 +1,6 @@
 ﻿using KinoCentar.PCL.Models;
 using KinoCentar.PCL.Util;
+using KinoCentar.WinUI.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -32,12 +33,10 @@ namespace KinoCentar.WinUI.Zanrovi
 
         private void frmZanroviEdit_Load(object sender, EventArgs e)
         {
-            HttpResponseMessage response = zanroviService.GetResponse(_id.ToString());
-
+            HttpResponseMessage response = zanroviService.GetResponse(_id.ToString()).Handle();
             if (response.IsSuccessStatusCode)
             {
-                var jsonObject = response.Content.ReadAsStringAsync();
-                _zanr = JsonConvert.DeserializeObject<Zanr>(jsonObject.Result);
+                _zanr = response.GetResponseResult<Zanr>();
                 FillForm();
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -59,30 +58,18 @@ namespace KinoCentar.WinUI.Zanrovi
                 _zanr.Naziv = txtNaziv.Text;
                 _zanr.Opis = txtOpis.Text;
 
-                HttpResponseMessage response = zanroviService.PutResponse(_id, _zanr);
-
+                HttpResponseMessage response = zanroviService.PutResponse(_id, _zanr).Handle();
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(Messages.edit_genre_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                }
-                else
-                {
-                    string msg = response.ReasonPhrase;
-
-                    if (!String.IsNullOrEmpty(Messages.ResourceManager.GetString(response.ReasonPhrase)))
-                        msg = Messages.ResourceManager.GetString(response.ReasonPhrase);
-
-                    MessageBox.Show("Error Code" +
-                    response.StatusCode + " : Message - " + msg);
                 }
             }
         }
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Da li ste sigurni da želite odustati", Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+            DialogResult result = MessageBox.Show(Messages.msg_cancel_que, Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 this.Close();
