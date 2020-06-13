@@ -58,12 +58,12 @@ namespace KinoCentar.WinUI.Sale
             if (string.IsNullOrEmpty(txtNaziv.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.sale_name_err);
+                errorProvider.SetError(txtNaziv, Messages.sale_name_req);
             }
             else if (txtNaziv.TextLength < 3)
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.sale_name_req);
+                errorProvider.SetError(txtNaziv, Messages.sale_name_err);
             }
             else
             {

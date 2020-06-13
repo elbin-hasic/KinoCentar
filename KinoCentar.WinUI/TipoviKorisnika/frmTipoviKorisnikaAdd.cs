@@ -13,13 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KinoCentar.WinUI.JediniceMjere
+namespace KinoCentar.WinUI.TipoviKorisnika
 {
-    public partial class frmJediniceMjereAdd : Form
+    public partial class frmTipoviKorisnikaAdd : Form
     {
-        private WebAPIHelper jediniceMjereService = new WebAPIHelper(Global.API_ADDRESS, Global.JediniceMjereRoute);
+        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.API_ADDRESS, Global.TipoviKorisnikaRoute);
 
-        public frmJediniceMjereAdd()
+        public frmTipoviKorisnikaAdd()
         {
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
@@ -29,14 +29,13 @@ namespace KinoCentar.WinUI.JediniceMjere
         {
             if (this.ValidateChildren())
             {
-                JedinicaMjere jedMjere = new JedinicaMjere();
-                jedMjere.KratkiNaziv = txtKratkiNaziv.Text;
+                TipKorisnika jedMjere = new TipKorisnika();
                 jedMjere.Naziv = txtNaziv.Text;
 
-                HttpResponseMessage response = jediniceMjereService.PostResponse(jedMjere).Handle();
+                HttpResponseMessage response = tipoviKorisnikaService.PostResponse(jedMjere).Handle();
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show(Messages.add_jedMjere_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Messages.add_tipKorisnika_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }
@@ -53,30 +52,17 @@ namespace KinoCentar.WinUI.JediniceMjere
 
         #region Validation
 
-        private void txtKratkiNaziv_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.IsNullOrEmpty(txtKratkiNaziv.Text.Trim()))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtKratkiNaziv, Messages.jedMjere_shortName_err);
-            }
-            else
-            {
-                errorProvider.SetError(txtKratkiNaziv, null);
-            }
-        }
-
         private void txtNaziv_Validating(object sender, CancelEventArgs e)
         {
             if (String.IsNullOrEmpty(txtNaziv.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.jedMjere_name_req);
+                errorProvider.SetError(txtNaziv, Messages.tipKorisnika_name_req);
             }
             else if (txtNaziv.TextLength < 3)
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.jedMjere_name_err);
+                errorProvider.SetError(txtNaziv, Messages.tipKorisnika_name_err);
             }
             else
             {

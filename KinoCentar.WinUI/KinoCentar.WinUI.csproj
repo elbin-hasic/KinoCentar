@@ -52,6 +52,24 @@
   <ItemGroup>
     <Compile Include="Extensions\HttpResponseMessageExtension.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="TipoviKorisnika\frmTipoviKorisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipoviKorisnika\frmTipoviKorisnika.Designer.cs">
+      <DependentUpon>frmTipoviKorisnika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaAdd.Designer.cs">
+      <DependentUpon>frmTipoviKorisnikaAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaEdit.Designer.cs">
+      <DependentUpon>frmTipoviKorisnikaEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +137,15 @@
     <Compile Include="Zanrovi\frmZanroviEdit.Designer.cs">
       <DependentUpon>frmZanroviEdit.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TipoviKorisnika\frmTipoviKorisnika.resx">
+      <DependentUpon>frmTipoviKorisnika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TipoviKorisnika\frmTipoviKorisnikaAdd.resx">
+      <DependentUpon>frmTipoviKorisnikaAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TipoviKorisnika\frmTipoviKorisnikaEdit.resx">
+      <DependentUpon>frmTipoviKorisnikaEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

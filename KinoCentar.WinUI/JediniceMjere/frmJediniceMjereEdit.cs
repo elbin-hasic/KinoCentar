@@ -32,7 +32,7 @@ namespace KinoCentar.WinUI.JediniceMjere
             _jedMjere = null;
         }
 
-        private void frmSaleEdit_Load(object sender, EventArgs e)
+        private void frmJediniceMjereEdit_Load(object sender, EventArgs e)
         {
             HttpResponseMessage response = jediniceMjereService.GetResponse(_id.ToString()).Handle();
             if (response.IsSuccessStatusCode)
@@ -97,12 +97,12 @@ namespace KinoCentar.WinUI.JediniceMjere
             if (String.IsNullOrEmpty(txtNaziv.Text.Trim()))
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.jedMjere_name_err);
+                errorProvider.SetError(txtNaziv, Messages.jedMjere_name_req);
             }
             else if (txtNaziv.TextLength < 3)
             {
                 e.Cancel = true;
-                errorProvider.SetError(txtNaziv, Messages.jedMjere_name_req);
+                errorProvider.SetError(txtNaziv, Messages.jedMjere_name_err);
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using KinoCentar.WinUI.JediniceMjere;
 using KinoCentar.WinUI.Sale;
+using KinoCentar.WinUI.TipoviKorisnika;
 using KinoCentar.WinUI.Zanrovi;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,15 @@ namespace KinoCentar.WinUI
         private void jediniceMjereToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmJediniceMjere frm = new frmJediniceMjere();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        private void tipoviKorisnikaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmTipoviKorisnika frm = new frmTipoviKorisnika();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 

@@ -88,6 +88,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali podatke o tipu korisnika..
+        /// </summary>
+        internal static string add_tipKorisnika_succ {
+            get {
+                return ResourceManager.GetString("add_tipKorisnika_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li želite izbrisati žanr?.
         /// </summary>
         internal static string del_genre_prompt {
@@ -142,6 +151,24 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati tip korisnika?.
+        /// </summary>
+        internal static string del_tipKorisnika_prompt {
+            get {
+                return ResourceManager.GetString("del_tipKorisnika_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o tipu korisnika..
+        /// </summary>
+        internal static string del_tipKorisnika_succ {
+            get {
+                return ResourceManager.GetString("del_tipKorisnika_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste izmijenili podatke o žanru..
         /// </summary>
         internal static string edit_genre_succ {
@@ -169,6 +196,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o tipu korisnika..
+        /// </summary>
+        internal static string edit_tipKorisnika_succ {
+            get {
+                return ResourceManager.GetString("edit_tipKorisnika_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naziv žanra treba da sadrži najmanje 3 karaktera..
         /// </summary>
         internal static string genre_name_err {
@@ -187,7 +223,7 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naziv žanra treba da sadrži najmanje 3 karaktera..
+        ///   Looks up a localized string similar to Naziv jednice mjere treba da sadrži najmanje 3 karaktera..
         /// </summary>
         internal static string jedMjere_name_err {
             get {
@@ -196,7 +232,7 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Naziv žanra je obavezan..
+        ///   Looks up a localized string similar to Naziv jednice mjere je obavezan..
         /// </summary>
         internal static string jedMjere_name_req {
             get {
@@ -205,7 +241,7 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kratki naziv žanra treba da sadrži najmanje 3 karaktera..
+        ///   Looks up a localized string similar to Kratki naziv jednice mjere treba da sadrži najmanje 3 karaktera..
         /// </summary>
         internal static string jedMjere_shortName_err {
             get {
@@ -273,6 +309,24 @@ namespace KinoCentar.WinUI {
         internal static string sale_name_req {
             get {
                 return ResourceManager.GetString("sale_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naziv tipa korisnika treba da sadrži najmanje 3 karaktera..
+        /// </summary>
+        internal static string tipKorisnika_name_err {
+            get {
+                return ResourceManager.GetString("tipKorisnika_name_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naziv tipa korisnika je obavezan..
+        /// </summary>
+        internal static string tipKorisnika_name_req {
+            get {
+                return ResourceManager.GetString("tipKorisnika_name_req", resourceCulture);
             }
         }
     }

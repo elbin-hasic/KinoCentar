@@ -92,6 +92,7 @@
             this.listaToolStripMenuItem1.Name = "listaToolStripMenuItem1";
             this.listaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.listaToolStripMenuItem1.Text = "Tipovi korisnika";
+            this.listaToolStripMenuItem1.Click += new System.EventHandler(this.tipoviKorisnikaToolStripMenuItem1_Click);
             // 
             // saleToolStripMenuItem1
             // 

@@ -1,6 +1,6 @@
-﻿namespace KinoCentar.WinUI.JediniceMjere
+﻿namespace KinoCentar.WinUI.TipoviKorisnika
 {
-    partial class frmJediniceMjereEdit
+    partial class frmTipoviKorisnikaEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -33,15 +33,13 @@
             this.btnSnimi = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtNaziv = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtKratkiNaziv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(202, 105);
+            this.btnOdustani.Location = new System.Drawing.Point(204, 69);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(100, 30);
             this.btnOdustani.TabIndex = 11;
@@ -51,7 +49,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(308, 105);
+            this.btnSnimi.Location = new System.Drawing.Point(310, 69);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(100, 30);
             this.btnSnimi.TabIndex = 10;
@@ -65,56 +63,36 @@
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(126, 70);
+            this.txtNaziv.Location = new System.Drawing.Point(88, 36);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(282, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(322, 22);
             this.txtNaziv.TabIndex = 4;
             this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Naziv:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // txtKratkiNaziv
-            // 
-            this.txtKratkiNaziv.Location = new System.Drawing.Point(126, 36);
-            this.txtKratkiNaziv.Name = "txtKratkiNaziv";
-            this.txtKratkiNaziv.Size = new System.Drawing.Size(282, 22);
-            this.txtKratkiNaziv.TabIndex = 2;
-            this.txtKratkiNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtKratkiNaziv_Validating);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(35, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 17);
+            this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Kratki naziv:";
+            this.label1.Text = "Naziv:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // frmJediniceMjereEdit
+            // frmTipoviKorisnikaEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 165);
+            this.ClientSize = new System.Drawing.Size(447, 128);
             this.Controls.Add(this.txtNaziv);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtKratkiNaziv);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnSnimi);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmJediniceMjereEdit";
+            this.Name = "frmTipoviKorisnikaEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Uredi jedinicu mjere";
-            this.Load += new System.EventHandler(this.frmJediniceMjereEdit_Load);
+            this.Load += new System.EventHandler(this.frmTipoviKorisnikaEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -127,8 +105,6 @@
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.TextBox txtNaziv;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtKratkiNaziv;
         private System.Windows.Forms.Label label1;
     }
 }
