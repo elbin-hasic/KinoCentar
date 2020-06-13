@@ -112,6 +112,7 @@
             this.jediniceMjereToolStripMenuItem1.Name = "jediniceMjereToolStripMenuItem1";
             this.jediniceMjereToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.jediniceMjereToolStripMenuItem1.Text = "Jedinice mjere";
+            this.jediniceMjereToolStripMenuItem1.Click += new System.EventHandler(this.jediniceMjereToolStripMenuItem1_Click);
             // 
             // tipoviKorisnikaToolStripMenuItem
             // 

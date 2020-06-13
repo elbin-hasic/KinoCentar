@@ -1,6 +1,6 @@
-﻿namespace KinoCentar.WinUI.Sale
+﻿namespace KinoCentar.WinUI.JediniceMjere
 {
-    partial class frmSaleEdit
+    partial class frmJediniceMjereEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnSnimi = new System.Windows.Forms.Button();
-            this.txtNaziv = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtBrojSjedista = new System.Windows.Forms.MaskedTextBox();
+            this.txtKratkiNaziv = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,63 +59,61 @@
             this.btnSnimi.UseVisualStyleBackColor = true;
             this.btnSnimi.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
-            // txtNaziv
-            // 
-            this.txtNaziv.Location = new System.Drawing.Point(126, 36);
-            this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(282, 22);
-            this.txtNaziv.TabIndex = 2;
-            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Naziv:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // txtNaziv
+            // 
+            this.txtNaziv.Location = new System.Drawing.Point(126, 70);
+            this.txtNaziv.Name = "txtNaziv";
+            this.txtNaziv.Size = new System.Drawing.Size(282, 22);
+            this.txtNaziv.TabIndex = 4;
+            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 75);
+            this.label2.Location = new System.Drawing.Point(73, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 17);
+            this.label2.Size = new System.Drawing.Size(47, 17);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Broj sjedišta:";
+            this.label2.Text = "Naziv:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // txtBrojSjedista
+            // txtKratkiNaziv
             // 
-            this.txtBrojSjedista.Location = new System.Drawing.Point(126, 72);
-            this.txtBrojSjedista.Mask = "00000";
-            this.txtBrojSjedista.Name = "txtBrojSjedista";
-            this.txtBrojSjedista.Size = new System.Drawing.Size(282, 22);
-            this.txtBrojSjedista.TabIndex = 4;
-            this.txtBrojSjedista.ValidatingType = typeof(int);
-            this.txtBrojSjedista.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrojSjedista_Validating);
+            this.txtKratkiNaziv.Location = new System.Drawing.Point(126, 36);
+            this.txtKratkiNaziv.Name = "txtKratkiNaziv";
+            this.txtKratkiNaziv.Size = new System.Drawing.Size(282, 22);
+            this.txtKratkiNaziv.TabIndex = 2;
+            this.txtKratkiNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtKratkiNaziv_Validating);
             // 
-            // frmSaleEdit
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Kratki naziv:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // frmJediniceMjereEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 165);
-            this.Controls.Add(this.txtBrojSjedista);
+            this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtKratkiNaziv);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnSnimi);
-            this.Controls.Add(this.txtNaziv);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmSaleEdit";
+            this.Name = "frmJediniceMjereEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Uredi salu";
+            this.Text = "Uredi jedinicu mjere";
             this.Load += new System.EventHandler(this.frmSaleEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -127,10 +125,10 @@
 
         private System.Windows.Forms.Button btnOdustani;
         private System.Windows.Forms.Button btnSnimi;
-        private System.Windows.Forms.TextBox txtNaziv;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox txtBrojSjedista;
+        private System.Windows.Forms.TextBox txtKratkiNaziv;
+        private System.Windows.Forms.Label label1;
     }
 }

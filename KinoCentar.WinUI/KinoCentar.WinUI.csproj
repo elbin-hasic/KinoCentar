@@ -65,6 +65,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JediniceMjere\frmJediniceMjere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JediniceMjere\frmJediniceMjere.Designer.cs">
+      <DependentUpon>frmJediniceMjere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JediniceMjere\frmJediniceMjereAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JediniceMjere\frmJediniceMjereAdd.Designer.cs">
+      <DependentUpon>frmJediniceMjereAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JediniceMjere\frmJediniceMjereEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JediniceMjere\frmJediniceMjereEdit.Designer.cs">
+      <DependentUpon>frmJediniceMjereEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sale\frmSale.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +135,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="JediniceMjere\frmJediniceMjere.resx">
+      <DependentUpon>frmJediniceMjere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JediniceMjere\frmJediniceMjereAdd.resx">
+      <DependentUpon>frmJediniceMjereAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JediniceMjere\frmJediniceMjereEdit.resx">
+      <DependentUpon>frmJediniceMjereEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sale\frmSale.resx">
       <DependentUpon>frmSale.cs</DependentUpon>
     </EmbeddedResource>
