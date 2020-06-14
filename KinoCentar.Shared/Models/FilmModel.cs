@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace KinoCentar.Shared.Models
+{
+    public class FilmModel
+    {
+        public int Id { get; set; }
+
+        public string Naslov { get; set; }
+
+        public int? Trajanje { get; set; }
+
+        public int? GodinaSnimanja { get; set; }
+
+        public string Sadrzaj { get; set; }
+
+        public string VideoLink { get; set; }
+
+        public string ImdbLink { get; set; }
+
+        public int? RediteljId { get; set; }
+
+        public string RediteljImePrezime 
+        {
+            get 
+            {
+                return Reditelj?.ImePrezime;
+            }
+        }
+
+        public byte[] Plakat { get; set; }
+
+        public FilmskaLicnostModel Reditelj { get; set; }
+    }
+}

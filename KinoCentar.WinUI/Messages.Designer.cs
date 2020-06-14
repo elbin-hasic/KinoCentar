@@ -61,6 +61,33 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali artikal..
+        /// </summary>
+        internal static string add_artikal_succ {
+            get {
+                return ResourceManager.GetString("add_artikal_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali podatke o filmu..
+        /// </summary>
+        internal static string add_film_succ {
+            get {
+                return ResourceManager.GetString("add_film_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali filmsku ličnost..
+        /// </summary>
+        internal static string add_filmskaLicnost_succ {
+            get {
+                return ResourceManager.GetString("add_filmskaLicnost_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste dodali podatke o žanru..
         /// </summary>
         internal static string add_genre_succ {
@@ -79,6 +106,24 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali obavijest..
+        /// </summary>
+        internal static string add_obavijest_succ {
+            get {
+                return ResourceManager.GetString("add_obavijest_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali podatke o projekciji..
+        /// </summary>
+        internal static string add_projekcija_succ {
+            get {
+                return ResourceManager.GetString("add_projekcija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste dodali salu..
         /// </summary>
         internal static string add_sale_succ {
@@ -93,6 +138,69 @@ namespace KinoCentar.WinUI {
         internal static string add_tipKorisnika_succ {
             get {
                 return ResourceManager.GetString("add_tipKorisnika_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali podatke o korisniku..
+        /// </summary>
+        internal static string add_user_succ {
+            get {
+                return ResourceManager.GetString("add_user_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati artikal?.
+        /// </summary>
+        internal static string del_artikal_prompt {
+            get {
+                return ResourceManager.GetString("del_artikal_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o artiklu..
+        /// </summary>
+        internal static string del_artikal_succ {
+            get {
+                return ResourceManager.GetString("del_artikal_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati film?.
+        /// </summary>
+        internal static string del_film_prompt {
+            get {
+                return ResourceManager.GetString("del_film_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o filmu..
+        /// </summary>
+        internal static string del_film_succ {
+            get {
+                return ResourceManager.GetString("del_film_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati filmsku ličnost?.
+        /// </summary>
+        internal static string del_filmskaLicnost_prompt {
+            get {
+                return ResourceManager.GetString("del_filmskaLicnost_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o filmskoj ličnosti..
+        /// </summary>
+        internal static string del_filmskaLicnost_succ {
+            get {
+                return ResourceManager.GetString("del_filmskaLicnost_succ", resourceCulture);
             }
         }
         
@@ -133,6 +241,42 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati obavijest?.
+        /// </summary>
+        internal static string del_obavijest_prompt {
+            get {
+                return ResourceManager.GetString("del_obavijest_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o obavijesti..
+        /// </summary>
+        internal static string del_obavijest_succ {
+            get {
+                return ResourceManager.GetString("del_obavijest_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati projekciju?.
+        /// </summary>
+        internal static string del_projekcija_prompt {
+            get {
+                return ResourceManager.GetString("del_projekcija_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o projekciji..
+        /// </summary>
+        internal static string del_projekcija_succ {
+            get {
+                return ResourceManager.GetString("del_projekcija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li želite izbrisati salu?.
         /// </summary>
         internal static string del_sale_prompt {
@@ -169,6 +313,51 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati korisnika?.
+        /// </summary>
+        internal static string del_user_prompt {
+            get {
+                return ResourceManager.GetString("del_user_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o korisniku..
+        /// </summary>
+        internal static string del_user_succ {
+            get {
+                return ResourceManager.GetString("del_user_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o artiklu..
+        /// </summary>
+        internal static string edit_artikal_succ {
+            get {
+                return ResourceManager.GetString("edit_artikal_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o filmu..
+        /// </summary>
+        internal static string edit_film_succ {
+            get {
+                return ResourceManager.GetString("edit_film_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o filmskoj ličnosti..
+        /// </summary>
+        internal static string edit_filmskaLicnost_succ {
+            get {
+                return ResourceManager.GetString("edit_filmskaLicnost_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste izmijenili podatke o žanru..
         /// </summary>
         internal static string edit_genre_succ {
@@ -187,6 +376,24 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o obavijesti..
+        /// </summary>
+        internal static string edit_obavijest_succ {
+            get {
+                return ResourceManager.GetString("edit_obavijest_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o projekciji..
+        /// </summary>
+        internal static string edit_projekcija_succ {
+            get {
+                return ResourceManager.GetString("edit_projekcija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o sali..
         /// </summary>
         internal static string edit_sale_succ {
@@ -201,6 +408,15 @@ namespace KinoCentar.WinUI {
         internal static string edit_tipKorisnika_succ {
             get {
                 return ResourceManager.GetString("edit_tipKorisnika_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o korisniku..
+        /// </summary>
+        internal static string edit_user_succ {
+            get {
+                return ResourceManager.GetString("edit_user_succ", resourceCulture);
             }
         }
         
@@ -327,6 +543,24 @@ namespace KinoCentar.WinUI {
         internal static string tipKorisnika_name_req {
             get {
                 return ResourceManager.GetString("tipKorisnika_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisničko ime treba da sadrži najmanje 3 karaktera..
+        /// </summary>
+        internal static string user_name_err {
+            get {
+                return ResourceManager.GetString("user_name_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisničko ime korisnika je obavezan..
+        /// </summary>
+        internal static string user_name_req {
+            get {
+                return ResourceManager.GetString("user_name_req", resourceCulture);
             }
         }
     }

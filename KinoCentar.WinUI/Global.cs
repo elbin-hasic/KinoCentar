@@ -1,4 +1,4 @@
-﻿using KinoCentar.PCL.Models;
+﻿using KinoCentar.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,7 +10,7 @@ namespace KinoCentar.WinUI
 {
     public static class Global
     {
-        public static Korisnik prijavljeniKorisnik { get; set; }
+        public static KorisnikModel PrijavljeniKorisnik { get; set; }
 
         #region API Routes
 
@@ -29,10 +29,12 @@ namespace KinoCentar.WinUI
         public static string JediniceMjereRoute = "api/JediniceMjere";
 
         public static string FilmoviRoute = "api/Filmovi";
+        public static string FilmskeLicnostiRoute = "api/FilmskeLicnosti";
         public static string ProjekcijeRoute = "api/Projekcije";
         public static string RezervacijeRoute = "api/Rezervacije";
         public static string ArtikliRoute = "api/Artikli";
-        public static string FilmskeLicnostiRoute = "api/FilmskeLicnosti";
+
+        public static string ObavijestiRoute = "api/Obavijesti";
 
         #endregion
     }

@@ -51,23 +51,113 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\HttpResponseMessageExtension.cs" />
-    <Compile Include="Global.cs" />
-    <Compile Include="TipoviKorisnika\frmTipoviKorisnika.cs">
+    <Compile Include="Forms\Artikli\frmArtikli.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TipoviKorisnika\frmTipoviKorisnika.Designer.cs">
+    <Compile Include="Forms\Artikli\frmArtikli.Designer.cs">
+      <DependentUpon>frmArtikli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikli\frmArtikliAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Artikli\frmArtikliAdd.Designer.cs">
+      <DependentUpon>frmArtikliAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Artikli\frmArtikliEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Artikli\frmArtikliEdit.Designer.cs">
+      <DependentUpon>frmArtikliEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnosti.Designer.cs">
+      <DependentUpon>frmFilmskeLicnosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiAdd.Designer.cs">
+      <DependentUpon>frmFilmskeLicnostiAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.Designer.cs">
+      <DependentUpon>frmFilmskeLicnostiEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Projekcije\frmProjekcije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Projekcije\frmProjekcije.Designer.cs">
+      <DependentUpon>frmProjekcije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Projekcije\frmProjekcijeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Projekcije\frmProjekcijeAdd.Designer.cs">
+      <DependentUpon>frmProjekcijeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Projekcije\frmProjekcijeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Projekcije\frmProjekcijeEdit.Designer.cs">
+      <DependentUpon>frmProjekcijeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Filmovi\frmFilmovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Filmovi\frmFilmovi.Designer.cs">
+      <DependentUpon>frmFilmovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Filmovi\frmFilmoviAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Filmovi\frmFilmoviAdd.Designer.cs">
+      <DependentUpon>frmFilmoviAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Filmovi\frmFilmoviEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Filmovi\frmFilmoviEdit.Designer.cs">
+      <DependentUpon>frmFilmoviEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Obavijesti\frmObavijesti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Obavijesti\frmObavijesti.Designer.cs">
+      <DependentUpon>frmObavijesti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Obavijesti\frmObavijestiAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Obavijesti\frmObavijestiAdd.Designer.cs">
+      <DependentUpon>frmObavijestiAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Obavijesti\frmObavijestiEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Obavijesti\frmObavijestiEdit.Designer.cs">
+      <DependentUpon>frmObavijestiEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="Forms\TipoviKorisnika\frmTipoviKorisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TipoviKorisnika\frmTipoviKorisnika.Designer.cs">
       <DependentUpon>frmTipoviKorisnika.cs</DependentUpon>
     </Compile>
-    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaAdd.cs">
+    <Compile Include="Forms\TipoviKorisnika\frmTipoviKorisnikaAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaAdd.Designer.cs">
+    <Compile Include="Forms\TipoviKorisnika\frmTipoviKorisnikaAdd.Designer.cs">
       <DependentUpon>frmTipoviKorisnikaAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaEdit.cs">
+    <Compile Include="Forms\TipoviKorisnika\frmTipoviKorisnikaEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TipoviKorisnika\frmTipoviKorisnikaEdit.Designer.cs">
+    <Compile Include="Forms\TipoviKorisnika\frmTipoviKorisnikaEdit.Designer.cs">
       <DependentUpon>frmTipoviKorisnikaEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -83,68 +173,132 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="JediniceMjere\frmJediniceMjere.cs">
+    <Compile Include="Forms\JediniceMjere\frmJediniceMjere.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JediniceMjere\frmJediniceMjere.Designer.cs">
+    <Compile Include="Forms\JediniceMjere\frmJediniceMjere.Designer.cs">
       <DependentUpon>frmJediniceMjere.cs</DependentUpon>
     </Compile>
-    <Compile Include="JediniceMjere\frmJediniceMjereAdd.cs">
+    <Compile Include="Forms\JediniceMjere\frmJediniceMjereAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JediniceMjere\frmJediniceMjereAdd.Designer.cs">
+    <Compile Include="Forms\JediniceMjere\frmJediniceMjereAdd.Designer.cs">
       <DependentUpon>frmJediniceMjereAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="JediniceMjere\frmJediniceMjereEdit.cs">
+    <Compile Include="Forms\JediniceMjere\frmJediniceMjereEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JediniceMjere\frmJediniceMjereEdit.Designer.cs">
+    <Compile Include="Forms\JediniceMjere\frmJediniceMjereEdit.Designer.cs">
       <DependentUpon>frmJediniceMjereEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sale\frmSale.cs">
+    <Compile Include="Forms\Sale\frmSale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sale\frmSale.Designer.cs">
+    <Compile Include="Forms\Sale\frmSale.Designer.cs">
       <DependentUpon>frmSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sale\frmSaleAdd.cs">
+    <Compile Include="Forms\Sale\frmSaleAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sale\frmSaleAdd.Designer.cs">
+    <Compile Include="Forms\Sale\frmSaleAdd.Designer.cs">
       <DependentUpon>frmSaleAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sale\frmSaleEdit.cs">
+    <Compile Include="Forms\Sale\frmSaleEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sale\frmSaleEdit.Designer.cs">
+    <Compile Include="Forms\Sale\frmSaleEdit.Designer.cs">
       <DependentUpon>frmSaleEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Zanrovi\frmZanrovi.cs">
+    <Compile Include="Forms\Korisnici\frmKorisnici.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Zanrovi\frmZanrovi.Designer.cs">
+    <Compile Include="Forms\Korisnici\frmKorisnici.Designer.cs">
+      <DependentUpon>frmKorisnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Korisnici\frmKorisniciAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Korisnici\frmKorisniciAdd.Designer.cs">
+      <DependentUpon>frmKorisniciAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Korisnici\frmKorisniciEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Korisnici\frmKorisniciEdit.Designer.cs">
+      <DependentUpon>frmKorisniciEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Zanrovi\frmZanrovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Zanrovi\frmZanrovi.Designer.cs">
       <DependentUpon>frmZanrovi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Zanrovi\frmZanroviAdd.cs">
+    <Compile Include="Forms\Zanrovi\frmZanroviAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Zanrovi\frmZanroviAdd.Designer.cs">
+    <Compile Include="Forms\Zanrovi\frmZanroviAdd.Designer.cs">
       <DependentUpon>frmZanroviAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Zanrovi\frmZanroviEdit.cs">
+    <Compile Include="Forms\Zanrovi\frmZanroviEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Zanrovi\frmZanroviEdit.Designer.cs">
+    <Compile Include="Forms\Zanrovi\frmZanroviEdit.Designer.cs">
       <DependentUpon>frmZanroviEdit.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TipoviKorisnika\frmTipoviKorisnika.resx">
+    <Compile Include="Util\UIHelper.cs" />
+    <EmbeddedResource Include="Forms\Artikli\frmArtikli.resx">
+      <DependentUpon>frmArtikli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikli\frmArtikliAdd.resx">
+      <DependentUpon>frmArtikliAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Artikli\frmArtikliEdit.resx">
+      <DependentUpon>frmArtikliEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilmskeLicnosti\frmFilmskeLicnosti.resx">
+      <DependentUpon>frmFilmskeLicnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiAdd.resx">
+      <DependentUpon>frmFilmskeLicnostiAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.resx">
+      <DependentUpon>frmFilmskeLicnostiEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Projekcije\frmProjekcije.resx">
+      <DependentUpon>frmProjekcije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Projekcije\frmProjekcijeAdd.resx">
+      <DependentUpon>frmProjekcijeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Projekcije\frmProjekcijeEdit.resx">
+      <DependentUpon>frmProjekcijeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Filmovi\frmFilmovi.resx">
+      <DependentUpon>frmFilmovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Filmovi\frmFilmoviAdd.resx">
+      <DependentUpon>frmFilmoviAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Filmovi\frmFilmoviEdit.resx">
+      <DependentUpon>frmFilmoviEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TipoviKorisnika\frmTipoviKorisnika.resx">
       <DependentUpon>frmTipoviKorisnika.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TipoviKorisnika\frmTipoviKorisnikaAdd.resx">
+    <EmbeddedResource Include="Forms\TipoviKorisnika\frmTipoviKorisnikaAdd.resx">
       <DependentUpon>frmTipoviKorisnikaAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TipoviKorisnika\frmTipoviKorisnikaEdit.resx">
+    <EmbeddedResource Include="Forms\TipoviKorisnika\frmTipoviKorisnikaEdit.resx">
       <DependentUpon>frmTipoviKorisnikaEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Obavijesti\frmObavijesti.resx">
+      <DependentUpon>frmObavijesti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Obavijesti\frmObavijestiAdd.resx">
+      <DependentUpon>frmObavijestiAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Obavijesti\frmObavijestiEdit.resx">
+      <DependentUpon>frmObavijestiEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -162,31 +316,40 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="JediniceMjere\frmJediniceMjere.resx">
+    <EmbeddedResource Include="Forms\JediniceMjere\frmJediniceMjere.resx">
       <DependentUpon>frmJediniceMjere.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JediniceMjere\frmJediniceMjereAdd.resx">
+    <EmbeddedResource Include="Forms\JediniceMjere\frmJediniceMjereAdd.resx">
       <DependentUpon>frmJediniceMjereAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JediniceMjere\frmJediniceMjereEdit.resx">
+    <EmbeddedResource Include="Forms\JediniceMjere\frmJediniceMjereEdit.resx">
       <DependentUpon>frmJediniceMjereEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sale\frmSale.resx">
+    <EmbeddedResource Include="Forms\Sale\frmSale.resx">
       <DependentUpon>frmSale.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sale\frmSaleAdd.resx">
+    <EmbeddedResource Include="Forms\Sale\frmSaleAdd.resx">
       <DependentUpon>frmSaleAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sale\frmSaleEdit.resx">
+    <EmbeddedResource Include="Forms\Sale\frmSaleEdit.resx">
       <DependentUpon>frmSaleEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Zanrovi\frmZanrovi.resx">
+    <EmbeddedResource Include="Forms\Korisnici\frmKorisnici.resx">
+      <DependentUpon>frmKorisnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Korisnici\frmKorisniciAdd.resx">
+      <DependentUpon>frmKorisniciAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Korisnici\frmKorisniciEdit.resx">
+      <DependentUpon>frmKorisniciEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Zanrovi\frmZanrovi.resx">
       <DependentUpon>frmZanrovi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Zanrovi\frmZanroviAdd.resx">
+    <EmbeddedResource Include="Forms\Zanrovi\frmZanroviAdd.resx">
       <DependentUpon>frmZanroviAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Zanrovi\frmZanroviEdit.resx">
+    <EmbeddedResource Include="Forms\Zanrovi\frmZanroviEdit.resx">
       <DependentUpon>frmZanroviEdit.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -203,10 +366,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\KinoCentar.PCL\KinoCentar.Shared.csproj">
-      <Project>{D9D25928-DF1A-40A9-AE75-943B9242DA50}</Project>
+    <ProjectReference Include="..\KinoCentar.Shared\KinoCentar.Shared.csproj">
+      <Project>{B76080B5-B747-4128-89A0-3C935F43DF30}</Project>
       <Name>KinoCentar.Shared</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using KinoCentar.PCL.Util;
+﻿using KinoCentar.Shared.Util;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,30 +24,31 @@ namespace KinoCentar.API.EntityModels
             tipoviKorisnika.Add(new TipKorisnika { Naziv = "Radnik" });
             tipoviKorisnika.Add(new TipKorisnika { Naziv = "Klijent" });
             context.TipKorisnika.AddRange(tipoviKorisnika);
-            context.SaveChanges();
+            // context.SaveChanges();
 
             var korisnici = new List<Korisnik>();
             var lozinka = "test";
             // #Administrator - Admin
             var lozinkaSalt = UIHelper.GenerateSalt();
             var lozinkaHash = UIHelper.GenerateHash(lozinkaSalt, lozinka);
-            korisnici.Add(new Korisnik { KorisnickoIme = "admin", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Admin", TipKorisnikaId = tipoviKorisnika[0].Id });
+            korisnici.Add(new Korisnik { KorisnickoIme = "admin", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Admin", TipKorisnika = tipoviKorisnika[0] });
             // #Administrator - Desktop
             lozinkaSalt = UIHelper.GenerateSalt();
             lozinkaHash = UIHelper.GenerateHash(lozinkaSalt, lozinka);
-            korisnici.Add(new Korisnik { KorisnickoIme = "desktop", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Desktop", TipKorisnikaId = tipoviKorisnika[0].Id });
+            korisnici.Add(new Korisnik { KorisnickoIme = "desktop", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Desktop", TipKorisnika = tipoviKorisnika[0] });
             // #Moderator
             lozinkaSalt = UIHelper.GenerateSalt();
             lozinkaHash = UIHelper.GenerateHash(lozinkaSalt, lozinka);
-            korisnici.Add(new Korisnik { KorisnickoIme = "moderator", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Moderator", TipKorisnikaId = tipoviKorisnika[1].Id });
+            korisnici.Add(new Korisnik { KorisnickoIme = "moderator", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Moderator", TipKorisnika = tipoviKorisnika[1] });
             // #Radnik
             lozinkaSalt = UIHelper.GenerateSalt();
             lozinkaHash = UIHelper.GenerateHash(lozinkaSalt, lozinka);
-            korisnici.Add(new Korisnik { KorisnickoIme = "radnik", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Radnik", TipKorisnikaId = tipoviKorisnika[2].Id });
+            korisnici.Add(new Korisnik { KorisnickoIme = "radnik", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Radnik", TipKorisnika = tipoviKorisnika[2] });
             // #Mobile
             lozinkaSalt = UIHelper.GenerateSalt();
             lozinkaHash = UIHelper.GenerateHash(lozinkaSalt, lozinka);
-            korisnici.Add(new Korisnik { KorisnickoIme = "mobile", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Mobile", TipKorisnikaId = tipoviKorisnika[3].Id });
+            korisnici.Add(new Korisnik { KorisnickoIme = "mobile", LozinkaSalt = lozinkaSalt, LozinkaHash = lozinkaHash, Ime = "Mobile", TipKorisnika = tipoviKorisnika[3] });
+            context.Korisnik.AddRange(korisnici);
 
             var zanrovi = new List<Zanr>();
             zanrovi.Add(new Zanr { Naziv = "Akcija" });
