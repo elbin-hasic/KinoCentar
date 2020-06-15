@@ -40,12 +40,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.pbSlika = new System.Windows.Forms.PictureBox();
+            this.btnIzaberiPlakat = new System.Windows.Forms.Button();
+            this.txtSlika = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(202, 194);
+            this.btnOdustani.Location = new System.Drawing.Point(202, 227);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(100, 30);
             this.btnOdustani.TabIndex = 41;
@@ -55,7 +61,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(308, 194);
+            this.btnSnimi.Location = new System.Drawing.Point(308, 227);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(100, 30);
             this.btnSnimi.TabIndex = 40;
@@ -138,11 +144,62 @@
             this.label1.Text = "Naziv:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(440, 38);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 17);
+            this.label9.TabIndex = 65;
+            this.label9.Text = "Prikaz slike:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // pbSlika
+            // 
+            this.pbSlika.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbSlika.Location = new System.Drawing.Point(443, 63);
+            this.pbSlika.Name = "pbSlika";
+            this.pbSlika.Size = new System.Drawing.Size(310, 194);
+            this.pbSlika.TabIndex = 64;
+            this.pbSlika.TabStop = false;
+            // 
+            // btnIzaberiPlakat
+            // 
+            this.btnIzaberiPlakat.Location = new System.Drawing.Point(368, 167);
+            this.btnIzaberiPlakat.Name = "btnIzaberiPlakat";
+            this.btnIzaberiPlakat.Size = new System.Drawing.Size(40, 30);
+            this.btnIzaberiPlakat.TabIndex = 69;
+            this.btnIzaberiPlakat.Text = "...";
+            this.btnIzaberiPlakat.UseVisualStyleBackColor = true;
+            this.btnIzaberiPlakat.Click += new System.EventHandler(this.btnIzaberiPlakat_Click);
+            // 
+            // txtSlika
+            // 
+            this.txtSlika.Location = new System.Drawing.Point(126, 171);
+            this.txtSlika.Name = "txtSlika";
+            this.txtSlika.Size = new System.Drawing.Size(236, 22);
+            this.txtSlika.TabIndex = 68;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(76, 174);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 17);
+            this.label10.TabIndex = 67;
+            this.label10.Text = "Slika:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmArtikliEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 253);
+            this.ClientSize = new System.Drawing.Size(788, 287);
+            this.Controls.Add(this.btnIzaberiPlakat);
+            this.Controls.Add(this.txtSlika);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.pbSlika);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.txtCijena);
@@ -159,6 +216,7 @@
             this.Text = "Uredi artikal";
             this.Load += new System.EventHandler(this.frmArtikliEdit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +235,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pbSlika;
+        private System.Windows.Forms.Button btnIzaberiPlakat;
+        private System.Windows.Forms.TextBox txtSlika;
+        private System.Windows.Forms.Label label10;
     }
 }

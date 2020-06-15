@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.Artikli
 {
     public partial class frmArtikli : Form
     {
-        private WebAPIHelper artikliService = new WebAPIHelper(Global.API_ADDRESS, Global.ArtikliRoute);
+        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute);
 
         public frmArtikli()
         {

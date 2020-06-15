@@ -484,6 +484,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Greška.
+        /// </summary>
+        internal static string msg_err {
+            get {
+                return ResourceManager.GetString("msg_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Poruka o uspjehu.
         /// </summary>
         internal static string msg_succ {
@@ -498,6 +507,24 @@ namespace KinoCentar.WinUI {
         internal static string msg_war {
             get {
                 return ResourceManager.GetString("msg_war", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odabrana slika ne postoji..
+        /// </summary>
+        internal static string picture_not_exist {
+            get {
+                return ResourceManager.GetString("picture_not_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potrebno je da odaberete sliku dimenzija većih od.
+        /// </summary>
+        internal static string picture_war {
+            get {
+                return ResourceManager.GetString("picture_war", resourceCulture);
             }
         }
         

@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnFilmInfo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,7 +117,7 @@
             this.cmbFilm.FormattingEnabled = true;
             this.cmbFilm.Location = new System.Drawing.Point(126, 35);
             this.cmbFilm.Name = "cmbFilm";
-            this.cmbFilm.Size = new System.Drawing.Size(282, 24);
+            this.cmbFilm.Size = new System.Drawing.Size(246, 24);
             this.cmbFilm.TabIndex = 43;
             // 
             // label4
@@ -159,11 +160,22 @@
             this.label1.Text = "Film:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // btnFilmInfo
+            // 
+            this.btnFilmInfo.Location = new System.Drawing.Point(378, 34);
+            this.btnFilmInfo.Name = "btnFilmInfo";
+            this.btnFilmInfo.Size = new System.Drawing.Size(30, 26);
+            this.btnFilmInfo.TabIndex = 52;
+            this.btnFilmInfo.Text = "i";
+            this.btnFilmInfo.UseVisualStyleBackColor = true;
+            this.btnFilmInfo.Click += new System.EventHandler(this.btnFilmInfo_Click);
+            // 
             // frmProjekcijeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 287);
+            this.Controls.Add(this.btnFilmInfo);
             this.Controls.Add(this.dtpVrijediDo);
             this.Controls.Add(this.dtpVrijediOd);
             this.Controls.Add(this.txtCijena);
@@ -202,5 +214,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnFilmInfo;
     }
 }

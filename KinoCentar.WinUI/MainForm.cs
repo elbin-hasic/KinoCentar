@@ -26,7 +26,7 @@ namespace KinoCentar.WinUI
 {
     public partial class MainForm : Form
     {
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.API_ADDRESS, Global.KorisniciRoute);
+        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
 
         public MainForm()
         {

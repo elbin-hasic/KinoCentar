@@ -18,8 +18,8 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 {
     public partial class frmKorisniciEdit : Form
     {
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.API_ADDRESS, Global.KorisniciRoute);
-        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.API_ADDRESS, Global.TipoviKorisnikaRoute);
+        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
+        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute);
 
         private int _id { get; set; }
         private KorisnikModel _k { get; set; }
@@ -73,6 +73,35 @@ namespace KinoCentar.WinUI.Forms.Korisnici
             txtPrezime.Text = _k.Prezime;
             txtEmail.Text = _k.Email;            
             txtKorisnickoIme.Text = _k.KorisnickoIme;
+
+            if (_k.SlikaThumb != null)
+            {
+                pbSlikaThumb.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_k.SlikaThumb));
+            }
+        }
+
+        private void btnIzaberiSliku_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.ShowDialog();
+                    txtSlika.Text = openFileDialog.FileName;
+                }
+
+                var slikaData = Util.UIHelper.PrepareSaveImage(txtSlika.Text);
+                if (slikaData != null)
+                {
+                    _k.Slika = slikaData.OriginalImageBytes;
+                    _k.SlikaThumb = slikaData.CroppedImageBytes;
+                    pbSlikaThumb.Image = slikaData.CroppedImage;
+                }
+            }
+            catch
+            {
+                txtSlika.Text = null;
+            }
         }
 
         private void btnSnimi_Click(object sender, EventArgs e)

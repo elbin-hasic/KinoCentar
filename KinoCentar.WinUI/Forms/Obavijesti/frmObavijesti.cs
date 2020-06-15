@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.Obavijesti
 {
     public partial class frmObavijesti : Form
     {
-        private WebAPIHelper obavijestiService = new WebAPIHelper(Global.API_ADDRESS, Global.ObavijestiRoute);
+        private WebAPIHelper obavijestiService = new WebAPIHelper(Global.ApiAddress, Global.ObavijestiRoute);
 
         public frmObavijesti()
         {

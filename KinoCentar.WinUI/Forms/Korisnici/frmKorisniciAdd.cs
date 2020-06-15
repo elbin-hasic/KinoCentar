@@ -12,13 +12,16 @@ using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Util;
 using KinoCentar.WinUI.Extensions;
+using System.IO;
 
 namespace KinoCentar.WinUI.Forms.Korisnici
 {
     public partial class frmKorisniciAdd : Form
     {
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.API_ADDRESS, Global.KorisniciRoute);
-        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.API_ADDRESS, Global.TipoviKorisnikaRoute);
+        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
+        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute);
+
+        KorisnikModel k = new KorisnikModel();
 
         public frmKorisniciAdd()
         {
@@ -39,11 +42,34 @@ namespace KinoCentar.WinUI.Forms.Korisnici
             }
         }
 
+        private void btnIzaberiSliku_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.ShowDialog();
+                    txtSlika.Text = openFileDialog.FileName;
+                }
+
+                var slikaData = Util.UIHelper.PrepareSaveImage(txtSlika.Text);
+                if (slikaData != null)
+                {
+                    k.Slika = slikaData.OriginalImageBytes;
+                    k.SlikaThumb = slikaData.CroppedImageBytes;
+                    pbSlikaThumb.Image = slikaData.CroppedImage;
+                }
+            }
+            catch
+            {
+                txtSlika.Text = null;
+            }
+        }
+
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             if (this.ValidateChildren())
             {
-                KorisnikModel k = new KorisnikModel();
                 k.Ime = txtIme.Text;
                 k.Prezime = txtPrezime.Text;
                 k.Email = txtEmail.Text;

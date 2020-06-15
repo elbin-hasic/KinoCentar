@@ -171,6 +171,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SaveImageModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\JediniceMjere\frmJediniceMjere.cs">
@@ -245,6 +246,7 @@
     <Compile Include="Forms\Zanrovi\frmZanroviEdit.Designer.cs">
       <DependentUpon>frmZanroviEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigurationSettings.cs" />
     <Compile Include="Util\UIHelper.cs" />
     <EmbeddedResource Include="Forms\Artikli\frmArtikli.resx">
       <DependentUpon>frmArtikli.cs</DependentUpon>

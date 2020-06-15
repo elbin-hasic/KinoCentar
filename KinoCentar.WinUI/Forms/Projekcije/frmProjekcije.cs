@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.Projekcije
 {
     public partial class frmProjekcije : Form
     {
-        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.API_ADDRESS, Global.ProjekcijeRoute);
+        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute);
 
         public frmProjekcije()
         {

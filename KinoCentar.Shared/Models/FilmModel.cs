@@ -32,6 +32,8 @@ namespace KinoCentar.Shared.Models
 
         public byte[] Plakat { get; set; }
 
+        public byte[] PlakatThumb { get; set; }
+
         public FilmskaLicnostModel Reditelj { get; set; }
     }
 }

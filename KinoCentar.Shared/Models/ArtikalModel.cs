@@ -18,6 +18,8 @@ namespace KinoCentar.Shared.Models
 
         public byte[] Slika { get; set; }
 
+        public byte[] SlikaThumb { get; set; }
+
         public JedinicaMjereModel JedinicaMjere { get; set; }
     }
 }

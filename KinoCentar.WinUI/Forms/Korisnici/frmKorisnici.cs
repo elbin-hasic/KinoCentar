@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 {
     public partial class frmKorisnici : Form
     {
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.API_ADDRESS, Global.KorisniciRoute);
+        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
 
         public frmKorisnici()
         {

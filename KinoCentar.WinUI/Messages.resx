@@ -258,11 +258,20 @@
   <data name="msg_conf" xml:space="preserve">
     <value>Potvrda</value>
   </data>
+  <data name="msg_err" xml:space="preserve">
+    <value>Greška</value>
+  </data>
   <data name="msg_succ" xml:space="preserve">
     <value>Poruka o uspjehu</value>
   </data>
   <data name="msg_war" xml:space="preserve">
     <value>Upozorenje</value>
+  </data>
+  <data name="picture_not_exist" xml:space="preserve">
+    <value>Odabrana slika ne postoji.</value>
+  </data>
+  <data name="picture_war" xml:space="preserve">
+    <value>Potrebno je da odaberete sliku dimenzija većih od</value>
   </data>
   <data name="sale_brojSjedista_req" xml:space="preserve">
     <value>Broj sjedišta sale je obavezan.</value>

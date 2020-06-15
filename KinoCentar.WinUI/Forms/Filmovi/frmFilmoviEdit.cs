@@ -18,8 +18,8 @@ namespace KinoCentar.WinUI.Forms.Filmovi
 {
     public partial class frmFilmoviEdit : Form
     {
-        private WebAPIHelper filmoviService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmoviRoute);
-        private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmskeLicnostiRoute);
+        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute);
+        private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.ApiAddress, Global.FilmskeLicnostiRoute);
 
         private int _id { get; set; }
         private FilmModel _film { get; set; }
@@ -72,6 +72,35 @@ namespace KinoCentar.WinUI.Forms.Filmovi
             txtSadrzaj.Text = _film.Sadrzaj;
             txtVideoLink.Text = _film.VideoLink;
             txtImdbLink.Text = _film.ImdbLink;
+
+            if (_film.Plakat != null)
+            {
+                pbPlakat.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_film.Plakat));
+            }
+        }
+
+        private void btnIzaberiPlakat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.ShowDialog();
+                    txtPlakat.Text = openFileDialog.FileName;
+                }
+
+                var slikaData = Util.UIHelper.PrepareSaveImage(txtPlakat.Text);
+                if (slikaData != null)
+                {
+                    _film.Plakat = slikaData.OriginalImageBytes;
+                    _film.PlakatThumb = slikaData.CroppedImageBytes;
+                    pbPlakat.Image = slikaData.OriginalImage;
+                }
+            }
+            catch
+            {
+                txtPlakat.Text = null;
+            }
         }
 
         private void btnSnimi_Click(object sender, EventArgs e)
@@ -107,7 +136,7 @@ namespace KinoCentar.WinUI.Forms.Filmovi
 
         #region Validation
 
-        
+
 
         #endregion
     }

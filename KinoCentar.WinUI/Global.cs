@@ -14,11 +14,11 @@ namespace KinoCentar.WinUI
 
         #region API Routes
 
-        public static string API_ADDRESS
+        public static string ApiAddress
         {
             get
             {
-                return ConfigurationManager.AppSettings["APIAddress"];
+                return ConfigurationSettings.API_ADDRESS;
             }
         }
 

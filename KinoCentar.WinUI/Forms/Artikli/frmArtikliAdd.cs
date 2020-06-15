@@ -17,8 +17,10 @@ namespace KinoCentar.WinUI.Forms.Artikli
 {
     public partial class frmArtikliAdd : Form
     {
-        private WebAPIHelper artikliService = new WebAPIHelper(Global.API_ADDRESS, Global.ArtikliRoute);
-        private WebAPIHelper jedMjereService = new WebAPIHelper(Global.API_ADDRESS, Global.JediniceMjereRoute);
+        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute);
+        private WebAPIHelper jedMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute);
+
+        ArtikalModel a = new ArtikalModel();
 
         public frmArtikliAdd()
         {
@@ -38,11 +40,34 @@ namespace KinoCentar.WinUI.Forms.Artikli
             }
         }
 
+        private void btnIzaberiPlakat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.ShowDialog();
+                    txtSlika.Text = openFileDialog.FileName;
+                }
+
+                var slikaData = Util.UIHelper.PrepareSaveImage(txtSlika.Text);
+                if (slikaData != null)
+                {
+                    a.Slika = slikaData.OriginalImageBytes;
+                    a.SlikaThumb = slikaData.CroppedImageBytes;
+                    pbSlika.Image = slikaData.OriginalImage;
+                }
+            }
+            catch
+            {
+                txtSlika.Text = null;
+            }
+        }
+
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             if (this.ValidateChildren())
             {
-                ArtikalModel a = new ArtikalModel();
                 a.JedinicaMjereId = ((JedinicaMjereModel)cmbJedinicaMjere.SelectedItem).Id;
 
                 a.Naziv = txtNaziv.Text;

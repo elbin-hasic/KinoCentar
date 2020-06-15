@@ -48,7 +48,13 @@
             this.dtpDatumRodjenja = new System.Windows.Forms.DateTimePicker();
             this.cmbTipKorisnika = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtSlika = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnIzaberiSliku = new System.Windows.Forms.Button();
+            this.pbSlikaThumb = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSlikaThumb)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,7 +77,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(308, 350);
+            this.btnSnimi.Location = new System.Drawing.Point(308, 406);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(100, 30);
             this.btnSnimi.TabIndex = 20;
@@ -81,7 +87,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(202, 350);
+            this.btnOdustani.Location = new System.Drawing.Point(202, 406);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(100, 30);
             this.btnOdustani.TabIndex = 21;
@@ -218,11 +224,62 @@
             this.label8.Text = "Tip korisnika:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // txtSlika
+            // 
+            this.txtSlika.Location = new System.Drawing.Point(126, 350);
+            this.txtSlika.Name = "txtSlika";
+            this.txtSlika.Size = new System.Drawing.Size(236, 22);
+            this.txtSlika.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(74, 353);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 17);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Slika:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnIzaberiSliku
+            // 
+            this.btnIzaberiSliku.Location = new System.Drawing.Point(368, 346);
+            this.btnIzaberiSliku.Name = "btnIzaberiSliku";
+            this.btnIzaberiSliku.Size = new System.Drawing.Size(40, 30);
+            this.btnIzaberiSliku.TabIndex = 18;
+            this.btnIzaberiSliku.Text = "...";
+            this.btnIzaberiSliku.UseVisualStyleBackColor = true;
+            this.btnIzaberiSliku.Click += new System.EventHandler(this.btnIzaberiSliku_Click);
+            // 
+            // pbSlikaThumb
+            // 
+            this.pbSlikaThumb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbSlikaThumb.Location = new System.Drawing.Point(440, 63);
+            this.pbSlikaThumb.Name = "pbSlikaThumb";
+            this.pbSlikaThumb.Size = new System.Drawing.Size(192, 144);
+            this.pbSlikaThumb.TabIndex = 22;
+            this.pbSlikaThumb.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(437, 38);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 17);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Prikaz slike:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmKorisniciAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 413);
+            this.ClientSize = new System.Drawing.Size(666, 473);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.pbSlikaThumb);
+            this.Controls.Add(this.btnIzaberiSliku);
+            this.Controls.Add(this.txtSlika);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.cmbTipKorisnika);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dtpDatumRodjenja);
@@ -247,6 +304,7 @@
             this.Text = "Novi korisnik";
             this.Load += new System.EventHandler(this.frmKorisniciAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSlikaThumb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +331,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbTipKorisnika;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnIzaberiSliku;
+        private System.Windows.Forms.TextBox txtSlika;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pbSlikaThumb;
     }
 }

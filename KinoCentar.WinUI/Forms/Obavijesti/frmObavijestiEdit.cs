@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.Obavijesti
 {
     public partial class frmObavijestiEdit : Form
     {
-        private WebAPIHelper obavijestiService = new WebAPIHelper(Global.API_ADDRESS, Global.ObavijestiRoute);
+        private WebAPIHelper obavijestiService = new WebAPIHelper(Global.ApiAddress, Global.ObavijestiRoute);
 
         private int _id { get; set; }
         private ObavijestModel _o { get; set; }

@@ -13,14 +13,15 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.WinUI.Forms.Filmovi;
 
 namespace KinoCentar.WinUI.Forms.Projekcije
 {
     public partial class frmProjekcijeEdit : Form
     {
-        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.API_ADDRESS, Global.ProjekcijeRoute);
-        private WebAPIHelper filmoviService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmoviRoute);
-        private WebAPIHelper saleService = new WebAPIHelper(Global.API_ADDRESS, Global.SaleRoute);
+        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute);
+        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute);
+        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute);
 
         private int _id { get; set; }
         private ProjekcijaModel _p { get; set; }
@@ -116,6 +117,18 @@ namespace KinoCentar.WinUI.Forms.Projekcije
             {
                 this.Close();
             }
+        }
+
+        private void btnFilmInfo_Click(object sender, EventArgs e)
+        {            
+            try
+            {
+                var filmId = ((FilmModel)cmbFilm.SelectedItem).Id;
+                var frm = new frmFilmoviEdit(filmId);
+                frm.ShowDialog();
+            }
+            catch
+            { }
         }
 
         #region Validation

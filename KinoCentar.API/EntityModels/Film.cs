@@ -35,6 +35,8 @@ namespace KinoCentar.API.EntityModels
 
         public byte[] Plakat { get; set; }
 
+        public byte[] PlakatThumb { get; set; }
+
         public int? RediteljId { get; set; }
 
         public virtual FilmskaLicnost Reditelj { get; set; }

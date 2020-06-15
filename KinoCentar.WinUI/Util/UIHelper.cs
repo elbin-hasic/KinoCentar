@@ -1,11 +1,14 @@
-﻿using System;
+﻿using KinoCentar.WinUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KinoCentar.WinUI.Util
 {
@@ -35,7 +38,69 @@ namespace KinoCentar.WinUI.Util
         #endregion
 
         #region Slike
-        public static Image CropImage(Image img, Rectangle cropArea)
+
+        public static SaveImageModel PrepareSaveImage(string imgPath)
+        {
+            SaveImageModel saveImage = null;
+
+            try
+            {
+                if (string.IsNullOrEmpty(imgPath))
+                {
+                    return null;
+                }
+
+                if (File.Exists(imgPath))
+                {
+                    saveImage = new SaveImageModel();
+
+                    saveImage.OriginalImageBytes = File.ReadAllBytes(imgPath);
+                    saveImage.OriginalImage = Image.FromFile(imgPath);
+
+                    if (saveImage.OriginalImage.Width > ConfigurationSettings.RESIZED_IMAGE_WIDTH)
+                    {
+                        MemoryStream ms = new MemoryStream();
+
+                        saveImage.ResizedImage = ResizeImage(saveImage.OriginalImage, new Size(ConfigurationSettings.RESIZED_IMAGE_WIDTH,
+                                                                                               ConfigurationSettings.RESIZED_IMAGE_HEIGHT));
+                        saveImage.ResizedImage.Save(ms, saveImage.OriginalImage.RawFormat);
+                        saveImage.ResizedImageBytes = ms.ToArray();
+
+                        if (saveImage.ResizedImage.Width > ConfigurationSettings.CROPPED_IMAGE_WIDTH &&
+                            saveImage.ResizedImage.Height > ConfigurationSettings.CROPPED_IMAGE_HEIGHT)
+                        {
+                            int croppedXPosition = (saveImage.ResizedImage.Width - ConfigurationSettings.CROPPED_IMAGE_WIDTH) / 2;
+                            int croppedYPosition = (saveImage.ResizedImage.Height - ConfigurationSettings.CROPPED_IMAGE_HEIGHT) / 2;
+
+                            saveImage.CroppedImage = CropImage(saveImage.ResizedImage, new Rectangle(croppedXPosition, croppedYPosition,
+                                                                                                     ConfigurationSettings.CROPPED_IMAGE_WIDTH,
+                                                                                                     ConfigurationSettings.CROPPED_IMAGE_HEIGHT));
+                            saveImage.CroppedImage.Save(ms, saveImage.OriginalImage.RawFormat);
+                            saveImage.CroppedImageBytes = ms.ToArray();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Messages.picture_war + " " + ConfigurationSettings.RESIZED_IMAGE_WIDTH + "x" + ConfigurationSettings.RESIZED_IMAGE_HEIGHT + ".",
+                                            Messages.msg_war, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            saveImage = null;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(Messages.picture_not_exist, Messages.msg_war, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    saveImage = null;
+                }
+            }
+            catch
+            {
+                saveImage = null;
+            }
+
+            return saveImage;
+        }
+
+        private static Image CropImage(Image img, Rectangle cropArea)
         {
             Bitmap bmpImage = new Bitmap(img);
             Bitmap bmpCrop = bmpImage.Clone(cropArea,
@@ -43,7 +108,7 @@ namespace KinoCentar.WinUI.Util
             return (Image)(bmpCrop);
         }
 
-        public static Image ResizeImage(Image imgToResize, Size size)
+        private static Image ResizeImage(Image imgToResize, Size size)
         {
             int sourceWidth = imgToResize.Width;
             int sourceHeight = imgToResize.Height;
@@ -72,6 +137,7 @@ namespace KinoCentar.WinUI.Util
 
             return (Image)b;
         }
+
         #endregion
     }
 }

@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.JediniceMjere
 {
     public partial class frmJediniceMjereEdit : Form
     {
-        private WebAPIHelper jediniceMjereService = new WebAPIHelper(Global.API_ADDRESS, Global.JediniceMjereRoute);
+        private WebAPIHelper jediniceMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute);
 
         private int _id { get; set; }
         private JedinicaMjereModel _jedMjere { get; set; }

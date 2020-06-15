@@ -45,6 +45,8 @@ namespace KinoCentar.API.EntityModels
 
         public byte[] Slika { get; set; }
 
+        public byte[] SlikaThumb { get; set; }
+
         public virtual TipKorisnika TipKorisnika { get; set; }
 
         public virtual ICollection<Anketa> Ankete { get; set; }

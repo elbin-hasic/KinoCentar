@@ -17,8 +17,10 @@ namespace KinoCentar.WinUI.Forms.Filmovi
 {
     public partial class frmFilmoviAdd : Form
     {
-        private WebAPIHelper filmoviService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmoviRoute);
-        private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmskeLicnostiRoute);
+        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute);
+        private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.ApiAddress, Global.FilmskeLicnostiRoute);
+
+        FilmModel film = new FilmModel();
 
         public frmFilmoviAdd()
         {
@@ -38,11 +40,34 @@ namespace KinoCentar.WinUI.Forms.Filmovi
             }
         }
 
+        private void btnIzaberiPlakat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.ShowDialog();
+                    txtPlakat.Text = openFileDialog.FileName;
+                }
+
+                var slikaData = Util.UIHelper.PrepareSaveImage(txtPlakat.Text);
+                if (slikaData != null)
+                {
+                    film.Plakat = slikaData.OriginalImageBytes;
+                    film.PlakatThumb = slikaData.CroppedImageBytes;
+                    pbPlakat.Image = slikaData.OriginalImage;
+                }
+            }
+            catch
+            {
+                txtPlakat.Text = null;
+            }
+        }
+
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             if (this.ValidateChildren())
             {
-                FilmModel film = new FilmModel();
                 film.Naslov = txtNaslov.Text;
                 film.Trajanje = !string.IsNullOrEmpty(txtTrajanje.Text) ? int.Parse(txtTrajanje.Text) : (int?)null;
                 film.GodinaSnimanja = !string.IsNullOrEmpty(txtGodinaSnimanja.Text) ? int.Parse(txtGodinaSnimanja.Text) : (int?)null;
@@ -72,7 +97,7 @@ namespace KinoCentar.WinUI.Forms.Filmovi
 
         #region Validation
 
-        
+
 
         #endregion
     }

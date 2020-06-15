@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.Filmovi
 {
     public partial class frmFilmovi : Form
     {
-        private WebAPIHelper filmoviService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmoviRoute);
+        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute);
 
         public frmFilmovi()
         {

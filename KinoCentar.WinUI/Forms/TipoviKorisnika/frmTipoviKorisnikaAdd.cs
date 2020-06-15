@@ -16,7 +16,7 @@ namespace KinoCentar.WinUI.Forms.TipoviKorisnika
 {
     public partial class frmTipoviKorisnikaAdd : Form
     {
-        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.API_ADDRESS, Global.TipoviKorisnikaRoute);
+        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute);
 
         public frmTipoviKorisnikaAdd()
         {

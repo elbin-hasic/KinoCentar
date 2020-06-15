@@ -26,6 +26,8 @@ namespace KinoCentar.API.EntityModels
 
         public byte[] Slika { get; set; }
 
+        public byte[] SlikaThumb { get; set; }
+
         public virtual JedinicaMjere JedinicaMjere { get; set; }
 
         public virtual ICollection<ProdajaArtikalDodjela> Prodaja { get; set; }

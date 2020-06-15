@@ -17,7 +17,7 @@ namespace KinoCentar.WinUI.Forms.FilmskeLicnosti
 {
     public partial class frmFilmskeLicnostiEdit : Form
     {
-        private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.API_ADDRESS, Global.FilmskeLicnostiRoute);
+        private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.ApiAddress, Global.FilmskeLicnostiRoute);
 
         private int _id { get; set; }
         private FilmskaLicnostModel _filmskaLicnost { get; set; }
