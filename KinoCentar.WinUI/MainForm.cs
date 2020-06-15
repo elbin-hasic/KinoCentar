@@ -12,12 +12,14 @@ using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Extensions;
 using KinoCentar.WinUI.Forms.Artikli;
+using KinoCentar.WinUI.Forms.Dojmovi;
 using KinoCentar.WinUI.Forms.Filmovi;
 using KinoCentar.WinUI.Forms.FilmskeLicnosti;
 using KinoCentar.WinUI.Forms.JediniceMjere;
 using KinoCentar.WinUI.Forms.Korisnici;
 using KinoCentar.WinUI.Forms.Obavijesti;
 using KinoCentar.WinUI.Forms.Projekcije;
+using KinoCentar.WinUI.Forms.Rezervacije;
 using KinoCentar.WinUI.Forms.Sale;
 using KinoCentar.WinUI.Forms.TipoviKorisnika;
 using KinoCentar.WinUI.Forms.Zanrovi;
@@ -177,6 +179,40 @@ namespace KinoCentar.WinUI
         private void obavijestiListaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmObavijesti();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        #endregion
+
+        #region Dojmovi
+
+        private void dojmoviListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDojmovi();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        #endregion
+
+        #region Rezervacije
+
+        private void rezervacijeNovaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmRezervacijeAdd();
+            frm.MdiParent = this;
+
+            frm.Show();
+        }
+
+        private void rezervacijeListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmRezervacije();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 

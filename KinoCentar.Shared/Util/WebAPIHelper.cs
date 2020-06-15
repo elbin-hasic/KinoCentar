@@ -53,15 +53,15 @@ namespace KinoCentar.Shared.Util
             return client.PostAsync(route, jsonObject).Result;
         }
 
-        public HttpResponseMessage RawActionResponse(string action)
-        {
-            return client.GetAsync(this.route + "/" + action).Result;
-        }
-
         public HttpResponseMessage PutResponse(int id, Object existingObject)
         {
             var jsonObject = new StringContent(JsonConvert.SerializeObject(existingObject), Encoding.UTF8, "application/json");
             return client.PutAsync(route + "/" + id, jsonObject).Result;
+        }
+
+        public HttpResponseMessage PutActionResponse(string action, int id)
+        {
+            return client.PutAsync(route + "/" + action + "/" + id, null).Result;
         }
 
         public HttpResponseMessage DeleteResponse(int id)

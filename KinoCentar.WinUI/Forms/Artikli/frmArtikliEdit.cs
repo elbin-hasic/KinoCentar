@@ -70,9 +70,9 @@ namespace KinoCentar.WinUI.Forms.Artikli
             txtNaziv.Text = _a.Naziv;
             txtSifra.Text = _a.Sifra;
 
-            if (_a.Slika != null)
+            if (_a.SlikaThumb != null)
             {
-                pbSlika.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_a.Slika));
+                pbSlika.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_a.SlikaThumb));
             }
         }
 
@@ -91,7 +91,7 @@ namespace KinoCentar.WinUI.Forms.Artikli
                 {
                     _a.Slika = slikaData.OriginalImageBytes;
                     _a.SlikaThumb = slikaData.CroppedImageBytes;
-                    pbSlika.Image = slikaData.OriginalImage;
+                    pbSlika.Image = slikaData.CroppedImage;
                 }
             }
             catch

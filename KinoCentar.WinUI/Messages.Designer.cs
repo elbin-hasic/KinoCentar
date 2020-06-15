@@ -124,6 +124,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali rezervaciju..
+        /// </summary>
+        internal static string add_rezervacija_succ {
+            get {
+                return ResourceManager.GetString("add_rezervacija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste dodali salu..
         /// </summary>
         internal static string add_sale_succ {
@@ -277,6 +286,24 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati rezervaciju?.
+        /// </summary>
+        internal static string del_rezervacija_prompt {
+            get {
+                return ResourceManager.GetString("del_rezervacija_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali rezervaciju..
+        /// </summary>
+        internal static string del_rezervacija_succ {
+            get {
+                return ResourceManager.GetString("del_rezervacija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li želite izbrisati salu?.
         /// </summary>
         internal static string del_sale_prompt {
@@ -327,6 +354,24 @@ namespace KinoCentar.WinUI {
         internal static string del_user_succ {
             get {
                 return ResourceManager.GetString("del_user_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite otkazati rezervaciju?.
+        /// </summary>
+        internal static string disable_rezervacija_prompt {
+            get {
+                return ResourceManager.GetString("disable_rezervacija_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste otkazati rezervaciju..
+        /// </summary>
+        internal static string disable_rezervacija_succ {
+            get {
+                return ResourceManager.GetString("disable_rezervacija_succ", resourceCulture);
             }
         }
         
@@ -390,6 +435,15 @@ namespace KinoCentar.WinUI {
         internal static string edit_projekcija_succ {
             get {
                 return ResourceManager.GetString("edit_projekcija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o rezervaciji..
+        /// </summary>
+        internal static string edit_rezervacija_succ {
+            get {
+                return ResourceManager.GetString("edit_rezervacija_succ", resourceCulture);
             }
         }
         

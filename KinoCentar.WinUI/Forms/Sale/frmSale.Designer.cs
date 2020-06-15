@@ -73,7 +73,7 @@
             this.btnUredi.Location = new System.Drawing.Point(964, 25);
             this.btnUredi.Name = "btnUredi";
             this.btnUredi.Size = new System.Drawing.Size(100, 26);
-            this.btnUredi.TabIndex = 3;
+            this.btnUredi.TabIndex = 4;
             this.btnUredi.Text = "Uredi";
             this.btnUredi.UseVisualStyleBackColor = true;
             this.btnUredi.Click += new System.EventHandler(this.btnUredi_Click);
@@ -84,7 +84,7 @@
             this.btnNovi.Location = new System.Drawing.Point(858, 25);
             this.btnNovi.Name = "btnNovi";
             this.btnNovi.Size = new System.Drawing.Size(100, 26);
-            this.btnNovi.TabIndex = 4;
+            this.btnNovi.TabIndex = 3;
             this.btnNovi.Text = "Nova";
             this.btnNovi.UseVisualStyleBackColor = true;
             this.btnNovi.Click += new System.EventHandler(this.btnNovi_Click);

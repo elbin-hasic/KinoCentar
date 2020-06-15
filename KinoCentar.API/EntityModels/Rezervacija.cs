@@ -14,15 +14,23 @@ namespace KinoCentar.API.EntityModels
 
         public int Id { get; set; }
 
-        public int ProjekcijaRasporedVrijemeId { get; set; }
+        public int ProjekcijaId { get; set; }
 
-        public int KorisnikId { get; set; }
+        public int? KorisnikId { get; set; }
+
+        public int BrojSjedista { get; set; }
 
         public decimal Cijena { get; set; }
 
         public DateTime Datum { get; set; }
 
-        public virtual ProjekcijaRasporedVrijeme ProjekcijaRasporedVrijeme { get; set; }
+        public DateTime DatumProjekcije { get; set; }
+
+        public DateTime? DatumProdano { get; set; }
+
+        public DateTime? DatumOtkazano { get; set; }
+
+        public virtual Projekcija Projekcija { get; set; }
 
         public virtual Korisnik Korisnik { get; set; }
 

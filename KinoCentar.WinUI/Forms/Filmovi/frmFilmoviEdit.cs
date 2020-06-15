@@ -73,9 +73,9 @@ namespace KinoCentar.WinUI.Forms.Filmovi
             txtVideoLink.Text = _film.VideoLink;
             txtImdbLink.Text = _film.ImdbLink;
 
-            if (_film.Plakat != null)
+            if (_film.PlakatThumb != null)
             {
-                pbPlakat.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_film.Plakat));
+                pbPlakat.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_film.PlakatThumb));
             }
         }
 
@@ -94,7 +94,7 @@ namespace KinoCentar.WinUI.Forms.Filmovi
                 {
                     _film.Plakat = slikaData.OriginalImageBytes;
                     _film.PlakatThumb = slikaData.CroppedImageBytes;
-                    pbPlakat.Image = slikaData.OriginalImage;
+                    pbPlakat.Image = slikaData.CroppedImage;
                 }
             }
             catch

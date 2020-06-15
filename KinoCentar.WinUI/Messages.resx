@@ -138,6 +138,9 @@
   <data name="add_projekcija_succ" xml:space="preserve">
     <value>Uspješno ste dodali podatke o projekciji.</value>
   </data>
+  <data name="add_rezervacija_succ" xml:space="preserve">
+    <value>Uspješno ste dodali rezervaciju.</value>
+  </data>
   <data name="add_sale_succ" xml:space="preserve">
     <value>Uspješno ste dodali salu.</value>
   </data>
@@ -189,6 +192,12 @@
   <data name="del_projekcija_succ" xml:space="preserve">
     <value>Uspješno ste obrisali podatke o projekciji.</value>
   </data>
+  <data name="del_rezervacija_prompt" xml:space="preserve">
+    <value>Da li želite izbrisati rezervaciju?</value>
+  </data>
+  <data name="del_rezervacija_succ" xml:space="preserve">
+    <value>Uspješno ste obrisali rezervaciju.</value>
+  </data>
   <data name="del_sale_prompt" xml:space="preserve">
     <value>Da li želite izbrisati salu?</value>
   </data>
@@ -206,6 +215,12 @@
   </data>
   <data name="del_user_succ" xml:space="preserve">
     <value>Uspješno ste obrisali podatke o korisniku.</value>
+  </data>
+  <data name="disable_rezervacija_prompt" xml:space="preserve">
+    <value>Da li želite otkazati rezervaciju?</value>
+  </data>
+  <data name="disable_rezervacija_succ" xml:space="preserve">
+    <value>Uspješno ste otkazati rezervaciju.</value>
   </data>
   <data name="edit_artikal_succ" xml:space="preserve">
     <value>Uspješno ste izmjenili podatke o artiklu.</value>
@@ -227,6 +242,9 @@
   </data>
   <data name="edit_projekcija_succ" xml:space="preserve">
     <value>Uspješno ste izmjenili podatke o projekciji.</value>
+  </data>
+  <data name="edit_rezervacija_succ" xml:space="preserve">
+    <value>Uspješno ste izmjenili podatke o rezervaciji.</value>
   </data>
   <data name="edit_sale_succ" xml:space="preserve">
     <value>Uspješno ste izmjenili podatke o sali.</value>

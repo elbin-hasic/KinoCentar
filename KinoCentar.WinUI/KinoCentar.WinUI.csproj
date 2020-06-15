@@ -69,6 +69,12 @@
     <Compile Include="Forms\Artikli\frmArtikliEdit.Designer.cs">
       <DependentUpon>frmArtikliEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dojmovi\frmDojmovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dojmovi\frmDojmovi.Designer.cs">
+      <DependentUpon>frmDojmovi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnosti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,24 @@
     </Compile>
     <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.Designer.cs">
       <DependentUpon>frmFilmskeLicnostiEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Rezervacije\frmRezervacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Rezervacije\frmRezervacije.Designer.cs">
+      <DependentUpon>frmRezervacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Rezervacije\frmRezervacijeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Rezervacije\frmRezervacijeAdd.Designer.cs">
+      <DependentUpon>frmRezervacijeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Rezervacije\frmRezervacijeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Rezervacije\frmRezervacijeEdit.Designer.cs">
+      <DependentUpon>frmRezervacijeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Projekcije\frmProjekcije.cs">
       <SubType>Form</SubType>
@@ -257,6 +281,9 @@
     <EmbeddedResource Include="Forms\Artikli\frmArtikliEdit.resx">
       <DependentUpon>frmArtikliEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dojmovi\frmDojmovi.resx">
+      <DependentUpon>frmDojmovi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FilmskeLicnosti\frmFilmskeLicnosti.resx">
       <DependentUpon>frmFilmskeLicnosti.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,6 +292,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.resx">
       <DependentUpon>frmFilmskeLicnostiEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Rezervacije\frmRezervacije.resx">
+      <DependentUpon>frmRezervacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Rezervacije\frmRezervacijeAdd.resx">
+      <DependentUpon>frmRezervacijeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Rezervacije\frmRezervacijeEdit.resx">
+      <DependentUpon>frmRezervacijeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Projekcije\frmProjekcije.resx">
       <DependentUpon>frmProjekcije.cs</DependentUpon>
@@ -374,5 +410,6 @@
       <Name>KinoCentar.Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

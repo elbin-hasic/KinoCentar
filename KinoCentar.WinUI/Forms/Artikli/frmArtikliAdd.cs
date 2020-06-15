@@ -55,7 +55,7 @@ namespace KinoCentar.WinUI.Forms.Artikli
                 {
                     a.Slika = slikaData.OriginalImageBytes;
                     a.SlikaThumb = slikaData.CroppedImageBytes;
-                    pbSlika.Image = slikaData.OriginalImage;
+                    pbSlika.Image = slikaData.CroppedImage;
                 }
             }
             catch

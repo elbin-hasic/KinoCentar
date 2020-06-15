@@ -4,14 +4,16 @@ using KinoCentar.API.EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KinoCentar.API.Migrations
 {
     [DbContext(typeof(KinoCentarDbContext))]
-    partial class KinoCentarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200615141839_updateRezervacijeTables")]
+    partial class updateRezervacijeTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -465,25 +467,16 @@ namespace KinoCentar.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BrojSjedista")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Cijena")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Datum")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DatumOtkazano")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DatumProdano")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DatumProjekcije")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("KorisnikId")
+                    b.Property<int>("KorisnikId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProjekcijaId")
@@ -708,7 +701,9 @@ namespace KinoCentar.API.Migrations
                 {
                     b.HasOne("KinoCentar.API.EntityModels.Korisnik", "Korisnik")
                         .WithMany("Rezervacije")
-                        .HasForeignKey("KorisnikId");
+                        .HasForeignKey("KorisnikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("KinoCentar.API.EntityModels.Projekcija", "Projekcija")
                         .WithMany("Rezervacije")

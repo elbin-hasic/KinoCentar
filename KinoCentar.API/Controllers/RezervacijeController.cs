@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using KinoCentar.API.EntityModels;
+
+namespace KinoCentar.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RezervacijeController : ControllerBase
+    {
+        private readonly KinoCentarDbContext _context;
+
+        public RezervacijeController(KinoCentarDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/Rezervacije
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Rezervacija>>> GetRezervacija()
+        {
+            return await _context.Rezervacija
+                        .Include(x => x.Korisnik).AsNoTracking()
+                        .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                        .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                        .ToListAsync();
+        }
+
+        // GET: api/Rezervacije/SearchByName/{name?}
+        [HttpGet]
+        [Route("SearchByName/{name?}")]
+        public async Task<ActionResult<IEnumerable<Rezervacija>>> GetRezervacija(string name = "")
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return await _context.Rezervacija
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .ToListAsync();
+            }
+            else
+            {
+                return await _context.Rezervacija.Where(x => x.Projekcija.Film.Naslov.Contains(name))
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .ToListAsync();
+            }
+        }
+
+        // GET: api/Rezervacije
+        [HttpGet]
+        [Route("FreeSeats/{projekcijaId}/{rezervacijaId?}")]
+        public async Task<ActionResult<IEnumerable<int>>> GetRezervacijaSeats(int projekcijaId, int? rezervacijaId = null)
+        {
+            var projekcija = await _context.Projekcija.Include(x => x.Sala).AsNoTracking()
+                                    .FirstOrDefaultAsync(x => x.Id == projekcijaId);
+            if (projekcija == null)
+            {
+                return NotFound();
+            }
+
+            var brojeviSjedista = new List<int>();
+            if (projekcija.Sala?.BrojSjedista != null && projekcija.Sala.BrojSjedista > 0)
+            {
+                brojeviSjedista = Enumerable.Range(1, projekcija.Sala.BrojSjedista.Value).ToList();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            var rezbrojeviSjedista = new List<int>();
+            if (rezervacijaId != null)
+            {
+                rezbrojeviSjedista = await _context.Rezervacija.Where(x => x.ProjekcijaId == projekcijaId && x.Id != rezervacijaId.Value)
+                                                               .Select(x => x.BrojSjedista).ToListAsync();
+            }
+            else
+            {
+                rezbrojeviSjedista = await _context.Rezervacija.Where(x => x.ProjekcijaId == projekcijaId)
+                                                               .Select(x => x.BrojSjedista).ToListAsync();
+            }
+
+            foreach (var rezBroj in rezbrojeviSjedista)
+            {
+                if (brojeviSjedista.Contains(rezBroj))
+                {
+                    brojeviSjedista.Remove(rezBroj);
+                }
+            }
+
+            return brojeviSjedista;
+        }
+
+        // GET: api/Rezervacije/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Rezervacija>> GetRezervacija(int id)
+        {
+            var rezervacija = await _context.Rezervacija.FindAsync(id);
+
+            if (rezervacija == null)
+            {
+                return NotFound();
+            }
+
+            return rezervacija;
+        }
+
+        // PUT: api/Rezervacije/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutRezervacija(int id, Rezervacija rezervacija)
+        {
+            if (id != rezervacija.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(rezervacija).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RezervacijaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/Rezervacije/5
+        [HttpPut]
+        [Route("disable/{id}")]
+        public async Task<ActionResult<Rezervacija>> DisableRezervacija(int id)
+        {
+            var rezervacija = await _context.Rezervacija.FindAsync(id);
+            if (rezervacija == null)
+            {
+                return NotFound();
+            }
+
+            rezervacija.DatumOtkazano = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return rezervacija;
+        }
+
+        // POST: api/Rezervacije
+        [HttpPost]
+        public async Task<ActionResult<Rezervacija>> PostRezervacija(Rezervacija rezervacija)
+        {
+            _context.Rezervacija.Add(rezervacija);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetRezervacija", new { id = rezervacija.Id }, rezervacija);
+        }
+
+        // DELETE: api/Rezervacije/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Rezervacija>> DeleteRezervacija(int id)
+        {
+            var rezervacija = await _context.Rezervacija.FindAsync(id);
+            if (rezervacija == null)
+            {
+                return NotFound();
+            }
+
+            _context.Rezervacija.Remove(rezervacija);
+            await _context.SaveChangesAsync();
+
+            return rezervacija;
+        }
+
+        private bool RezervacijaExists(int id)
+        {
+            return _context.Rezervacija.Any(e => e.Id == id);
+        }
+    }
+}

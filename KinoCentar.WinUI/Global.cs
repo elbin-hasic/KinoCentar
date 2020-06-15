@@ -31,10 +31,12 @@ namespace KinoCentar.WinUI
         public static string FilmoviRoute = "api/Filmovi";
         public static string FilmskeLicnostiRoute = "api/FilmskeLicnosti";
         public static string ProjekcijeRoute = "api/Projekcije";
-        public static string RezervacijeRoute = "api/Rezervacije";
         public static string ArtikliRoute = "api/Artikli";
+        public static string RezervacijeRoute = "api/Rezervacije";
+        public static string ProdajaRoute = "api/Prodaja";
 
         public static string ObavijestiRoute = "api/Obavijesti";
+        public static string DojmoviRoute = "api/Dojmovi";
 
         #endregion
     }

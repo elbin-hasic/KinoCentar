@@ -31,8 +31,6 @@ namespace KinoCentar.API.EntityModels
         public DbSet<Korisnik> Korisnik { get; set; }
         public DbSet<Obavijest> Obavijest { get; set; }
         public DbSet<Projekcija> Projekcija { get; set; }
-        public DbSet<ProjekcijaRaspored> ProjekcijaRaspored { get; set; }
-        public DbSet<ProjekcijaRasporedVrijeme> ProjekcijaRasporedVrijeme { get; set; }
         public DbSet<Rezervacija> Rezervacija { get; set; }
         public DbSet<Sala> Sala { get; set; }
         public DbSet<TipKorisnika> TipKorisnika { get; set; }
