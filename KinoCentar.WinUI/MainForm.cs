@@ -18,6 +18,7 @@ using KinoCentar.WinUI.Forms.FilmskeLicnosti;
 using KinoCentar.WinUI.Forms.JediniceMjere;
 using KinoCentar.WinUI.Forms.Korisnici;
 using KinoCentar.WinUI.Forms.Obavijesti;
+using KinoCentar.WinUI.Forms.Prodaja;
 using KinoCentar.WinUI.Forms.Projekcije;
 using KinoCentar.WinUI.Forms.Rezervacije;
 using KinoCentar.WinUI.Forms.Sale;
@@ -213,6 +214,27 @@ namespace KinoCentar.WinUI
         private void rezervacijeListaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmRezervacije();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        #endregion
+
+        #region Prodaja
+
+        private void prodajaNovaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmProdajaAdd();
+            frm.MdiParent = this;
+
+            frm.Show();
+        }
+
+        private void prodajaListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmProdaja();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 

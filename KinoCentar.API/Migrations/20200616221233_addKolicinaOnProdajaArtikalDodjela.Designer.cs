@@ -4,14 +4,16 @@ using KinoCentar.API.EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KinoCentar.API.Migrations
 {
     [DbContext(typeof(KinoCentarDbContext))]
-    partial class KinoCentarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200616221233_addKolicinaOnProdajaArtikalDodjela")]
+    partial class addKolicinaOnProdajaArtikalDodjela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,7 +363,7 @@ namespace KinoCentar.API.Migrations
                     b.Property<DateTime>("Datum")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("KorisnikId")
+                    b.Property<int>("KorisnikId")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Popust")
@@ -660,7 +662,9 @@ namespace KinoCentar.API.Migrations
                 {
                     b.HasOne("KinoCentar.API.EntityModels.Korisnik", "Korisnik")
                         .WithMany()
-                        .HasForeignKey("KorisnikId");
+                        .HasForeignKey("KorisnikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("KinoCentar.API.EntityModels.ProdajaArtikalDodjela", b =>

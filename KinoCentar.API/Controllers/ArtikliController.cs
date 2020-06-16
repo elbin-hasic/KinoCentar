@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
+using System.Net;
+using KinoCentar.API.Util;
 
 namespace KinoCentar.API.Controllers
 {
@@ -67,6 +69,13 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            var a = await _context.Artikal.FirstOrDefaultAsync(x => x.Id != artikal.Id &&
+                                                                    x.Sifra.ToLower().Equals(artikal.Sifra.ToLower()));
+            if (a != null)
+            {
+                throw Common.CreateHttpExceptionMessage("Artikal sa navedenom šifrom već postoji!", HttpStatusCode.Conflict);
+            }
+
             _context.Entry(artikal).State = EntityState.Modified;
 
             try
@@ -89,11 +98,20 @@ namespace KinoCentar.API.Controllers
         }
 
         // POST: api/Artikli
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Artikal>> PostArtikal(Artikal artikal)
         {
+            if (string.IsNullOrEmpty(artikal.Sifra))
+            {
+                return BadRequest();
+            }
+
+            var a = await _context.Artikal.FirstOrDefaultAsync(x => x.Sifra.ToLower().Equals(artikal.Sifra.ToLower()));
+            if (a != null)
+            {
+                throw Common.CreateHttpExceptionMessage("Artikal sa navedenom šifrom već postoji!", HttpStatusCode.Conflict);
+            }
+
             _context.Artikal.Add(artikal);
             await _context.SaveChangesAsync();
 

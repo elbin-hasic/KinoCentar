@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KinoCentar.API.EntityModels
+namespace KinoCentar.Shared.Models
 {
-    public class ProdajaArtikalDodjela
+    public class ProdajaArtikalDodjelaModel
     {
         public int Id { get; set; }
 
@@ -16,8 +16,8 @@ namespace KinoCentar.API.EntityModels
 
         public int Kolicina { get; set; }
 
-        public virtual Prodaja Prodaja { get; set; }
+        public ProdajaModel Prodaja { get; set; }
 
-        public virtual Artikal Artikal { get; set; }
+        public ArtikalModel Artikal { get; set; }
     }
 }

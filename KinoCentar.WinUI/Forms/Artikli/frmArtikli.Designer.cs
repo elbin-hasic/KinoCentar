@@ -31,7 +31,7 @@
             this.btnUredi = new System.Windows.Forms.Button();
             this.btnNovi = new System.Windows.Forms.Button();
             this.btnBrisi = new System.Windows.Forms.Button();
-            this.dgvAtikli = new System.Windows.Forms.DataGridView();
+            this.dgvArtikli = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sifra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,7 +39,7 @@
             this.btnTrazi = new System.Windows.Forms.Button();
             this.txtNazivPretraga = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAtikli)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArtikli)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUredi
@@ -75,28 +75,28 @@
             this.btnBrisi.UseVisualStyleBackColor = true;
             this.btnBrisi.Click += new System.EventHandler(this.btnBrisi_Click);
             // 
-            // dgvAtikli
+            // dgvArtikli
             // 
-            this.dgvAtikli.AllowUserToAddRows = false;
-            this.dgvAtikli.AllowUserToDeleteRows = false;
-            this.dgvAtikli.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvArtikli.AllowUserToAddRows = false;
+            this.dgvArtikli.AllowUserToDeleteRows = false;
+            this.dgvArtikli.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvAtikli.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAtikli.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvArtikli.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArtikli.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Naziv,
             this.Sifra,
             this.Cijena});
-            this.dgvAtikli.Location = new System.Drawing.Point(0, 75);
-            this.dgvAtikli.MultiSelect = false;
-            this.dgvAtikli.Name = "dgvAtikli";
-            this.dgvAtikli.ReadOnly = true;
-            this.dgvAtikli.RowHeadersWidth = 51;
-            this.dgvAtikli.RowTemplate.Height = 24;
-            this.dgvAtikli.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAtikli.Size = new System.Drawing.Size(1182, 677);
-            this.dgvAtikli.TabIndex = 6;
+            this.dgvArtikli.Location = new System.Drawing.Point(0, 75);
+            this.dgvArtikli.MultiSelect = false;
+            this.dgvArtikli.Name = "dgvArtikli";
+            this.dgvArtikli.ReadOnly = true;
+            this.dgvArtikli.RowHeadersWidth = 51;
+            this.dgvArtikli.RowTemplate.Height = 24;
+            this.dgvArtikli.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArtikli.Size = new System.Drawing.Size(1182, 677);
+            this.dgvArtikli.TabIndex = 6;
             // 
             // Id
             // 
@@ -170,7 +170,7 @@
             this.Controls.Add(this.btnTrazi);
             this.Controls.Add(this.txtNazivPretraga);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvAtikli);
+            this.Controls.Add(this.dgvArtikli);
             this.Controls.Add(this.btnBrisi);
             this.Controls.Add(this.btnNovi);
             this.Controls.Add(this.btnUredi);
@@ -178,7 +178,7 @@
             this.Name = "frmArtikli";
             this.Text = "Artikli";
             this.Load += new System.EventHandler(this.frmArtikli_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAtikli)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArtikli)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,7 +188,7 @@
         private System.Windows.Forms.Button btnUredi;
         private System.Windows.Forms.Button btnNovi;
         private System.Windows.Forms.Button btnBrisi;
-        private System.Windows.Forms.DataGridView dgvAtikli;
+        private System.Windows.Forms.DataGridView dgvArtikli;
         private System.Windows.Forms.Button btnTrazi;
         private System.Windows.Forms.TextBox txtNazivPretraga;
         private System.Windows.Forms.Label label2;

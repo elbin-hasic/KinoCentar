@@ -135,6 +135,9 @@
   <data name="add_obavijest_succ" xml:space="preserve">
     <value>Uspješno ste dodali obavijest.</value>
   </data>
+  <data name="add_prodaja_succ" xml:space="preserve">
+    <value>Uspješno ste kreirali novi račun.</value>
+  </data>
   <data name="add_projekcija_succ" xml:space="preserve">
     <value>Uspješno ste dodali podatke o projekciji.</value>
   </data>
@@ -185,6 +188,12 @@
   </data>
   <data name="del_obavijest_succ" xml:space="preserve">
     <value>Uspješno ste obrisali podatke o obavijesti.</value>
+  </data>
+  <data name="del_prodaja_prompt" xml:space="preserve">
+    <value>Da li želite izbrisati prodaju?</value>
+  </data>
+  <data name="del_prodaja_succ" xml:space="preserve">
+    <value>Uspješno ste obrisali prodaju.</value>
   </data>
   <data name="del_projekcija_prompt" xml:space="preserve">
     <value>Da li želite izbrisati projekciju?</value>

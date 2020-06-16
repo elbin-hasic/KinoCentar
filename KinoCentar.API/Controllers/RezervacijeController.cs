@@ -54,6 +54,49 @@ namespace KinoCentar.API.Controllers
             }
         }
 
+        // GET: api/Rezervacije/GetByType/{isProdano}/{isOtkazano}
+        [HttpGet]
+        [Route("GetByType/{isProdano}/{isOtkazano}")]
+        public async Task<ActionResult<IEnumerable<Rezervacija>>> GetRezervacija(bool isProdano, bool isOtkazano)
+        {
+            if (isProdano && isOtkazano)
+            {
+                return await _context.Rezervacija
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Where(x => x.DatumProdano != null && x.DatumOtkazano != null)
+                            .ToListAsync();
+            }
+            else if (isProdano)
+            {
+                return await _context.Rezervacija
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Where(x => x.DatumProdano != null)
+                            .ToListAsync();
+            }
+            else if (isOtkazano)
+            {
+                return await _context.Rezervacija
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Where(x => x.DatumOtkazano != null)
+                            .ToListAsync();
+            }
+            else
+            {
+                return await _context.Rezervacija
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Where(x => x.DatumProdano == null && x.DatumOtkazano == null)
+                            .ToListAsync();
+            }
+        }
+
         // GET: api/Rezervacije
         [HttpGet]
         [Route("FreeSeats/{projekcijaId}/{rezervacijaId?}")]

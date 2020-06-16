@@ -14,7 +14,9 @@ namespace KinoCentar.API.EntityModels
 
         public int Id { get; set; }
 
-        public int KorisnikId { get; set; }
+        public string BrojRacuna { get; set; }
+
+        public int? KorisnikId { get; set; }
 
         public DateTime Datum { get; set; }
 

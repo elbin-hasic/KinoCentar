@@ -57,8 +57,6 @@ namespace KinoCentar.API.Controllers
         }
 
         // PUT: api/Obavijesti/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutObavijest(int id, Obavijest obavijest)
         {
@@ -89,8 +87,6 @@ namespace KinoCentar.API.Controllers
         }
 
         // POST: api/Obavijesti
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Obavijest>> PostObavijest(Obavijest obavijest)
         {

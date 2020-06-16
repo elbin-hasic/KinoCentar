@@ -22,7 +22,7 @@ namespace KinoCentar.WinUI.Forms.Artikli
         public frmArtikli()
         {
             InitializeComponent();
-            dgvAtikli.AutoGenerateColumns = false;
+            dgvArtikli.AutoGenerateColumns = false;
         }
 
         private void frmArtikli_Load(object sender, EventArgs e)
@@ -35,8 +35,8 @@ namespace KinoCentar.WinUI.Forms.Artikli
             var response = artikliService.GetActionResponse("SearchByName", name).Handle();
             if (response.IsSuccessStatusCode)
             {
-                dgvAtikli.DataSource = response.GetResponseResult<List<ArtikalModel>>();
-                dgvAtikli.ClearSelection();
+                dgvArtikli.DataSource = response.GetResponseResult<List<ArtikalModel>>();
+                dgvArtikli.ClearSelection();
             }
         }
 
@@ -56,7 +56,7 @@ namespace KinoCentar.WinUI.Forms.Artikli
         {
             try
             {
-                var frm = new frmArtikliEdit(Convert.ToInt32(dgvAtikli.SelectedRows[0].Cells[0].Value));
+                var frm = new frmArtikliEdit(Convert.ToInt32(dgvArtikli.SelectedRows[0].Cells[0].Value));
                 frm.ShowDialog();
                 BindGrid();
             }
@@ -68,7 +68,7 @@ namespace KinoCentar.WinUI.Forms.Artikli
         {
             try
             {
-                var id = Convert.ToInt32(dgvAtikli.SelectedRows[0].Cells[0].Value);
+                var id = Convert.ToInt32(dgvArtikli.SelectedRows[0].Cells[0].Value);
 
                 DialogResult result = MessageBox.Show(Messages.del_artikal_prompt, Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)

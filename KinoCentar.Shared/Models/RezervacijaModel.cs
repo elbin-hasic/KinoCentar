@@ -36,6 +36,21 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public string Naslov
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(KorisnikImePrezime))
+                {
+                    return $"{Projekcija?.Film?.Naslov} - {BrojSjedista} [{KorisnikImePrezime}]";
+                }
+                else
+                {
+                    return $"{Projekcija?.Film?.Naslov} - {BrojSjedista}";
+                }
+            }
+        }
+
         public int BrojSjedista { get; set; }
 
         public decimal Cijena { get; set; }

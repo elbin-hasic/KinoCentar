@@ -115,6 +115,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste kreirali novi račun..
+        /// </summary>
+        internal static string add_prodaja_succ {
+            get {
+                return ResourceManager.GetString("add_prodaja_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste dodali podatke o projekciji..
         /// </summary>
         internal static string add_projekcija_succ {
@@ -264,6 +273,24 @@ namespace KinoCentar.WinUI {
         internal static string del_obavijest_succ {
             get {
                 return ResourceManager.GetString("del_obavijest_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati prodaju?.
+        /// </summary>
+        internal static string del_prodaja_prompt {
+            get {
+                return ResourceManager.GetString("del_prodaja_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali prodaju..
+        /// </summary>
+        internal static string del_prodaja_succ {
+            get {
+                return ResourceManager.GetString("del_prodaja_succ", resourceCulture);
             }
         }
         

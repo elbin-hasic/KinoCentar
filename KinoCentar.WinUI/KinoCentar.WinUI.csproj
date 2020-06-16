@@ -93,6 +93,24 @@
     <Compile Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.Designer.cs">
       <DependentUpon>frmFilmskeLicnostiEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Prodaja\frmProdaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdaja.Designer.cs">
+      <DependentUpon>frmProdaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdajaAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdajaAdd.Designer.cs">
+      <DependentUpon>frmProdajaAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdajaDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdajaDetails.Designer.cs">
+      <DependentUpon>frmProdajaDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Rezervacije\frmRezervacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +213,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enums\ProdajaRezervacijaType.cs" />
     <Compile Include="Models\SaveImageModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -292,6 +311,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FilmskeLicnosti\frmFilmskeLicnostiEdit.resx">
       <DependentUpon>frmFilmskeLicnostiEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Prodaja\frmProdaja.resx">
+      <DependentUpon>frmProdaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Prodaja\frmProdajaAdd.resx">
+      <DependentUpon>frmProdajaAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Prodaja\frmProdajaDetails.resx">
+      <DependentUpon>frmProdajaDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Rezervacije\frmRezervacije.resx">
       <DependentUpon>frmRezervacije.cs</DependentUpon>

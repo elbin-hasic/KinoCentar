@@ -46,6 +46,8 @@
             this.artilkiNoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artikliListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rezervacijeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rezervacijeNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rezervacijeListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prodajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izvjestajiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obavijestiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,8 +55,8 @@
             this.obavijestiListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dojmoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dojmoviListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rezervacijeNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rezervacijeListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prodajaNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prodajaListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,8 +212,25 @@
             this.rezervacijeToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.rezervacijeToolStripMenuItem.Text = "Rezervacije";
             // 
+            // rezervacijeNovaToolStripMenuItem
+            // 
+            this.rezervacijeNovaToolStripMenuItem.Name = "rezervacijeNovaToolStripMenuItem";
+            this.rezervacijeNovaToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.rezervacijeNovaToolStripMenuItem.Text = "Nova";
+            this.rezervacijeNovaToolStripMenuItem.Click += new System.EventHandler(this.rezervacijeNovaToolStripMenuItem_Click);
+            // 
+            // rezervacijeListaToolStripMenuItem
+            // 
+            this.rezervacijeListaToolStripMenuItem.Name = "rezervacijeListaToolStripMenuItem";
+            this.rezervacijeListaToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.rezervacijeListaToolStripMenuItem.Text = "Lista";
+            this.rezervacijeListaToolStripMenuItem.Click += new System.EventHandler(this.rezervacijeListaToolStripMenuItem_Click);
+            // 
             // prodajaToolStripMenuItem
             // 
+            this.prodajaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prodajaNovaToolStripMenuItem,
+            this.prodajaListaToolStripMenuItem});
             this.prodajaToolStripMenuItem.Name = "prodajaToolStripMenuItem";
             this.prodajaToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.prodajaToolStripMenuItem.Text = "Prodaja";
@@ -256,23 +275,23 @@
             // dojmoviListaToolStripMenuItem
             // 
             this.dojmoviListaToolStripMenuItem.Name = "dojmoviListaToolStripMenuItem";
-            this.dojmoviListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dojmoviListaToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
             this.dojmoviListaToolStripMenuItem.Text = "Lista";
             this.dojmoviListaToolStripMenuItem.Click += new System.EventHandler(this.dojmoviListaToolStripMenuItem_Click);
             // 
-            // rezervacijeNovaToolStripMenuItem
+            // prodajaNovaToolStripMenuItem
             // 
-            this.rezervacijeNovaToolStripMenuItem.Name = "rezervacijeNovaToolStripMenuItem";
-            this.rezervacijeNovaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.rezervacijeNovaToolStripMenuItem.Text = "Nova";
-            this.rezervacijeNovaToolStripMenuItem.Click += new System.EventHandler(this.rezervacijeNovaToolStripMenuItem_Click);
+            this.prodajaNovaToolStripMenuItem.Name = "prodajaNovaToolStripMenuItem";
+            this.prodajaNovaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.prodajaNovaToolStripMenuItem.Text = "Nova";
+            this.prodajaNovaToolStripMenuItem.Click += new System.EventHandler(this.prodajaNovaToolStripMenuItem_Click);
             // 
-            // rezervacijeListaToolStripMenuItem
+            // prodajaListaToolStripMenuItem
             // 
-            this.rezervacijeListaToolStripMenuItem.Name = "rezervacijeListaToolStripMenuItem";
-            this.rezervacijeListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.rezervacijeListaToolStripMenuItem.Text = "Lista";
-            this.rezervacijeListaToolStripMenuItem.Click += new System.EventHandler(this.rezervacijeListaToolStripMenuItem_Click);
+            this.prodajaListaToolStripMenuItem.Name = "prodajaListaToolStripMenuItem";
+            this.prodajaListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.prodajaListaToolStripMenuItem.Text = "Lista";
+            this.prodajaListaToolStripMenuItem.Click += new System.EventHandler(this.prodajaListaToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -324,6 +343,8 @@
         private System.Windows.Forms.ToolStripMenuItem dojmoviListaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rezervacijeNovaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rezervacijeListaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prodajaNovaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prodajaListaToolStripMenuItem;
     }
 }
 
