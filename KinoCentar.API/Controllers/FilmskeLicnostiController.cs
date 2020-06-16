@@ -27,7 +27,7 @@ namespace KinoCentar.API.Controllers
             return await _context.FilmskaLicnost.ToListAsync();
         }
 
-        // GET: api/Filmovi/SearchByName/{firstName}/{lastName}
+        // GET: api/FilmskeLicnosti/SearchByName/{firstName}/{lastName}
         [HttpGet]
         [Route("SearchByName/{firstName}/{lastName}")]
         public async Task<ActionResult<IEnumerable<FilmskaLicnost>>> GetFilmskaLicnost(string firstName, string lastName)
@@ -88,8 +88,6 @@ namespace KinoCentar.API.Controllers
         }
 
         // PUT: api/FilmskeLicnosti/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFilmskaLicnost(int id, FilmskaLicnost filmskaLicnost)
         {
@@ -120,8 +118,6 @@ namespace KinoCentar.API.Controllers
         }
 
         // POST: api/FilmskeLicnosti
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<FilmskaLicnost>> PostFilmskaLicnost(FilmskaLicnost filmskaLicnost)
         {

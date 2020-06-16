@@ -57,8 +57,6 @@ namespace KinoCentar.API.Controllers
         }
 
         // PUT: api/Filmovi/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFilm(int id, Film film)
         {
@@ -89,8 +87,6 @@ namespace KinoCentar.API.Controllers
         }
 
         // POST: api/Filmovi
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Film>> PostFilm(Film film)
         {
