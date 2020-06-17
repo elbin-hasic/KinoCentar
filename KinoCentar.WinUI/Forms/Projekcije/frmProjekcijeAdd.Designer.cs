@@ -145,6 +145,7 @@
             this.txtCijena.Name = "txtCijena";
             this.txtCijena.Size = new System.Drawing.Size(282, 22);
             this.txtCijena.TabIndex = 5;
+            this.txtCijena.Validating += new System.ComponentModel.CancelEventHandler(this.txtCijena_Validating);
             // 
             // dtpVrijediOd
             // 

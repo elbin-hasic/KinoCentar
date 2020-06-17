@@ -153,6 +153,18 @@
   <data name="add_user_succ" xml:space="preserve">
     <value>Uspješno ste dodali podatke o korisniku.</value>
   </data>
+  <data name="artikal_name_req" xml:space="preserve">
+    <value>Naziv artikla je obavezan.</value>
+  </data>
+  <data name="artikal_sifra_req" xml:space="preserve">
+    <value>Šifra artikla je obavezan.</value>
+  </data>
+  <data name="cijena_err" xml:space="preserve">
+    <value>Cijena nije u ispravnom formatu.</value>
+  </data>
+  <data name="cijena_req" xml:space="preserve">
+    <value>Cijena je obavezna.</value>
+  </data>
   <data name="del_artikal_prompt" xml:space="preserve">
     <value>Da li želite izbrisati artikal?</value>
   </data>
@@ -264,6 +276,15 @@
   <data name="edit_user_succ" xml:space="preserve">
     <value>Uspješno ste izmjenili podatke o korisniku.</value>
   </data>
+  <data name="filmskeLicnosti_lastname_req" xml:space="preserve">
+    <value>Prezime je obavezno.</value>
+  </data>
+  <data name="filmskeLicnosti_name_req" xml:space="preserve">
+    <value>Ime je obavezno.</value>
+  </data>
+  <data name="film_name_req" xml:space="preserve">
+    <value>Naslov filma je obavezan.</value>
+  </data>
   <data name="genre_name_err" xml:space="preserve">
     <value>Naziv žanra treba da sadrži najmanje 3 karaktera.</value>
   </data>
@@ -300,11 +321,17 @@
   <data name="msg_war" xml:space="preserve">
     <value>Upozorenje</value>
   </data>
+  <data name="obavijest_name_req" xml:space="preserve">
+    <value>Naslov obavijesti je obavezan.</value>
+  </data>
   <data name="picture_not_exist" xml:space="preserve">
     <value>Odabrana slika ne postoji.</value>
   </data>
   <data name="picture_war" xml:space="preserve">
     <value>Potrebno je da odaberete sliku dimenzija većih od</value>
+  </data>
+  <data name="prodaja_sifra_req" xml:space="preserve">
+    <value>Broj računa je obavezan.</value>
   </data>
   <data name="sale_brojSjedista_req" xml:space="preserve">
     <value>Broj sjedišta sale je obavezan.</value>
@@ -321,10 +348,28 @@
   <data name="tipKorisnika_name_req" xml:space="preserve">
     <value>Naziv tipa korisnika je obavezan.</value>
   </data>
+  <data name="user_email_err" xml:space="preserve">
+    <value>E-mail korisnika nije u ispravnom formatu.</value>
+  </data>
+  <data name="user_email_req" xml:space="preserve">
+    <value>Email korisnika je obavezno.</value>
+  </data>
+  <data name="user_fname_req" xml:space="preserve">
+    <value>Ime korisnika je obavezno.</value>
+  </data>
+  <data name="user_lname_req" xml:space="preserve">
+    <value>Prezime korisnika je obavezno.</value>
+  </data>
   <data name="user_name_err" xml:space="preserve">
     <value>Korisničko ime treba da sadrži najmanje 3 karaktera.</value>
   </data>
   <data name="user_name_req" xml:space="preserve">
-    <value>Korisničko ime korisnika je obavezan.</value>
+    <value>Korisničko ime korisnika je obavezno.</value>
+  </data>
+  <data name="user_pass_err" xml:space="preserve">
+    <value>Lozinka treba da sadrži najmanje 6 karaktera (kombinacija slova i brojeva).</value>
+  </data>
+  <data name="user_pass_req" xml:space="preserve">
+    <value>Lozinka je obavezna.</value>
   </data>
 </root>

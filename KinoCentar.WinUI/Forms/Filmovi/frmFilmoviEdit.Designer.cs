@@ -194,6 +194,7 @@
             this.txtNaslov.Name = "txtNaslov";
             this.txtNaslov.Size = new System.Drawing.Size(282, 22);
             this.txtNaslov.TabIndex = 43;
+            this.txtNaslov.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaslov_Validating);
             // 
             // label1
             // 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoCentar.API.Migrations
 {
     [DbContext(typeof(KinoCentarDbContext))]
-    [Migration("20200616221233_addKolicinaOnProdajaArtikalDodjela")]
-    partial class addKolicinaOnProdajaArtikalDodjela
+    [Migration("20200617222134_InitSchemaAndData")]
+    partial class InitSchemaAndData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -363,7 +363,7 @@ namespace KinoCentar.API.Migrations
                     b.Property<DateTime>("Datum")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("KorisnikId")
+                    b.Property<int?>("KorisnikId")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Popust")
@@ -662,9 +662,7 @@ namespace KinoCentar.API.Migrations
                 {
                     b.HasOne("KinoCentar.API.EntityModels.Korisnik", "Korisnik")
                         .WithMany()
-                        .HasForeignKey("KorisnikId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("KorisnikId");
                 });
 
             modelBuilder.Entity("KinoCentar.API.EntityModels.ProdajaArtikalDodjela", b =>

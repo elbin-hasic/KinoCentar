@@ -32,13 +32,14 @@
             this.btnNovi = new System.Windows.Forms.Button();
             this.btnBrisi = new System.Windows.Forms.Button();
             this.dgvArtikli = new System.Windows.Forms.DataGridView();
+            this.btnTrazi = new System.Windows.Forms.Button();
+            this.txtNazivPretraga = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sifra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnTrazi = new System.Windows.Forms.Button();
-            this.txtNazivPretraga = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.JedinicaMjereNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtikli)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +88,8 @@
             this.Id,
             this.Naziv,
             this.Sifra,
-            this.Cijena});
+            this.Cijena,
+            this.JedinicaMjereNaziv});
             this.dgvArtikli.Location = new System.Drawing.Point(0, 75);
             this.dgvArtikli.MultiSelect = false;
             this.dgvArtikli.Name = "dgvArtikli";
@@ -97,6 +99,32 @@
             this.dgvArtikli.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArtikli.Size = new System.Drawing.Size(1182, 677);
             this.dgvArtikli.TabIndex = 6;
+            // 
+            // btnTrazi
+            // 
+            this.btnTrazi.Location = new System.Drawing.Point(391, 25);
+            this.btnTrazi.Name = "btnTrazi";
+            this.btnTrazi.Size = new System.Drawing.Size(100, 26);
+            this.btnTrazi.TabIndex = 9;
+            this.btnTrazi.Text = "Traži";
+            this.btnTrazi.UseVisualStyleBackColor = true;
+            this.btnTrazi.Click += new System.EventHandler(this.btnTrazi_Click);
+            // 
+            // txtNazivPretraga
+            // 
+            this.txtNazivPretraga.Location = new System.Drawing.Point(65, 27);
+            this.txtNazivPretraga.Name = "txtNazivPretraga";
+            this.txtNazivPretraga.Size = new System.Drawing.Size(320, 22);
+            this.txtNazivPretraga.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Naziv:";
             // 
             // Id
             // 
@@ -135,31 +163,14 @@
             this.Cijena.ReadOnly = true;
             this.Cijena.Width = 140;
             // 
-            // btnTrazi
+            // JedinicaMjereNaziv
             // 
-            this.btnTrazi.Location = new System.Drawing.Point(391, 25);
-            this.btnTrazi.Name = "btnTrazi";
-            this.btnTrazi.Size = new System.Drawing.Size(100, 26);
-            this.btnTrazi.TabIndex = 9;
-            this.btnTrazi.Text = "Traži";
-            this.btnTrazi.UseVisualStyleBackColor = true;
-            this.btnTrazi.Click += new System.EventHandler(this.btnTrazi_Click);
-            // 
-            // txtNazivPretraga
-            // 
-            this.txtNazivPretraga.Location = new System.Drawing.Point(65, 27);
-            this.txtNazivPretraga.Name = "txtNazivPretraga";
-            this.txtNazivPretraga.Size = new System.Drawing.Size(320, 22);
-            this.txtNazivPretraga.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Naziv:";
+            this.JedinicaMjereNaziv.DataPropertyName = "JedinicaMjereNaziv";
+            this.JedinicaMjereNaziv.HeaderText = "Jedinica mjere";
+            this.JedinicaMjereNaziv.MinimumWidth = 6;
+            this.JedinicaMjereNaziv.Name = "JedinicaMjereNaziv";
+            this.JedinicaMjereNaziv.ReadOnly = true;
+            this.JedinicaMjereNaziv.Width = 140;
             // 
             // frmArtikli
             // 
@@ -196,5 +207,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sifra;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JedinicaMjereNaziv;
     }
 }

@@ -10,6 +10,21 @@ namespace KinoCentar.Shared.Models
 
         public int JedinicaMjereId { get; set; }
 
+        public string JedinicaMjereNaziv
+        {
+            get
+            {
+                if (JedinicaMjere != null)
+                {
+                    return $"{JedinicaMjere?.Naziv} [{JedinicaMjere?.KratkiNaziv}]";
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
         public string Sifra { get; set; }
 
         public string Naziv { get; set; }

@@ -169,6 +169,42 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Naziv artikla je obavezan..
+        /// </summary>
+        internal static string artikal_name_req {
+            get {
+                return ResourceManager.GetString("artikal_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Šifra artikla je obavezan..
+        /// </summary>
+        internal static string artikal_sifra_req {
+            get {
+                return ResourceManager.GetString("artikal_sifra_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cijena nije u ispravnom formatu..
+        /// </summary>
+        internal static string cijena_err {
+            get {
+                return ResourceManager.GetString("cijena_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cijena je obavezna..
+        /// </summary>
+        internal static string cijena_req {
+            get {
+                return ResourceManager.GetString("cijena_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li želite izbrisati artikal?.
         /// </summary>
         internal static string del_artikal_prompt {
@@ -502,6 +538,33 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Naslov filma je obavezan..
+        /// </summary>
+        internal static string film_name_req {
+            get {
+                return ResourceManager.GetString("film_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prezime je obavezno..
+        /// </summary>
+        internal static string filmskeLicnosti_lastname_req {
+            get {
+                return ResourceManager.GetString("filmskeLicnosti_lastname_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ime je obavezno..
+        /// </summary>
+        internal static string filmskeLicnosti_name_req {
+            get {
+                return ResourceManager.GetString("filmskeLicnosti_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naziv žanra treba da sadrži najmanje 3 karaktera..
         /// </summary>
         internal static string genre_name_err {
@@ -610,6 +673,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Naslov obavijesti je obavezan..
+        /// </summary>
+        internal static string obavijest_name_req {
+            get {
+                return ResourceManager.GetString("obavijest_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odabrana slika ne postoji..
         /// </summary>
         internal static string picture_not_exist {
@@ -624,6 +696,15 @@ namespace KinoCentar.WinUI {
         internal static string picture_war {
             get {
                 return ResourceManager.GetString("picture_war", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broj računa je obavezan..
+        /// </summary>
+        internal static string prodaja_sifra_req {
+            get {
+                return ResourceManager.GetString("prodaja_sifra_req", resourceCulture);
             }
         }
         
@@ -673,6 +754,42 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail korisnika nije u ispravnom formatu..
+        /// </summary>
+        internal static string user_email_err {
+            get {
+                return ResourceManager.GetString("user_email_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email korisnika je obavezno..
+        /// </summary>
+        internal static string user_email_req {
+            get {
+                return ResourceManager.GetString("user_email_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ime korisnika je obavezno..
+        /// </summary>
+        internal static string user_fname_req {
+            get {
+                return ResourceManager.GetString("user_fname_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prezime korisnika je obavezno..
+        /// </summary>
+        internal static string user_lname_req {
+            get {
+                return ResourceManager.GetString("user_lname_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Korisničko ime treba da sadrži najmanje 3 karaktera..
         /// </summary>
         internal static string user_name_err {
@@ -682,11 +799,29 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Korisničko ime korisnika je obavezan..
+        ///   Looks up a localized string similar to Korisničko ime korisnika je obavezno..
         /// </summary>
         internal static string user_name_req {
             get {
                 return ResourceManager.GetString("user_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lozinka treba da sadrži najmanje 6 karaktera (kombinacija slova i brojeva)..
+        /// </summary>
+        internal static string user_pass_err {
+            get {
+                return ResourceManager.GetString("user_pass_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lozinka je obavezna..
+        /// </summary>
+        internal static string user_pass_req {
+            get {
+                return ResourceManager.GetString("user_pass_req", resourceCulture);
             }
         }
     }

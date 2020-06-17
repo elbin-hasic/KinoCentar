@@ -78,7 +78,18 @@ namespace KinoCentar.WinUI.Forms.Obavijesti
 
         #region Validation
 
-        
+        private void txtNaslov_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNaslov.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtNaslov, Messages.obavijest_name_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtNaslov, null);
+            }
+        }
 
         #endregion
     }

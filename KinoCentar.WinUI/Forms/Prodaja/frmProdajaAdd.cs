@@ -147,11 +147,108 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             }
         }
 
+        private void dgvArtikli_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvArtikli.Columns[e.ColumnIndex].Name == "Izaberi")
+            {
+                UpdateArtikliKolicinaStatus();
+            }
+            if (dgvArtikli.Columns[e.ColumnIndex].Name == "Kolicina")
+            {
+                UpdateArtikliUkupnaCijena();
+            }            
+        }
+
+        private void btnRezervacijaInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var rezervacijaId = ((RezervacijaModel)cmbRezervacija.SelectedItem).Id;
+                var frm = new frmRezervacijeEdit(rezervacijaId);
+                frm.ShowDialog();
+            }
+            catch
+            { }
+        }
+
+        private void btnProjekcijaInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var projekcijaId = ((ProjekcijaModel)cmbProjekcija.SelectedItem).Id;
+                var frm = new frmProjekcijeEdit(projekcijaId);
+                frm.ShowDialog();
+            }
+            catch
+            { }
+        }
+
+        private void rbIzaberiRezervaciju_CheckedChanged(object sender, EventArgs e)
+        {
+            RezervacijaFormStatus(ProdajaRezervacijaType.PostojecaRezervacija);
+        }
+
+        private void rbKreirajRezervaciju_CheckedChanged(object sender, EventArgs e)
+        {
+            RezervacijaFormStatus(ProdajaRezervacijaType.NovaRezervacija);
+        }
+
+        private void rbBezRezervacije_CheckedChanged(object sender, EventArgs e)
+        {
+            RezervacijaFormStatus(ProdajaRezervacijaType.BezRezervacije);
+        }
+
+        private void cmbRezervacija_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var rezervacija = (RezervacijaModel)cmbRezervacija.SelectedItem;
+                UpdateRezervacijaCijenu(rezervacija.Cijena);
+            }
+            catch
+            { }
+        }
+
+        private void cmbProjekcija_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
+
+                dtpDatumProjekcije.MinDate = projekcija.VrijediOd;
+                dtpDatumProjekcije.MaxDate = projekcija.VrijediDo;
+
+                var retSjedistaResponse = rezervacijeService.GetActionResponse("FreeSeats", projekcija.Id.ToString()).Handle();
+                if (retSjedistaResponse.IsSuccessStatusCode)
+                {
+                    var retSjedista = retSjedistaResponse.GetResponseResult<List<int>>();
+                    cmbBrojSjedista.DataSource = retSjedista;
+                }
+
+                UpdateRezervacijaCijenu(projekcija.Cijena);
+            }
+            catch
+            { }
+        }        
+
         #region Validation
 
-
+        private void txtBrojRacuna_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBrojRacuna.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtBrojRacuna, Messages.prodaja_sifra_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtBrojRacuna, null);
+            }
+        }
 
         #endregion
+
+        #region PrivateMethods
 
         private HttpResponseMessage KreirajNovuRezervaciju()
         {
@@ -174,18 +271,6 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             model.Datum = DateTime.Now;
 
             return rezervacijeService.PostResponse(model).Handle();
-        }
-
-        private void dgvArtikli_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvArtikli.Columns[e.ColumnIndex].Name == "Izaberi")
-            {
-                UpdateArtikliKolicinaStatus();
-            }
-            if (dgvArtikli.Columns[e.ColumnIndex].Name == "Kolicina")
-            {
-                UpdateArtikliUkupnaCijena();
-            }            
         }
 
         private void UpdateArtikliKolicinaStatus()
@@ -255,7 +340,7 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                             Cijena = cijena,
                             Kolicina = kolicina
                         });
-                    }                    
+                    }
                 }
             }
 
@@ -289,43 +374,11 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             txtCijenaUkupno.Text = ukupnaCijena.ToString("0.##");
         }
 
-        private void btnRezervacijaInfo_Click(object sender, EventArgs e)
+        private void UpdateRezervacijaCijenu(decimal rezervacijaCijena)
         {
-            try
-            {
-                var rezervacijaId = ((RezervacijaModel)cmbRezervacija.SelectedItem).Id;
-                var frm = new frmRezervacijeEdit(rezervacijaId);
-                frm.ShowDialog();
-            }
-            catch
-            { }
-        }
-
-        private void btnProjekcijaInfo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var projekcijaId = ((ProjekcijaModel)cmbProjekcija.SelectedItem).Id;
-                var frm = new frmProjekcijeEdit(projekcijaId);
-                frm.ShowDialog();
-            }
-            catch
-            { }
-        }
-
-        private void rbIzaberiRezervaciju_CheckedChanged(object sender, EventArgs e)
-        {
-            RezervacijaFormStatus(ProdajaRezervacijaType.PostojecaRezervacija);
-        }
-
-        private void rbKreirajRezervaciju_CheckedChanged(object sender, EventArgs e)
-        {
-            RezervacijaFormStatus(ProdajaRezervacijaType.NovaRezervacija);
-        }
-
-        private void rbBezRezervacije_CheckedChanged(object sender, EventArgs e)
-        {
-            RezervacijaFormStatus(ProdajaRezervacijaType.BezRezervacije);
+            ukupnaCijena = rezervacijaCijena + artikliUkupnaCijena;
+            txtCijenaRezervacije.Text = rezervacijaCijena.ToString("0.##");
+            txtCijenaUkupno.Text = ukupnaCijena.ToString("0.##");
         }
 
         private void RezervacijaFormStatus(ProdajaRezervacijaType type)
@@ -372,44 +425,6 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             }
         }
 
-        private void cmbRezervacija_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var rezervacija = (RezervacijaModel)cmbRezervacija.SelectedItem;
-                UpdateRezervacijaCijenu(rezervacija.Cijena);
-            }
-            catch
-            { }
-        }
-
-        private void cmbProjekcija_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
-
-                dtpDatumProjekcije.MinDate = projekcija.VrijediOd;
-                dtpDatumProjekcije.MaxDate = projekcija.VrijediDo;
-
-                var retSjedistaResponse = rezervacijeService.GetActionResponse("FreeSeats", projekcija.Id.ToString()).Handle();
-                if (retSjedistaResponse.IsSuccessStatusCode)
-                {
-                    var retSjedista = retSjedistaResponse.GetResponseResult<List<int>>();
-                    cmbBrojSjedista.DataSource = retSjedista;
-                }
-
-                UpdateRezervacijaCijenu(projekcija.Cijena);
-            }
-            catch
-            { }
-        }
-
-        private void UpdateRezervacijaCijenu(decimal rezervacijaCijena)
-        {
-            ukupnaCijena = rezervacijaCijena + artikliUkupnaCijena;
-            txtCijenaRezervacije.Text = rezervacijaCijena.ToString("0.##");
-            txtCijenaUkupno.Text = ukupnaCijena.ToString("0.##");
-        }
+        #endregion
     }
 }

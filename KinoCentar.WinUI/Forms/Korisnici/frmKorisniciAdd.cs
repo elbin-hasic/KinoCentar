@@ -13,6 +13,7 @@ using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Util;
 using KinoCentar.WinUI.Extensions;
 using System.IO;
+using System.Net.Mail;
 
 namespace KinoCentar.WinUI.Forms.Korisnici
 {
@@ -101,6 +102,55 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 
         #region Validation
 
+        private void txtIme_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtIme.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtIme, Messages.user_fname_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtIme, null);
+            }
+        }
+
+        private void txtPrezime_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPrezime.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtPrezime, Messages.user_fname_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtPrezime, null);
+            }
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEmail.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtEmail, Messages.user_email_req);
+            }
+            else
+            {
+                try
+                {
+                    MailAddress mail = new MailAddress(txtEmail.Text);
+                    errorProvider.SetError(txtEmail, null);
+
+                }
+                catch (FormatException)
+                {
+                    e.Cancel = true;
+                    errorProvider.SetError(txtEmail, Messages.user_email_err);
+                }
+            }
+        }
+
         private void txtKorisnickoIme_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrEmpty(txtKorisnickoIme.Text.Trim()))
@@ -119,9 +169,22 @@ namespace KinoCentar.WinUI.Forms.Korisnici
             }
         }
 
-        private void txtIme_Validating(object sender, CancelEventArgs e)
+        private void txtLozinka_Validating(object sender, CancelEventArgs e)
         {
-            errorProvider.SetError(txtIme, null);
+            if (string.IsNullOrEmpty(txtLozinka.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtLozinka, Messages.user_pass_req);
+            }
+            else if (txtLozinka.TextLength < 6 || !txtLozinka.Text.Any(char.IsDigit) || !txtLozinka.Text.Any(char.IsLetter))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtLozinka, Messages.user_pass_err);
+            }
+            else
+            {
+                errorProvider.SetError(txtLozinka, null);
+            }                
         }
 
         #endregion

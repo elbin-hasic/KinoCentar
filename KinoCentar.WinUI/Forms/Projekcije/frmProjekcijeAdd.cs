@@ -94,7 +94,28 @@ namespace KinoCentar.WinUI.Forms.Projekcije
 
         #region Validation
 
-
+        private void txtCijena_Validating(object sender, CancelEventArgs e)
+        {
+            var cijenaText = txtCijena.Text.Trim().Replace(",", "");
+            if (string.IsNullOrEmpty(cijenaText))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtCijena, Messages.cijena_req);
+            }
+            else
+            {
+                try
+                {
+                    var cijena = decimal.Parse(txtCijena.Text);
+                    errorProvider.SetError(txtCijena, null);
+                }
+                catch
+                {
+                    e.Cancel = true;
+                    errorProvider.SetError(txtCijena, Messages.cijena_err);
+                }
+            }
+        }
 
         #endregion
     }

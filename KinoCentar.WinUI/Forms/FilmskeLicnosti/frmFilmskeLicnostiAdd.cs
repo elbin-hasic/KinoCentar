@@ -54,7 +54,31 @@ namespace KinoCentar.WinUI.Forms.FilmskeLicnosti
 
         #region Validation
 
-        
+        private void txtIme_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtIme.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtIme, Messages.filmskeLicnosti_name_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtIme, null);
+            }
+        }
+
+        private void txtPrezime_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPrezime.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtPrezime, Messages.filmskeLicnosti_lastname_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtPrezime, null);
+            }
+        }
 
         #endregion
     }

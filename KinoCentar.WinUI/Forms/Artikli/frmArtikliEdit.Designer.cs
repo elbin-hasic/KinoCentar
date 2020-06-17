@@ -79,6 +79,7 @@
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(284, 22);
             this.txtSifra.TabIndex = 45;
+            this.txtSifra.Validating += new System.ComponentModel.CancelEventHandler(this.txtSifra_Validating);
             // 
             // txtNaziv
             // 
@@ -86,6 +87,7 @@
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(284, 22);
             this.txtNaziv.TabIndex = 43;
+            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
             // 
             // txtCijena
             // 
@@ -94,6 +96,7 @@
             this.txtCijena.Name = "txtCijena";
             this.txtCijena.Size = new System.Drawing.Size(282, 22);
             this.txtCijena.TabIndex = 47;
+            this.txtCijena.Validating += new System.ComponentModel.CancelEventHandler(this.txtCijena_Validating);
             // 
             // cmbJedinicaMjere
             // 

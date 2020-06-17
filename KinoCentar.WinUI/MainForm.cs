@@ -264,6 +264,7 @@ namespace KinoCentar.WinUI
         {
             var frm = new frmProdajaAdd();
             frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
 
             frm.Show();
         }

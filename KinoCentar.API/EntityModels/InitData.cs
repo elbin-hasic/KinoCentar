@@ -94,6 +94,19 @@ namespace KinoCentar.API.EntityModels
             jedMjere.Add(new JedinicaMjere { KratkiNaziv = "l", Naziv = "Litar" });
             context.JedinicaMjere.AddRange(jedMjere);
 
+            var reditelji = licnosti.Where(x => x.IsReziser).ToList();
+
+            var filmovi = new List<Film>();
+            filmovi.Add(new Film { Naslov = "Toy Story", Trajanje = 81, GodinaSnimanja = 1995, Reditelj = reditelji[0], Sadrzaj = "Toy Story je računalno-animirani film iz 1995. godine animacijskoga studija Pixar. Redatelj filma je John Lasseter, a glasove u originalnoj verziji posudili su između ostalih i Tom Hanks i Tim Allen. Producenti su Ralph Guggenheim i Bonie Arnold, a film je distribuirao Walt Disney Pictures. Scenarij potpisuju Joss Whedon, Andrew Stanton, Joel Cohen i Alec Sokolow, dok je glazbu skladao Randy Newman. Priča o igračkama je prvi film koji koristio potpunu računalnu animaciju. Priča se usredotočuje na grupu igračaka koje ožive nakon što njihov vlasnik nije prisutan, fokusirajući se na Woodyja, kauboj igračku, i na Buzza Lightyeara, akcijsku igračku astronauta." });
+            filmovi.Add(new Film { Naslov = "Avatar", Trajanje = 162, GodinaSnimanja = 2009, Reditelj = reditelji[1], Sadrzaj = "Avatar je američki znanstvenofantastični film iz 2009. godine, čiji je scenarist i redatelj James Cameron. U glavnim su ulogama Sam Worthington, Zoe Saldana, Sigourney Weaver, Michelle Rodriguez i Stephen Lang. Epska se priča odvija 2154. godine na Pandori, izmišljenom svijetu u dalekom planetarnom sustavu. Ljudi su pristigli na Pandoru kako bi iskorištavali njene izvore vrijednih minerala, čemu se protive domoroci Na'vi, čije se poimanje svijeta zasniva na suživotu s prirodom. Kako bi se približili domorocima, skupina znanstvenika genetičkim inženjerstvom stvara tzv. \"avatare\", tijela naizgled jednaka Na'vijima, ali daljinski upravljana ljudskim umom. Naziv dolazi iz hinduističke filozofije, gdje riječ \"avatar\" označava \"silazak\" ili inkarnaciju božanskog bića (deva) ili najvišeg bića (Boga) na Zemlju u obliku životinje, čovjeka ili nekog drugog bića." });
+            context.Film.AddRange(filmovi);
+
+            var artikli = new List<Artikal>();
+            artikli.Add(new Artikal { Sifra = "C00001", Naziv = "Kokice", Cijena = 1m, JedinicaMjere = jedMjere[0] });
+            artikli.Add(new Artikal { Sifra = "C00002", Naziv = "Naćosi", Cijena = 2.5m, JedinicaMjere = jedMjere[0] });
+            artikli.Add(new Artikal { Sifra = "C00003", Naziv = "Coca-cola", Cijena = 2m, JedinicaMjere = jedMjere[0] });
+            context.Artikal.AddRange(artikli);
+
             context.SaveChanges();
         }
 

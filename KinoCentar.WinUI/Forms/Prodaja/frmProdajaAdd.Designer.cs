@@ -33,6 +33,8 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpDatumProjekcije = new System.Windows.Forms.DateTimePicker();
+            this.label9 = new System.Windows.Forms.Label();
             this.rbBezRezervacije = new System.Windows.Forms.RadioButton();
             this.txtCijenaRezervacije = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtBrojRacuna = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.dtpDatumProjekcije = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -121,6 +121,23 @@
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Projekcija";
+            // 
+            // dtpDatumProjekcije
+            // 
+            this.dtpDatumProjekcije.Location = new System.Drawing.Point(120, 226);
+            this.dtpDatumProjekcije.Name = "dtpDatumProjekcije";
+            this.dtpDatumProjekcije.Size = new System.Drawing.Size(305, 22);
+            this.dtpDatumProjekcije.TabIndex = 69;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 229);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 17);
+            this.label9.TabIndex = 68;
+            this.label9.Text = "Datum gledanja:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rbBezRezervacije
             // 
@@ -412,6 +429,7 @@
             this.txtBrojRacuna.Name = "txtBrojRacuna";
             this.txtBrojRacuna.Size = new System.Drawing.Size(305, 22);
             this.txtBrojRacuna.TabIndex = 71;
+            this.txtBrojRacuna.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrojRacuna_Validating);
             // 
             // label8
             // 
@@ -422,23 +440,6 @@
             this.label8.TabIndex = 70;
             this.label8.Text = "Broj računa:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // dtpDatumProjekcije
-            // 
-            this.dtpDatumProjekcije.Location = new System.Drawing.Point(120, 226);
-            this.dtpDatumProjekcije.Name = "dtpDatumProjekcije";
-            this.dtpDatumProjekcije.Size = new System.Drawing.Size(305, 22);
-            this.dtpDatumProjekcije.TabIndex = 69;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 229);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 17);
-            this.label9.TabIndex = 68;
-            this.label9.Text = "Datum gledanja:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // frmProdajaAdd
             // 

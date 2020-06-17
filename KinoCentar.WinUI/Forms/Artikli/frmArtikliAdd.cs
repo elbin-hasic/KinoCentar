@@ -94,7 +94,54 @@ namespace KinoCentar.WinUI.Forms.Artikli
 
         #region Validation
 
+        private void txtNaziv_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNaziv.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtNaziv, Messages.artikal_name_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtNaziv, null);
+            }
+        }
 
+        private void txtSifra_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSifra.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtSifra, Messages.artikal_sifra_req);
+            }
+            else
+            {
+                errorProvider.SetError(txtSifra, null);
+            }
+        }
+
+        private void txtCijena_Validating(object sender, CancelEventArgs e)
+        {
+            var cijenaText = txtCijena.Text.Trim().Replace(",", "");
+            if (string.IsNullOrEmpty(cijenaText))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(txtCijena, Messages.cijena_req);
+            }
+            else
+            {
+                try
+                {
+                    var cijena = decimal.Parse(txtCijena.Text);
+                    errorProvider.SetError(txtCijena, null);
+                }
+                catch
+                {
+                    e.Cancel = true;
+                    errorProvider.SetError(txtCijena, Messages.cijena_err);
+                }
+            }
+        }
 
         #endregion
     }

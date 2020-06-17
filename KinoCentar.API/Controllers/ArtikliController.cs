@@ -25,7 +25,7 @@ namespace KinoCentar.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Artikal>>> GetArtikal()
         {
-            return await _context.Artikal.ToListAsync();
+            return await _context.Artikal.Include(x => x.JedinicaMjere).AsNoTracking().ToListAsync();
         }
 
         // GET: api/Artikli/SearchByName/{name?}
@@ -35,11 +35,11 @@ namespace KinoCentar.API.Controllers
         {
             if (string.IsNullOrEmpty(name))
             {
-                return await _context.Artikal.ToListAsync();
+                return await _context.Artikal.Include(x => x.JedinicaMjere).AsNoTracking().ToListAsync();
             }
             else
             {
-                return await _context.Artikal.Where(x => x.Naziv.Contains(name)).ToListAsync();
+                return await _context.Artikal.Include(x => x.JedinicaMjere).AsNoTracking().Where(x => x.Naziv.Contains(name)).ToListAsync();
             }
         }
 
