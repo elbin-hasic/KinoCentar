@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using System.Net;
-using KinoCentar.API.Util;
 using KinoCentar.API.EntityModels.Extensions;
 using System.Web.Http.Description;
 
@@ -33,7 +32,7 @@ namespace KinoCentar.API.Controllers
                         .Include(x => x.Korisnik).AsNoTracking()
                         .Include(x => x.ArtikliStavke)
                         .Include(x => x.RezervacijeStavke)
-                        .Select(x => new ProdajaExtension(x)).ToListAsync();
+                        .Select(x => new ProdajaExtension(x, false)).ToListAsync();
         }
 
         // GET: api/Prodaja/SearchByNumber/{number?}
@@ -48,7 +47,7 @@ namespace KinoCentar.API.Controllers
                             .Include(x => x.Korisnik).AsNoTracking()
                             .Include(x => x.ArtikliStavke)
                             .Include(x => x.RezervacijeStavke)
-                            .Select(x => new ProdajaExtension(x)).ToListAsync();
+                            .Select(x => new ProdajaExtension(x, false)).ToListAsync();
             }
             else
             {
@@ -57,22 +56,34 @@ namespace KinoCentar.API.Controllers
                             .Include(x => x.ArtikliStavke)
                             .Include(x => x.RezervacijeStavke)
                             .Where(x => x.BrojRacuna.Contains(number))
-                            .Select(x => new ProdajaExtension(x)).ToListAsync();
+                            .Select(x => new ProdajaExtension(x, false)).ToListAsync();
             }
         }
 
         // GET: api/Prodaja/5
         [HttpGet("{id}")]
+        [ResponseType(typeof(ProdajaExtension))]
         public async Task<ActionResult<Prodaja>> GetProdaja(int id)
         {
-            var prodaja = await _context.Prodaja.FindAsync(id);
-
+            var prodaja = await _context.Prodaja
+                                .Include(x => x.Korisnik).AsNoTracking()
+                                .Include(x => x.ArtikliStavke)
+                                    .ThenInclude(y => y.Artikal).AsNoTracking()
+                                .Include(x => x.RezervacijeStavke)
+                                    .ThenInclude(y => y.Rezervacija)
+                                    .ThenInclude(y => y.Projekcija)
+                                    .ThenInclude(y => y.Film).AsNoTracking()
+                                .Include(x => x.RezervacijeStavke)
+                                    .ThenInclude(y => y.Rezervacija)
+                                    .ThenInclude(y => y.Projekcija)
+                                    .ThenInclude(y => y.Sala).AsNoTracking()
+                                .FirstOrDefaultAsync(x => x.Id == id);
             if (prodaja == null)
             {
                 return NotFound();
             }
 
-            return prodaja;
+            return new ProdajaExtension(prodaja, true);
         }
 
         // PUT: api/Prodaja/5
@@ -119,7 +130,7 @@ namespace KinoCentar.API.Controllers
                 var p = await _context.Prodaja.FirstOrDefaultAsync(x => x.BrojRacuna.ToLower().Equals(prodaja.BrojRacuna.ToLower()));
                 if (p != null)
                 {
-                    throw Common.CreateHttpExceptionMessage("Prodaja sa navedenim brojem računa već postoji!", HttpStatusCode.Conflict);
+                    return StatusCode((int)HttpStatusCode.Conflict, "Prodaja sa navedenim brojem računa već postoji!");
                 }
 
                 if (prodaja.ArtikliStavke != null)
@@ -153,7 +164,7 @@ namespace KinoCentar.API.Controllers
             }
             catch (Exception ex)
             {
-                throw Common.CreateHttpExceptionMessage(ex.Message, HttpStatusCode.InternalServerError);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }            
         }
 
@@ -170,7 +181,7 @@ namespace KinoCentar.API.Controllers
             var datumProvjera = prodaja.Datum.AddMinutes(10);
             if (datumProvjera < DateTime.Now)
             {
-                throw Common.CreateHttpExceptionMessage("Brisanje prodaje moguće je samo u roku od 10 min nakon kreiranja!", HttpStatusCode.Conflict);
+                return StatusCode((int)HttpStatusCode.Conflict, "Brisanje prodaje moguće je samo u roku od 10 min nakon kreiranja!");
             }
 
             _context.Prodaja.Remove(prodaja);

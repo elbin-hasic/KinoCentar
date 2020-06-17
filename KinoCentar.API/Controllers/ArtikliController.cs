@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using System.Net;
-using KinoCentar.API.Util;
 
 namespace KinoCentar.API.Controllers
 {
@@ -71,7 +70,7 @@ namespace KinoCentar.API.Controllers
                                                                     x.Sifra.ToLower().Equals(artikal.Sifra.ToLower()));
             if (a != null)
             {
-                throw Common.CreateHttpExceptionMessage("Artikal sa navedenom šifrom već postoji!", HttpStatusCode.Conflict);
+                return StatusCode((int)HttpStatusCode.Conflict, "Artikal sa navedenom šifrom već postoji!");
             }
 
             _context.Entry(artikal).State = EntityState.Modified;
@@ -107,7 +106,7 @@ namespace KinoCentar.API.Controllers
             var a = await _context.Artikal.FirstOrDefaultAsync(x => x.Sifra.ToLower().Equals(artikal.Sifra.ToLower()));
             if (a != null)
             {
-                throw Common.CreateHttpExceptionMessage("Artikal sa navedenom šifrom već postoji!", HttpStatusCode.Conflict);
+                return StatusCode((int)HttpStatusCode.Conflict, "Artikal sa navedenom šifrom već postoji!");
             }
 
             _context.Artikal.Add(artikal);

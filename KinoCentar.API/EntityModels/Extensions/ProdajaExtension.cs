@@ -9,7 +9,11 @@ namespace KinoCentar.API.EntityModels.Extensions
     {
         public decimal UkupnaCijena { get; set; }
 
-        public ProdajaExtension(Prodaja prodaja)
+        public string FilmNaslov { get; set; }
+
+        public string SalaNaziv { get; set; }
+
+        public ProdajaExtension(Prodaja prodaja, bool withCollections)
         {
             Id = prodaja.Id;
             BrojRacuna = prodaja.BrojRacuna;
@@ -19,6 +23,25 @@ namespace KinoCentar.API.EntityModels.Extensions
             Porez = prodaja.Porez;
             Korisnik = prodaja.Korisnik;
             UkupnaCijena = GetUkupnaCijena(prodaja.ArtikliStavke, prodaja.RezervacijeStavke);
+
+            if (withCollections)
+            {
+                try
+                {
+                    if (prodaja.RezervacijeStavke.Any())
+                    {
+                        var rezervacija = prodaja.RezervacijeStavke.First().Rezervacija;
+                        FilmNaslov = rezervacija.Projekcija.Film.Naslov;
+                        SalaNaziv = rezervacija.Projekcija.Sala.Naziv;
+                    }
+                }
+                catch
+                {}                
+                
+                //
+                ArtikliStavke = prodaja.ArtikliStavke;
+                RezervacijeStavke = prodaja.RezervacijeStavke;
+            }
         }
 
         private decimal GetUkupnaCijena(ICollection<ProdajaArtikalDodjela> artikliStavke, ICollection<ProdajaRezervacijaDodjela> rezervacijeStavke)

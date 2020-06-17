@@ -28,6 +28,10 @@ namespace KinoCentar.Shared.Models
 
         public decimal UkupnaCijena { get; set; }
 
+        public string FilmNaslov { get; set; }
+
+        public string SalaNaziv { get; set; }
+
         public KorisnikModel Korisnik { get; set; }
 
         public List<ProdajaRezervacijaDodjelaModel> RezervacijeStavke { get; set; }

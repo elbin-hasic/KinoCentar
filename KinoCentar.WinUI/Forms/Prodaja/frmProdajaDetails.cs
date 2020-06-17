@@ -1,9 +1,4 @@
-﻿using KinoCentar.Shared.Models;
-using KinoCentar.Shared.Util;
-using KinoCentar.WinUI.Util;
-using KinoCentar.WinUI.Extensions;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,62 +8,95 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Models;
+using KinoCentar.Shared.Util;
+using KinoCentar.WinUI.Util;
+using KinoCentar.WinUI.Extensions;
 using KinoCentar.WinUI.Forms.Filmovi;
 using KinoCentar.WinUI.Forms.Projekcije;
+using KinoCentar.WinUI.Forms.Rezervacije;
+using KinoCentar.WinUI.Models.Enums;
 
 namespace KinoCentar.WinUI.Forms.Prodaja
 {
     public partial class frmProdajaDetails : Form
     {
         private WebAPIHelper prodajaService = new WebAPIHelper(Global.ApiAddress, Global.ProdajaRoute);
-        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute);
-        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute);
 
         private int _id { get; set; }
-        private ProdajaModel _r { get; set; }
+        private ProdajaModel _p { get; set; }
 
         public frmProdajaDetails(int id)
         {
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
+            dgvArtikli.AutoGenerateColumns = false;
 
             _id = id;
-            _r = null;
+            _p = null;
         }
 
         private void frmProdajaDetails_Load(object sender, EventArgs e)
         {
-
+            HttpResponseMessage response = prodajaService.GetResponse(_id.ToString()).Handle();
+            if (response.IsSuccessStatusCode)
+            {
+                _p = response.GetResponseResult<ProdajaModel>();
+                FillForm();
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                _p = null;
+            }
         }
 
         private void FillForm()
         {
-            
-        }
+            decimal rezervacijaCijena = 0;
+            decimal artikliUkupnaCijena = 0;
 
-        private void btnSnimi_Click(object sender, EventArgs e)
-        {
-            if (_r != null && this.ValidateChildren())
+            var artikli = _p.ArtikliStavke.ToList();
+
+            foreach (var artikal in artikli)
             {
-                /*_r.ProjekcijaId = ((ProjekcijaModel)cmbProjekcija.SelectedItem).Id;
-                if (cmbKorisnik.SelectedIndex != 0)
-                {
-                    _r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
-                }
-                if (cmbBrojSjedista.SelectedIndex != 0)
-                {
-                    _r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
-                }
-
-                _r.DatumProjekcije = dtpDatumProjekcije.Value;
-
-                HttpResponseMessage response = rezervacijeService.PutResponse(_id, _r).Handle();
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show(Messages.edit_rezervacija_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }*/
+                artikliUkupnaCijena += (artikal.Kolicina * artikal.Cijena);
             }
+
+            RezervacijaModel rezervacija = null;
+            if (_p.RezervacijeStavke.Any())
+            {
+                if (_p.RezervacijeStavke.First() != null)
+                {
+                    rezervacija = _p.RezervacijeStavke.First().Rezervacija;
+                }                    
+            }
+
+            if (rezervacija != null)
+            {
+                txtNaslov.Text = _p.FilmNaslov;
+                txtSala.Text = _p.SalaNaziv;
+                txtBrojSjedista.Text = rezervacija.BrojSjedista.ToString();
+                txtCijena.Text = rezervacija.Cijena.ToString();
+                dtpDatumProjekcije.Value = rezervacija.DatumProjekcije;
+                txtKorisnik.Text = _p.Korisnik?.ImePrezime;
+                //
+                rezervacijaCijena = rezervacija.Cijena;
+                txtCijenaRezervacije.Text = rezervacijaCijena.ToString("0.##");
+            }
+            else
+            {
+                gbProjekcija.Enabled = false;
+                txtCijenaRezervacije.Text = string.Empty;
+            }
+
+            dgvArtikli.DataSource = artikli;
+            dgvArtikli.ClearSelection();
+
+            decimal ukupnaCijena = rezervacijaCijena + artikliUkupnaCijena;
+
+            txtBrojRacuna.Text = _p.BrojRacuna;
+            txtArtikliCijenaUkupno.Text = artikliUkupnaCijena.ToString("0.##");
+            txtCijenaUkupno.Text = ukupnaCijena.ToString("0.##");            
         }
 
         private void btnOdustani_Click(object sender, EventArgs e)
@@ -79,11 +107,5 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 this.Close();
             }
         }
-
-        #region Validation
-
-
-
-        #endregion
     }
 }

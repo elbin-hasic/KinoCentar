@@ -15,7 +15,19 @@ namespace KinoCentar.WinUI.Extensions
         {
             if (!response.IsSuccessStatusCode)
             {
-                MessageBox.Show("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
+                var detailMsg = response.ReasonPhrase;
+                try
+                {
+                    var jsonResult = response.Content.ReadAsStringAsync().Result;
+                    if (jsonResult != null && jsonResult.GetType() == typeof(string))
+                    {
+                        detailMsg = jsonResult;
+                    }                    
+                }
+                catch
+                {}
+                
+                MessageBox.Show("Error Code: " + response.StatusCode + "; Message: " + detailMsg);
             }
 
             return response;

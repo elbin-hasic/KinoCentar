@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
+using System.Net;
 
 namespace KinoCentar.API.Controllers
 {
@@ -195,6 +196,15 @@ namespace KinoCentar.API.Controllers
             if (rezervacija == null)
             {
                 return NotFound();
+            }
+
+            if (rezervacija.DatumOtkazano != null)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, "Navedena rezervacija je već otakazan!");
+            }
+            else if (rezervacija.DatumProdano != null)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, "Navedenu rezervaciju nije moguće otkazati zbog toga što je već prodana!");
             }
 
             rezervacija.DatumOtkazano = DateTime.Now;

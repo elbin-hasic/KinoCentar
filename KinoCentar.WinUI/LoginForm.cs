@@ -21,6 +21,10 @@ namespace KinoCentar.WinUI
         public LoginForm()
         {
             InitializeComponent();
+
+            //
+            txtKorisnickoIme.Text = "admin";
+            txtLozinka.Text = "test";
         }
 
         private void Prijava()

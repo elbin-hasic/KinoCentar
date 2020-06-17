@@ -99,17 +99,17 @@
     <Compile Include="Forms\Prodaja\frmProdaja.Designer.cs">
       <DependentUpon>frmProdaja.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Prodaja\frmProdajaAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Prodaja\frmProdajaAdd.Designer.cs">
-      <DependentUpon>frmProdajaAdd.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Prodaja\frmProdajaDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Prodaja\frmProdajaDetails.Designer.cs">
       <DependentUpon>frmProdajaDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdajaAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Prodaja\frmProdajaAdd.Designer.cs">
+      <DependentUpon>frmProdajaAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Rezervacije\frmRezervacije.cs">
       <SubType>Form</SubType>
@@ -321,11 +321,11 @@
     <EmbeddedResource Include="Forms\Prodaja\frmProdaja.resx">
       <DependentUpon>frmProdaja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Prodaja\frmProdajaAdd.resx">
-      <DependentUpon>frmProdajaAdd.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Prodaja\frmProdajaDetails.resx">
       <DependentUpon>frmProdajaDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Prodaja\frmProdajaAdd.resx">
+      <DependentUpon>frmProdajaAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Rezervacije\frmRezervacije.resx">
       <DependentUpon>frmRezervacije.cs</DependentUpon>

@@ -81,7 +81,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             { }
         }
 

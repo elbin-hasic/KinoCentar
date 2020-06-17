@@ -12,6 +12,22 @@ namespace KinoCentar.Shared.Models
 
         public int ArtikalId { get; set; }
 
+        public string ArtikalNaziv
+        {
+            get
+            {
+                return Artikal?.Naziv;
+            }
+        }
+
+        public string ArtikalSifra
+        {
+            get
+            {
+                return Artikal?.Sifra;
+            }
+        }
+
         public decimal Cijena { get; set; }
 
         public int Kolicina { get; set; }
