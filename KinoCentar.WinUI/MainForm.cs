@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KinoCentar.Shared.Models;
+using KinoCentar.Shared.Models.Enums;
 using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Extensions;
 using KinoCentar.WinUI.Forms.Artikli;
@@ -29,20 +30,52 @@ namespace KinoCentar.WinUI
 {
     public partial class MainForm : Form
     {
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
+        private TipKorisnikaType? tipKorisnika = null;
 
         public MainForm()
         {
             InitializeComponent();
+
+            if (Global.PrijavljeniKorisnik != null)
+            {
+                tipKorisnika = Global.PrijavljeniKorisnik.TipKorisnika?.Type;
+                lblUserToolStripStatus.Text = $"Korisnik: {Global.PrijavljeniKorisnik.ImePrezime}";
+            }
+            else
+            {
+                MessageBox.Show("Prijava na sistem nije uspjela, pojavila se greška!", Messages.msg_err, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            HttpResponseMessage response = korisniciService.GetActionResponse("GetByUserName", "admin").Handle();
-            if (response.IsSuccessStatusCode)
+            if (tipKorisnika != null)
             {
-                var k = response.GetResponseResult<KorisnikModel>();
-                Global.PrijavljeniKorisnik = k;
+                switch (tipKorisnika.Value)
+                {
+                    case TipKorisnikaType.Administrator:
+                        administracijaToolStripMenuItem.Enabled = true;
+                        filmoviToolStripMenuItem.Enabled = true;
+                        projekcijeToolStripMenuItem.Enabled = true;
+                        artikliToolStripMenuItem.Enabled = true;
+                        izvjestajiToolStripMenuItem.Enabled = true;
+                        obavijestiToolStripMenuItem.Enabled = true;
+                        dojmoviToolStripMenuItem.Enabled = true;
+                        break;
+                    case TipKorisnikaType.Moderator:
+                        filmoviToolStripMenuItem.Enabled = true;
+                        projekcijeToolStripMenuItem.Enabled = true;
+                        artikliToolStripMenuItem.Enabled = true;
+                        izvjestajiToolStripMenuItem.Enabled = true;
+                        obavijestiToolStripMenuItem.Enabled = true;
+                        dojmoviToolStripMenuItem.Enabled = true;
+                        break;
+                    case TipKorisnikaType.Radnik:
+                        rezervacijeToolStripMenuItem.Enabled = true;
+                        prodajaToolStripMenuItem.Enabled = true;
+                        break;
+                }
             }
         }
 

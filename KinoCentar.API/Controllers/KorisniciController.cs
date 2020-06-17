@@ -56,7 +56,6 @@ namespace KinoCentar.API.Controllers
         public async Task<ActionResult<Korisnik>> GetKorisnik(int id)
         {
             var korisnik = await _context.Korisnik.FindAsync(id);
-
             if (korisnik == null)
             {
                 return NotFound();
@@ -74,14 +73,14 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
-            var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+            var korisnik = await _context.Korisnik
+                                 .Include(x => x.TipKorisnika).AsNoTracking()
+                                 .FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower()
+                                 .Equals(userName.ToLower()));
             if (korisnik == null)
             {
                 return NotFound();
             }
-
-            korisnik.LozinkaHash = null;
-            korisnik.LozinkaSalt = null;
 
             return korisnik;
         }

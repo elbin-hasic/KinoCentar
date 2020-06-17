@@ -24,7 +24,13 @@ namespace KinoCentar.WinUI
             // This handler is for catching non-UI thread exceptions
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            Application.Run(new MainForm());
+            LoginForm frm = new LoginForm();
+            frm.ShowDialog();
+
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                Application.Run(new MainForm());
+            }                
         }
 
         #region GlobalExceptionHandlers

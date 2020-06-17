@@ -547,6 +547,24 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unijeli ste neispravnu lozinku..
+        /// </summary>
+        internal static string login_pass_err {
+            get {
+                return ResourceManager.GetString("login_pass_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisničko ime nije pronađeno ili je vaš nalog neaktivan..
+        /// </summary>
+        internal static string login_user_err {
+            get {
+                return ResourceManager.GetString("login_user_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Da li ste sigurni da želite odustati.
         /// </summary>
         internal static string msg_cancel_que {

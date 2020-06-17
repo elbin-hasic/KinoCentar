@@ -279,6 +279,12 @@
   <data name="jedMjere_shortName_err" xml:space="preserve">
     <value>Kratki naziv jednice mjere treba da sadrži najmanje 3 karaktera.</value>
   </data>
+  <data name="login_pass_err" xml:space="preserve">
+    <value>Unijeli ste neispravnu lozinku.</value>
+  </data>
+  <data name="login_user_err" xml:space="preserve">
+    <value>Korisničko ime nije pronađeno ili je vaš nalog neaktivan.</value>
+  </data>
   <data name="msg_cancel_que" xml:space="preserve">
     <value>Da li ste sigurni da želite odustati</value>
   </data>

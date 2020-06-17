@@ -75,6 +75,7 @@
             this.btnUredi.TabIndex = 3;
             this.btnUredi.Text = "Uredi";
             this.btnUredi.UseVisualStyleBackColor = true;
+            this.btnUredi.Visible = false;
             this.btnUredi.Click += new System.EventHandler(this.btnUredi_Click);
             // 
             // btnNovi
@@ -86,6 +87,7 @@
             this.btnNovi.TabIndex = 4;
             this.btnNovi.Text = "Novi";
             this.btnNovi.UseVisualStyleBackColor = true;
+            this.btnNovi.Visible = false;
             this.btnNovi.Click += new System.EventHandler(this.btnNovi_Click);
             // 
             // btnBrisi
@@ -97,6 +99,7 @@
             this.btnBrisi.TabIndex = 5;
             this.btnBrisi.Text = "Briši";
             this.btnBrisi.UseVisualStyleBackColor = true;
+            this.btnBrisi.Visible = false;
             this.btnBrisi.Click += new System.EventHandler(this.btnBrisi_Click);
             // 
             // dgvTipoviKorisnika
