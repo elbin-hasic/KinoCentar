@@ -5,7 +5,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="KinoCentar.Mobile.App">
-    <Application.Resources>
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Application resource settings -->
+            <x:String x:Key="ApiAddress">http://localhost:8085/</x:String>
+            <!-- Global Styles -->
+            <Color x:Key="NavigationPrimary">#E42E4B</Color>
+            <Color x:Key="ButtonPrimary">#E42E4B</Color>
+            <Color x:Key="ButtonTextPrimary">#FFF</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
+    
 </Application>

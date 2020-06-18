@@ -4,7 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{DE3AD58C-82D6-4A73-B5AD-70A40A5BE224}</ProjectGuid>
+    <ProjectGuid>{D3D19BD7-954A-4390-BC77-5D7B96328C41}</ProjectGuid>
+    <TemplateGuid>{98C37F10-6541-44BE-B1E6-7EB3EB8C08F1}</TemplateGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KinoCentar.Mobile.UWP</RootNamespace>
@@ -103,6 +104,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
@@ -130,7 +132,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="xamarin_logo.png" />
+    <Content Include="add.png" />
+    <Content Include="save.png" />
+    <Content Include="cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -149,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KinoCentar.Mobile\KinoCentar.Mobile.csproj">
-      <Project>{924587F0-9031-4216-9198-9EB57B5E3CD1}</Project>
+      <Project>{E42C2612-A1C9-4CD2-A84E-9E8EB87D5EB9}</Project>
       <Name>KinoCentar.Mobile</Name>
     </ProjectReference>
   </ItemGroup>

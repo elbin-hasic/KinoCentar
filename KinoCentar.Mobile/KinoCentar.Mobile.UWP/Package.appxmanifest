@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="eb4c3fb2-6d86-4321-bff5-f543fcaf7cc3"
-    Publisher="CN=aa5af6f8-cddf-499e-9024-c6bc1ba9edae"
+    Name="6b0da546-baf8-4e06-ac99-ab7ff90f3500"
+    Publisher="CN=271d1cd7-f998-4ab4-95dd-ee53b75e8c0e"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>KinoCentar.Mobile.UWP</DisplayName>
-    <PublisherDisplayName>aa5af6f8-cddf-499e-9024-c6bc1ba9edae</PublisherDisplayName>
+    <PublisherDisplayName>271d1cd7-f998-4ab4-95dd-ee53b75e8c0e</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
