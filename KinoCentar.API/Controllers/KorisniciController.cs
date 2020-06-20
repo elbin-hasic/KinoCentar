@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using KinoCentar.Shared.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KinoCentar.API.Controllers
 {
@@ -86,6 +87,7 @@ namespace KinoCentar.API.Controllers
         }
 
         // PUT: api/Korisnici/5
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKorisnik(int id, Korisnik korisnik)
         {
@@ -116,6 +118,7 @@ namespace KinoCentar.API.Controllers
         }
 
         // POST: api/Korisnici
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Korisnik>> PostKorisnik(Korisnik korisnik)
         {
@@ -126,6 +129,7 @@ namespace KinoCentar.API.Controllers
         }
 
         // DELETE: api/Korisnici/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Korisnik>> DeleteKorisnik(int id)
         {

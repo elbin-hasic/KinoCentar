@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Filmovi
 {
     public partial class frmFilmovi : Form
     {
-        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute);
+        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute, Global.PrijavljeniKorisnik);
 
         public frmFilmovi()
         {

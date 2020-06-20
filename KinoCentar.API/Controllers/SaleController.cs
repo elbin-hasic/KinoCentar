@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KinoCentar.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SaleController : ControllerBase

@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.JediniceMjere
 {
     public partial class frmJediniceMjereEdit : Form
     {
-        private WebAPIHelper jediniceMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute);
+        private WebAPIHelper jediniceMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute, Global.PrijavljeniKorisnik);
 
         private int _id { get; set; }
         private JedinicaMjereModel _jedMjere { get; set; }

@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.TipoviKorisnika
 {
     public partial class frmTipoviKorisnikaEdit : Form
     {
-        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute);
+        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute, Global.PrijavljeniKorisnik);
 
         private int _id { get; set; }
         private TipKorisnikaModel _tipKorisnika { get; set; }

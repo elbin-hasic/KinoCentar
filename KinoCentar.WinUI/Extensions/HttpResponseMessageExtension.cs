@@ -15,35 +15,11 @@ namespace KinoCentar.WinUI.Extensions
         {
             if (!response.IsSuccessStatusCode)
             {
-                var detailMsg = response.ReasonPhrase;
-                try
-                {
-                    var jsonResult = response.Content.ReadAsStringAsync().Result;
-                    if (jsonResult != null && jsonResult.GetType() == typeof(string))
-                    {
-                        detailMsg = jsonResult;
-                    }                    
-                }
-                catch
-                {}
-                
-                MessageBox.Show("Error Code: " + response.StatusCode + "; Message: " + detailMsg);
+                var msg = Shared.Extensions.HttpResponseMessageExtension.HandleResponseMessage(response);
+                MessageBox.Show(msg, Messages.msg_err, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return response;
-        }
-
-        public static T GetResponseResult<T>(this HttpResponseMessage response)
-        {
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonObject = response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(jsonObject.Result);
-            }
-            else
-            {
-                return default(T);
-            }
         }
     }
 }

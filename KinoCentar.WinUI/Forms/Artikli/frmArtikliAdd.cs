@@ -12,13 +12,14 @@ using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Util;
 using KinoCentar.WinUI.Extensions;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Artikli
 {
     public partial class frmArtikliAdd : Form
     {
-        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute);
-        private WebAPIHelper jedMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute);
+        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper jedMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute, Global.PrijavljeniKorisnik);
 
         ArtikalModel a = new ArtikalModel();
 

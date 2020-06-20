@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KinoCentar.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RezervacijeController : ControllerBase

@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Obavijesti
 {
     public partial class frmObavijesti : Form
     {
-        private WebAPIHelper obavijestiService = new WebAPIHelper(Global.ApiAddress, Global.ObavijestiRoute);
+        private WebAPIHelper obavijestiService = new WebAPIHelper(Global.ApiAddress, Global.ObavijestiRoute, Global.PrijavljeniKorisnik);
 
         public frmObavijesti()
         {

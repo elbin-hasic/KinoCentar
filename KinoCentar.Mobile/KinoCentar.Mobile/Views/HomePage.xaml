@@ -6,10 +6,60 @@
              mc:Ignorable="d"
              x:Class="KinoCentar.Mobile.Views.HomePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid x:Name="HomeMenuGrid" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                
+            <Button x:Name="btnProjekcije" 
+                    Text="Projekcije" 
+                    Grid.Row="0"
+                    Grid.Column="0"   
+                    Margin="10"
+                    BackgroundColor="{StaticResource ButtonPrimary}"
+                    TextColor="{StaticResource ButtonTextPrimary}"
+                    FontSize="20" FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="btnProjekcije_Clicked"></Button>
+
+            <Button x:Name="btnPreporuceno" 
+                    Text="Preporučeno" 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10"
+                    BackgroundColor="{StaticResource ButtonPrimary}"
+                    TextColor="{StaticResource ButtonTextPrimary}"
+                    FontSize="20" FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="btnPreporuceno_Clicked"></Button>
+            
+            <Button x:Name="btnRezervacije" 
+                    Text="Rezervacije" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="10"
+                    BackgroundColor="{StaticResource ButtonPrimary}"
+                    TextColor="{StaticResource ButtonTextPrimary}"
+                    FontSize="20" FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="btnRezervacije_Clicked"></Button>
+
+            <Button x:Name="btnObavijesti" 
+                    Text="Obavijesti" 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="10"
+                    BackgroundColor="{StaticResource ButtonPrimary}"
+                    TextColor="{StaticResource ButtonTextPrimary}"
+                    FontSize="20" FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="btnObavijesti_Clicked"></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

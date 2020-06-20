@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Sale
 {
     public partial class frmSaleEdit : Form
     {
-        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute);
+        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute, Global.PrijavljeniKorisnik);
 
         private int _id { get; set; }
         private SalaModel _sala { get; set; }

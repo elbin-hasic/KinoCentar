@@ -13,14 +13,15 @@ using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Util;
 using KinoCentar.WinUI.Extensions;
 using KinoCentar.WinUI.Forms.Filmovi;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Projekcije
 {
     public partial class frmProjekcijeAdd : Form
     {
-        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute);
-        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute);
-        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute);
+        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute, Global.PrijavljeniKorisnik);
 
         public frmProjekcijeAdd()
         {

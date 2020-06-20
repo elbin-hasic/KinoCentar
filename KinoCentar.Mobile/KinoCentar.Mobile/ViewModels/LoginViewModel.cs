@@ -15,7 +15,6 @@ namespace KinoCentar.Mobile.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        private static LoginPage page;
         private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
 
         public LoginViewModel()
@@ -55,6 +54,7 @@ namespace KinoCentar.Mobile.ViewModels
                     KorisnikModel korisnik = response.GetResponseResult<KorisnikModel>();
                     if (korisnik.LozinkaHash == UIHelper.GenerateHash(korisnik.LozinkaSalt, Password))
                     {
+                        korisnik.Lozinka = Password;
                         Global.PrijavljeniKorisnik = korisnik;
                         Application.Current.MainPage = new MainPage();
                     }

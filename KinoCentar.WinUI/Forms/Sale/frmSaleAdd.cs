@@ -16,7 +16,7 @@ namespace KinoCentar.WinUI.Forms.Sale
 {
     public partial class frmSaleAdd : Form
     {
-        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute);
+        private WebAPIHelper saleService = new WebAPIHelper(Global.ApiAddress, Global.SaleRoute, Global.PrijavljeniKorisnik);
 
         public frmSaleAdd()
         {

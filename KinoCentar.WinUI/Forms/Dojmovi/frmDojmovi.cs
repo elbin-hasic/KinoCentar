@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Dojmovi
 {
     public partial class frmDojmovi : Form
     {
-        private WebAPIHelper dojmoviService = new WebAPIHelper(Global.ApiAddress, Global.DojmoviRoute);
+        private WebAPIHelper dojmoviService = new WebAPIHelper(Global.ApiAddress, Global.DojmoviRoute, Global.PrijavljeniKorisnik);
 
         public frmDojmovi()
         {

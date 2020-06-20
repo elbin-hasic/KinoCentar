@@ -16,16 +16,17 @@ using KinoCentar.WinUI.Forms.Filmovi;
 using KinoCentar.WinUI.Forms.Projekcije;
 using KinoCentar.WinUI.Forms.Rezervacije;
 using KinoCentar.WinUI.Models.Enums;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Prodaja
 {
     public partial class frmProdajaAdd : Form
     {
-        private WebAPIHelper prodajaService = new WebAPIHelper(Global.ApiAddress, Global.ProdajaRoute);
-        private WebAPIHelper rezervacijeService = new WebAPIHelper(Global.ApiAddress, Global.RezervacijeRoute);
-        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute);
-        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute);
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
+        private WebAPIHelper prodajaService = new WebAPIHelper(Global.ApiAddress, Global.ProdajaRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper rezervacijeService = new WebAPIHelper(Global.ApiAddress, Global.RezervacijeRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute, Global.PrijavljeniKorisnik);
 
         private decimal rezervacijaCijena = 0;
         private decimal artikliUkupnaCijena = 0;

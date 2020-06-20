@@ -18,6 +18,14 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public byte[] FilmPlakatThumb
+        {
+            get
+            {
+                return Film?.PlakatThumb;
+            }
+        }
+
         public int SalaId { get; set; }
 
         public string SalaNaziv

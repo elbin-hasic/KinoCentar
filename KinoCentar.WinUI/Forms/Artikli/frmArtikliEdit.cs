@@ -13,13 +13,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Artikli
 {
     public partial class frmArtikliEdit : Form
     {
-        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute);
-        private WebAPIHelper jedMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute);
+        private WebAPIHelper artikliService = new WebAPIHelper(Global.ApiAddress, Global.ArtikliRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper jedMjereService = new WebAPIHelper(Global.ApiAddress, Global.JediniceMjereRoute, Global.PrijavljeniKorisnik);
 
         private int _id { get; set; }
         private ArtikalModel _a { get; set; }

@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace KinoCentar.Shared.Util
 {
@@ -19,22 +21,61 @@ namespace KinoCentar.Shared.Util
             this.route = route;
         }
 
+        public WebAPIHelper(string uri, string route, KorisnikModel korisnik) : this(uri, route, korisnik?.KorisnickoIme, korisnik?.Lozinka)
+        {
+            
+        }
+
+        // Basic auth
+        public WebAPIHelper(string uri, string route, string username, string password) : this(uri, route)
+        {
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}")));
+                client = new HttpClient()
+                {
+                    BaseAddress = new Uri(uri),
+                    DefaultRequestHeaders = { Authorization = authValue }
+                };
+            }            
+        }
+
         public HttpResponseMessage GetResponse(string parameter = "")
         {
-            return client.GetAsync(route + "/" + parameter).Result;
+            return GetResponseAsync(parameter).Result;
+        }
+
+        public Task<HttpResponseMessage> GetResponseAsync(string parameter = "")
+        {
+            return client.GetAsync(route + "/" + parameter);
         }
 
         public HttpResponseMessage GetActionResponse(string action, string parameter = "")
         {
-            return client.GetAsync(route + "/" + action + "/" + parameter).Result;
+            return GetActionResponseAsync(action, parameter).Result;
+        }
+
+        public Task<HttpResponseMessage> GetActionResponseAsync(string action, string parameter = "")
+        {
+            return client.GetAsync(route + "/" + action + "/" + parameter);
         }
 
         public HttpResponseMessage GetActionResponse(string action, string p1 = "", string p2 = "")
         {
-            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2).Result;
+            return GetActionResponseAsync(action, p1, p2).Result;
+        }
+
+        public Task<HttpResponseMessage> GetActionResponseAsync(string action, string p1 = "", string p2 = "")
+        {
+            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
         }
 
         public HttpResponseMessage GetActionSearchResponse(string action, string p1 = "*", string p2 = "*")
+        {
+            return GetActionSearchResponseAsync(action, p1, p2).Result;
+        }
+
+        public Task<HttpResponseMessage> GetActionSearchResponseAsync(string action, string p1 = "*", string p2 = "*")
         {
             if (string.IsNullOrEmpty(p1))
             {
@@ -44,29 +85,49 @@ namespace KinoCentar.Shared.Util
             {
                 p2 = "*";
             }
-            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2).Result;
+            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
         }
 
         public HttpResponseMessage PostResponse(Object newObject)
         {
+            return PostResponseAsync(newObject).Result;
+        }
+
+        public Task<HttpResponseMessage> PostResponseAsync(Object newObject)
+        {
             var jsonObject = new StringContent(JsonConvert.SerializeObject(newObject), Encoding.UTF8, "application/json");
-            return client.PostAsync(route, jsonObject).Result;
+            return client.PostAsync(route, jsonObject);
         }
 
         public HttpResponseMessage PutResponse(int id, Object existingObject)
         {
+            return PutResponseAsync(id, existingObject).Result;
+        }
+
+        public Task<HttpResponseMessage> PutResponseAsync(int id, Object existingObject)
+        {
             var jsonObject = new StringContent(JsonConvert.SerializeObject(existingObject), Encoding.UTF8, "application/json");
-            return client.PutAsync(route + "/" + id, jsonObject).Result;
+            return client.PutAsync(route + "/" + id, jsonObject);
         }
 
         public HttpResponseMessage PutActionResponse(string action, int id)
         {
-            return client.PutAsync(route + "/" + action + "/" + id, null).Result;
+            return PutActionResponseAsync(action, id).Result;
+        }
+
+        public Task<HttpResponseMessage> PutActionResponseAsync(string action, int id)
+        {
+            return client.PutAsync(route + "/" + action + "/" + id, null);
         }
 
         public HttpResponseMessage DeleteResponse(int id)
         {
-            return client.DeleteAsync(route + "/" + id).Result;
+            return DeleteResponseAsync(id).Result;
+        }
+
+        public Task<HttpResponseMessage> DeleteResponseAsync(int id)
+        {
+            return client.DeleteAsync(route + "/" + id);
         }
     }
 }

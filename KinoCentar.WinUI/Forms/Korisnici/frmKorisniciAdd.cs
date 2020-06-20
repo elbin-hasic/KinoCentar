@@ -12,6 +12,7 @@ using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Util;
 using KinoCentar.WinUI.Extensions;
+using KinoCentar.Shared.Extensions;
 using System.IO;
 using System.Net.Mail;
 
@@ -19,8 +20,8 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 {
     public partial class frmKorisniciAdd : Form
     {
-        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
-        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute);
+        private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute, Global.PrijavljeniKorisnik);
 
         KorisnikModel k = new KorisnikModel();
 

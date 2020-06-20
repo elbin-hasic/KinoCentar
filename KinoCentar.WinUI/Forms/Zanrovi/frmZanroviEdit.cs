@@ -12,12 +12,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI.Forms.Zanrovi
 {
     public partial class frmZanroviEdit : Form
     {
-        private WebAPIHelper zanroviService = new WebAPIHelper(Global.ApiAddress, Global.ZanroviRoute);
+        private WebAPIHelper zanroviService = new WebAPIHelper(Global.ApiAddress, Global.ZanroviRoute, Global.PrijavljeniKorisnik);
 
         private int _id { get; set; }
         private ZanrModel _zanr { get; set; }

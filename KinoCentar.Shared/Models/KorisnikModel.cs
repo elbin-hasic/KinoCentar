@@ -20,6 +20,8 @@ namespace KinoCentar.Shared.Models
 
         public string KorisnickoIme { get; set; }
 
+        public string Lozinka { get; set; }
+
         public string LozinkaHash { get; set; }
 
         public string LozinkaSalt { get; set; }

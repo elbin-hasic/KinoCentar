@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.WinUI
 {
@@ -34,10 +35,10 @@ namespace KinoCentar.WinUI
             else if (response.IsSuccessStatusCode)
             {
                 var korisnik = response.GetResponseResult<KorisnikModel>();
-
                 if (Util.UIHelper.GenerateHash(korisnik.LozinkaSalt, txtLozinka.Text) == korisnik.LozinkaHash)
                 {
                     this.DialogResult = DialogResult.OK;
+                    korisnik.Lozinka = txtLozinka.Text;
                     Global.PrijavljeniKorisnik = korisnik;
                     this.Close();
                 }

@@ -16,7 +16,7 @@ namespace KinoCentar.WinUI.Forms.Zanrovi
 {
     public partial class frmZanroviAdd : Form
     {
-        private WebAPIHelper zanroviService = new WebAPIHelper(Global.ApiAddress, Global.ZanroviRoute);
+        private WebAPIHelper zanroviService = new WebAPIHelper(Global.ApiAddress, Global.ZanroviRoute, Global.PrijavljeniKorisnik);
 
         public frmZanroviAdd()
         {

@@ -9,9 +9,11 @@ using KinoCentar.API.EntityModels;
 using System.Net;
 using KinoCentar.API.EntityModels.Extensions;
 using System.Web.Http.Description;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KinoCentar.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdajaController : ControllerBase

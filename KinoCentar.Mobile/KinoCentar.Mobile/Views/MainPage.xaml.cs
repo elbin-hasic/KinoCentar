@@ -34,15 +34,22 @@ namespace KinoCentar.Mobile.Views
                         MenuPages.Add(id, new NavigationPage(new HomePage()));
                         break;
                     case (int)MenuItemType.Projekcije:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(new ProjekcijePage()));
                         break;
                     case (int)MenuItemType.Preporuceno:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        MenuPages.Add(id, new NavigationPage(new PreporucenoPage()));
                         break;
                     case (int)MenuItemType.Rezervacije:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        MenuPages.Add(id, new NavigationPage(new RezervacijePage()));
                         break;
                     case (int)MenuItemType.Obavijesti:
+                        MenuPages.Add(id, new NavigationPage(new ObavijestiPage()));
+                        break;
+                    //
+                    case (int)MenuItemType.Browse:
+                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        break;
+                    case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
                 }
