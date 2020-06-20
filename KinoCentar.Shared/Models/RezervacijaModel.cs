@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace KinoCentar.Shared.Models
@@ -67,6 +68,14 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public string DatumProjekcijeFormat
+        {
+            get
+            {
+                return DatumProjekcije.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
+            }
+        }
+
         public DateTime? DatumProdano { get; set; }        
 
         public bool IsProdano
@@ -77,6 +86,14 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public string IsProdanoText
+        {
+            get
+            {
+                return IsProdano ? "DA" : "NE";
+            }
+        }
+
         public DateTime? DatumOtkazano { get; set; }
 
         public bool IsOtkazano
@@ -84,6 +101,14 @@ namespace KinoCentar.Shared.Models
             get
             {
                 return DatumOtkazano != null;
+            }
+        }
+
+        public string IsOtkazanoText
+        {
+            get
+            {
+                return IsOtkazano ? "DA" : "NE";
             }
         }
 

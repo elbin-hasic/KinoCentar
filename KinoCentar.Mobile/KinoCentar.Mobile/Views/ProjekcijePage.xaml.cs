@@ -33,7 +33,7 @@ namespace KinoCentar.Mobile.Views
             var item = e.SelectedItem as ProjekcijaModel;
             if (item != null)
             {
-                await Application.Current.MainPage.DisplayAlert($"[{item.Id}] {item.FilmNaslov}", "ProjekcijaInfo", "OK");
+                await Navigation.PushAsync(new ProjekcijePrikazPage(item));
             }            
         }
     }

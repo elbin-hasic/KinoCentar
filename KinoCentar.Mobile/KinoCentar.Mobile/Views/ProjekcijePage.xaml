@@ -21,12 +21,13 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="projekcijeListView" ItemsSource="{Binding ProjekcijeList}" ItemSelected="projekcijeListView_ItemSelected">
+            <ListView x:Name="projekcijeListView" ItemsSource="{Binding ProjekcijeList}" 
+                      ItemSelected="projekcijeListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <StackLayout>
+                            <StackLayout Padding="20" Orientation="Horizontal">
+                                <StackLayout Padding="0,0,10,0">
                                     <Image Source="{Binding FilmPlakatThumb, Converter={StaticResource imgConv}}"></Image>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical">
@@ -34,15 +35,11 @@
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
-                                    <Label Text="{Binding Cijena}" 
+                                    <Label Text="{Binding Cijena, StringFormat='Cijena: {0} KM'}"
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="13" />
-                                    <Label Text="{Binding VrijediOd}" 
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="13" />
-                                    <Label Text="{Binding VrijediDo}" 
+                                    <Label Text="{Binding VrijediOdDoShortDate, StringFormat='Vrijedi: {0}'}" 
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="13" />

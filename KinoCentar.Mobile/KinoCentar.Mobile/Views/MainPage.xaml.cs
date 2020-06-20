@@ -45,13 +45,6 @@ namespace KinoCentar.Mobile.Views
                     case (int)MenuItemType.Obavijesti:
                         MenuPages.Add(id, new NavigationPage(new ObavijestiPage()));
                         break;
-                    //
-                    case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
                 }
             }
 

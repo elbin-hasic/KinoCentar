@@ -1,15 +1,112 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:converters="clr-namespace:KinoCentar.Mobile.Converters"
              mc:Ignorable="d"
-             x:Class="KinoCentar.Mobile.Views.ProjekcijePrikazPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+             x:Class="KinoCentar.Mobile.Views.ProjekcijePrikazPage"
+             Title="{Binding Title}">
+
+    <TabbedPage.Children HorizontalOptions="CenterAndExpand">
+        
+        <ContentPage Title="Prikaz">
+            <ContentPage.Resources>
+                <ResourceDictionary>
+                    <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+                </ResourceDictionary>
+            </ContentPage.Resources>
+            <ContentPage.Content>
+                <ScrollView x:Name="scroll">
+                    <StackLayout Padding="0,0,0,10">
+                        <StackLayout>
+                            <Label Text="{Binding Projekcija.FilmNaslov}" Style="{DynamicResource TitleStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout>
+                            <Image x:Name="plakatImage"></Image>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="Cijena:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                            <Label Text="{Binding Projekcija.Cijena, StringFormat='{0} KM'}"></Label>
+
+                            <Label Text="Sala:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                            <Label Text="{Binding Projekcija.SalaNaziv}"></Label>
+
+                            <Label Text="Vrijedi:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                            <Label Text="{Binding Projekcija.VrijediOdDoShortDate}"></Label>
+
+                            <Label Text="Sadržaj:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                            <Label Text="{Binding Projekcija.FilmSadrzaj}"></Label>
+                        </StackLayout>
+                    </StackLayout>                    
+                </ScrollView>
+            </ContentPage.Content>
+        </ContentPage>
+        
+        <ContentPage Title="Rezervacija">
+            <StackLayout Margin="0,10,0,0">
+                <StackLayout x:Name="rezervacijaNotExists">
+                    <Label Text="Broj sjedišta:"></Label>
+                    <Entry x:Name="BrojSjedista" Text="{Binding Rezervacija.BrojSjedista}"></Entry>
+                    <Label Text="Datum prikazivanja:"></Label>
+                    <DatePicker x:Name="rezervacijaDatumProjekcije"
+                                Date="{Binding Rezervacija.DatumProjekcije}"></DatePicker>
+
+                    <Button Command="{Binding RezervisiCommand}" 
+                            HorizontalOptions="FillAndExpand" 
+                            BackgroundColor="{StaticResource ButtonPrimary}"
+                            TextColor="{StaticResource ButtonTextPrimary}"
+                            Text="Rezerviši" Margin="0,10,0,0"></Button>
+
+                    <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
+                </StackLayout>
+                <StackLayout x:Name="rezervacijaExists">
+                    <Label Text="Broj sjedišta:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Rezervacija.BrojSjedista}"></Label>
+                    <Label Text="Cijena:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Rezervacija.Cijena, StringFormat='{0} KM'}"></Label>
+                    <Label Text="Datum prikazivanja:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Rezervacija.DatumProjekcijeFormat}"></Label>
+
+                    <Button Command="{Binding OtkaziRezervacijuCommand}" 
+                            HorizontalOptions="FillAndExpand" 
+                            BackgroundColor="{StaticResource ButtonPrimary}"
+                            TextColor="{StaticResource ButtonTextPrimary}"
+                            Text="Otkaži" Margin="0,10,0,0"></Button>
+                </StackLayout>
+            </StackLayout>            
+        </ContentPage>
+        
+        <ContentPage Title="Dojam">
+            <StackLayout Margin="0,10,0,0">
+                <StackLayout x:Name="dojamNotExists">
+                    <Label Text="Ocjena:"></Label>
+                    <Entry x:Name="Ocjena" Text="{Binding Dojam.Ocjena}"></Entry>
+
+                    <Label Text="Komentar:"></Label>
+                    <Editor Text="{Binding Dojam.Tekst}"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            Keyboard="Chat"
+                            HeightRequest="100"></Editor>
+
+                    <Button Command="{Binding AddDojamCommand}" 
+                        HorizontalOptions="FillAndExpand" 
+                        BackgroundColor="{StaticResource ButtonPrimary}"
+                        TextColor="{StaticResource ButtonTextPrimary}"
+                        Text="Ostavi dojam" Margin="0,10,0,0"></Button>
+
+                    <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
+                </StackLayout>
+                <StackLayout x:Name="dojamExists">
+                    <Label Text="Ocjena:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Dojam.Ocjena}"></Label>
+                    <Label Text="Komentar:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Dojam.Tekst}"></Label>
+                    <Label Text="Datum:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Dojam.DatumFormat}"></Label>
+                </StackLayout>
+            </StackLayout>            
+        </ContentPage>
+    </TabbedPage.Children>
+</TabbedPage>

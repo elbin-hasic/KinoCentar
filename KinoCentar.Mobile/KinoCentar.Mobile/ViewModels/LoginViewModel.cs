@@ -22,14 +22,16 @@ namespace KinoCentar.Mobile.ViewModels
             LoginCommand = new Command(async () => await Login());
         }
 
-        string _username = string.Empty;
+        // string _username = string.Empty;
+        string _username = "mobile";
         public string Username
         {
             get { return _username; }
             set { SetProperty(ref _username, value); }
         }
 
-        string _password = string.Empty;
+        //string _password = string.Empty;
+        string _password = "test";
         public string Password
         {
             get { return _password; }
@@ -44,7 +46,7 @@ namespace KinoCentar.Mobile.ViewModels
 
             try
             {
-                HttpResponseMessage response = korisniciService.GetActionResponse("GetByUserName", Username);
+                HttpResponseMessage response = korisniciService.GetActionResponse("GetByUserName", Username, "true");
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
                     await Application.Current.MainPage.DisplayAlert(Messages.msg_err, Messages.login_user_err, "OK");

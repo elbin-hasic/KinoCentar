@@ -26,8 +26,7 @@ namespace KinoCentar.WinUI
 
         private void Prijava()
         {
-            HttpResponseMessage response = korisniciService.GetActionResponse("GetByUserName", txtKorisnickoIme.Text).Handle();
-
+            HttpResponseMessage response = korisniciService.GetActionResponse("GetByUserName", txtKorisnickoIme.Text, "false").Handle();
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 MessageBox.Show(Messages.login_user_err, Messages.msg_err, MessageBoxButtons.OK, MessageBoxIcon.Error);

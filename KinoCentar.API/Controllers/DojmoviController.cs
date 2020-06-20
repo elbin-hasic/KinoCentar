@@ -67,6 +67,35 @@ namespace KinoCentar.API.Controllers
             return dojam;
         }
 
+        // GET: api/Dojmovi/GetByUserImpression/{projectionId}/{userName}
+        [HttpGet]
+        [Route("GetByUserImpression/{projectionId}/{userName}")]
+        public async Task<ActionResult<Dojam>> GetDojam(int projectionId, string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return BadRequest();
+            }
+
+            Dojam dojam = null;
+
+            var korisnik = await _context.Korisnik
+                                 .FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+
+            if (korisnik != null)
+            {
+                dojam = await _context.Dojam.FirstOrDefaultAsync(x => x.KorisnikId == korisnik.Id &&
+                                                                      x.ProjekcijaId == projectionId);
+            }
+ 
+            if (dojam == null)
+            {
+                return NotFound();
+            }
+
+            return dojam;
+        }
+
         // PUT: api/Dojmovi/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDojam(int id, Dojam dojam)

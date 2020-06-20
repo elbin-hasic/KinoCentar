@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace KinoCentar.Shared.Models
@@ -23,6 +24,14 @@ namespace KinoCentar.Shared.Models
         public string Tekst { get; set; }
 
         public DateTime Datum { get; set; }
+
+        public string DatumFormat
+        {
+            get
+            {
+                return Datum.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
+            }
+        }
 
         public string DatumShortDate
         {

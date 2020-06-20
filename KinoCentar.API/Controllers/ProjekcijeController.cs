@@ -53,6 +53,35 @@ namespace KinoCentar.API.Controllers
             }
         }
 
+        // GET: api/Projekcije/ActiveList
+        [HttpGet]
+        [Route("ActiveList")]
+        public async Task<ActionResult<IEnumerable<Projekcija>>> GetAktivneProjekcije()
+        {
+            var dtn = DateTime.Now.Date;
+            return await _context.Projekcija
+                            .Include(x => x.Film).AsNoTracking()
+                            .Include(x => x.Sala).AsNoTracking()
+                            .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn).ToListAsync();
+        }
+
+        // GET: api/Projekcije/RecommendedList/{userName}
+        [HttpGet]
+        [Route("RecommendedList/{userName}")]
+        public async Task<ActionResult<IEnumerable<Projekcija>>> GetPreporuceneProjekcije(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return BadRequest();
+            }
+
+            var dtn = DateTime.Now.Date;
+            return await _context.Projekcija
+                            .Include(x => x.Film).AsNoTracking()
+                            .Include(x => x.Sala).AsNoTracking()
+                            .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn).ToListAsync();
+        }
+
         // GET: api/Projekcije/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Projekcija>> GetProjekcija(int id)

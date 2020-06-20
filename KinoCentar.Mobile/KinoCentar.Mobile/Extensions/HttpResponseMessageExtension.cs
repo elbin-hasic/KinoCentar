@@ -19,5 +19,16 @@ namespace KinoCentar.Mobile.Extensions
 
             return response;
         }
+
+        public static HttpResponseMessage HandleNotFound(this HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode && response.StatusCode != System.Net.HttpStatusCode.NotFound)
+            {
+                var msg = Shared.Extensions.HttpResponseMessageExtension.HandleResponseMessage(response);
+                Application.Current.MainPage.DisplayAlert(msg, Messages.login_err, "OK");
+            }
+
+            return response;
+        }
     }
 }

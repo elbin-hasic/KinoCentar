@@ -15,8 +15,8 @@ namespace KinoCentar.Mobile
 
             DependencyService.Register<MockDataStore>();
 
-            MainPage = new MainPage();
-            //MainPage = new LoginPage();
+            // MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

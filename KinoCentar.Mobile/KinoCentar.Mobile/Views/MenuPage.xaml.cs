@@ -26,10 +26,7 @@ namespace KinoCentar.Mobile.Views
                 new HomeMenuItem {Id = MenuItemType.Projekcije, Title="Projekcije" },
                 new HomeMenuItem {Id = MenuItemType.Preporuceno, Title="Preporučeno" },
                 new HomeMenuItem {Id = MenuItemType.Rezervacije, Title="Rezervacije" },
-                new HomeMenuItem {Id = MenuItemType.Obavijesti, Title="Obavijesti" },
-                //
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.Obavijesti, Title="Obavijesti" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

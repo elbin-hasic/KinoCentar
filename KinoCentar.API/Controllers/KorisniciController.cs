@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using KinoCentar.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
+using KinoCentar.Shared.Models.Enums;
 
 namespace KinoCentar.API.Controllers
 {
@@ -66,18 +67,29 @@ namespace KinoCentar.API.Controllers
         }
 
         // GET: api/Korisnici/GetByUserName/{userName}
-        [HttpGet("GetByUserName/{userName}")]
-        public async Task<ActionResult<Korisnik>> GetKorisnik(string userName)
+        [HttpGet("GetByUserName/{userName}/{isClient}")]
+        public async Task<ActionResult<Korisnik>> GetKorisnik(string userName, bool isClient)
         {
             if (string.IsNullOrEmpty(userName))
             {
                 return BadRequest();
             }
 
-            var korisnik = await _context.Korisnik
+            Korisnik korisnik = null;
+            if (isClient)
+            {
+                korisnik = await _context.Korisnik
                                  .Include(x => x.TipKorisnika).AsNoTracking()
-                                 .FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower()
-                                 .Equals(userName.ToLower()));
+                                 .FirstOrDefaultAsync(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString() && 
+                                                           x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+            }
+            else
+            {
+                korisnik = await _context.Korisnik
+                                 .Include(x => x.TipKorisnika).AsNoTracking()
+                                 .FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+            }
+
             if (korisnik == null)
             {
                 return NotFound();

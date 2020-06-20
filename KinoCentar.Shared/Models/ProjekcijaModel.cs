@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace KinoCentar.Shared.Models
@@ -18,11 +19,27 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public string FilmSadrzaj
+        {
+            get
+            {
+                return Film?.Sadrzaj;
+            }
+        }
+
         public byte[] FilmPlakatThumb
         {
             get
             {
                 return Film?.PlakatThumb;
+            }
+        }
+
+        public byte[] FilmPlakat
+        {
+            get
+            {
+                return Film?.Plakat;
             }
         }
 
@@ -57,6 +74,14 @@ namespace KinoCentar.Shared.Models
             get
             {
                 return VrijediDo.ToShortDateString();
+            }
+        }
+
+        public string VrijediOdDoShortDate
+        {
+            get
+            {
+                return $"{VrijediOd.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)} - {VrijediDo.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)}";
             }
         }
 

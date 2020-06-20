@@ -57,6 +57,24 @@ namespace KinoCentar.API.Controllers
             }
         }
 
+        // GET: api/Rezervacije/GetByUserName/{userName}
+        [HttpGet]
+        [Route("GetByUserName/{userName}")]
+        public async Task<ActionResult<IEnumerable<Rezervacija>>> GetRezervacijePoKorisniku(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return BadRequest();
+            }
+
+            return await _context.Rezervacija
+                            .Include(x => x.Korisnik).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Where(x => x.Korisnik.KorisnickoIme.ToLower() == userName.ToLower())
+                            .ToListAsync();
+        }
+
         // GET: api/Rezervacije/GetByType/{isProdano}/{isOtkazano}
         [HttpGet]
         [Route("GetByType/{isProdano}/{isOtkazano}")]
@@ -150,6 +168,37 @@ namespace KinoCentar.API.Controllers
         public async Task<ActionResult<Rezervacija>> GetRezervacija(int id)
         {
             var rezervacija = await _context.Rezervacija.FindAsync(id);
+
+            if (rezervacija == null)
+            {
+                return NotFound();
+            }
+
+            return rezervacija;
+        }
+
+        // GET: api/Rezervacije/GetByUserProjection/{projectionId}/{userName}
+        [HttpGet]
+        [Route("GetByUserProjection/{projectionId}/{userName}")]
+        public async Task<ActionResult<Rezervacija>> GetRezervacija(int projectionId, string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return BadRequest();
+            }
+
+            Rezervacija rezervacija = null;
+
+            var korisnik = await _context.Korisnik
+                                 .FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+
+            if (korisnik != null)
+            {
+                rezervacija = await _context.Rezervacija.FirstOrDefaultAsync(x => x.KorisnikId != null &&
+                                                              x.KorisnikId == korisnik.Id &&
+                                                              x.ProjekcijaId == projectionId &&
+                                                              x.DatumOtkazano == null && x.DatumProdano == null);
+            }
 
             if (rezervacija == null)
             {

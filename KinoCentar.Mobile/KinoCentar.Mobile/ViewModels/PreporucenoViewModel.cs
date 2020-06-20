@@ -1,19 +1,19 @@
-﻿using KinoCentar.Shared.Models;
+﻿using KinoCentar.Mobile.Extensions;
+using KinoCentar.Shared.Extensions;
+using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using KinoCentar.Shared.Extensions;
-using KinoCentar.Mobile.Extensions;
-using System.Linq;
 
 namespace KinoCentar.Mobile.ViewModels
 {
-    public class ProjekcijeViewModel : BaseListViewModel
+    public class PreporucenoViewModel : BaseListViewModel
     {
         private ICommand InitCommand { get; set; }
 
@@ -21,15 +21,15 @@ namespace KinoCentar.Mobile.ViewModels
 
         public ObservableCollection<ProjekcijaModel> ProjekcijeList { get; set; } = new ObservableCollection<ProjekcijaModel>();
 
-        public ProjekcijeViewModel()
+        public PreporucenoViewModel()
         {
-            Title = "Projekcije";
+            Title = "Preporučene projekcije";
             InitCommand = new Command(async () => await Init());
         }
 
         public async Task Init()
         {
-            var response = projekcijeService.GetActionResponse("ActiveList", "").Handle();
+            var response = projekcijeService.GetActionResponse("RecommendedList", Global.PrijavljeniKorisnik?.KorisnickoIme).Handle();
             if (response.IsSuccessStatusCode)
             {
                 var projekcije = response.GetResponseResult<List<ProjekcijaModel>>();
@@ -40,7 +40,7 @@ namespace KinoCentar.Mobile.ViewModels
                 {
                     ProjekcijeList.Add(projekcija);
                 }
-            }            
+            }
         }
     }
 }
