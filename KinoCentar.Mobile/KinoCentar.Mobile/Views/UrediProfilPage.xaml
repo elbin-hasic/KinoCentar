@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="KinoCentar.Mobile.Views.UrediProfilPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>        
+        <StackLayout x:Name="urediStackLayout" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="StartAndExpand" 
+                     Padding="10" Margin="0,10,0,0">
+            <Label Text="Ime"></Label>
+            <Entry Text="{Binding Korisnik.Ime}"></Entry>
+            <Label Text="Molimo upišite Vaše ime." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.ImeReqNotValid}" ></Label>
+
+            <Label Text="Prezime"></Label>
+            <Entry Text="{Binding Korisnik.Prezime}"></Entry>
+            <Label Text="Molimo upišite Vaše prezime." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.PrezimeReqNotValid}"></Label>
+
+            <Label Text="Email"></Label>
+            <Entry Text="{Binding Korisnik.Email}"></Entry>
+            <Label Text="Molimo upišite Vaš email." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.EmailReqNotValid}"></Label>
+            <Label Text="Vaš email nije u ispravnom formatu." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.EmailErrNotValid}"></Label>
+
+            <Label Text="Datum rođenja"></Label>
+            <DatePicker Date="{Binding Korisnik.DatumRodjenja}"></DatePicker>
+
+            <Label Text="Korisničko ime"></Label>
+            <Entry Text="{Binding Korisnik.KorisnickoIme}" IsEnabled="False"></Entry>
+            <Label Text="Molimo upišite Vaše korisničko ime." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.KorisnickoImeReqNotValid}"></Label>
+            <Label Text="Korisničko ime treba da sadrži najmanje 3 karaktera." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.KorisnickoImeErrNotValid}"></Label>
+
+            <Label Text="Lozinka"></Label>
+            <Entry Text="{Binding Korisnik.Lozinka}" IsPassword="True"></Entry>
+            <Label Text="Molimo upišite Vašu lozinku." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.LozinkaReqNotValid}"></Label>
+            <Label Text="Lozinka treba da sadrži najmanje 6 karaktera (kombinacija slova i brojeva)." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.LozinkaErrNotValid}"></Label>
+
+            <Button Command="{Binding SnimiCommand}" 
+                        HorizontalOptions="FillAndExpand" 
+                        BackgroundColor="{StaticResource ButtonPrimary}"
+                        TextColor="{StaticResource ButtonTextPrimary}"
+                        Text="Snimi" Margin="0, 10, 0, 0"></Button>
+
+            <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

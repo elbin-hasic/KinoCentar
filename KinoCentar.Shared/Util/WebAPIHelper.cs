@@ -40,6 +40,8 @@ namespace KinoCentar.Shared.Util
             }            
         }
 
+        #region GET
+
         public HttpResponseMessage GetResponse(string parameter = "")
         {
             return GetResponseAsync(parameter).Result;
@@ -88,6 +90,10 @@ namespace KinoCentar.Shared.Util
             return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
         }
 
+        #endregion
+
+        #region POST
+
         public HttpResponseMessage PostResponse(Object newObject)
         {
             return PostResponseAsync(newObject).Result;
@@ -98,6 +104,21 @@ namespace KinoCentar.Shared.Util
             var jsonObject = new StringContent(JsonConvert.SerializeObject(newObject), Encoding.UTF8, "application/json");
             return client.PostAsync(route, jsonObject);
         }
+
+        public HttpResponseMessage PostActionResponse(string action, Object newObject)
+        {
+            return PostActionResponseAsync(action, newObject).Result;
+        }
+
+        public Task<HttpResponseMessage> PostActionResponseAsync(string action, Object newObject)
+        {
+            var jsonObject = new StringContent(JsonConvert.SerializeObject(newObject), Encoding.UTF8, "application/json");
+            return client.PostAsync(route + "/" + action, jsonObject);
+        }
+
+        #endregion
+
+        #region PUT
 
         public HttpResponseMessage PutResponse(int id, Object existingObject)
         {
@@ -120,6 +141,31 @@ namespace KinoCentar.Shared.Util
             return client.PutAsync(route + "/" + action + "/" + id, null);
         }
 
+        public HttpResponseMessage PutActionResponse(string action, int id1, int id2)
+        {
+            return PutActionResponseAsync(action, id1, id2).Result;
+        }
+
+        public Task<HttpResponseMessage> PutActionResponseAsync(string action, int id1, int id2)
+        {
+            return client.PutAsync(route + "/" + action + "/" + id1 + "/" + id2, null);
+        }
+
+        public HttpResponseMessage PutActionResponse(string action, Object existingObject, int id)
+        {
+            return PutActionResponseAsync(action, existingObject, id).Result;
+        }
+
+        public Task<HttpResponseMessage> PutActionResponseAsync(string action, Object existingObject, int id)
+        {
+            var jsonObject = new StringContent(JsonConvert.SerializeObject(existingObject), Encoding.UTF8, "application/json");
+            return client.PutAsync(route + "/" + action + "/" + id, jsonObject);
+        }
+
+        #endregion
+
+        #region DELETE
+
         public HttpResponseMessage DeleteResponse(int id)
         {
             return DeleteResponseAsync(id).Result;
@@ -129,5 +175,7 @@ namespace KinoCentar.Shared.Util
         {
             return client.DeleteAsync(route + "/" + id);
         }
+
+        #endregion
     }
 }

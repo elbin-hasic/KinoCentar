@@ -15,8 +15,6 @@ namespace KinoCentar.Mobile.ViewModels
 {
     public class RezervacijeViewModel : BaseListViewModel
     {
-        private ICommand InitCommand { get; set; }
-
         private WebAPIHelper rezervacijeService = new WebAPIHelper(Global.ApiAddress, Global.RezervacijeRoute, Global.PrijavljeniKorisnik);
 
         public ObservableCollection<RezervacijaModel> RezervacijeList { get; set; } = new ObservableCollection<RezervacijaModel>();
@@ -24,7 +22,6 @@ namespace KinoCentar.Mobile.ViewModels
         public RezervacijeViewModel()
         {
             Title = "Rezervacije";
-            InitCommand = new Command(async () => await Init());
         }
 
         public async Task Init()
@@ -33,14 +30,13 @@ namespace KinoCentar.Mobile.ViewModels
             if (response.IsSuccessStatusCode)
             {
                 var rezervacije = response.GetResponseResult<List<RezervacijaModel>>();
-                HasItems = rezervacije.Any();
-
                 RezervacijeList.Clear();
                 foreach (var rezervacija in rezervacije)
                 {
                     RezervacijeList.Add(rezervacija);
                 }
             }
+            IsEmptyList = !RezervacijeList.Any();
         }
     }
 }

@@ -11,22 +11,20 @@ using Xamarin.Forms.Xaml;
 namespace KinoCentar.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ObavijestiPage : ContentPage
+    public partial class UrediProfilPage : ContentPage
     {
-        private ObavijestiViewModel model = null;
+        private UrediProfilViewModel model = null;
 
-        public ObavijestiPage()
+        public UrediProfilPage()
         {
             InitializeComponent();
-            BindingContext = model = new ObavijestiViewModel();
+            BindingContext = model = new UrediProfilViewModel();
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             await model.Init();
-
-            isEmptyList.IsVisible = model.IsEmptyList;
         }
     }
 }

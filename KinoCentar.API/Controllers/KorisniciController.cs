@@ -9,6 +9,7 @@ using KinoCentar.API.EntityModels;
 using KinoCentar.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using KinoCentar.Shared.Models.Enums;
+using System.Net;
 
 namespace KinoCentar.API.Controllers
 {
@@ -67,7 +68,8 @@ namespace KinoCentar.API.Controllers
         }
 
         // GET: api/Korisnici/GetByUserName/{userName}
-        [HttpGet("GetByUserName/{userName}/{isClient}")]
+        [HttpGet]
+        [Route("GetByUserName/{userName}/{isClient}")]
         public async Task<ActionResult<Korisnik>> GetKorisnik(string userName, bool isClient)
         {
             if (string.IsNullOrEmpty(userName))
@@ -129,11 +131,52 @@ namespace KinoCentar.API.Controllers
             return NoContent();
         }
 
+        // POST: api/Korisnici/Registracija
+        [HttpPost]
+        [Route("Registracija")]
+        public async Task<ActionResult<Korisnik>> PostRegistracijaKorisnik(Korisnik korisnik)
+        {
+            if (string.IsNullOrEmpty(korisnik.KorisnickoIme))
+            {
+                return BadRequest();
+            }
+
+            var k = await _context.Korisnik.FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(korisnik.KorisnickoIme.ToLower()));
+            if (k != null)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, "Navedeno KorisnickoIme je zauzeto!");
+            }
+
+            var tipKorisnik = await _context.TipKorisnika.FirstOrDefaultAsync(x => x.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString().ToLower());
+            if (tipKorisnik == null)
+            {
+                return Conflict();
+            }
+
+            korisnik.TipKorisnikaId = tipKorisnik.Id;
+
+            _context.Korisnik.Add(korisnik);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetKorisnik", new { id = korisnik.Id }, korisnik);
+        }
+
         // POST: api/Korisnici
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<Korisnik>> PostKorisnik(Korisnik korisnik)
         {
+            if (string.IsNullOrEmpty(korisnik.KorisnickoIme))
+            {
+                return BadRequest();
+            }
+
+            var k = await _context.Korisnik.FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(korisnik.KorisnickoIme.ToLower()));
+            if (k != null)
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, "Navedeno KorisnickoIme je zauzeto!");
+            }
+
             _context.Korisnik.Add(korisnik);
             await _context.SaveChangesAsync();
 

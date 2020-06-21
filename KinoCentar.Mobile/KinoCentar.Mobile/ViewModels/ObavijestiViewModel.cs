@@ -17,14 +17,11 @@ namespace KinoCentar.Mobile.ViewModels
     {
         private WebAPIHelper obavijestiService = new WebAPIHelper(Global.ApiAddress, Global.ObavijestiRoute, Global.PrijavljeniKorisnik);
 
-        private ICommand InitCommand { get; set; }
-
         public ObservableCollection<ObavijestModel> ObavijestiList { get; set; } = new ObservableCollection<ObavijestModel>();
 
         public ObavijestiViewModel()
         {
             Title = "Obavijesti";
-            InitCommand = new Command(async () => await Init());
         }
 
         public async Task Init()
@@ -33,13 +30,12 @@ namespace KinoCentar.Mobile.ViewModels
             if (response.IsSuccessStatusCode)
             {
                 var obavijesti = response.GetResponseResult<List<ObavijestModel>>();
-                HasItems = obavijesti.Any();
-
                 ObavijestiList.Clear();                
                 foreach (var obavijest in obavijesti)
                 {
                     ObavijestiList.Add(obavijest);
                 }
+                IsEmptyList = !ObavijestiList.Any();
             }
         }
     }

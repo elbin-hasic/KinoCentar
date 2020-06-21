@@ -14,7 +14,7 @@ namespace KinoCentar.Mobile.Extensions
             if (!response.IsSuccessStatusCode)
             {
                 var msg = Shared.Extensions.HttpResponseMessageExtension.HandleResponseMessage(response);
-                Application.Current.MainPage.DisplayAlert(msg, Messages.login_err, "OK");
+                Application.Current.MainPage.DisplayAlert(Messages.msg_err, msg, "OK");
             }
 
             return response;
@@ -25,7 +25,7 @@ namespace KinoCentar.Mobile.Extensions
             if (!response.IsSuccessStatusCode && response.StatusCode != System.Net.HttpStatusCode.NotFound)
             {
                 var msg = Shared.Extensions.HttpResponseMessageExtension.HandleResponseMessage(response);
-                Application.Current.MainPage.DisplayAlert(msg, Messages.login_err, "OK");
+                Application.Current.MainPage.DisplayAlert(Messages.msg_err, msg, Messages.msg_err, "OK");
             }
 
             return response;

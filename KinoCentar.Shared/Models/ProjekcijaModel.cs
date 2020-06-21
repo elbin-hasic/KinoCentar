@@ -53,6 +53,14 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public string SalaRasponSjedista
+        {
+            get
+            {
+                return $"1 - {Sala?.BrojSjedista}";
+            }
+        }
+
         public decimal Cijena { get; set; }
 
         public DateTime Datum { get; set; }

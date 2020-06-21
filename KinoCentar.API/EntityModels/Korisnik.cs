@@ -14,6 +14,7 @@ namespace KinoCentar.API.EntityModels
             this.Dojmovi = new HashSet<Dojam>();
             this.Rezervacije = new HashSet<Rezervacija>();
             this.Obavijesti = new HashSet<Obavijest>();
+            this.PosjeteProjekcija = new HashSet<ProjekcijaKorisnikDodjela>();
         }
 
         public int Id { get; set; }
@@ -56,5 +57,7 @@ namespace KinoCentar.API.EntityModels
         public virtual ICollection<Rezervacija> Rezervacije { get; set; }
 
         public virtual ICollection<Obavijest> Obavijesti { get; set; }
+
+        public virtual ICollection<ProjekcijaKorisnikDodjela> PosjeteProjekcija { get; set; }
     }
 }

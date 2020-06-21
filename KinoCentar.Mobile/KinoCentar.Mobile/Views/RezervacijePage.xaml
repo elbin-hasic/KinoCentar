@@ -14,6 +14,7 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="isEmptyList" Padding="20" Text="Lista rezervacija trenutno je prazna!" HorizontalOptions="Center"></Label>
             <ListView x:Name="rezervacijeListView" ItemsSource="{Binding RezervacijeList}"
                       ItemSelected="rezervacijeListView_ItemSelected">
                 <ListView.ItemTemplate>

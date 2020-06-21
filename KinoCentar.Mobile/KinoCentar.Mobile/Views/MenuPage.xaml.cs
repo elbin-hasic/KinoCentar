@@ -41,5 +41,10 @@ namespace KinoCentar.Mobile.Views
                 await RootPage.NavigateFromMenu(id);
             };
         }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await RootPage.NavigateFromMenu((int)MenuItemType.UrediProfil);
+        }
     }
 }

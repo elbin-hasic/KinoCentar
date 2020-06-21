@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -16,7 +17,7 @@ namespace KinoCentar.Shared.Extensions
                 try
                 {
                     var jsonResult = response.Content.ReadAsStringAsync().Result;
-                    if (jsonResult != null && jsonResult.GetType() == typeof(string))
+                    if (jsonResult != null && !IsValidJson(jsonResult))
                     {
                         detailMsg = jsonResult;
                     }
@@ -40,6 +41,35 @@ namespace KinoCentar.Shared.Extensions
             else
             {
                 return default(T);
+            }
+        }
+
+        private static bool IsValidJson(string strInput)
+        {
+            strInput = strInput.Trim();
+            if ((strInput.StartsWith("{") && strInput.EndsWith("}")) || //For object
+                (strInput.StartsWith("[") && strInput.EndsWith("]"))) //For array
+            {
+                try
+                {
+                    var obj = JToken.Parse(strInput);
+                    return true;
+                }
+                catch (JsonReaderException jex)
+                {
+                    //Exception in parsing json
+                    Console.WriteLine(jex.Message);
+                    return false;
+                }
+                catch (Exception ex) //some other exception
+                {
+                    Console.WriteLine(ex.ToString());
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
             }
         }
     }

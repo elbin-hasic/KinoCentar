@@ -6,6 +6,11 @@ namespace KinoCentar.Mobile.ViewModels
 {
     public class BaseListViewModel : BaseViewModel
     {
-        public bool HasItems { get; set; }
+        bool isEmptyList = false;
+        public bool IsEmptyList
+        {
+            get { return isEmptyList; }
+            set { SetProperty(ref isEmptyList, value); }
+        }
     }
 }

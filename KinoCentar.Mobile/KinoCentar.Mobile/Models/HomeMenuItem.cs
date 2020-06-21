@@ -12,8 +12,7 @@ namespace KinoCentar.Mobile.Models
         Rezervacije,
         Obavijesti,
         //
-        Browse,
-        About
+        UrediProfil
     }
     public class HomeMenuItem
     {

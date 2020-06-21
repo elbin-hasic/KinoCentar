@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="clr-namespace:KinoCentar.Mobile.ViewModels"
              mc:Ignorable="d"
-             x:Class="KinoCentar.Mobile.Views.LoginPage">
+             x:Class="KinoCentar.Mobile.Views.LoginPage"
+             Title="Prijava na sistem">
     
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
@@ -24,6 +25,15 @@
                         BackgroundColor="{StaticResource ButtonPrimary}"
                         TextColor="{StaticResource ButtonTextPrimary}"
                         Text="PRIJAVI SE" Margin="0, 10, 0, 0"></Button>
+
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="Center">
+                <Label Text="Nemate račun?" FontSize="14"></Label>
+                <Label Text="Registruj se" FontSize="14" TextColor="#E42E4B" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegistracijaCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>            
 
             <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
         </StackLayout>

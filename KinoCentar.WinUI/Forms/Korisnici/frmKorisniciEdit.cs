@@ -214,12 +214,8 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 
         private void txtLozinka_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtLozinka.Text.Trim()))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtLozinka, Messages.user_pass_req);
-            }
-            else if (txtLozinka.TextLength < 6 || !txtLozinka.Text.Any(char.IsDigit) || !txtLozinka.Text.Any(char.IsLetter))
+            if (!string.IsNullOrEmpty(txtKorisnickoIme.Text.Trim()) &&
+                (txtLozinka.TextLength < 6 || !txtLozinka.Text.Any(char.IsDigit) || !txtLozinka.Text.Any(char.IsLetter)))
             {
                 e.Cancel = true;
                 errorProvider.SetError(txtLozinka, Messages.user_pass_err);

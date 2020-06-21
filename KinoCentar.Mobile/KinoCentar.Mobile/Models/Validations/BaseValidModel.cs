@@ -2,25 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 
-using Xamarin.Forms;
-
-namespace KinoCentar.Mobile.ViewModels
+namespace KinoCentar.Mobile.Models.Validations
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseValidModel : INotifyPropertyChanged
     {
-        bool isBusy = false;
-        public bool IsBusy
+        bool isValid = false;
+        public bool IsValid
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
-        }
-
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get { return isValid; }
+            set { SetProperty(ref isValid, value); }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

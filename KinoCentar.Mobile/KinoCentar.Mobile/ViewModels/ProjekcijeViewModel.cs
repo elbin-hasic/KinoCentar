@@ -15,7 +15,7 @@ namespace KinoCentar.Mobile.ViewModels
 {
     public class ProjekcijeViewModel : BaseListViewModel
     {
-        private ICommand InitCommand { get; set; }
+        public ICommand InitCommand { get; set; }
 
         private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute, Global.PrijavljeniKorisnik);
 
@@ -24,7 +24,6 @@ namespace KinoCentar.Mobile.ViewModels
         public ProjekcijeViewModel()
         {
             Title = "Projekcije";
-            InitCommand = new Command(async () => await Init());
         }
 
         public async Task Init()
@@ -33,13 +32,12 @@ namespace KinoCentar.Mobile.ViewModels
             if (response.IsSuccessStatusCode)
             {
                 var projekcije = response.GetResponseResult<List<ProjekcijaModel>>();
-                HasItems = projekcije.Any();
-
                 ProjekcijeList.Clear();
                 foreach (var projekcija in projekcije)
                 {
                     ProjekcijeList.Add(projekcija);
                 }
+                IsEmptyList = !ProjekcijeList.Any();
             }            
         }
     }

@@ -13,6 +13,7 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="isEmptyList" Padding="20" Text="Lista obavijesti trenutno je prazna!" HorizontalOptions="Center"></Label>
             <ListView x:Name="obavijestiListView" ItemsSource="{Binding ObavijestiList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

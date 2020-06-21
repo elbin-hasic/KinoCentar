@@ -240,7 +240,7 @@ namespace KinoCentar.API.Controllers
 
         // PUT: api/Rezervacije/5
         [HttpPut]
-        [Route("disable/{id}")]
+        [Route("Disable/{id}")]
         public async Task<ActionResult<Rezervacija>> DisableRezervacija(int id)
         {
             var rezervacija = await _context.Rezervacija.FindAsync(id);

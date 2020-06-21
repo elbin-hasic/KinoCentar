@@ -136,6 +136,44 @@ namespace KinoCentar.API.Controllers
             return CreatedAtAction("GetProjekcija", new { id = projekcija.Id }, projekcija);
         }
 
+        // PUT: api/Projekcije/Visit/{projekcijaId}/{korisnikId}
+        [HttpPut]
+        [Route("Visit/{projekcijaId}/{korisnikId}")]
+        public async Task<IActionResult> VisitProjekcija(int projekcijaId, int korisnikId)
+        {
+            var projekcija = await _context.Projekcija.FindAsync(projekcijaId);
+            if (projekcija == null)
+            {
+                return NotFound();
+            }
+
+            var korisnik = await _context.Korisnik.FindAsync(korisnikId);
+            if (korisnik == null)
+            {
+                return NotFound();
+            }
+
+            var dtn = DateTime.Now;
+
+            var projekcijaKorisnik = await _context.ProjekcijaKorisnikDodjela.FirstOrDefaultAsync(x => x.ProjekcijaId == projekcijaId && x.KorisnikId == korisnikId);
+            if (projekcijaKorisnik == null)
+            {
+                projekcijaKorisnik = new ProjekcijaKorisnikDodjela()
+                {
+                    DatumPosjete = dtn,
+                    ProjekcijaId = projekcijaId,
+                    KorisnikId = korisnikId
+                };                
+                _context.ProjekcijaKorisnikDodjela.Add(projekcijaKorisnik);
+            }
+
+            projekcijaKorisnik.DatumPosljednjePosjete = dtn;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // DELETE: api/Projekcije/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Projekcija>> DeleteProjekcija(int id)

@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:converters="clr-namespace:KinoCentar.Mobile.Converters"
-             mc:Ignorable="d"
-             x:Class="KinoCentar.Mobile.Views.ProjekcijePrikazPage"
-             Title="{Binding Title}">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:converters="clr-namespace:KinoCentar.Mobile.Converters"
+            mc:Ignorable="d"
+            x:Class="KinoCentar.Mobile.Views.ProjekcijePrikazPage"
+            Title="{Binding Title}">
 
-    <TabbedPage.Children HorizontalOptions="CenterAndExpand">
-        
-        <ContentPage Title="Prikaz">
+    <TabbedPage.Children HorizontalOptions="CenterAndExpand">        
+        <ContentPage Title="Prikaz">            
             <ContentPage.Resources>
                 <ResourceDictionary>
                     <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
@@ -45,22 +44,7 @@
         
         <ContentPage Title="Rezervacija">
             <StackLayout Margin="0,10,0,0">
-                <StackLayout x:Name="rezervacijaNotExists">
-                    <Label Text="Broj sjedišta:"></Label>
-                    <Entry x:Name="BrojSjedista" Text="{Binding Rezervacija.BrojSjedista}"></Entry>
-                    <Label Text="Datum prikazivanja:"></Label>
-                    <DatePicker x:Name="rezervacijaDatumProjekcije"
-                                Date="{Binding Rezervacija.DatumProjekcije}"></DatePicker>
-
-                    <Button Command="{Binding RezervisiCommand}" 
-                            HorizontalOptions="FillAndExpand" 
-                            BackgroundColor="{StaticResource ButtonPrimary}"
-                            TextColor="{StaticResource ButtonTextPrimary}"
-                            Text="Rezerviši" Margin="0,10,0,0"></Button>
-
-                    <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
-                </StackLayout>
-                <StackLayout x:Name="rezervacijaExists">
+                <StackLayout x:Name="rezervacijaExists" IsVisible="{Binding RezervacijaExists}">
                     <Label Text="Broj sjedišta:" Style="{DynamicResource ListItemTextStyle}"></Label>
                     <Label Text="{Binding Rezervacija.BrojSjedista}"></Label>
                     <Label Text="Cijena:" Style="{DynamicResource ListItemTextStyle}"></Label>
@@ -74,14 +58,43 @@
                             TextColor="{StaticResource ButtonTextPrimary}"
                             Text="Otkaži" Margin="0,10,0,0"></Button>
                 </StackLayout>
+                <StackLayout x:Name="rezervacijaNotExists" IsVisible="{Binding RezervacijaNotExists}">
+                    <Label Text="{Binding Projekcija.SalaRasponSjedista, StringFormat='Broj sjedišta: [{0}]'}"></Label>
+                    <Entry x:Name="BrojSjedista" Text="{Binding Rezervacija.BrojSjedista}" Keyboard="Numeric"></Entry>
+                    <Label Text="Molimo upišite broj sjedišta." TextColor="Red" FontSize="13" IsVisible="{Binding RezervacijaValid.BrojSjedistaReqNotValid}" ></Label>
+                    <Label Text="{Binding Projekcija.SalaRasponSjedista, StringFormat='Broj sjedišta mora biti broj i u rasponu: {0}'}" TextColor="Red" FontSize="13" IsVisible="{Binding RezervacijaValid.BrojSjedistaErrNotValid}" ></Label>
+
+                    <Label Text="{Binding Projekcija.VrijediOdDoShortDate, StringFormat='Datum prikazivanja: [{0}]'}"></Label>
+                    <DatePicker x:Name="rezervacijaDatumProjekcije"
+                                Date="{Binding Rezervacija.DatumProjekcije}"></DatePicker>
+                    <Label Text="{Binding Projekcija.VrijediOdDoShortDate, StringFormat='Datum prikazivanja mora biti u rasponu: {0}'}" TextColor="Red" FontSize="13" IsVisible="{Binding RezervacijaValid.DatumProjekcijeErrNotValid}" ></Label>
+
+                    <Button Command="{Binding RezervisiCommand}" 
+                            HorizontalOptions="FillAndExpand" 
+                            BackgroundColor="{StaticResource ButtonPrimary}"
+                            TextColor="{StaticResource ButtonTextPrimary}"
+                            Text="Rezerviši" Margin="0,10,0,0"></Button>
+
+                    <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
+                </StackLayout>
             </StackLayout>            
         </ContentPage>
         
         <ContentPage Title="Dojam">
             <StackLayout Margin="0,10,0,0">
-                <StackLayout x:Name="dojamNotExists">
-                    <Label Text="Ocjena:"></Label>
-                    <Entry x:Name="Ocjena" Text="{Binding Dojam.Ocjena}"></Entry>
+                <StackLayout x:Name="dojamExists" IsVisible="{Binding DojamExists}">
+                    <Label Text="Ocjena:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Dojam.Ocjena}"></Label>
+                    <Label Text="Komentar:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Dojam.Tekst}"></Label>
+                    <Label Text="Datum:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Dojam.DatumFormat}"></Label>
+                </StackLayout>
+                <StackLayout x:Name="dojamNotExists" IsVisible="{Binding DojamNotExists}">
+                    <Label Text="Ocjena: [1 - 5]"></Label>
+                    <Entry x:Name="Ocjena" Text="{Binding Dojam.Ocjena}" Keyboard="Numeric"></Entry>
+                    <Label Text="Molimo upišite ocjenu." TextColor="Red" FontSize="13" IsVisible="{Binding DojamValid.OcjenaReqNotValid}" ></Label>
+                    <Label Text="Ocjena mora biti broj i u rasponu: 1 - 5" TextColor="Red" FontSize="13" IsVisible="{Binding DojamValid.OcjenaErrNotValid}" ></Label>
 
                     <Label Text="Komentar:"></Label>
                     <Editor Text="{Binding Dojam.Tekst}"
@@ -97,14 +110,6 @@
                         Text="Ostavi dojam" Margin="0,10,0,0"></Button>
 
                     <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
-                </StackLayout>
-                <StackLayout x:Name="dojamExists">
-                    <Label Text="Ocjena:" Style="{DynamicResource ListItemTextStyle}"></Label>
-                    <Label Text="{Binding Dojam.Ocjena}"></Label>
-                    <Label Text="Komentar:" Style="{DynamicResource ListItemTextStyle}"></Label>
-                    <Label Text="{Binding Dojam.Tekst}"></Label>
-                    <Label Text="Datum:" Style="{DynamicResource ListItemTextStyle}"></Label>
-                    <Label Text="{Binding Dojam.DatumFormat}"></Label>
                 </StackLayout>
             </StackLayout>            
         </ContentPage>

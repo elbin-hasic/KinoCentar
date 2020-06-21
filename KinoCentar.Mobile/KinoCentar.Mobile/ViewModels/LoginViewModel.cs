@@ -17,28 +17,31 @@ namespace KinoCentar.Mobile.ViewModels
     {
         private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute);
 
+        public ICommand LoginCommand { get; set; }
+
+        public ICommand RegistracijaCommand { get; set; }
+
         public LoginViewModel()
         {
             LoginCommand = new Command(async () => await Login());
+            RegistracijaCommand = new Command(async () => await RegistracijaRedirect());
         }
 
         // string _username = string.Empty;
-        string _username = "mobile";
+        string _username = "ehasic";
         public string Username
         {
             get { return _username; }
             set { SetProperty(ref _username, value); }
         }
 
-        //string _password = string.Empty;
-        string _password = "test";
+        // string _password = string.Empty;
+        string _password = "test123";
         public string Password
         {
             get { return _password; }
             set { SetProperty(ref _password, value); }
         }
-
-        public ICommand LoginCommand { get; set; }
 
         async Task Login()
         {
@@ -75,6 +78,15 @@ namespace KinoCentar.Mobile.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert(Messages.msg_err, ex.Message, "OK");
             }
+
+            IsBusy = false;
+        }
+
+        async Task RegistracijaRedirect()
+        {
+            IsBusy = true;
+
+            Application.Current.MainPage = new RegistracijaPage();
 
             IsBusy = false;
         }

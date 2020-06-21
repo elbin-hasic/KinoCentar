@@ -26,6 +26,8 @@ namespace KinoCentar.Mobile.Views
         {
             base.OnAppearing();
             await model.Init();
+
+            isEmptyList.IsVisible = model.IsEmptyList;
         }
 
         private async void projekcijeListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

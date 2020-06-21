@@ -74,7 +74,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 DialogResult result = MessageBox.Show(Messages.disable_rezervacija_prompt, Messages.msg_conf, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    HttpResponseMessage response = rezervacijeService.PutActionResponse("disable", id).Handle();
+                    HttpResponseMessage response = rezervacijeService.PutActionResponse("Disable", id).Handle();
                     if (response.IsSuccessStatusCode)
                     {
                         MessageBox.Show(Messages.disable_rezervacija_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);

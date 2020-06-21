@@ -15,8 +15,6 @@ namespace KinoCentar.Mobile.ViewModels
 {
     public class PreporucenoViewModel : BaseListViewModel
     {
-        private ICommand InitCommand { get; set; }
-
         private WebAPIHelper projekcijeService = new WebAPIHelper(Global.ApiAddress, Global.ProjekcijeRoute, Global.PrijavljeniKorisnik);
 
         public ObservableCollection<ProjekcijaModel> ProjekcijeList { get; set; } = new ObservableCollection<ProjekcijaModel>();
@@ -24,7 +22,6 @@ namespace KinoCentar.Mobile.ViewModels
         public PreporucenoViewModel()
         {
             Title = "Preporučene projekcije";
-            InitCommand = new Command(async () => await Init());
         }
 
         public async Task Init()
@@ -33,13 +30,12 @@ namespace KinoCentar.Mobile.ViewModels
             if (response.IsSuccessStatusCode)
             {
                 var projekcije = response.GetResponseResult<List<ProjekcijaModel>>();
-                HasItems = projekcije.Any();
-
                 ProjekcijeList.Clear();
                 foreach (var projekcija in projekcije)
                 {
                     ProjekcijeList.Add(projekcija);
                 }
+                IsEmptyList = !ProjekcijeList.Any();
             }
         }
     }

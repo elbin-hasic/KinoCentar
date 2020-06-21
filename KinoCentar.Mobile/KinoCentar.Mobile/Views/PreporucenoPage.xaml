@@ -21,6 +21,7 @@
     
     <ContentPage.Content>
         <StackLayout>
+            <Label x:Name="isEmptyList" Padding="20" Text="Lista preporučenih projekcija trenutno je prazna!" HorizontalOptions="Center"></Label>
             <ListView x:Name="preporucenoListView" ItemsSource="{Binding ProjekcijeList}" 
                       ItemSelected="preporucenoListView_ItemSelected">
                 <ListView.ItemTemplate>

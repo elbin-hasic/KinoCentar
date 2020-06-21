@@ -23,14 +23,15 @@ namespace KinoCentar.Mobile.Views
             BindingContext = model = new ProjekcijePrikazViewModel(projekcija);
 
             plakatImage.Source = ImageSource.FromStream(() => new MemoryStream(model.Projekcija.FilmPlakat));
-            rezervacijaExists.IsVisible = model.RezervacijaExists;
-            rezervacijaNotExists.IsVisible = !model.RezervacijaExists;
-
-            dojamExists.IsVisible = model.DojamExists;
-            dojamNotExists.IsVisible = !model.DojamExists;
 
             rezervacijaDatumProjekcije.MinimumDate = projekcija.VrijediOd;
             rezervacijaDatumProjekcije.MaximumDate = projekcija.VrijediDo;
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await model.Init();
         }
     }
 }

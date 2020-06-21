@@ -101,11 +101,22 @@ namespace KinoCentar.API.EntityModels
             filmovi.Add(new Film { Naslov = "Avatar", Trajanje = 162, GodinaSnimanja = 2009, Reditelj = reditelji[1], Sadrzaj = "Avatar je američki znanstvenofantastični film iz 2009. godine, čiji je scenarist i redatelj James Cameron. U glavnim su ulogama Sam Worthington, Zoe Saldana, Sigourney Weaver, Michelle Rodriguez i Stephen Lang. Epska se priča odvija 2154. godine na Pandori, izmišljenom svijetu u dalekom planetarnom sustavu. Ljudi su pristigli na Pandoru kako bi iskorištavali njene izvore vrijednih minerala, čemu se protive domoroci Na'vi, čije se poimanje svijeta zasniva na suživotu s prirodom. Kako bi se približili domorocima, skupina znanstvenika genetičkim inženjerstvom stvara tzv. \"avatare\", tijela naizgled jednaka Na'vijima, ali daljinski upravljana ljudskim umom. Naziv dolazi iz hinduističke filozofije, gdje riječ \"avatar\" označava \"silazak\" ili inkarnaciju božanskog bića (deva) ili najvišeg bića (Boga) na Zemlju u obliku životinje, čovjeka ili nekog drugog bića." });
             context.Film.AddRange(filmovi);
 
+            var dtn = DateTime.Now;
+
+            var projekcije = new List<Projekcija>();
+            projekcije.Add(new Projekcija { Cijena = 3m, Datum = dtn, VrijediOd = dtn.AddDays(-15), VrijediDo = dtn.AddDays(15), Film = filmovi[0], Sala = sale[0] });
+            projekcije.Add(new Projekcija { Cijena = 4m, Datum = dtn, VrijediOd = dtn.AddDays(-15), VrijediDo = dtn.AddDays(15), Film = filmovi[1], Sala = sale[1] });
+            context.Projekcija.AddRange(projekcije);
+
             var artikli = new List<Artikal>();
             artikli.Add(new Artikal { Sifra = "C00001", Naziv = "Kokice", Cijena = 1m, JedinicaMjere = jedMjere[0] });
             artikli.Add(new Artikal { Sifra = "C00002", Naziv = "Naćosi", Cijena = 2.5m, JedinicaMjere = jedMjere[0] });
             artikli.Add(new Artikal { Sifra = "C00003", Naziv = "Coca-cola", Cijena = 2m, JedinicaMjere = jedMjere[0] });
             context.Artikal.AddRange(artikli);
+
+            var obavijesti = new List<Obavijest>();
+            obavijesti.Add(new Obavijest { Naslov = "Dobro došli", Tekst = "Dobro došli na informacijski sistem za podršku rada kino centra", Datum = dtn, Korisnik = korisnici[0] });
+            context.Obavijest.AddRange(obavijesti);
 
             context.SaveChanges();
         }
