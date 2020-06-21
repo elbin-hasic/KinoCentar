@@ -27,16 +27,14 @@ namespace KinoCentar.Mobile.ViewModels
             RegistracijaCommand = new Command(async () => await RegistracijaRedirect());
         }
 
-        // string _username = string.Empty;
-        string _username = "ehasic";
+        string _username = string.Empty;
         public string Username
         {
             get { return _username; }
             set { SetProperty(ref _username, value); }
         }
 
-        // string _password = string.Empty;
-        string _password = "test123";
+        string _password = string.Empty;
         public string Password
         {
             get { return _password; }

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -14,30 +15,32 @@ namespace KinoCentar.Shared.Util
         private HttpClient client { get; set; }
         private string route { get; set; }
 
-        public WebAPIHelper(string uri, string route)
+        public WebAPIHelper(string uri, string route, string username = null, string password = null)
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri(uri);
             this.route = route;
-        }
 
-        public WebAPIHelper(string uri, string route, KorisnikModel korisnik) : this(uri, route, korisnik?.KorisnickoIme, korisnik?.Lozinka)
-        {
-            
-        }
-
-        // Basic auth
-        public WebAPIHelper(string uri, string route, string username, string password) : this(uri, route)
-        {
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
                 var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}")));
                 client = new HttpClient()
                 {
-                    BaseAddress = new Uri(uri),
                     DefaultRequestHeaders = { Authorization = authValue }
                 };
-            }            
+            }
+            else
+            {
+                client = new HttpClient();
+            }
+            
+            client.BaseAddress = new Uri(uri);
+
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        public WebAPIHelper(string uri, string route, KorisnikModel korisnik) : this(uri, route, korisnik?.KorisnickoIme, korisnik?.Lozinka)
+        {
+            
         }
 
         #region GET

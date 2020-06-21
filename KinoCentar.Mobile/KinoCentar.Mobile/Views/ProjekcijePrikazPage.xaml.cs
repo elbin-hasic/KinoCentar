@@ -22,7 +22,10 @@ namespace KinoCentar.Mobile.Views
             InitializeComponent();
             BindingContext = model = new ProjekcijePrikazViewModel(projekcija);
 
-            plakatImage.Source = ImageSource.FromStream(() => new MemoryStream(model.Projekcija.FilmPlakat));
+            if (model.Projekcija.FilmPlakat != null)
+            {
+                plakatImage.Source = ImageSource.FromStream(() => new MemoryStream(model.Projekcija.FilmPlakat));
+            }            
 
             rezervacijaDatumProjekcije.MinimumDate = projekcija.VrijediOd;
             rezervacijaDatumProjekcije.MaximumDate = projekcija.VrijediDo;

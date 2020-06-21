@@ -89,7 +89,8 @@ namespace KinoCentar.API.Controllers
             {
                 korisnik = await _context.Korisnik
                                  .Include(x => x.TipKorisnika).AsNoTracking()
-                                 .FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+                                 .FirstOrDefaultAsync(x => x.TipKorisnika.Naziv.ToLower() != TipKorisnikaType.Klijent.ToString() && 
+                                                           x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
             }
 
             if (korisnik == null)
