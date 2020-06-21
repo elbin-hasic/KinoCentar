@@ -110,11 +110,11 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 
                 p.BrojRacuna = txtBrojRacuna.Text;
                 p.Datum = DateTime.Now;
-                p.ArtikliStavke = GetArtikliStavke();
+                p.ArtikliStavke = GetArtikliStavke(); 
+                p.KorisnikId = Global.PrijavljeniKorisnik.Id;
 
                 if (rezervacijaValid && rezervacija != null)
                 {
-                    p.KorisnikId = rezervacija.KorisnikId;
                     p.RezervacijeStavke = new List<ProdajaRezervacijaDodjelaModel>();
                     p.RezervacijeStavke.Add(new ProdajaRezervacijaDodjelaModel
                     {
@@ -409,7 +409,10 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 cmbBrojSjedista.Enabled = false;
                 //
                 var rezervacija = (RezervacijaModel)cmbRezervacija.SelectedItem;
-                UpdateRezervacijaCijenu(rezervacija.Cijena);
+                if (rezervacija != null)
+                {
+                    UpdateRezervacijaCijenu(rezervacija.Cijena);
+                }                
             }
             else
             {

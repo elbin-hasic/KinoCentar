@@ -166,7 +166,7 @@
             // KorisnikImePrezime
             // 
             this.KorisnikImePrezime.DataPropertyName = "KorisnikImePrezime";
-            this.KorisnikImePrezime.HeaderText = "Korisnik";
+            this.KorisnikImePrezime.HeaderText = "Prodavač";
             this.KorisnikImePrezime.MinimumWidth = 6;
             this.KorisnikImePrezime.Name = "KorisnikImePrezime";
             this.KorisnikImePrezime.ReadOnly = true;

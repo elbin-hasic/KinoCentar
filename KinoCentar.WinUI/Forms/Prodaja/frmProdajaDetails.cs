@@ -79,7 +79,7 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 txtBrojSjedista.Text = rezervacija.BrojSjedista.ToString();
                 txtCijena.Text = rezervacija.Cijena.ToString();
                 dtpDatumProjekcije.Value = rezervacija.DatumProjekcije;
-                txtKorisnik.Text = _p.Korisnik?.ImePrezime;
+                txtKorisnik.Text = rezervacija.Korisnik?.ImePrezime;
                 //
                 rezervacijaCijena = rezervacija.Cijena;
                 txtCijenaRezervacije.Text = rezervacijaCijena.ToString("0.##");

@@ -52,6 +52,7 @@
             this.prodajaNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prodajaListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izvjestajiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obavijestiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obavijestiNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obavijestiListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -260,10 +261,19 @@
             // 
             // izvjestajiToolStripMenuItem
             // 
+            this.izvjestajiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem});
             this.izvjestajiToolStripMenuItem.Enabled = false;
             this.izvjestajiToolStripMenuItem.Name = "izvjestajiToolStripMenuItem";
             this.izvjestajiToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.izvjestajiToolStripMenuItem.Text = "Izvještaji";
+            // 
+            // izvjestajiProdajaPoDatumuToolStripMenuItem
+            // 
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem.Name = "izvjestajiProdajaPoDatumuToolStripMenuItem";
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem.Text = "Prodaja po datumu";
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem.Click += new System.EventHandler(this.izvjestajiProdajaPoDatumuToolStripMenuItem_Click);
             // 
             // obavijestiToolStripMenuItem
             // 
@@ -331,7 +341,6 @@
             this.Controls.Add(this.MainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.MainMenuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KinoCentar :: Admin";
@@ -379,6 +388,7 @@
         private System.Windows.Forms.ToolStripMenuItem prodajaListaToolStripMenuItem;
         private System.Windows.Forms.StatusStrip UserStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblUserToolStripStatus;
+        private System.Windows.Forms.ToolStripMenuItem izvjestajiProdajaPoDatumuToolStripMenuItem;
     }
 }
 

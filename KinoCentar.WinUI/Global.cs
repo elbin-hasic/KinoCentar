@@ -38,6 +38,8 @@ namespace KinoCentar.WinUI
         public static string ObavijestiRoute = "api/Obavijesti";
         public static string DojmoviRoute = "api/Dojmovi";
 
+        public static string IzvjestajiRoute = "api/Izvjestaji";
+
         #endregion
     }
 }

@@ -16,6 +16,7 @@ using KinoCentar.WinUI.Forms.Artikli;
 using KinoCentar.WinUI.Forms.Dojmovi;
 using KinoCentar.WinUI.Forms.Filmovi;
 using KinoCentar.WinUI.Forms.FilmskeLicnosti;
+using KinoCentar.WinUI.Forms.Izvjestaji;
 using KinoCentar.WinUI.Forms.JediniceMjere;
 using KinoCentar.WinUI.Forms.Korisnici;
 using KinoCentar.WinUI.Forms.Obavijesti;
@@ -272,6 +273,19 @@ namespace KinoCentar.WinUI
         private void prodajaListaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmProdaja();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        #endregion
+
+        #region Izvjestaji
+
+        private void izvjestajiProdajaPoDatumuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmIzvjestajiProdajaPoDatumu();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 
