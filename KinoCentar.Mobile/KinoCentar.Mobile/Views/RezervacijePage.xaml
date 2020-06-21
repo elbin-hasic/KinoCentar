@@ -20,42 +20,40 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="20" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding FilmNaslov}" 
+                            <StackLayout Padding="10" Orientation="Vertical">
+                                <Label Text="{Binding FilmNaslov}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Cijena, StringFormat='Cijena: {0} KM'}"
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Cijena, StringFormat='Cijena: {0} KM'}"
                                                LineBreakMode="NoWrap"
                                                Style="{DynamicResource ListItemDetailTextStyle}"
                                                FontSize="13" />
-                                        <Label Text="{Binding SalaNaziv, StringFormat='Sala: {0}'}"
+                                    <Label Text="{Binding SalaNaziv, StringFormat='Sala: {0}'}"
                                                LineBreakMode="NoWrap"
                                                Style="{DynamicResource ListItemDetailTextStyle}"
                                                FontSize="13" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding BrojSjedista, StringFormat='Broj sjedišta: {0}'}"
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding BrojSjedista, StringFormat='Broj sjedišta: {0}'}"
                                                LineBreakMode="NoWrap"
                                                Style="{DynamicResource ListItemDetailTextStyle}"
                                                FontSize="13" />
-                                        <Label Text="{Binding DatumProjekcijeFormat, StringFormat='Datum prikazivanja: {0}'}" 
+                                    <Label Text="{Binding DatumProjekcijeFormat, StringFormat='Datum prikazivanja: {0}'}" 
                                                LineBreakMode="NoWrap"
                                                Style="{DynamicResource ListItemDetailTextStyle}"
                                                FontSize="13" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding IsOtkazanoText, StringFormat='Otkazano?: {0}'}"
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding IsOtkazanoText, StringFormat='Otkazano?: {0}'}"
                                                LineBreakMode="NoWrap"
                                                Style="{DynamicResource ListItemDetailTextStyle}"
                                                FontSize="13" />
-                                        <Label Text="{Binding IsProdanoText, StringFormat='Prodato?: {0}'}"
+                                    <Label Text="{Binding IsProdanoText, StringFormat='Prodato?: {0}'}"
                                                LineBreakMode="NoWrap"
                                                Style="{DynamicResource ListItemDetailTextStyle}"
                                                FontSize="13" />
-                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

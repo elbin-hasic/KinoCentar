@@ -17,7 +17,7 @@
             </ContentPage.Resources>
             <ContentPage.Content>
                 <ScrollView x:Name="scroll">
-                    <StackLayout Padding="0,0,0,10">
+                    <StackLayout Padding="10">
                         <StackLayout>
                             <Label Text="{Binding Projekcija.FilmNaslov}" Style="{DynamicResource TitleStyle}"></Label>
                         </StackLayout>
@@ -43,7 +43,7 @@
         </ContentPage>
         
         <ContentPage Title="Rezervacija">
-            <StackLayout Margin="0,10,0,0">
+            <StackLayout Padding="10">
                 <StackLayout x:Name="rezervacijaExists" IsVisible="{Binding RezervacijaExists}">
                     <Label Text="Broj sjedišta:" Style="{DynamicResource ListItemTextStyle}"></Label>
                     <Label Text="{Binding Rezervacija.BrojSjedista}"></Label>
@@ -81,7 +81,7 @@
         </ContentPage>
         
         <ContentPage Title="Dojam">
-            <StackLayout Margin="0,10,0,0">
+            <StackLayout Padding="10">
                 <StackLayout x:Name="dojamExists" IsVisible="{Binding DojamExists}">
                     <Label Text="Ocjena:" Style="{DynamicResource ListItemTextStyle}"></Label>
                     <Label Text="{Binding Dojam.Ocjena}"></Label>

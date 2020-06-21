@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!-- Application resource settings -->
-            <x:String x:Key="ApiAddress">http://localhost:8085/</x:String>
+            <x:String x:Key="ApiAddress">http://192.168.0.101:8085/</x:String>
             <!-- Global Styles -->
             <Color x:Key="NavigationPrimary">#E42E4B</Color>
             <Color x:Key="ButtonPrimary">#E42E4B</Color>
