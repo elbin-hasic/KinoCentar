@@ -73,7 +73,7 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 cmbProjekcija.ValueMember = "Id";
             }
 
-            var korisnikResponse = korisniciService.GetResponse().Handle();
+            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
             if (korisnikResponse.IsSuccessStatusCode)
             {
                 var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();

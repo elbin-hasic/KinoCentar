@@ -83,7 +83,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 cmbBrojSjedista.SelectedIndex = cmbBrojSjedista.FindStringExact(_r.BrojSjedista.ToString());
             }
 
-            var korisnikResponse = korisniciService.GetResponse().Handle();
+            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
             if (korisnikResponse.IsSuccessStatusCode)
             {
                 var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();

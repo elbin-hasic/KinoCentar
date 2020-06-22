@@ -31,6 +31,17 @@ namespace KinoCentar.API.Controllers
             return await _context.Korisnik.Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
         }
 
+        // GET: api/Korisnici/Klijenti
+        [HttpGet]
+        [Route("Klijenti")]
+        public async Task<ActionResult<IEnumerable<Korisnik>>> GetKorisnikKlijenti()
+        {
+            return await _context.Korisnik
+                                 .Include(i => i.TipKorisnika).AsNoTracking()
+                                 .Where(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString())
+                                 .ToListAsync();
+        }
+
         // GET: api/Korisnici/SearchByName/{firstName}/{lastName}
         [HttpGet]
         [Route("SearchByName/{firstName}/{lastName}")]

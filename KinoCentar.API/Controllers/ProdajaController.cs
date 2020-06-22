@@ -79,6 +79,9 @@ namespace KinoCentar.API.Controllers
                                     .ThenInclude(y => y.Rezervacija)
                                     .ThenInclude(y => y.Projekcija)
                                     .ThenInclude(y => y.Sala).AsNoTracking()
+                                .Include(x => x.RezervacijeStavke)
+                                    .ThenInclude(y => y.Rezervacija)
+                                    .ThenInclude(y => y.Korisnik).AsNoTracking()
                                 .FirstOrDefaultAsync(x => x.Id == id);
             if (prodaja == null)
             {

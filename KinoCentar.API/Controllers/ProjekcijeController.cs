@@ -16,6 +16,7 @@ namespace KinoCentar.API.Controllers
     public class ProjekcijeController : ControllerBase
     {
         private readonly KinoCentarDbContext _context;
+        private readonly int _recommendedMaxListCount = 5;
 
         public ProjekcijeController(KinoCentarDbContext context)
         {
@@ -76,10 +77,81 @@ namespace KinoCentar.API.Controllers
             }
 
             var dtn = DateTime.Now.Date;
-            return await _context.Projekcija
+
+            var recommendedProjekcije = new List<Projekcija>();
+
+            var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+            if (korisnik != null)
+            {
+                var recommendedRediteljiIds = new List<int>();
+                var recommendedZanroviIds = new List<int>();
+                var posjeceneProjekcijeIds = new List<int>();
+
+                var posjeceneProjekcije = await _context.ProjekcijaKorisnikDodjela
+                                                        .Include(x => x.Projekcija)
+                                                            .ThenInclude(y => y.Film)
+                                                        .Where(x => x.KorisnikId == korisnik.Id)
+                                                        .Select(x => x.Projekcija).ToListAsync();
+
+                recommendedRediteljiIds.AddRange(posjeceneProjekcije.Where(x => x.Film.RediteljId != null)
+                                                                    .Select(x => x.Film.RediteljId.Value));
+                recommendedZanroviIds.AddRange(posjeceneProjekcije.Where(x => x.Film.ZanrId != null)
+                                                                    .Select(x => x.Film.ZanrId.Value));
+
+                posjeceneProjekcijeIds.AddRange(posjeceneProjekcije.Select(x => x.Id));
+
+                if (recommendedRediteljiIds.Any() || recommendedZanroviIds.Any())
+                {
+                    if (recommendedRediteljiIds.Any() && recommendedZanroviIds.Any())
+                    {
+                        recommendedProjekcije = await _context.Projekcija
+                                                        .Include(x => x.Film).AsNoTracking()
+                                                        .Include(x => x.Sala).AsNoTracking()
+                                                        .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn &&
+                                                                    !posjeceneProjekcijeIds.Contains(x.Id) &&
+                                                                    ((x.Film.RediteljId != null && recommendedRediteljiIds.Contains(x.Film.RediteljId.Value)) ||
+                                                                    (x.Film.ZanrId != null && recommendedZanroviIds.Contains(x.Film.ZanrId.Value))))
+                                                        .OrderBy(x => Guid.NewGuid()).Take(_recommendedMaxListCount)
+                                                        .ToListAsync();
+                    }
+                    else if (recommendedRediteljiIds.Any())
+                    {
+                        recommendedProjekcije = await _context.Projekcija
+                                                        .Include(x => x.Film).AsNoTracking()
+                                                        .Include(x => x.Sala).AsNoTracking()
+                                                        .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn &&
+                                                                    !posjeceneProjekcijeIds.Contains(x.Id) &&
+                                                                    x.Film.RediteljId != null && recommendedRediteljiIds.Contains(x.Film.RediteljId.Value))
+                                                        .OrderBy(x => Guid.NewGuid()).Take(_recommendedMaxListCount)
+                                                        .ToListAsync();
+                    }
+                    else
+                    {
+                        recommendedProjekcije = await _context.Projekcija
+                                                        .Include(x => x.Film).AsNoTracking()
+                                                        .Include(x => x.Sala).AsNoTracking()
+                                                        .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn &&
+                                                                    !posjeceneProjekcijeIds.Contains(x.Id) &&
+                                                                    x.Film.ZanrId != null && recommendedZanroviIds.Contains(x.Film.ZanrId.Value))
+                                                        .OrderBy(x => Guid.NewGuid()).Take(_recommendedMaxListCount)
+                                                        .ToListAsync();
+                    }
+                }
+            }
+
+            if (recommendedProjekcije.Any())
+            {
+                return recommendedProjekcije;
+            }
+            else
+            {
+                return await _context.Projekcija
                             .Include(x => x.Film).AsNoTracking()
                             .Include(x => x.Sala).AsNoTracking()
-                            .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn).ToListAsync();
+                            .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn)
+                            .OrderBy(x => Guid.NewGuid()).Take(_recommendedMaxListCount)
+                            .ToListAsync();
+            }
         }
 
         // GET: api/Projekcije/5
