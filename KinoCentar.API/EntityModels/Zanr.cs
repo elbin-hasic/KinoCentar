@@ -9,7 +9,7 @@ namespace KinoCentar.API.EntityModels
     {
         public Zanr()
         {
-            this.Filmovi = new HashSet<FilmZanrDodjela>();
+            this.Filmovi = new HashSet<Film>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace KinoCentar.API.EntityModels
         [MaxLength(2000)]
         public string Opis { get; set; }
 
-        public virtual ICollection<FilmZanrDodjela> Filmovi { get; set; }
+        public virtual ICollection<Film> Filmovi { get; set; }
     }
 }

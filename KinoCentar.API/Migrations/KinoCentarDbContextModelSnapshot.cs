@@ -171,9 +171,14 @@ namespace KinoCentar.API.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int?>("ZanrId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RediteljId");
+
+                    b.HasIndex("ZanrId");
 
                     b.ToTable("Film");
                 });
@@ -198,28 +203,6 @@ namespace KinoCentar.API.Migrations
                     b.HasIndex("FilmskaLicnostId");
 
                     b.ToTable("FilmGlumacDodjela");
-                });
-
-            modelBuilder.Entity("KinoCentar.API.EntityModels.FilmZanrDodjela", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ZanrId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
-
-                    b.HasIndex("ZanrId");
-
-                    b.ToTable("FilmZanrDodjela");
                 });
 
             modelBuilder.Entity("KinoCentar.API.EntityModels.FilmskaLicnost", b =>
@@ -634,6 +617,10 @@ namespace KinoCentar.API.Migrations
                     b.HasOne("KinoCentar.API.EntityModels.FilmskaLicnost", "Reditelj")
                         .WithMany("FilmoviReditelja")
                         .HasForeignKey("RediteljId");
+
+                    b.HasOne("KinoCentar.API.EntityModels.Zanr", "Zanr")
+                        .WithMany("Filmovi")
+                        .HasForeignKey("ZanrId");
                 });
 
             modelBuilder.Entity("KinoCentar.API.EntityModels.FilmGlumacDodjela", b =>
@@ -647,21 +634,6 @@ namespace KinoCentar.API.Migrations
                     b.HasOne("KinoCentar.API.EntityModels.FilmskaLicnost", "FilmskaLicnost")
                         .WithMany("FilmoviGlumaca")
                         .HasForeignKey("FilmskaLicnostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("KinoCentar.API.EntityModels.FilmZanrDodjela", b =>
-                {
-                    b.HasOne("KinoCentar.API.EntityModels.Film", "Film")
-                        .WithMany("Zanrovi")
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KinoCentar.API.EntityModels.Zanr", "Zanr")
-                        .WithMany("Filmovi")
-                        .HasForeignKey("ZanrId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

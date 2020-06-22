@@ -38,6 +38,7 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naslov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RediteljImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZanrNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Trajanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GodinaSnimanja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilmovi)).BeginInit();
@@ -88,6 +89,7 @@
             this.Id,
             this.Naslov,
             this.RediteljImePrezime,
+            this.ZanrNaziv,
             this.Trajanje,
             this.GodinaSnimanja});
             this.dgvFilmovi.Location = new System.Drawing.Point(0, 75);
@@ -154,6 +156,15 @@
             this.RediteljImePrezime.ReadOnly = true;
             this.RediteljImePrezime.Width = 160;
             // 
+            // ZanrNaziv
+            // 
+            this.ZanrNaziv.DataPropertyName = "ZanrNaziv";
+            this.ZanrNaziv.HeaderText = "Žanr";
+            this.ZanrNaziv.MinimumWidth = 6;
+            this.ZanrNaziv.Name = "ZanrNaziv";
+            this.ZanrNaziv.ReadOnly = true;
+            this.ZanrNaziv.Width = 160;
+            // 
             // Trajanje
             // 
             this.Trajanje.DataPropertyName = "Trajanje";
@@ -206,6 +217,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naslov;
         private System.Windows.Forms.DataGridViewTextBoxColumn RediteljImePrezime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZanrNaziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Trajanje;
         private System.Windows.Forms.DataGridViewTextBoxColumn GodinaSnimanja;
     }

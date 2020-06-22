@@ -51,6 +51,8 @@
             this.txtPlakat = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.cmbZanr = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlakat)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +77,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(672, 427);
+            this.btnSnimi.Location = new System.Drawing.Point(672, 462);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(100, 30);
             this.btnSnimi.TabIndex = 20;
@@ -85,7 +87,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(566, 427);
+            this.btnOdustani.Location = new System.Drawing.Point(566, 462);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(100, 30);
             this.btnOdustani.TabIndex = 21;
@@ -138,7 +140,7 @@
             // 
             // txtVideoLink
             // 
-            this.txtVideoLink.Location = new System.Drawing.Point(141, 170);
+            this.txtVideoLink.Location = new System.Drawing.Point(141, 205);
             this.txtVideoLink.Name = "txtVideoLink";
             this.txtVideoLink.Size = new System.Drawing.Size(282, 22);
             this.txtVideoLink.TabIndex = 9;
@@ -146,7 +148,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(62, 173);
+            this.label6.Location = new System.Drawing.Point(62, 208);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 17);
             this.label6.TabIndex = 8;
@@ -174,7 +176,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(68, 206);
+            this.label5.Location = new System.Drawing.Point(68, 241);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 17);
             this.label5.TabIndex = 10;
@@ -183,7 +185,7 @@
             // 
             // txtSadrzaj
             // 
-            this.txtSadrzaj.Location = new System.Drawing.Point(140, 292);
+            this.txtSadrzaj.Location = new System.Drawing.Point(140, 327);
             this.txtSadrzaj.Multiline = true;
             this.txtSadrzaj.Name = "txtSadrzaj";
             this.txtSadrzaj.Size = new System.Drawing.Size(632, 101);
@@ -192,7 +194,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(74, 295);
+            this.label7.Location = new System.Drawing.Point(74, 330);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 17);
             this.label7.TabIndex = 15;
@@ -201,7 +203,7 @@
             // 
             // txtImdbLink
             // 
-            this.txtImdbLink.Location = new System.Drawing.Point(141, 203);
+            this.txtImdbLink.Location = new System.Drawing.Point(141, 238);
             this.txtImdbLink.Name = "txtImdbLink";
             this.txtImdbLink.Size = new System.Drawing.Size(282, 22);
             this.txtImdbLink.TabIndex = 11;
@@ -211,13 +213,13 @@
             this.pbPlakat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbPlakat.Location = new System.Drawing.Point(462, 63);
             this.pbPlakat.Name = "pbPlakat";
-            this.pbPlakat.Size = new System.Drawing.Size(310, 195);
+            this.pbPlakat.Size = new System.Drawing.Size(310, 230);
             this.pbPlakat.TabIndex = 22;
             this.pbPlakat.TabStop = false;
             // 
             // btnIzaberiPlakat
             // 
-            this.btnIzaberiPlakat.Location = new System.Drawing.Point(382, 232);
+            this.btnIzaberiPlakat.Location = new System.Drawing.Point(382, 267);
             this.btnIzaberiPlakat.Name = "btnIzaberiPlakat";
             this.btnIzaberiPlakat.Size = new System.Drawing.Size(40, 30);
             this.btnIzaberiPlakat.TabIndex = 14;
@@ -227,7 +229,7 @@
             // 
             // txtPlakat
             // 
-            this.txtPlakat.Location = new System.Drawing.Point(140, 236);
+            this.txtPlakat.Location = new System.Drawing.Point(140, 271);
             this.txtPlakat.Name = "txtPlakat";
             this.txtPlakat.Size = new System.Drawing.Size(236, 22);
             this.txtPlakat.TabIndex = 13;
@@ -235,7 +237,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(84, 239);
+            this.label10.Location = new System.Drawing.Point(84, 274);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 17);
             this.label10.TabIndex = 12;
@@ -252,11 +254,32 @@
             this.label9.Text = "Prikaz plakata:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // cmbZanr
+            // 
+            this.cmbZanr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbZanr.FormattingEnabled = true;
+            this.cmbZanr.Location = new System.Drawing.Point(140, 170);
+            this.cmbZanr.Name = "cmbZanr";
+            this.cmbZanr.Size = new System.Drawing.Size(282, 24);
+            this.cmbZanr.TabIndex = 26;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(92, 173);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 17);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Žanr:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmFilmoviAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 487);
+            this.ClientSize = new System.Drawing.Size(812, 521);
+            this.Controls.Add(this.cmbZanr);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnIzaberiPlakat);
             this.Controls.Add(this.txtPlakat);
@@ -314,5 +337,7 @@
         private System.Windows.Forms.TextBox txtPlakat;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbZanr;
+        private System.Windows.Forms.Label label8;
     }
 }

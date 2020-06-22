@@ -11,7 +11,6 @@ namespace KinoCentar.API.EntityModels
         public Film()
         {
             this.Glumci = new HashSet<FilmGlumacDodjela>();
-            this.Zanrovi = new HashSet<FilmZanrDodjela>();
             this.Projekcije = new HashSet<Projekcija>();
         }
 
@@ -39,11 +38,13 @@ namespace KinoCentar.API.EntityModels
 
         public int? RediteljId { get; set; }
 
+        public int? ZanrId { get; set; }
+
         public virtual FilmskaLicnost Reditelj { get; set; }
 
-        public virtual ICollection<FilmGlumacDodjela> Glumci { get; set; }
+        public virtual Zanr Zanr { get; set; }
 
-        public virtual ICollection<FilmZanrDodjela> Zanrovi { get; set; }
+        public virtual ICollection<FilmGlumacDodjela> Glumci { get; set; }
 
         public virtual ICollection<Projekcija> Projekcije { get; set; }
     }

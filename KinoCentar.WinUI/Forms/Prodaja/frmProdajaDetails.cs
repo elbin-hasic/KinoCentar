@@ -22,7 +22,7 @@ namespace KinoCentar.WinUI.Forms.Prodaja
 {
     public partial class frmProdajaDetails : Form
     {
-        private WebAPIHelper prodajaService = new WebAPIHelper(Global.ApiAddress, Global.ProdajaRoute);
+        private WebAPIHelper prodajaService = new WebAPIHelper(Global.ApiAddress, Global.ProdajaRoute, Global.PrijavljeniKorisnik);
 
         private int _id { get; set; }
         private ProdajaModel _p { get; set; }

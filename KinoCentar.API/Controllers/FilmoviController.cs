@@ -26,7 +26,10 @@ namespace KinoCentar.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Film>>> GetFilm()
         {
-            return await _context.Film.Include(x => x.Reditelj).AsNoTracking().ToListAsync();
+            return await _context.Film
+                            .Include(x => x.Reditelj).AsNoTracking()
+                            .Include(x => x.Zanr).AsNoTracking()
+                         .ToListAsync();
         }
 
         // GET: api/Filmovi/SearchByName/{name?}
@@ -36,11 +39,17 @@ namespace KinoCentar.API.Controllers
         {
             if (string.IsNullOrEmpty(name))
             {
-                return await _context.Film.Include(x => x.Reditelj).AsNoTracking().ToListAsync();
+                return await _context.Film
+                                .Include(x => x.Reditelj).AsNoTracking()
+                                .Include(x => x.Zanr).AsNoTracking()
+                             .ToListAsync();
             }
             else
             {
-                return await _context.Film.Where(x => x.Naslov.Contains(name)).Include(x => x.Reditelj).AsNoTracking().ToListAsync();
+                return await _context.Film.Where(x => x.Naslov.Contains(name))
+                                .Include(x => x.Reditelj).AsNoTracking()
+                                .Include(x => x.Zanr).AsNoTracking()
+                             .ToListAsync();
             }
         }
 

@@ -27,7 +27,6 @@ namespace KinoCentar.API.EntityModels
         public DbSet<FilmskaLicnost> FilmskaLicnost { get; set; }
         public DbSet<Film> Film { get; set; }
         public DbSet<FilmGlumacDodjela> FilmGlumacDodjela { get; set; }
-        public DbSet<FilmZanrDodjela> FilmZanrDodjela { get; set; }
         public DbSet<Korisnik> Korisnik { get; set; }
         public DbSet<Obavijest> Obavijest { get; set; }
         public DbSet<Projekcija> Projekcija { get; set; }

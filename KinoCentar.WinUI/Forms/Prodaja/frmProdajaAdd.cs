@@ -375,8 +375,9 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             txtCijenaUkupno.Text = ukupnaCijena.ToString("0.##");
         }
 
-        private void UpdateRezervacijaCijenu(decimal rezervacijaCijena)
+        private void UpdateRezervacijaCijenu(decimal rezCijena)
         {
+            rezervacijaCijena = rezCijena;
             ukupnaCijena = rezervacijaCijena + artikliUkupnaCijena;
             txtCijenaRezervacije.Text = rezervacijaCijena.ToString("0.##");
             txtCijenaUkupno.Text = ukupnaCijena.ToString("0.##");

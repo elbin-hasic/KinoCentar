@@ -30,10 +30,22 @@ namespace KinoCentar.Shared.Models
             }
         }
 
+        public int? ZanrId { get; set; }
+
+        public string ZanrNaziv
+        {
+            get
+            {
+                return Zanr?.Naziv;
+            }
+        }
+
         public byte[] Plakat { get; set; }
 
         public byte[] PlakatThumb { get; set; }
 
         public FilmskaLicnostModel Reditelj { get; set; }
+
+        public ZanrModel Zanr { get; set; }
     }
 }

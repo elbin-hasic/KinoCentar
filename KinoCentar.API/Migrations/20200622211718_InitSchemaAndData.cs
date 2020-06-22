@@ -79,33 +79,6 @@ namespace KinoCentar.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Film",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Naslov = table.Column<string>(maxLength: 250, nullable: true),
-                    Trajanje = table.Column<int>(nullable: true),
-                    GodinaSnimanja = table.Column<int>(nullable: true),
-                    Sadrzaj = table.Column<string>(maxLength: 2000, nullable: true),
-                    VideoLink = table.Column<string>(maxLength: 100, nullable: true),
-                    ImdbLink = table.Column<string>(maxLength: 100, nullable: true),
-                    Plakat = table.Column<byte[]>(nullable: true),
-                    PlakatThumb = table.Column<byte[]>(nullable: true),
-                    RediteljId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Film", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Film_FilmskaLicnost_RediteljId",
-                        column: x => x.RediteljId,
-                        principalTable: "FilmskaLicnost",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Artikal",
                 columns: table => new
                 {
@@ -159,85 +132,37 @@ namespace KinoCentar.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FilmGlumacDodjela",
+                name: "Film",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FilmId = table.Column<int>(nullable: false),
-                    FilmskaLicnostId = table.Column<int>(nullable: false)
+                    Naslov = table.Column<string>(maxLength: 250, nullable: true),
+                    Trajanje = table.Column<int>(nullable: true),
+                    GodinaSnimanja = table.Column<int>(nullable: true),
+                    Sadrzaj = table.Column<string>(maxLength: 2000, nullable: true),
+                    VideoLink = table.Column<string>(maxLength: 100, nullable: true),
+                    ImdbLink = table.Column<string>(maxLength: 100, nullable: true),
+                    Plakat = table.Column<byte[]>(nullable: true),
+                    PlakatThumb = table.Column<byte[]>(nullable: true),
+                    RediteljId = table.Column<int>(nullable: true),
+                    ZanrId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FilmGlumacDodjela", x => x.Id);
+                    table.PrimaryKey("PK_Film", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FilmGlumacDodjela_Film_FilmId",
-                        column: x => x.FilmId,
-                        principalTable: "Film",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FilmGlumacDodjela_FilmskaLicnost_FilmskaLicnostId",
-                        column: x => x.FilmskaLicnostId,
+                        name: "FK_Film_FilmskaLicnost_RediteljId",
+                        column: x => x.RediteljId,
                         principalTable: "FilmskaLicnost",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FilmZanrDodjela",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FilmId = table.Column<int>(nullable: false),
-                    ZanrId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FilmZanrDodjela", x => x.Id);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FilmZanrDodjela_Film_FilmId",
-                        column: x => x.FilmId,
-                        principalTable: "Film",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FilmZanrDodjela_Zanr_ZanrId",
+                        name: "FK_Film_Zanr_ZanrId",
                         column: x => x.ZanrId,
                         principalTable: "Zanr",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Projekcija",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FilmId = table.Column<int>(nullable: false),
-                    SalaId = table.Column<int>(nullable: false),
-                    Cijena = table.Column<decimal>(nullable: false),
-                    Datum = table.Column<DateTime>(nullable: false),
-                    VrijediOd = table.Column<DateTime>(nullable: false),
-                    VrijediDo = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Projekcija", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Projekcija_Film_FilmId",
-                        column: x => x.FilmId,
-                        principalTable: "Film",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Projekcija_Sala_SalaId",
-                        column: x => x.SalaId,
-                        principalTable: "Sala",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -307,62 +232,57 @@ namespace KinoCentar.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Dojam",
+                name: "FilmGlumacDodjela",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjekcijaId = table.Column<int>(nullable: false),
-                    KorisnikId = table.Column<int>(nullable: false),
-                    Ocjena = table.Column<int>(nullable: false),
-                    Tekst = table.Column<string>(maxLength: 2000, nullable: true),
-                    Datum = table.Column<DateTime>(nullable: false)
+                    FilmId = table.Column<int>(nullable: false),
+                    FilmskaLicnostId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dojam", x => x.Id);
+                    table.PrimaryKey("PK_FilmGlumacDodjela", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Dojam_Korisnik_KorisnikId",
-                        column: x => x.KorisnikId,
-                        principalTable: "Korisnik",
+                        name: "FK_FilmGlumacDodjela_Film_FilmId",
+                        column: x => x.FilmId,
+                        principalTable: "Film",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Dojam_Projekcija_ProjekcijaId",
-                        column: x => x.ProjekcijaId,
-                        principalTable: "Projekcija",
+                        name: "FK_FilmGlumacDodjela_FilmskaLicnost_FilmskaLicnostId",
+                        column: x => x.FilmskaLicnostId,
+                        principalTable: "FilmskaLicnost",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rezervacija",
+                name: "Projekcija",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjekcijaId = table.Column<int>(nullable: false),
-                    KorisnikId = table.Column<int>(nullable: true),
-                    BrojSjedista = table.Column<int>(nullable: false),
+                    FilmId = table.Column<int>(nullable: false),
+                    SalaId = table.Column<int>(nullable: false),
                     Cijena = table.Column<decimal>(nullable: false),
                     Datum = table.Column<DateTime>(nullable: false),
-                    DatumProjekcije = table.Column<DateTime>(nullable: false),
-                    DatumProdano = table.Column<DateTime>(nullable: true),
-                    DatumOtkazano = table.Column<DateTime>(nullable: true)
+                    VrijediOd = table.Column<DateTime>(nullable: false),
+                    VrijediDo = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rezervacija", x => x.Id);
+                    table.PrimaryKey("PK_Projekcija", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rezervacija_Korisnik_KorisnikId",
-                        column: x => x.KorisnikId,
-                        principalTable: "Korisnik",
+                        name: "FK_Projekcija_Film_FilmId",
+                        column: x => x.FilmId,
+                        principalTable: "Film",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Rezervacija_Projekcija_ProjekcijaId",
-                        column: x => x.ProjekcijaId,
-                        principalTable: "Projekcija",
+                        name: "FK_Projekcija_Sala_SalaId",
+                        column: x => x.SalaId,
+                        principalTable: "Sala",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -412,6 +332,95 @@ namespace KinoCentar.API.Migrations
                         name: "FK_ProdajaArtikalDodjela_Prodaja_ProdajaId",
                         column: x => x.ProdajaId,
                         principalTable: "Prodaja",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dojam",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjekcijaId = table.Column<int>(nullable: false),
+                    KorisnikId = table.Column<int>(nullable: false),
+                    Ocjena = table.Column<int>(nullable: false),
+                    Tekst = table.Column<string>(maxLength: 2000, nullable: true),
+                    Datum = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dojam", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dojam_Korisnik_KorisnikId",
+                        column: x => x.KorisnikId,
+                        principalTable: "Korisnik",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Dojam_Projekcija_ProjekcijaId",
+                        column: x => x.ProjekcijaId,
+                        principalTable: "Projekcija",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjekcijaKorisnikDodjela",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjekcijaId = table.Column<int>(nullable: false),
+                    KorisnikId = table.Column<int>(nullable: false),
+                    DatumPosjete = table.Column<DateTime>(nullable: false),
+                    DatumPosljednjePosjete = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjekcijaKorisnikDodjela", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjekcijaKorisnikDodjela_Korisnik_KorisnikId",
+                        column: x => x.KorisnikId,
+                        principalTable: "Korisnik",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjekcijaKorisnikDodjela_Projekcija_ProjekcijaId",
+                        column: x => x.ProjekcijaId,
+                        principalTable: "Projekcija",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rezervacija",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjekcijaId = table.Column<int>(nullable: false),
+                    KorisnikId = table.Column<int>(nullable: true),
+                    BrojSjedista = table.Column<int>(nullable: false),
+                    Cijena = table.Column<decimal>(nullable: false),
+                    Datum = table.Column<DateTime>(nullable: false),
+                    DatumProjekcije = table.Column<DateTime>(nullable: false),
+                    DatumProdano = table.Column<DateTime>(nullable: true),
+                    DatumOtkazano = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rezervacija", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rezervacija_Korisnik_KorisnikId",
+                        column: x => x.KorisnikId,
+                        principalTable: "Korisnik",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rezervacija_Projekcija_ProjekcijaId",
+                        column: x => x.ProjekcijaId,
+                        principalTable: "Projekcija",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -474,6 +483,11 @@ namespace KinoCentar.API.Migrations
                 column: "RediteljId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Film_ZanrId",
+                table: "Film",
+                column: "ZanrId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FilmGlumacDodjela_FilmId",
                 table: "FilmGlumacDodjela",
                 column: "FilmId");
@@ -482,16 +496,6 @@ namespace KinoCentar.API.Migrations
                 name: "IX_FilmGlumacDodjela_FilmskaLicnostId",
                 table: "FilmGlumacDodjela",
                 column: "FilmskaLicnostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FilmZanrDodjela_FilmId",
-                table: "FilmZanrDodjela",
-                column: "FilmId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FilmZanrDodjela_ZanrId",
-                table: "FilmZanrDodjela",
-                column: "ZanrId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Korisnik_TipKorisnikaId",
@@ -539,6 +543,16 @@ namespace KinoCentar.API.Migrations
                 column: "SalaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProjekcijaKorisnikDodjela_KorisnikId",
+                table: "ProjekcijaKorisnikDodjela",
+                column: "KorisnikId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjekcijaKorisnikDodjela_ProjekcijaId",
+                table: "ProjekcijaKorisnikDodjela",
+                column: "ProjekcijaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rezervacija_KorisnikId",
                 table: "Rezervacija",
                 column: "KorisnikId");
@@ -561,9 +575,6 @@ namespace KinoCentar.API.Migrations
                 name: "FilmGlumacDodjela");
 
             migrationBuilder.DropTable(
-                name: "FilmZanrDodjela");
-
-            migrationBuilder.DropTable(
                 name: "Obavijest");
 
             migrationBuilder.DropTable(
@@ -573,10 +584,10 @@ namespace KinoCentar.API.Migrations
                 name: "ProdajaRezervacijaDodjela");
 
             migrationBuilder.DropTable(
-                name: "Anketa");
+                name: "ProjekcijaKorisnikDodjela");
 
             migrationBuilder.DropTable(
-                name: "Zanr");
+                name: "Anketa");
 
             migrationBuilder.DropTable(
                 name: "Artikal");
@@ -607,6 +618,9 @@ namespace KinoCentar.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "FilmskaLicnost");
+
+            migrationBuilder.DropTable(
+                name: "Zanr");
         }
     }
 }

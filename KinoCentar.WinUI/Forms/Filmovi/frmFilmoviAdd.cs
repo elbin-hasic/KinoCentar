@@ -20,6 +20,7 @@ namespace KinoCentar.WinUI.Forms.Filmovi
     {
         private WebAPIHelper filmoviService = new WebAPIHelper(Global.ApiAddress, Global.FilmoviRoute, Global.PrijavljeniKorisnik);
         private WebAPIHelper filmskeLicnostiService = new WebAPIHelper(Global.ApiAddress, Global.FilmskeLicnostiRoute, Global.PrijavljeniKorisnik);
+        private WebAPIHelper zanroviService = new WebAPIHelper(Global.ApiAddress, Global.ZanroviRoute, Global.PrijavljeniKorisnik);
 
         FilmModel film = new FilmModel();
 
@@ -38,6 +39,15 @@ namespace KinoCentar.WinUI.Forms.Filmovi
                 cmbReditelj.DataSource = filmskeLicnosti;
                 cmbReditelj.DisplayMember = "ImePrezime";
                 cmbReditelj.ValueMember = "Id";
+            }
+
+            var zanroviResponse = zanroviService.GetResponse().Handle();
+            if (zanroviResponse.IsSuccessStatusCode)
+            {
+                var zanrovi = zanroviResponse.GetResponseResult<List<ZanrModel>>();
+                cmbZanr.DataSource = zanrovi;
+                cmbZanr.DisplayMember = "Naziv";
+                cmbZanr.ValueMember = "Id";
             }
         }
 
@@ -77,6 +87,7 @@ namespace KinoCentar.WinUI.Forms.Filmovi
                 film.ImdbLink = txtImdbLink.Text;
                 
                 film.RediteljId = ((FilmskaLicnostModel)cmbReditelj.SelectedItem).Id;
+                film.ZanrId = ((ZanrModel)cmbZanr.SelectedItem).Id;
 
                 HttpResponseMessage response = filmoviService.PostResponse(film).Handle();
                 if (response.IsSuccessStatusCode)
