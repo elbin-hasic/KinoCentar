@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinoCentar.API.Migrations
 {
     [DbContext(typeof(KinoCentarDbContext))]
-    [Migration("20200622211718_InitSchemaAndData")]
+    [Migration("20200623071804_InitSchemaAndData")]
     partial class InitSchemaAndData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace KinoCentar.API.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
+                    b.Property<DateTime?>("ZakljucenoDatum")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("KorisnikId");
@@ -58,6 +61,9 @@ namespace KinoCentar.API.Migrations
                     b.Property<string>("Odgovor")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
+
+                    b.Property<int>("RedniBroj")
+                        .HasColumnType("int");
 
                     b.Property<int>("UkupnoIzabrano")
                         .HasColumnType("int");

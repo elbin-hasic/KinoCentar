@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace KinoCentar.API.EntityModels
+namespace KinoCentar.Shared.Models
 {
-    public class AnketaOdgovor
+    public class AnketaOdgovorModel
     {
         public int Id { get; set; }
 
         public int AnketaId { get; set; }
 
-        [MaxLength(1000)]
         public string Odgovor { get; set; }
 
         public int RedniBroj { get; set; }
 
         public int UkupnoIzabrano { get; set; }
 
-        public virtual Anketa Anketa { get; set; }
+        public virtual AnketaModel Anketa { get; set; }
     }
 }

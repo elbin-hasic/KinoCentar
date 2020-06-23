@@ -12,6 +12,7 @@ using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Models.Enums;
 using KinoCentar.Shared.Util;
 using KinoCentar.WinUI.Extensions;
+using KinoCentar.WinUI.Forms.Ankete;
 using KinoCentar.WinUI.Forms.Artikli;
 using KinoCentar.WinUI.Forms.Dojmovi;
 using KinoCentar.WinUI.Forms.Filmovi;
@@ -64,8 +65,8 @@ namespace KinoCentar.WinUI
                         obavijestiToolStripMenuItem.Enabled = true;
                         dojmoviToolStripMenuItem.Enabled = true;
                         //
-                        rezervacijeToolStripMenuItem.Enabled = true;
-                        prodajaToolStripMenuItem.Enabled = true;
+                        /*rezervacijeToolStripMenuItem.Enabled = true;
+                        prodajaToolStripMenuItem.Enabled = true;*/
                         break;
                     case TipKorisnikaType.Moderator:
                         filmoviToolStripMenuItem.Enabled = true;
@@ -286,6 +287,27 @@ namespace KinoCentar.WinUI
         private void izvjestajiProdajaPoDatumuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmIzvjestajiProdajaPoDatumu();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        #endregion
+
+        #region Ankete
+
+        private void anketeNovaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAnketeAdd();
+            frm.MdiParent = this;
+
+            frm.Show();
+        }
+
+        private void anketeListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmAnkete();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 

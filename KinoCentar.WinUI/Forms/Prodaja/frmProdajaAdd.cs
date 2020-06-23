@@ -216,8 +216,16 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             {
                 var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
 
-                dtpDatumProjekcije.MinDate = projekcija.VrijediOd;
-                dtpDatumProjekcije.MaxDate = projekcija.VrijediDo;
+                if (projekcija.VrijediOd.Date < projekcija.VrijediDo.Date)
+                {
+                    dtpDatumProjekcije.MinDate = projekcija.VrijediOd;
+                    dtpDatumProjekcije.MaxDate = projekcija.VrijediDo;
+                }
+                else
+                {
+                    dtpDatumProjekcije.MinDate = projekcija.VrijediOd.Date;
+                    dtpDatumProjekcije.MaxDate = projekcija.VrijediOd.Date.AddDays(1);
+                }
 
                 var retSjedistaResponse = rezervacijeService.GetActionResponse("FreeSeats", projekcija.Id.ToString()).Handle();
                 if (retSjedistaResponse.IsSuccessStatusCode)

@@ -21,6 +21,8 @@ namespace KinoCentar.API.EntityModels
 
         public DateTime Datum { get; set; }
 
+        public DateTime? ZakljucenoDatum { get; set; }
+
         public virtual Korisnik Korisnik { get; set; }
 
         public virtual ICollection<AnketaOdgovor> Odgovori { get; set; }

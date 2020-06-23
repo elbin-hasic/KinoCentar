@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add_anketa_succ" xml:space="preserve">
+    <value>Uspješno ste dodali anketu.</value>
+  </data>
   <data name="add_artikal_succ" xml:space="preserve">
     <value>Uspješno ste dodali artikal.</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="add_user_succ" xml:space="preserve">
     <value>Uspješno ste dodali podatke o korisniku.</value>
   </data>
+  <data name="anketa_name_req" xml:space="preserve">
+    <value>Naslov ankete je obavezan.</value>
+  </data>
   <data name="artikal_name_req" xml:space="preserve">
     <value>Naziv artikla je obavezan.</value>
   </data>
@@ -164,6 +170,18 @@
   </data>
   <data name="cijena_req" xml:space="preserve">
     <value>Cijena je obavezna.</value>
+  </data>
+  <data name="close_anketa_prompt" xml:space="preserve">
+    <value>Da li želite zaključati anketu?</value>
+  </data>
+  <data name="close_anketa_succ" xml:space="preserve">
+    <value>Uspješno ste zaključali podatke o anketu.</value>
+  </data>
+  <data name="del_anketa_prompt" xml:space="preserve">
+    <value>Da li želite izbrisati anketu?</value>
+  </data>
+  <data name="del_anketa_succ" xml:space="preserve">
+    <value>Uspješno ste obrisali podatke o anketu.</value>
   </data>
   <data name="del_artikal_prompt" xml:space="preserve">
     <value>Da li želite izbrisati artikal?</value>
@@ -242,6 +260,9 @@
   </data>
   <data name="disable_rezervacija_succ" xml:space="preserve">
     <value>Uspješno ste otkazati rezervaciju.</value>
+  </data>
+  <data name="edit_anketa_succ" xml:space="preserve">
+    <value>Uspješno ste izmjenili podatke o anketi.</value>
   </data>
   <data name="edit_artikal_succ" xml:space="preserve">
     <value>Uspješno ste izmjenili podatke o artiklu.</value>

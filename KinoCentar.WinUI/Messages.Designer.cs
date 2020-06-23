@@ -61,6 +61,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste dodali anketu..
+        /// </summary>
+        internal static string add_anketa_succ {
+            get {
+                return ResourceManager.GetString("add_anketa_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uspješno ste dodali artikal..
         /// </summary>
         internal static string add_artikal_succ {
@@ -169,6 +178,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Naslov ankete je obavezan..
+        /// </summary>
+        internal static string anketa_name_req {
+            get {
+                return ResourceManager.GetString("anketa_name_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naziv artikla je obavezan..
         /// </summary>
         internal static string artikal_name_req {
@@ -201,6 +219,42 @@ namespace KinoCentar.WinUI {
         internal static string cijena_req {
             get {
                 return ResourceManager.GetString("cijena_req", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite zaključati anketu?.
+        /// </summary>
+        internal static string close_anketa_prompt {
+            get {
+                return ResourceManager.GetString("close_anketa_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste zaključali podatke o anketu..
+        /// </summary>
+        internal static string close_anketa_succ {
+            get {
+                return ResourceManager.GetString("close_anketa_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Da li želite izbrisati anketu?.
+        /// </summary>
+        internal static string del_anketa_prompt {
+            get {
+                return ResourceManager.GetString("del_anketa_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste obrisali podatke o anketu..
+        /// </summary>
+        internal static string del_anketa_succ {
+            get {
+                return ResourceManager.GetString("del_anketa_succ", resourceCulture);
             }
         }
         
@@ -435,6 +489,15 @@ namespace KinoCentar.WinUI {
         internal static string disable_rezervacija_succ {
             get {
                 return ResourceManager.GetString("disable_rezervacija_succ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uspješno ste izmjenili podatke o anketi..
+        /// </summary>
+        internal static string edit_anketa_succ {
+            get {
+                return ResourceManager.GetString("edit_anketa_succ", resourceCulture);
             }
         }
         

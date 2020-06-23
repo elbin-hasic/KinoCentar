@@ -60,6 +60,9 @@
             this.dojmoviListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserStatusStrip = new System.Windows.Forms.StatusStrip();
             this.lblUserToolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.anketeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.anketeNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.anketeListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenuStrip.SuspendLayout();
             this.UserStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +79,8 @@
             this.prodajaToolStripMenuItem,
             this.izvjestajiToolStripMenuItem,
             this.obavijestiToolStripMenuItem,
-            this.dojmoviToolStripMenuItem});
+            this.dojmoviToolStripMenuItem,
+            this.anketeToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
             this.MainMenuStrip.Size = new System.Drawing.Size(1364, 28);
@@ -271,7 +275,7 @@
             // izvjestajiProdajaPoDatumuToolStripMenuItem
             // 
             this.izvjestajiProdajaPoDatumuToolStripMenuItem.Name = "izvjestajiProdajaPoDatumuToolStripMenuItem";
-            this.izvjestajiProdajaPoDatumuToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.izvjestajiProdajaPoDatumuToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
             this.izvjestajiProdajaPoDatumuToolStripMenuItem.Text = "Prodaja po datumu";
             this.izvjestajiProdajaPoDatumuToolStripMenuItem.Click += new System.EventHandler(this.izvjestajiProdajaPoDatumuToolStripMenuItem_Click);
             // 
@@ -311,7 +315,7 @@
             // dojmoviListaToolStripMenuItem
             // 
             this.dojmoviListaToolStripMenuItem.Name = "dojmoviListaToolStripMenuItem";
-            this.dojmoviListaToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
+            this.dojmoviListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.dojmoviListaToolStripMenuItem.Text = "Lista";
             this.dojmoviListaToolStripMenuItem.Click += new System.EventHandler(this.dojmoviListaToolStripMenuItem_Click);
             // 
@@ -331,6 +335,29 @@
             this.lblUserToolStripStatus.Name = "lblUserToolStripStatus";
             this.lblUserToolStripStatus.Size = new System.Drawing.Size(68, 20);
             this.lblUserToolStripStatus.Text = "Korisnik: ";
+            // 
+            // anketeToolStripMenuItem
+            // 
+            this.anketeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.anketeNovaToolStripMenuItem,
+            this.anketeListaToolStripMenuItem});
+            this.anketeToolStripMenuItem.Name = "anketeToolStripMenuItem";
+            this.anketeToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.anketeToolStripMenuItem.Text = "Ankete";
+            // 
+            // anketeNovaToolStripMenuItem
+            // 
+            this.anketeNovaToolStripMenuItem.Name = "anketeNovaToolStripMenuItem";
+            this.anketeNovaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.anketeNovaToolStripMenuItem.Text = "Nova";
+            this.anketeNovaToolStripMenuItem.Click += new System.EventHandler(this.anketeNovaToolStripMenuItem_Click);
+            // 
+            // anketeListaToolStripMenuItem
+            // 
+            this.anketeListaToolStripMenuItem.Name = "anketeListaToolStripMenuItem";
+            this.anketeListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.anketeListaToolStripMenuItem.Text = "Lista";
+            this.anketeListaToolStripMenuItem.Click += new System.EventHandler(this.anketeListaToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -389,6 +416,9 @@
         private System.Windows.Forms.StatusStrip UserStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblUserToolStripStatus;
         private System.Windows.Forms.ToolStripMenuItem izvjestajiProdajaPoDatumuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem anketeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem anketeNovaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem anketeListaToolStripMenuItem;
     }
 }
 

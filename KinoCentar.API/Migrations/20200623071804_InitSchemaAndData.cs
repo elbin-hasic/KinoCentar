@@ -173,7 +173,8 @@ namespace KinoCentar.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KorisnikId = table.Column<int>(nullable: false),
                     Naslov = table.Column<string>(maxLength: 250, nullable: true),
-                    Datum = table.Column<DateTime>(nullable: false)
+                    Datum = table.Column<DateTime>(nullable: false),
+                    ZakljucenoDatum = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -295,6 +296,7 @@ namespace KinoCentar.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AnketaId = table.Column<int>(nullable: false),
                     Odgovor = table.Column<string>(maxLength: 1000, nullable: true),
+                    RedniBroj = table.Column<int>(nullable: false),
                     UkupnoIzabrano = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
