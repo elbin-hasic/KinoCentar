@@ -338,7 +338,6 @@
       <DependentUpon>frmZanroviEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfigurationSettings.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Util\UIHelper.cs" />
     <EmbeddedResource Include="Forms\Ankete\frmAnkete.resx">
       <DependentUpon>frmAnkete.cs</DependentUpon>
@@ -503,21 +502,6 @@
       <Project>{B76080B5-B747-4128-89A0-3C935F43DF30}</Project>
       <Name>KinoCentar.Shared</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
