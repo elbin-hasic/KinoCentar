@@ -238,24 +238,7 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             }
             catch
             { }
-        }        
-
-        #region Validation
-
-        private void txtBrojRacuna_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtBrojRacuna.Text.Trim()))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtBrojRacuna, Messages.prodaja_sifra_req);
-            }
-            else
-            {
-                errorProvider.SetError(txtBrojRacuna, null);
-            }
         }
-
-        #endregion
 
         #region PrivateMethods
 

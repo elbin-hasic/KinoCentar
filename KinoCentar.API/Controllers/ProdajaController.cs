@@ -127,15 +127,29 @@ namespace KinoCentar.API.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(prodaja.BrojRacuna))
-                {
-                    return BadRequest();
-                }
+                bool isBrojRacunaOk = false;
+                int i = 0;
 
-                var p = await _context.Prodaja.FirstOrDefaultAsync(x => x.BrojRacuna.ToLower().Equals(prodaja.BrojRacuna.ToLower()));
-                if (p != null)
+                do
                 {
-                    return StatusCode((int)HttpStatusCode.Conflict, "Prodaja sa navedenim brojem računa već postoji!");
+                    prodaja.BrojRacuna = GenerateBrojRacuna();
+
+                    var p = await _context.Prodaja.FirstOrDefaultAsync(x => x.BrojRacuna.ToLower().Equals(prodaja.BrojRacuna.ToLower()));
+                    if (p != null)
+                    {
+                        isBrojRacunaOk = false;
+                    }
+                    else
+                    {
+                        isBrojRacunaOk = true;
+                    }
+
+                    i++;
+                } while (!isBrojRacunaOk && i < 5);
+
+                if (!isBrojRacunaOk)
+                {
+                    return StatusCode((int)HttpStatusCode.Conflict, "Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!");
                 }
 
                 if (prodaja.ArtikliStavke != null)
@@ -193,6 +207,45 @@ namespace KinoCentar.API.Controllers
             await _context.SaveChangesAsync();
 
             return prodaja;
+        }
+
+        private string GenerateBrojRacuna()
+        {
+            var dtn = DateTime.Now;
+            string brojRacuna = string.Empty;
+
+            var lastProdaja = _context.Prodaja.OrderByDescending(x => x.Datum)
+                                              .ThenByDescending(x => x.Id).FirstOrDefault();
+
+            if (lastProdaja != null)
+            {
+                try
+                {
+                    var splitedBrojRacuna = lastProdaja.BrojRacuna.Split('/');
+                    int year = int.Parse(splitedBrojRacuna[0]);
+                    int month = int.Parse(splitedBrojRacuna[1]);
+                    int last_br = int.Parse(splitedBrojRacuna[2]);
+
+                    if (dtn.Year != year || dtn.Month != month)
+                    {
+                        brojRacuna = $"{dtn.Year}/{dtn.Month}/1";
+                    }
+                    else
+                    {
+                        brojRacuna = $"{dtn.Year}/{dtn.Month}/{last_br + 1}";
+                    }
+                }
+                catch
+                {
+                    brojRacuna = $"{dtn.Year}/{dtn.Month}/1";
+                }
+            }
+            else
+            {
+                brojRacuna = $"{dtn.Year}/{dtn.Month}/1";
+            }
+
+            return brojRacuna;
         }
 
         private bool ProdajaExists(int id)

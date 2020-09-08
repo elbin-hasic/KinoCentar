@@ -427,9 +427,9 @@
             // 
             this.txtBrojRacuna.Location = new System.Drawing.Point(142, 42);
             this.txtBrojRacuna.Name = "txtBrojRacuna";
+            this.txtBrojRacuna.ReadOnly = true;
             this.txtBrojRacuna.Size = new System.Drawing.Size(305, 22);
             this.txtBrojRacuna.TabIndex = 71;
-            this.txtBrojRacuna.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrojRacuna_Validating);
             // 
             // label8
             // 
