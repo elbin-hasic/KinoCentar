@@ -75,12 +75,12 @@ namespace KinoCentar.Shared.Util
             return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
         }
 
-        public HttpResponseMessage GetActionSearchResponse(string action, string p1 = "*", string p2 = "*")
+        public HttpResponseMessage GetActionSearchResponse(string action, string p1 = "*", string p2 = "*", string p3 = "")
         {
-            return GetActionSearchResponseAsync(action, p1, p2).Result;
+            return GetActionSearchResponseAsync(action, p1, p2, p3).Result;
         }
 
-        public Task<HttpResponseMessage> GetActionSearchResponseAsync(string action, string p1 = "*", string p2 = "*")
+        public Task<HttpResponseMessage> GetActionSearchResponseAsync(string action, string p1 = "*", string p2 = "*", string p3 = "")
         {
             if (string.IsNullOrEmpty(p1))
             {
@@ -90,7 +90,8 @@ namespace KinoCentar.Shared.Util
             {
                 p2 = "*";
             }
-            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
+
+            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2 + "/" + p3);
         }
 
         #endregion

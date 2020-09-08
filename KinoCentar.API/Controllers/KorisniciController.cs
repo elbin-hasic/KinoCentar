@@ -38,31 +38,40 @@ namespace KinoCentar.API.Controllers
         {
             return await _context.Korisnik
                                  .Include(i => i.TipKorisnika).AsNoTracking()
-                                 .Where(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString())
+                                 .Where(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString().ToLower())
                                  .ToListAsync();
         }
 
-        // GET: api/Korisnici/SearchByName/{firstName}/{lastName}
+        // GET: api/Korisnici/SearchByName/{firstName}/{lastName}/{onlyClients}
         [HttpGet]
-        [Route("SearchByName/{firstName}/{lastName}")]
-        public async Task<ActionResult<IEnumerable<Korisnik>>> GetKorisnik(string firstName, string lastName)
+        [Route("SearchByName/{firstName}/{lastName}/{onlyClients}")]
+        public async Task<ActionResult<IEnumerable<Korisnik>>> GetKorisnik(string firstName, string lastName, bool onlyClients)
         {
+            List<Korisnik> korisnici = new List<Korisnik>();
+
             if (!string.IsNullOrEmpty(firstName) && firstName != "*" && !string.IsNullOrEmpty(lastName) && lastName != "*")
             {
-                return await _context.Korisnik.Where(x => x.Ime.Contains(firstName) || x.Prezime.Contains(lastName)).Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
+                korisnici = await _context.Korisnik.Where(x => x.Ime.Contains(firstName) || x.Prezime.Contains(lastName)).Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
             }
             else if (!string.IsNullOrEmpty(firstName) && firstName != "*")
             {
-                return await _context.Korisnik.Where(x => x.Ime.Contains(firstName)).Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
+                korisnici = await _context.Korisnik.Where(x => x.Ime.Contains(firstName)).Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
             }
             else if (!string.IsNullOrEmpty(lastName) && lastName != "*")
             {
-                return await _context.Korisnik.Where(x => x.Prezime.Contains(lastName)).Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
+                korisnici = await _context.Korisnik.Where(x => x.Prezime.Contains(lastName)).Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
             }
             else
             {
-                return await _context.Korisnik.Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
+                korisnici = await _context.Korisnik.Include(i => i.TipKorisnika).AsNoTracking().ToListAsync();
             }
+
+            if (onlyClients)
+            {
+                korisnici = korisnici.Where(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString().ToLower()).ToList();
+            }
+
+            return korisnici;
         }
 
         // GET: api/Korisnici/5
@@ -78,7 +87,7 @@ namespace KinoCentar.API.Controllers
             return korisnik;
         }
 
-        // GET: api/Korisnici/GetByUserName/{userName}
+        // GET: api/Korisnici/GetByUserName/{userName}/{isClient}
         [HttpGet]
         [Route("GetByUserName/{userName}/{isClient}")]
         public async Task<ActionResult<Korisnik>> GetKorisnik(string userName, bool isClient)
@@ -93,14 +102,14 @@ namespace KinoCentar.API.Controllers
             {
                 korisnik = await _context.Korisnik
                                  .Include(x => x.TipKorisnika).AsNoTracking()
-                                 .FirstOrDefaultAsync(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString() && 
+                                 .FirstOrDefaultAsync(x => x.TipKorisnika.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString().ToLower() && 
                                                            x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
             }
             else
             {
                 korisnik = await _context.Korisnik
                                  .Include(x => x.TipKorisnika).AsNoTracking()
-                                 .FirstOrDefaultAsync(x => x.TipKorisnika.Naziv.ToLower() != TipKorisnikaType.Klijent.ToString() && 
+                                 .FirstOrDefaultAsync(x => x.TipKorisnika.Naziv.ToLower() != TipKorisnikaType.Klijent.ToString().ToLower() && 
                                                            x.KorisnickoIme.ToLower().Equals(userName.ToLower()));
             }
 

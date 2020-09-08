@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KinoCentar.Shared.Extensions;
+using KinoCentar.Shared.Models.Enums;
 
 namespace KinoCentar.WinUI.Forms.Korisnici
 {
@@ -20,10 +21,19 @@ namespace KinoCentar.WinUI.Forms.Korisnici
     {
         private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute, Global.PrijavljeniKorisnik);
 
+        private TipKorisnikaType? tipKorisnika = Global.PrijavljeniKorisnik.TipKorisnika?.Type;
+        private bool onlyClients = false;
+
         public frmKorisnici()
         {
             InitializeComponent();
             dgvKorisnici.AutoGenerateColumns = false;
+
+            if (tipKorisnika != null && tipKorisnika.Value == TipKorisnikaType.Radnik)
+            {
+                btnBrisi.Enabled = false;
+                onlyClients = true;
+            }
         }
 
         private void frmKorisnici_Load(object sender, EventArgs e)
@@ -33,7 +43,7 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 
         private void BindGrid(string firstName = null, string lastName = null)
         {
-            HttpResponseMessage response = korisniciService.GetActionSearchResponse("SearchByName", firstName, lastName).Handle();
+            HttpResponseMessage response = korisniciService.GetActionSearchResponse("SearchByName", firstName, lastName, onlyClients.ToString()).Handle();
             if (response.IsSuccessStatusCode)
             {
                 dgvKorisnici.DataSource = response.GetResponseResult<List<KorisnikModel>>();

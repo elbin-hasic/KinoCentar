@@ -15,6 +15,7 @@ using KinoCentar.WinUI.Extensions;
 using KinoCentar.Shared.Extensions;
 using System.IO;
 using System.Net.Mail;
+using KinoCentar.Shared.Models.Enums;
 
 namespace KinoCentar.WinUI.Forms.Korisnici
 {
@@ -23,12 +24,19 @@ namespace KinoCentar.WinUI.Forms.Korisnici
         private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute, Global.PrijavljeniKorisnik);
         private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute, Global.PrijavljeniKorisnik);
 
+        private TipKorisnikaType? tipKorisnika = Global.PrijavljeniKorisnik.TipKorisnika?.Type;
+
         KorisnikModel k = new KorisnikModel();
 
         public frmKorisniciAdd()
         {
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
+
+            if (tipKorisnika != null && tipKorisnika.Value == TipKorisnikaType.Radnik)
+            {
+                cmbTipKorisnika.Enabled = false;
+            }
         }
 
         private void frmKorisniciAdd_Load(object sender, EventArgs e)

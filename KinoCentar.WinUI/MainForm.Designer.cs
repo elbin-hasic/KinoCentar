@@ -58,11 +58,14 @@
             this.obavijestiListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dojmoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dojmoviListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UserStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.lblUserToolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.anketeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.anketeNovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.anketeListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.lblUserToolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.klijentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.klijentiNoviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.klijentiListaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenuStrip.SuspendLayout();
             this.UserStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +75,7 @@
             this.MainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.administracijaToolStripMenuItem,
+            this.klijentiToolStripMenuItem,
             this.filmoviToolStripMenuItem,
             this.projekcijeToolStripMenuItem,
             this.artikliToolStripMenuItem,
@@ -83,7 +87,7 @@
             this.anketeToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(1364, 28);
+            this.MainMenuStrip.Size = new System.Drawing.Size(1364, 30);
             this.MainMenuStrip.TabIndex = 0;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
@@ -98,48 +102,48 @@
             this.filmskeLicnostiToolStripMenuItem});
             this.administracijaToolStripMenuItem.Enabled = false;
             this.administracijaToolStripMenuItem.Name = "administracijaToolStripMenuItem";
-            this.administracijaToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
+            this.administracijaToolStripMenuItem.Size = new System.Drawing.Size(118, 26);
             this.administracijaToolStripMenuItem.Text = "Administracija";
             // 
             // korisniciToolStripMenuItem
             // 
             this.korisniciToolStripMenuItem.Name = "korisniciToolStripMenuItem";
-            this.korisniciToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.korisniciToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.korisniciToolStripMenuItem.Text = "Korisnici";
             this.korisniciToolStripMenuItem.Click += new System.EventHandler(this.korisniciToolStripMenuItem_Click);
             // 
             // tipoviKorisnikaToolStripMenuItem
             // 
             this.tipoviKorisnikaToolStripMenuItem.Name = "tipoviKorisnikaToolStripMenuItem";
-            this.tipoviKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.tipoviKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.tipoviKorisnikaToolStripMenuItem.Text = "Tipovi korisnika";
             this.tipoviKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.tipoviKorisnikaToolStripMenuItem_Click);
             // 
             // saleToolStripMenuItem
             // 
             this.saleToolStripMenuItem.Name = "saleToolStripMenuItem";
-            this.saleToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.saleToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saleToolStripMenuItem.Text = "Sale";
             this.saleToolStripMenuItem.Click += new System.EventHandler(this.saleToolStripMenuItem_Click);
             // 
             // zanroviToolStripMenuItem
             // 
             this.zanroviToolStripMenuItem.Name = "zanroviToolStripMenuItem";
-            this.zanroviToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.zanroviToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.zanroviToolStripMenuItem.Text = "Žanrovi";
             this.zanroviToolStripMenuItem.Click += new System.EventHandler(this.zanroviToolStripMenuItem_Click);
             // 
             // jediniceMjereToolStripMenuItem
             // 
             this.jediniceMjereToolStripMenuItem.Name = "jediniceMjereToolStripMenuItem";
-            this.jediniceMjereToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.jediniceMjereToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.jediniceMjereToolStripMenuItem.Text = "Jedinice mjere";
             this.jediniceMjereToolStripMenuItem.Click += new System.EventHandler(this.jediniceMjereToolStripMenuItem_Click);
             // 
             // filmskeLicnostiToolStripMenuItem
             // 
             this.filmskeLicnostiToolStripMenuItem.Name = "filmskeLicnostiToolStripMenuItem";
-            this.filmskeLicnostiToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.filmskeLicnostiToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.filmskeLicnostiToolStripMenuItem.Text = "Filmske ličnosti";
             this.filmskeLicnostiToolStripMenuItem.Click += new System.EventHandler(this.filmskeLicnostiToolStripMenuItem_Click);
             // 
@@ -150,20 +154,20 @@
             this.filmoviListaToolStripMenuItem});
             this.filmoviToolStripMenuItem.Enabled = false;
             this.filmoviToolStripMenuItem.Name = "filmoviToolStripMenuItem";
-            this.filmoviToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.filmoviToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
             this.filmoviToolStripMenuItem.Text = "Filmovi";
             // 
             // filmoviNoviToolStripMenuItem
             // 
             this.filmoviNoviToolStripMenuItem.Name = "filmoviNoviToolStripMenuItem";
-            this.filmoviNoviToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.filmoviNoviToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.filmoviNoviToolStripMenuItem.Text = "Novi";
             this.filmoviNoviToolStripMenuItem.Click += new System.EventHandler(this.filmoviNoviToolStripMenuItem_Click);
             // 
             // filmoviListaToolStripMenuItem
             // 
             this.filmoviListaToolStripMenuItem.Name = "filmoviListaToolStripMenuItem";
-            this.filmoviListaToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.filmoviListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.filmoviListaToolStripMenuItem.Text = "Lista";
             this.filmoviListaToolStripMenuItem.Click += new System.EventHandler(this.filmoviListaToolStripMenuItem_Click);
             // 
@@ -174,7 +178,7 @@
             this.projekcijeListaToolStripMenuItem});
             this.projekcijeToolStripMenuItem.Enabled = false;
             this.projekcijeToolStripMenuItem.Name = "projekcijeToolStripMenuItem";
-            this.projekcijeToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
+            this.projekcijeToolStripMenuItem.Size = new System.Drawing.Size(87, 26);
             this.projekcijeToolStripMenuItem.Text = "Projekcije";
             // 
             // projekcijeNovaToolStripMenuItem
@@ -198,7 +202,7 @@
             this.artikliListaToolStripMenuItem});
             this.artikliToolStripMenuItem.Enabled = false;
             this.artikliToolStripMenuItem.Name = "artikliToolStripMenuItem";
-            this.artikliToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.artikliToolStripMenuItem.Size = new System.Drawing.Size(62, 26);
             this.artikliToolStripMenuItem.Text = "Artikli";
             // 
             // artilkiNoviToolStripMenuItem
@@ -222,7 +226,7 @@
             this.rezervacijeListaToolStripMenuItem});
             this.rezervacijeToolStripMenuItem.Enabled = false;
             this.rezervacijeToolStripMenuItem.Name = "rezervacijeToolStripMenuItem";
-            this.rezervacijeToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.rezervacijeToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
             this.rezervacijeToolStripMenuItem.Text = "Rezervacije";
             // 
             // rezervacijeNovaToolStripMenuItem
@@ -246,7 +250,7 @@
             this.prodajaListaToolStripMenuItem});
             this.prodajaToolStripMenuItem.Enabled = false;
             this.prodajaToolStripMenuItem.Name = "prodajaToolStripMenuItem";
-            this.prodajaToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.prodajaToolStripMenuItem.Size = new System.Drawing.Size(74, 26);
             this.prodajaToolStripMenuItem.Text = "Prodaja";
             // 
             // prodajaNovaToolStripMenuItem
@@ -269,7 +273,7 @@
             this.izvjestajiProdajaPoDatumuToolStripMenuItem});
             this.izvjestajiToolStripMenuItem.Enabled = false;
             this.izvjestajiToolStripMenuItem.Name = "izvjestajiToolStripMenuItem";
-            this.izvjestajiToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.izvjestajiToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
             this.izvjestajiToolStripMenuItem.Text = "Izvještaji";
             // 
             // izvjestajiProdajaPoDatumuToolStripMenuItem
@@ -286,7 +290,7 @@
             this.obavijestiListaToolStripMenuItem});
             this.obavijestiToolStripMenuItem.Enabled = false;
             this.obavijestiToolStripMenuItem.Name = "obavijestiToolStripMenuItem";
-            this.obavijestiToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.obavijestiToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
             this.obavijestiToolStripMenuItem.Text = "Obavijesti";
             // 
             // obavijestiNovaToolStripMenuItem
@@ -309,15 +313,39 @@
             this.dojmoviListaToolStripMenuItem});
             this.dojmoviToolStripMenuItem.Enabled = false;
             this.dojmoviToolStripMenuItem.Name = "dojmoviToolStripMenuItem";
-            this.dojmoviToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.dojmoviToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
             this.dojmoviToolStripMenuItem.Text = "Dojmovi";
             // 
             // dojmoviListaToolStripMenuItem
             // 
             this.dojmoviListaToolStripMenuItem.Name = "dojmoviListaToolStripMenuItem";
-            this.dojmoviListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dojmoviListaToolStripMenuItem.Size = new System.Drawing.Size(122, 26);
             this.dojmoviListaToolStripMenuItem.Text = "Lista";
             this.dojmoviListaToolStripMenuItem.Click += new System.EventHandler(this.dojmoviListaToolStripMenuItem_Click);
+            // 
+            // anketeToolStripMenuItem
+            // 
+            this.anketeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.anketeNovaToolStripMenuItem,
+            this.anketeListaToolStripMenuItem});
+            this.anketeToolStripMenuItem.Enabled = false;
+            this.anketeToolStripMenuItem.Name = "anketeToolStripMenuItem";
+            this.anketeToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
+            this.anketeToolStripMenuItem.Text = "Ankete";
+            // 
+            // anketeNovaToolStripMenuItem
+            // 
+            this.anketeNovaToolStripMenuItem.Name = "anketeNovaToolStripMenuItem";
+            this.anketeNovaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.anketeNovaToolStripMenuItem.Text = "Nova";
+            this.anketeNovaToolStripMenuItem.Click += new System.EventHandler(this.anketeNovaToolStripMenuItem_Click);
+            // 
+            // anketeListaToolStripMenuItem
+            // 
+            this.anketeListaToolStripMenuItem.Name = "anketeListaToolStripMenuItem";
+            this.anketeListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.anketeListaToolStripMenuItem.Text = "Lista";
+            this.anketeListaToolStripMenuItem.Click += new System.EventHandler(this.anketeListaToolStripMenuItem_Click);
             // 
             // UserStatusStrip
             // 
@@ -336,28 +364,29 @@
             this.lblUserToolStripStatus.Size = new System.Drawing.Size(68, 20);
             this.lblUserToolStripStatus.Text = "Korisnik: ";
             // 
-            // anketeToolStripMenuItem
+            // klijentiToolStripMenuItem
             // 
-            this.anketeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.anketeNovaToolStripMenuItem,
-            this.anketeListaToolStripMenuItem});
-            this.anketeToolStripMenuItem.Name = "anketeToolStripMenuItem";
-            this.anketeToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.anketeToolStripMenuItem.Text = "Ankete";
+            this.klijentiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.klijentiNoviToolStripMenuItem,
+            this.klijentiListaToolStripMenuItem});
+            this.klijentiToolStripMenuItem.Enabled = false;
+            this.klijentiToolStripMenuItem.Name = "klijentiToolStripMenuItem";
+            this.klijentiToolStripMenuItem.Size = new System.Drawing.Size(79, 26);
+            this.klijentiToolStripMenuItem.Text = "Korisnici";
             // 
-            // anketeNovaToolStripMenuItem
+            // klijentiNoviToolStripMenuItem
             // 
-            this.anketeNovaToolStripMenuItem.Name = "anketeNovaToolStripMenuItem";
-            this.anketeNovaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.anketeNovaToolStripMenuItem.Text = "Nova";
-            this.anketeNovaToolStripMenuItem.Click += new System.EventHandler(this.anketeNovaToolStripMenuItem_Click);
+            this.klijentiNoviToolStripMenuItem.Name = "klijentiNoviToolStripMenuItem";
+            this.klijentiNoviToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.klijentiNoviToolStripMenuItem.Text = "Novi";
+            this.klijentiNoviToolStripMenuItem.Click += new System.EventHandler(this.klijentiNoviToolStripMenuItem_Click);
             // 
-            // anketeListaToolStripMenuItem
+            // klijentiListaToolStripMenuItem
             // 
-            this.anketeListaToolStripMenuItem.Name = "anketeListaToolStripMenuItem";
-            this.anketeListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.anketeListaToolStripMenuItem.Text = "Lista";
-            this.anketeListaToolStripMenuItem.Click += new System.EventHandler(this.anketeListaToolStripMenuItem_Click);
+            this.klijentiListaToolStripMenuItem.Name = "klijentiListaToolStripMenuItem";
+            this.klijentiListaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.klijentiListaToolStripMenuItem.Text = "Lista";
+            this.klijentiListaToolStripMenuItem.Click += new System.EventHandler(this.klijentiListaToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -419,6 +448,9 @@
         private System.Windows.Forms.ToolStripMenuItem anketeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem anketeNovaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem anketeListaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem klijentiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem klijentiNoviToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem klijentiListaToolStripMenuItem;
     }
 }
 

@@ -52,11 +52,15 @@ namespace KinoCentar.WinUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            klijentiToolStripMenuItem.Visible = false;
+            administracijaToolStripMenuItem.Visible = false;
+
             if (tipKorisnika != null)
             {
                 switch (tipKorisnika.Value)
                 {
                     case TipKorisnikaType.Administrator:
+                        administracijaToolStripMenuItem.Visible = true;
                         administracijaToolStripMenuItem.Enabled = true;
                         filmoviToolStripMenuItem.Enabled = true;
                         projekcijeToolStripMenuItem.Enabled = true;
@@ -64,6 +68,7 @@ namespace KinoCentar.WinUI
                         izvjestajiToolStripMenuItem.Enabled = true;
                         obavijestiToolStripMenuItem.Enabled = true;
                         dojmoviToolStripMenuItem.Enabled = true;
+                        anketeToolStripMenuItem.Enabled = true;
                         //
                         /*rezervacijeToolStripMenuItem.Enabled = true;
                         prodajaToolStripMenuItem.Enabled = true;*/
@@ -75,10 +80,13 @@ namespace KinoCentar.WinUI
                         izvjestajiToolStripMenuItem.Enabled = true;
                         obavijestiToolStripMenuItem.Enabled = true;
                         dojmoviToolStripMenuItem.Enabled = true;
+                        anketeToolStripMenuItem.Enabled = true;
                         break;
                     case TipKorisnikaType.Radnik:
                         rezervacijeToolStripMenuItem.Enabled = true;
                         prodajaToolStripMenuItem.Enabled = true;
+                        klijentiToolStripMenuItem.Enabled = true;
+                        klijentiToolStripMenuItem.Visible = true;
                         break;
                 }
             }
@@ -308,6 +316,27 @@ namespace KinoCentar.WinUI
         private void anketeListaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmAnkete();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        #endregion
+
+        #region Korisnici
+
+        private void klijentiNoviToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmKorisniciAdd();
+            frm.MdiParent = this;
+
+            frm.Show();
+        }
+
+        private void klijentiListaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmKorisnici();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 

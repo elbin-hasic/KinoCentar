@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Mail;
 using KinoCentar.Shared.Extensions;
+using KinoCentar.Shared.Models.Enums;
 
 namespace KinoCentar.WinUI.Forms.Korisnici
 {
@@ -23,6 +24,8 @@ namespace KinoCentar.WinUI.Forms.Korisnici
         private WebAPIHelper korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute, Global.PrijavljeniKorisnik);
         private WebAPIHelper tipoviKorisnikaService = new WebAPIHelper(Global.ApiAddress, Global.TipoviKorisnikaRoute, Global.PrijavljeniKorisnik);
 
+        private TipKorisnikaType? tipKorisnika = Global.PrijavljeniKorisnik.TipKorisnika?.Type;
+
         private int _id { get; set; }
         private KorisnikModel _k { get; set; }
 
@@ -30,6 +33,11 @@ namespace KinoCentar.WinUI.Forms.Korisnici
         {
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
+
+            if (tipKorisnika != null && tipKorisnika.Value == TipKorisnikaType.Radnik)
+            {
+                cmbTipKorisnika.Enabled = false;
+            }
 
             _id = id;
             _k = null;
@@ -214,7 +222,7 @@ namespace KinoCentar.WinUI.Forms.Korisnici
 
         private void txtLozinka_Validating(object sender, CancelEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtKorisnickoIme.Text.Trim()) &&
+            if (!string.IsNullOrEmpty(txtLozinka.Text.Trim()) &&
                 (txtLozinka.TextLength < 6 || !txtLozinka.Text.Any(char.IsDigit) || !txtLozinka.Text.Any(char.IsLetter)))
             {
                 e.Cancel = true;
