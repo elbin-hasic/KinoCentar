@@ -46,7 +46,7 @@ namespace KinoCentar.WinUI.Forms.Izvjestaji
                     this.rwShowIzvjestaj.LocalReport.DataSources.Add(rds);
                     this.rwShowIzvjestaj.LocalReport.SetParameters(new ReportParameter("Korisnik", Global.PrijavljeniKorisnik.ImePrezime));
                     this.rwShowIzvjestaj.LocalReport.SetParameters(new ReportParameter("OdDatuma", dtpDatumOd.Value.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)));
-                    this.rwShowIzvjestaj.LocalReport.SetParameters(new ReportParameter("DoDatuma", dtpDatumOd.Value.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)));
+                    this.rwShowIzvjestaj.LocalReport.SetParameters(new ReportParameter("DoDatuma", dtpDatumDo.Value.Date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture)));
                     this.rwShowIzvjestaj.RefreshReport();
                 }
             }
