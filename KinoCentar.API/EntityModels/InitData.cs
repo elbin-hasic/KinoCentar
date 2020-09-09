@@ -109,9 +109,9 @@ namespace KinoCentar.API.EntityModels
             context.Projekcija.AddRange(projekcije);
 
             var artikli = new List<Artikal>();
-            artikli.Add(new Artikal { Sifra = "C00001", Naziv = "Kokice", Cijena = 1m, JedinicaMjere = jedMjere[0] });
-            artikli.Add(new Artikal { Sifra = "C00002", Naziv = "Naćosi", Cijena = 2.5m, JedinicaMjere = jedMjere[0] });
-            artikli.Add(new Artikal { Sifra = "C00003", Naziv = "Coca-cola", Cijena = 2m, JedinicaMjere = jedMjere[0] });
+            artikli.Add(new Artikal { Sifra = "000001", Naziv = "Kokice", Cijena = 1m, JedinicaMjere = jedMjere[0] });
+            artikli.Add(new Artikal { Sifra = "000002", Naziv = "Naćosi", Cijena = 2.5m, JedinicaMjere = jedMjere[0] });
+            artikli.Add(new Artikal { Sifra = "000003", Naziv = "Coca-cola", Cijena = 2m, JedinicaMjere = jedMjere[0] });
             context.Artikal.AddRange(artikli);
 
             var obavijesti = new List<Obavijest>();

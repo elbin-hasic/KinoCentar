@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -76,6 +78,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (FilmExists(film.Naslov, film.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.film_err);
+            }
+
             _context.Entry(film).State = EntityState.Modified;
 
             try
@@ -101,6 +108,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Film>> PostFilm(Film film)
         {
+            if (FilmExists(film.Naslov))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.film_err);
+            }
+
             _context.Film.Add(film);
             await _context.SaveChangesAsync();
 
@@ -126,6 +138,18 @@ namespace KinoCentar.API.Controllers
         private bool FilmExists(int id)
         {
             return _context.Film.Any(e => e.Id == id);
+        }
+
+        private bool FilmExists(string name, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Film.Any(e => e.Naslov.ToLower().Equals(name.ToLower()) && e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Film.Any(e => e.Naslov.ToLower().Equals(name.ToLower()));
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -68,11 +69,9 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
-            var a = await _context.Artikal.FirstOrDefaultAsync(x => x.Id != artikal.Id &&
-                                                                    x.Sifra.ToLower().Equals(artikal.Sifra.ToLower()));
-            if (a != null)
+            if (ArtikalExists(artikal.Naziv, artikal.Id))
             {
-                return StatusCode((int)HttpStatusCode.Conflict, "Artikal sa navedenom šifrom već postoji!");
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.artikal_err);
             }
 
             _context.Entry(artikal).State = EntityState.Modified;
@@ -100,15 +99,20 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Artikal>> PostArtikal(Artikal artikal)
         {
-            if (string.IsNullOrEmpty(artikal.Sifra))
+            if (string.IsNullOrEmpty(artikal.Naziv))
             {
                 return BadRequest();
             }
 
-            var a = await _context.Artikal.FirstOrDefaultAsync(x => x.Sifra.ToLower().Equals(artikal.Sifra.ToLower()));
-            if (a != null)
+            if (ArtikalExists(artikal.Naziv))
             {
-                return StatusCode((int)HttpStatusCode.Conflict, "Artikal sa navedenom šifrom već postoji!");
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.artikal_err);
+            }
+
+            artikal.Sifra = GenerateSifra();
+            if (string.IsNullOrEmpty(artikal.Sifra))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.artikal_sifra_err);
             }
 
             _context.Artikal.Add(artikal);
@@ -136,6 +140,56 @@ namespace KinoCentar.API.Controllers
         private bool ArtikalExists(int id)
         {
             return _context.Artikal.Any(e => e.Id == id);
+        }
+
+        private bool ArtikalExists(string name, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Artikal.Any(e => e.Naziv.ToLower().Equals(name.ToLower()) && e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Artikal.Any(e => e.Naziv.ToLower().Equals(name.ToLower()));
+            }
+        }
+
+        private string GenerateSifra()
+        {
+            bool isSifraOk = false;
+            int i = 0;
+
+            string sifra = string.Empty;
+
+            var lastArtikal = _context.Artikal.OrderByDescending(x => x.Id).FirstOrDefault();
+
+            int sifra_br = 1;
+
+            do
+            {
+                if (lastArtikal != null)
+                {
+                    try
+                    {
+                        sifra_br = int.Parse(lastArtikal.Sifra);
+                        sifra_br++;
+                    }
+                    catch
+                    { }
+                }
+
+                sifra = String.Format("{0:D6}", sifra_br);
+
+                isSifraOk = !_context.Artikal.Any(e => e.Sifra.ToLower().Equals(sifra.ToLower()));
+                i++;
+            } while (!isSifraOk && i < 5);
+
+            if (!isSifraOk)
+            {
+                sifra = string.Empty;
+            }
+
+            return sifra;
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Net;
 using KinoCentar.API.EntityModels.Extensions;
 using System.Web.Http.Description;
 using Microsoft.AspNetCore.Authorization;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -127,29 +128,10 @@ namespace KinoCentar.API.Controllers
         {
             try
             {
-                bool isBrojRacunaOk = false;
-                int i = 0;
-
-                do
+                prodaja.BrojRacuna = GenerateBrojRacuna();
+                if (string.IsNullOrEmpty(prodaja.BrojRacuna))
                 {
-                    prodaja.BrojRacuna = GenerateBrojRacuna();
-
-                    var p = await _context.Prodaja.FirstOrDefaultAsync(x => x.BrojRacuna.ToLower().Equals(prodaja.BrojRacuna.ToLower()));
-                    if (p != null)
-                    {
-                        isBrojRacunaOk = false;
-                    }
-                    else
-                    {
-                        isBrojRacunaOk = true;
-                    }
-
-                    i++;
-                } while (!isBrojRacunaOk && i < 5);
-
-                if (!isBrojRacunaOk)
-                {
-                    return StatusCode((int)HttpStatusCode.Conflict, "Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!");
+                    return StatusCode((int)HttpStatusCode.Conflict, Messages.racun_br_err);
                 }
 
                 if (prodaja.ArtikliStavke != null)
@@ -200,7 +182,7 @@ namespace KinoCentar.API.Controllers
             var datumProvjera = prodaja.Datum.AddMinutes(10);
             if (datumProvjera < DateTime.Now)
             {
-                return StatusCode((int)HttpStatusCode.Conflict, "Brisanje prodaje moguće je samo u roku od 10 min nakon kreiranja!");
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.prodaja_del_err);
             }
 
             _context.Prodaja.Remove(prodaja);
@@ -213,36 +195,43 @@ namespace KinoCentar.API.Controllers
         {
             var dtn = DateTime.Now;
             string brojRacuna = string.Empty;
+            int brojRacuna_br = 1;
+
+            bool isBrojRacunaOk = false;
+            int i = 0;
 
             var lastProdaja = _context.Prodaja.OrderByDescending(x => x.Datum)
                                               .ThenByDescending(x => x.Id).FirstOrDefault();
 
-            if (lastProdaja != null)
+            do
             {
-                try
+                if (lastProdaja != null)
                 {
-                    var splitedBrojRacuna = lastProdaja.BrojRacuna.Split('/');
-                    int year = int.Parse(splitedBrojRacuna[0]);
-                    int month = int.Parse(splitedBrojRacuna[1]);
-                    int last_br = int.Parse(splitedBrojRacuna[2]);
+                    try
+                    {
+                        var splitedBrojRacuna = lastProdaja.BrojRacuna.Split('/');
+                        int year = int.Parse(splitedBrojRacuna[0]);
+                        int month = int.Parse(splitedBrojRacuna[1]);
+                        int last_br = int.Parse(splitedBrojRacuna[2]);
 
-                    if (dtn.Year != year || dtn.Month != month)
-                    {
-                        brojRacuna = $"{dtn.Year}/{dtn.Month}/1";
+                        if (dtn.Year == year && dtn.Month == month)
+                        {                            
+                            brojRacuna_br = last_br + 1;
+                        }
                     }
-                    else
-                    {
-                        brojRacuna = $"{dtn.Year}/{dtn.Month}/{last_br + 1}";
-                    }
+                    catch
+                    {}
                 }
-                catch
-                {
-                    brojRacuna = $"{dtn.Year}/{dtn.Month}/1";
-                }
-            }
-            else
+
+                brojRacuna = $"{dtn.Year}/{dtn.Month}/{brojRacuna_br}";
+
+                isBrojRacunaOk = !_context.Prodaja.Any(e => e.BrojRacuna.ToLower().Equals(brojRacuna.ToLower()));
+                i++;
+            } while (!isBrojRacunaOk && i < 5);
+
+            if (!isBrojRacunaOk)
             {
-                brojRacuna = $"{dtn.Year}/{dtn.Month}/1";
+                brojRacuna = string.Empty;
             }
 
             return brojRacuna;

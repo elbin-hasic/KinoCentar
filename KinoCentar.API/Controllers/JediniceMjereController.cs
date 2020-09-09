@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -67,6 +69,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (JedinicaMjereExists(jedinicaMjere.KratkiNaziv, jedinicaMjere.Naziv, jedinicaMjere.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.jedinicaMjere_err);
+            }
+
             _context.Entry(jedinicaMjere).State = EntityState.Modified;
 
             try
@@ -92,6 +99,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<JedinicaMjere>> PostJedinicaMjere(JedinicaMjere jedinicaMjere)
         {
+            if (JedinicaMjereExists(jedinicaMjere.KratkiNaziv, jedinicaMjere.Naziv))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.jedinicaMjere_err);
+            }
+
             _context.JedinicaMjere.Add(jedinicaMjere);
             await _context.SaveChangesAsync();
 
@@ -117,6 +129,21 @@ namespace KinoCentar.API.Controllers
         private bool JedinicaMjereExists(int id)
         {
             return _context.JedinicaMjere.Any(e => e.Id == id);
+        }
+
+        private bool JedinicaMjereExists(string shortName, string name, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.JedinicaMjere.Any(e => (e.KratkiNaziv.ToLower().Equals(shortName.ToLower()) ||
+                                                       e.Naziv.ToLower().Equals(name.ToLower())) && 
+                                                       e.Id != id.Value);
+            }
+            else
+            {
+                return _context.JedinicaMjere.Any(e => e.KratkiNaziv.ToLower().Equals(shortName.ToLower()) || 
+                                                       e.Naziv.ToLower().Equals(name.ToLower()));
+            }
         }
     }
 }

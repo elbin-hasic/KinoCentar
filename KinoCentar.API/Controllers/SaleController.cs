@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -67,6 +69,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (SalaExists(sala.Naziv, sala.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.sala_err);
+            }
+
             _context.Entry(sala).State = EntityState.Modified;
 
             try
@@ -92,6 +99,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Sala>> PostSala(Sala sala)
         {
+            if (SalaExists(sala.Naziv))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.sala_err);
+            }
+
             _context.Sala.Add(sala);
             await _context.SaveChangesAsync();
 
@@ -117,6 +129,18 @@ namespace KinoCentar.API.Controllers
         private bool SalaExists(int id)
         {
             return _context.Sala.Any(e => e.Id == id);
+        }
+
+        private bool SalaExists(string name, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Sala.Any(e => e.Naziv.ToLower().Equals(name.ToLower()) && e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Sala.Any(e => e.Naziv.ToLower().Equals(name.ToLower()));
+            }
         }
     }
 }

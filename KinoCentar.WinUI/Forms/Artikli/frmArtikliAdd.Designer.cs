@@ -143,9 +143,9 @@
             // 
             this.txtSifra.Location = new System.Drawing.Point(124, 68);
             this.txtSifra.Name = "txtSifra";
+            this.txtSifra.ReadOnly = true;
             this.txtSifra.Size = new System.Drawing.Size(284, 22);
             this.txtSifra.TabIndex = 3;
-            this.txtSifra.Validating += new System.ComponentModel.CancelEventHandler(this.txtSifra_Validating);
             // 
             // label9
             // 

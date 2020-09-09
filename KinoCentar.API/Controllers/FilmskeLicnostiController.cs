@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -98,6 +100,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (FilmskaLicnostExists(filmskaLicnost.Ime, filmskaLicnost.Prezime, filmskaLicnost.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.filmskaLicnost_err);
+            }
+
             _context.Entry(filmskaLicnost).State = EntityState.Modified;
 
             try
@@ -123,6 +130,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<FilmskaLicnost>> PostFilmskaLicnost(FilmskaLicnost filmskaLicnost)
         {
+            if (FilmskaLicnostExists(filmskaLicnost.Ime, filmskaLicnost.Prezime))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.filmskaLicnost_err);
+            }
+
             _context.FilmskaLicnost.Add(filmskaLicnost);
             await _context.SaveChangesAsync();
 
@@ -148,6 +160,21 @@ namespace KinoCentar.API.Controllers
         private bool FilmskaLicnostExists(int id)
         {
             return _context.FilmskaLicnost.Any(e => e.Id == id);
+        }
+
+        private bool FilmskaLicnostExists(string name, string lastName, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.FilmskaLicnost.Any(e => e.Ime.ToLower().Equals(name.ToLower()) &&
+                                                        e.Prezime.ToLower().Equals(lastName.ToLower()) &&
+                                                        e.Id != id.Value);
+            }
+            else
+            {
+                return _context.FilmskaLicnost.Any(e => e.Ime.ToLower().Equals(name.ToLower()) &&
+                                                        e.Prezime.ToLower().Equals(lastName.ToLower()));
+            }
         }
     }
 }

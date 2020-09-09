@@ -121,8 +121,11 @@ namespace KinoCentar.WinUI.Forms.Korisnici
                 _k.Ime = txtIme.Text;
                 _k.Prezime = txtPrezime.Text;
                 _k.Email = txtEmail.Text;
-                _k.Spol = cmbSpol.SelectedItem.ToString();
                 _k.DatumRodjenja = dtpDatumRodjenja.Value;
+                if (cmbSpol.SelectedItem != null)
+                {
+                    _k.Spol = cmbSpol.SelectedItem.ToString();
+                }
                 
                 _k.KorisnickoIme = txtKorisnickoIme.Text;
                 _k.TipKorisnikaId = ((TipKorisnikaModel)cmbTipKorisnika.SelectedItem).Id;

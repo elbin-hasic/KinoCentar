@@ -82,9 +82,12 @@ namespace KinoCentar.WinUI.Forms.Korisnici
             {
                 k.Ime = txtIme.Text;
                 k.Prezime = txtPrezime.Text;
-                k.Email = txtEmail.Text;
-                k.Spol = cmbSpol.SelectedItem.ToString();
+                k.Email = txtEmail.Text;                
                 k.DatumRodjenja = dtpDatumRodjenja.Value;
+                if (cmbSpol.SelectedItem != null)
+                {
+                    k.Spol = cmbSpol.SelectedItem.ToString();
+                }
 
                 k.KorisnickoIme = txtKorisnickoIme.Text;
                 k.LozinkaSalt = Util.UIHelper.GenerateSalt();

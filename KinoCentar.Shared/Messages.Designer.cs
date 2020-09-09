@@ -61,6 +61,60 @@ namespace KinoCentar.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artikal sa navedenim imenom već postoji!.
+        /// </summary>
+        public static string artikal_err {
+            get {
+                return ResourceManager.GetString("artikal_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Došlo je do greške prilikom generisanja šifre artikla, molimo Vas pokušajte ponovo!.
+        /// </summary>
+        public static string artikal_sifra_err {
+            get {
+                return ResourceManager.GetString("artikal_sifra_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Film sa navedenim imenom već postoji!.
+        /// </summary>
+        public static string film_err {
+            get {
+                return ResourceManager.GetString("film_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filmska ličnost sa navedenim imenom i prezimenom već postoji!.
+        /// </summary>
+        public static string filmskaLicnost_err {
+            get {
+                return ResourceManager.GetString("filmskaLicnost_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jedinica mjere sa navedenim imenom već postoji!.
+        /// </summary>
+        public static string jedinicaMjere_err {
+            get {
+                return ResourceManager.GetString("jedinicaMjere_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Korisnik sa navedenim korisničkim imenom već postoji!.
+        /// </summary>
+        public static string korisnik_err {
+            get {
+                return ResourceManager.GetString("korisnik_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Greška prilikom prijave, molimo provjerite Vaše podatke pa pokušajte ponovo!.
         /// </summary>
         public static string login_err {
@@ -120,6 +174,42 @@ namespace KinoCentar.Shared {
         public static string msg_war {
             get {
                 return ResourceManager.GetString("msg_war", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brisanje prodaje moguće je samo u roku od 10 min nakon kreiranja!.
+        /// </summary>
+        public static string prodaja_del_err {
+            get {
+                return ResourceManager.GetString("prodaja_del_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!.
+        /// </summary>
+        public static string racun_br_err {
+            get {
+                return ResourceManager.GetString("racun_br_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sala sa navedenim imenom već postoji!.
+        /// </summary>
+        public static string sala_err {
+            get {
+                return ResourceManager.GetString("sala_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Žanr sa navedenim imenom već postoji!.
+        /// </summary>
+        public static string zanr_err {
+            get {
+                return ResourceManager.GetString("zanr_err", resourceCulture);
             }
         }
     }

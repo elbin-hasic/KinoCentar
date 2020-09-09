@@ -108,19 +108,6 @@ namespace KinoCentar.WinUI.Forms.Artikli
             }
         }
 
-        private void txtSifra_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSifra.Text.Trim()))
-            {
-                e.Cancel = true;
-                errorProvider.SetError(txtSifra, Messages.artikal_sifra_req);
-            }
-            else
-            {
-                errorProvider.SetError(txtSifra, null);
-            }
-        }
-
         private void txtCijena_Validating(object sender, CancelEventArgs e)
         {
             var cijenaText = txtCijena.Text.Trim().Replace(",", "");

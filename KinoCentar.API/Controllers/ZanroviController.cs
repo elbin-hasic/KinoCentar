@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -67,6 +69,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (ZanrExists(zanr.Naziv, zanr.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.zanr_err);
+            }
+
             _context.Entry(zanr).State = EntityState.Modified;
 
             try
@@ -92,6 +99,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Zanr>> PostZanr(Zanr zanr)
         {
+            if (ZanrExists(zanr.Naziv))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.zanr_err);
+            }
+
             _context.Zanr.Add(zanr);
             await _context.SaveChangesAsync();
 
@@ -117,6 +129,18 @@ namespace KinoCentar.API.Controllers
         private bool ZanrExists(int id)
         {
             return _context.Zanr.Any(e => e.Id == id);
+        }
+
+        private bool ZanrExists(string name, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Zanr.Any(e => e.Naziv.ToLower().Equals(name.ToLower()) && e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Zanr.Any(e => e.Naziv.ToLower().Equals(name.ToLower()));
+            }
         }
     }
 }

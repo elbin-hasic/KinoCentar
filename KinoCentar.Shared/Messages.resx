@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="artikal_err" xml:space="preserve">
+    <value>Artikal sa navedenim imenom već postoji!</value>
+  </data>
+  <data name="artikal_sifra_err" xml:space="preserve">
+    <value>Došlo je do greške prilikom generisanja šifre artikla, molimo Vas pokušajte ponovo!</value>
+  </data>
+  <data name="filmskaLicnost_err" xml:space="preserve">
+    <value>Filmska ličnost sa navedenim imenom i prezimenom već postoji!</value>
+  </data>
+  <data name="film_err" xml:space="preserve">
+    <value>Film sa navedenim imenom već postoji!</value>
+  </data>
+  <data name="jedinicaMjere_err" xml:space="preserve">
+    <value>Jedinica mjere sa navedenim imenom već postoji!</value>
+  </data>
+  <data name="korisnik_err" xml:space="preserve">
+    <value>Korisnik sa navedenim korisničkim imenom već postoji!</value>
+  </data>
   <data name="login_err" xml:space="preserve">
     <value>Greška prilikom prijave, molimo provjerite Vaše podatke pa pokušajte ponovo!</value>
   </data>
@@ -137,5 +155,17 @@
   </data>
   <data name="msg_war" xml:space="preserve">
     <value>Upozorenje</value>
+  </data>
+  <data name="prodaja_del_err" xml:space="preserve">
+    <value>Brisanje prodaje moguće je samo u roku od 10 min nakon kreiranja!</value>
+  </data>
+  <data name="racun_br_err" xml:space="preserve">
+    <value>Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!</value>
+  </data>
+  <data name="sala_err" xml:space="preserve">
+    <value>Sala sa navedenim imenom već postoji!</value>
+  </data>
+  <data name="zanr_err" xml:space="preserve">
+    <value>Žanr sa navedenim imenom već postoji!</value>
   </data>
 </root>

@@ -10,6 +10,7 @@ using KinoCentar.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using KinoCentar.Shared.Models.Enums;
 using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -131,6 +132,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (KorisnikExists(korisnik.KorisnickoIme, korisnik.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_err);
+            }
+
             _context.Entry(korisnik).State = EntityState.Modified;
 
             try
@@ -162,10 +168,9 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
-            var k = await _context.Korisnik.FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(korisnik.KorisnickoIme.ToLower()));
-            if (k != null)
+            if (KorisnikExists(korisnik.KorisnickoIme))
             {
-                return StatusCode((int)HttpStatusCode.Conflict, "Navedeno KorisnickoIme je zauzeto!");
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_err);
             }
 
             var tipKorisnik = await _context.TipKorisnika.FirstOrDefaultAsync(x => x.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString().ToLower());
@@ -192,10 +197,9 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
-            var k = await _context.Korisnik.FirstOrDefaultAsync(x => x.KorisnickoIme.ToLower().Equals(korisnik.KorisnickoIme.ToLower()));
-            if (k != null)
+            if (KorisnikExists(korisnik.KorisnickoIme))
             {
-                return StatusCode((int)HttpStatusCode.Conflict, "Navedeno KorisnickoIme je zauzeto!");
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_err);
             }
 
             _context.Korisnik.Add(korisnik);
@@ -224,6 +228,18 @@ namespace KinoCentar.API.Controllers
         private bool KorisnikExists(int id)
         {
             return _context.Korisnik.Any(e => e.Id == id);
+        }
+
+        private bool KorisnikExists(string userName, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Korisnik.Any(e => e.KorisnickoIme.ToLower().Equals(userName.ToLower()) && e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Korisnik.Any(e => e.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+            }
         }
     }
 }
