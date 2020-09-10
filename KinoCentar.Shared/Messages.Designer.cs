@@ -187,6 +187,15 @@ namespace KinoCentar.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Projekcija sa navedenim filmom već postoji za dati period!.
+        /// </summary>
+        public static string projekcija_err {
+            get {
+                return ResourceManager.GetString("projekcija_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!.
         /// </summary>
         public static string racun_br_err {

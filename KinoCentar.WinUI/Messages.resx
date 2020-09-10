@@ -354,6 +354,9 @@
   <data name="prodaja_sifra_req" xml:space="preserve">
     <value>Broj računa je obavezan.</value>
   </data>
+  <data name="projekcija_datum_err" xml:space="preserve">
+    <value>Datum "Vrijedi od" mora biti manji ili jednak datumu "Vrijedi do".</value>
+  </data>
   <data name="sale_brojSjedista_req" xml:space="preserve">
     <value>Broj sjedišta sale je obavezan.</value>
   </data>

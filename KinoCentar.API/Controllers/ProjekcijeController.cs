@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -177,6 +179,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (ProjekcijaExists(projekcija.FilmId, projekcija.VrijediOd, projekcija.VrijediDo, projekcija.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.projekcija_err);
+            }
+
             _context.Entry(projekcija).State = EntityState.Modified;
 
             try
@@ -202,6 +209,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Projekcija>> PostProjekcija(Projekcija projekcija)
         {
+            if (ProjekcijaExists(projekcija.FilmId, projekcija.VrijediOd, projekcija.VrijediDo))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.projekcija_err);
+            }
+
             _context.Projekcija.Add(projekcija);
             await _context.SaveChangesAsync();
 
@@ -265,6 +277,23 @@ namespace KinoCentar.API.Controllers
         private bool ProjekcijaExists(int id)
         {
             return _context.Projekcija.Any(e => e.Id == id);
+        }
+
+        private bool ProjekcijaExists(int filmId, DateTime vrijediOd, DateTime vrijediDo, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Projekcija.Any(e => e.FilmId == filmId &&
+                                                    ((vrijediOd.Date >= e.VrijediOd.Date && vrijediOd.Date <= e.VrijediDo.Date) ||
+                                                     (vrijediDo.Date >= e.VrijediOd.Date && vrijediDo.Date <= e.VrijediDo.Date)) && 
+                                                     e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Projekcija.Any(e => e.FilmId == filmId && 
+                                                    ((vrijediOd.Date >= e.VrijediOd.Date && vrijediOd.Date <= e.VrijediDo.Date) ||
+                                                     (vrijediDo.Date >= e.VrijediOd.Date && vrijediDo.Date <= e.VrijediDo.Date)));
+            }
         }
     }
 }

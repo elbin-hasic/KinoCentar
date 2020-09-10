@@ -27,6 +27,11 @@ namespace KinoCentar.WinUI.Forms.Projekcije
         {
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
+
+            var dtn = DateTime.Now;
+
+            dtpVrijediOd.MinDate = dtn.Date;
+            dtpVrijediDo.MinDate = dtn.Date;
         }
 
         private void frmProjekcijeAdd_Load(object sender, EventArgs e)
@@ -115,6 +120,19 @@ namespace KinoCentar.WinUI.Forms.Projekcije
                     e.Cancel = true;
                     errorProvider.SetError(txtCijena, Messages.cijena_err);
                 }
+            }
+        }
+
+        private void dtpVrijediOd_Validating(object sender, CancelEventArgs e)
+        {
+            if (dtpVrijediOd.Value.Date > dtpVrijediDo.Value.Date)
+            {
+                e.Cancel = true;
+                errorProvider.SetError(dtpVrijediOd, Messages.projekcija_datum_err);
+            }
+            else
+            {
+                errorProvider.SetError(dtpVrijediOd, null);
             }
         }
 

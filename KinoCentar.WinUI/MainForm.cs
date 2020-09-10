@@ -70,8 +70,8 @@ namespace KinoCentar.WinUI
                         dojmoviToolStripMenuItem.Enabled = true;
                         anketeToolStripMenuItem.Enabled = true;
                         //
-                        /*rezervacijeToolStripMenuItem.Enabled = true;
-                        prodajaToolStripMenuItem.Enabled = true;*/
+                        rezervacijeToolStripMenuItem.Enabled = true;
+                        prodajaToolStripMenuItem.Enabled = true;
                         break;
                     case TipKorisnikaType.Moderator:
                         filmoviToolStripMenuItem.Enabled = true;

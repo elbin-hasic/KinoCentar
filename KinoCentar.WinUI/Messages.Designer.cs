@@ -772,6 +772,15 @@ namespace KinoCentar.WinUI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datum &quot;Vrijedi od&quot; mora biti manji ili jednak datumu &quot;Vrijedi do&quot;..
+        /// </summary>
+        internal static string projekcija_datum_err {
+            get {
+                return ResourceManager.GetString("projekcija_datum_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Broj sjedišta sale je obavezan..
         /// </summary>
         internal static string sale_brojSjedista_req {

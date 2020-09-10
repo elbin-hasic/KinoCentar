@@ -159,6 +159,9 @@
   <data name="prodaja_del_err" xml:space="preserve">
     <value>Brisanje prodaje moguće je samo u roku od 10 min nakon kreiranja!</value>
   </data>
+  <data name="projekcija_err" xml:space="preserve">
+    <value>Projekcija sa navedenim filmom već postoji za dati period!</value>
+  </data>
   <data name="racun_br_err" xml:space="preserve">
     <value>Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!</value>
   </data>

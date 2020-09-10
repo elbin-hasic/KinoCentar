@@ -153,6 +153,7 @@
             this.dtpVrijediOd.Name = "dtpVrijediOd";
             this.dtpVrijediOd.Size = new System.Drawing.Size(282, 22);
             this.dtpVrijediOd.TabIndex = 7;
+            this.dtpVrijediOd.Validating += new System.ComponentModel.CancelEventHandler(this.dtpVrijediOd_Validating);
             // 
             // dtpVrijediDo
             // 

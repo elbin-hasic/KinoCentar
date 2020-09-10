@@ -32,6 +32,11 @@ namespace KinoCentar.WinUI.Forms.Projekcije
             InitializeComponent();
             this.AutoValidate = AutoValidate.Disable;
 
+            var dtn = DateTime.Now;
+
+            dtpVrijediOd.MinDate = dtn.Date;
+            dtpVrijediDo.MinDate = dtn.Date;
+
             _id = id;
             _p = null;
         }
