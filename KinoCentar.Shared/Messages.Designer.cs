@@ -106,6 +106,15 @@ namespace KinoCentar.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Korisnik sa navedenom email adresom već postoji!.
+        /// </summary>
+        public static string korisnik_email_err {
+            get {
+                return ResourceManager.GetString("korisnik_email_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Korisnik sa navedenim korisničkim imenom već postoji!.
         /// </summary>
         public static string korisnik_err {
@@ -201,6 +210,15 @@ namespace KinoCentar.Shared {
         public static string racun_br_err {
             get {
                 return ResourceManager.GetString("racun_br_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navedeni korisnik već ima rezervaciju za navedenu projekciju!.
+        /// </summary>
+        public static string rezervacija_err {
+            get {
+                return ResourceManager.GetString("rezervacija_err", resourceCulture);
             }
         }
         

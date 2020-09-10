@@ -132,6 +132,9 @@
   <data name="jedinicaMjere_err" xml:space="preserve">
     <value>Jedinica mjere sa navedenim imenom već postoji!</value>
   </data>
+  <data name="korisnik_email_err" xml:space="preserve">
+    <value>Korisnik sa navedenom email adresom već postoji!</value>
+  </data>
   <data name="korisnik_err" xml:space="preserve">
     <value>Korisnik sa navedenim korisničkim imenom već postoji!</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="racun_br_err" xml:space="preserve">
     <value>Došlo je do greške prilikom generisanja broja računa, molimo Vas pokušajte ponovo!</value>
+  </data>
+  <data name="rezervacija_err" xml:space="preserve">
+    <value>Navedeni korisnik već ima rezervaciju za navedenu projekciju!</value>
   </data>
   <data name="sala_err" xml:space="preserve">
     <value>Sala sa navedenim imenom već postoji!</value>

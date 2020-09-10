@@ -137,6 +137,11 @@ namespace KinoCentar.API.Controllers
                 return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_err);
             }
 
+            if (KorisnikExistsByEmail(korisnik.Email, korisnik.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_email_err);
+            }
+
             _context.Entry(korisnik).State = EntityState.Modified;
 
             try
@@ -173,6 +178,11 @@ namespace KinoCentar.API.Controllers
                 return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_err);
             }
 
+            if (KorisnikExistsByEmail(korisnik.Email))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_email_err);
+            }
+
             var tipKorisnik = await _context.TipKorisnika.FirstOrDefaultAsync(x => x.Naziv.ToLower() == TipKorisnikaType.Klijent.ToString().ToLower());
             if (tipKorisnik == null)
             {
@@ -200,6 +210,11 @@ namespace KinoCentar.API.Controllers
             if (KorisnikExists(korisnik.KorisnickoIme))
             {
                 return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_err);
+            }
+
+            if (KorisnikExistsByEmail(korisnik.Email))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.korisnik_email_err);
             }
 
             _context.Korisnik.Add(korisnik);
@@ -239,6 +254,18 @@ namespace KinoCentar.API.Controllers
             else
             {
                 return _context.Korisnik.Any(e => e.KorisnickoIme.ToLower().Equals(userName.ToLower()));
+            }
+        }
+
+        private bool KorisnikExistsByEmail(string email, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Korisnik.Any(e => e.Email.ToLower().Equals(email.ToLower()) && e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Korisnik.Any(e => e.Email.ToLower().Equals(email.ToLower()));
             }
         }
     }

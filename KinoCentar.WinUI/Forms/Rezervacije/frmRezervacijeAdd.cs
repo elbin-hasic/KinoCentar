@@ -15,6 +15,7 @@ using KinoCentar.WinUI.Extensions;
 using KinoCentar.WinUI.Forms.Filmovi;
 using KinoCentar.WinUI.Forms.Projekcije;
 using KinoCentar.Shared.Extensions;
+using KinoCentar.WinUI.Forms.Korisnici;
 
 namespace KinoCentar.WinUI.Forms.Rezervacije
 {
@@ -41,15 +42,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 cmbProjekcija.ValueMember = "Id";
             }
 
-            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
-            if (korisnikResponse.IsSuccessStatusCode)
-            {
-                var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();
-                korisnici.Insert(0, new KorisnikModel());
-                cmbKorisnik.DataSource = korisnici;
-                cmbKorisnik.DisplayMember = "ImePrezime";
-                cmbKorisnik.ValueMember = "Id";
-            }
+            LoadKorisnici();
         }
 
         private void btnSnimi_Click(object sender, EventArgs e)
@@ -60,14 +53,8 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
 
                 r.ProjekcijaId = projekcija.Id;
-                if (cmbKorisnik.SelectedIndex != 0)
-                {
-                    r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
-                }
-                if (cmbBrojSjedista.SelectedIndex != 0)
-                {
-                    r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
-                }
+                r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
+                r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
 
                 r.DatumProjekcije = dtpDatumProjekcije.Value;
                 r.Cijena = projekcija.Cijena;
@@ -103,6 +90,19 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             { }
         }
 
+        private void brnNoviKorisnik_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmKorisniciAdd();
+                frm.ShowDialog();
+
+                LoadKorisnici();
+            }
+            catch
+            { }
+        }
+
         private void cmbProjekcija_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -120,13 +120,19 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 }
             }
             catch
-            { }            
+            { }
         }
 
-        #region Validation
-
-
-
-        #endregion
+        private void LoadKorisnici()
+        {
+            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
+            if (korisnikResponse.IsSuccessStatusCode)
+            {
+                var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();
+                cmbKorisnik.DataSource = korisnici;
+                cmbKorisnik.DisplayMember = "ImePrezime";
+                cmbKorisnik.ValueMember = "Id";
+            }
+        }
     }
 }

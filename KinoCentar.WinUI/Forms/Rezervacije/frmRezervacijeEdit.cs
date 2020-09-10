@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using KinoCentar.WinUI.Forms.Filmovi;
 using KinoCentar.WinUI.Forms.Projekcije;
 using KinoCentar.Shared.Extensions;
+using KinoCentar.WinUI.Forms.Korisnici;
 
 namespace KinoCentar.WinUI.Forms.Rezervacije
 {
@@ -91,23 +92,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 cmbBrojSjedista.SelectedIndex = cmbBrojSjedista.FindStringExact(_r.BrojSjedista.ToString());
             }
 
-            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
-            if (korisnikResponse.IsSuccessStatusCode)
-            {
-                var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();
-                korisnici.Insert(0, new KorisnikModel());
-                cmbKorisnik.DataSource = korisnici;
-                cmbKorisnik.DisplayMember = "ImePrezime";
-                cmbKorisnik.ValueMember = "Id";
-                foreach (var korisnik in korisnici)
-                {
-                    if (korisnik.Id == _r.KorisnikId)
-                    {
-                        cmbKorisnik.SelectedItem = korisnik;
-                        break;
-                    }
-                }
-            }
+            LoadKorisnici();
 
             dtpDatumProjekcije.Value = _r.DatumProjekcije;
         }
@@ -117,15 +102,8 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             if (_r != null && this.ValidateChildren())
             {
                 _r.ProjekcijaId = ((ProjekcijaModel)cmbProjekcija.SelectedItem).Id;
-                if (cmbKorisnik.SelectedIndex != 0)
-                {
-                    _r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
-                }
-                if (cmbBrojSjedista.SelectedIndex != 0)
-                {
-                    _r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
-                }
-
+                _r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
+                _r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
                 _r.DatumProjekcije = dtpDatumProjekcije.Value;
 
                 HttpResponseMessage response = rezervacijeService.PutResponse(_id, _r).Handle();
@@ -158,10 +136,37 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             { }
         }
 
-        #region Validation
+        private void brnNoviKorisnik_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmKorisniciAdd();
+                frm.ShowDialog();
 
+                LoadKorisnici();
+            }
+            catch
+            { }
+        }
 
-
-        #endregion
+        private void LoadKorisnici()
+        {
+            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
+            if (korisnikResponse.IsSuccessStatusCode)
+            {
+                var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();
+                cmbKorisnik.DataSource = korisnici;
+                cmbKorisnik.DisplayMember = "ImePrezime";
+                cmbKorisnik.ValueMember = "Id";
+                foreach (var korisnik in korisnici)
+                {
+                    if (korisnik.Id == _r.KorisnikId)
+                    {
+                        cmbKorisnik.SelectedItem = korisnik;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -217,6 +218,11 @@ namespace KinoCentar.API.Controllers
                 return BadRequest();
             }
 
+            if (RezervacijaExists(rezervacija.ProjekcijaId, rezervacija.KorisnikId.Value, rezervacija.DatumProjekcije, rezervacija.Id))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.rezervacija_err);
+            }
+
             _context.Entry(rezervacija).State = EntityState.Modified;
 
             try
@@ -268,6 +274,11 @@ namespace KinoCentar.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Rezervacija>> PostRezervacija(Rezervacija rezervacija)
         {
+            if (RezervacijaExists(rezervacija.ProjekcijaId, rezervacija.KorisnikId.Value, rezervacija.DatumProjekcije))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.rezervacija_err);
+            }
+
             _context.Rezervacija.Add(rezervacija);
             await _context.SaveChangesAsync();
 
@@ -293,6 +304,23 @@ namespace KinoCentar.API.Controllers
         private bool RezervacijaExists(int id)
         {
             return _context.Rezervacija.Any(e => e.Id == id);
+        }
+
+        private bool RezervacijaExists(int projekcijaId, int korisnikId, DateTime datumProjekcije, int? id = null)
+        {
+            if (id != null)
+            {
+                return _context.Rezervacija.Any(e => e.ProjekcijaId == projekcijaId && 
+                                                     e.KorisnikId == korisnikId &&
+                                                     e.DatumProjekcije.Date == datumProjekcije.Date &&
+                                                     e.Id != id.Value);
+            }
+            else
+            {
+                return _context.Rezervacija.Any(e => e.ProjekcijaId == projekcijaId && 
+                                                     e.KorisnikId == korisnikId &&
+                                                     e.DatumProjekcije.Date == datumProjekcije.Date);
+            }
         }
     }
 }

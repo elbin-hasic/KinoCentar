@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.brnNoviKorisnik = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +100,7 @@
             this.cmbKorisnik.FormattingEnabled = true;
             this.cmbKorisnik.Location = new System.Drawing.Point(153, 68);
             this.cmbKorisnik.Name = "cmbKorisnik";
-            this.cmbKorisnik.Size = new System.Drawing.Size(282, 24);
+            this.cmbKorisnik.Size = new System.Drawing.Size(246, 24);
             this.cmbKorisnik.TabIndex = 58;
             // 
             // cmbProjekcija
@@ -152,11 +153,22 @@
             this.label1.Text = "Projekcija:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // brnNoviKorisnik
+            // 
+            this.brnNoviKorisnik.Location = new System.Drawing.Point(405, 66);
+            this.brnNoviKorisnik.Name = "brnNoviKorisnik";
+            this.brnNoviKorisnik.Size = new System.Drawing.Size(30, 26);
+            this.brnNoviKorisnik.TabIndex = 64;
+            this.brnNoviKorisnik.Text = "+";
+            this.brnNoviKorisnik.UseVisualStyleBackColor = true;
+            this.brnNoviKorisnik.Click += new System.EventHandler(this.brnNoviKorisnik_Click);
+            // 
             // frmRezervacijeEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 257);
+            this.Controls.Add(this.brnNoviKorisnik);
             this.Controls.Add(this.cmbBrojSjedista);
             this.Controls.Add(this.btnProjekcijaInfo);
             this.Controls.Add(this.dtpDatumProjekcije);
@@ -193,5 +205,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button brnNoviKorisnik;
     }
 }

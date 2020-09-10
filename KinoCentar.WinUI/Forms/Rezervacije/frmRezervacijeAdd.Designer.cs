@@ -41,6 +41,7 @@
             this.dtpDatumProjekcije = new System.Windows.Forms.DateTimePicker();
             this.btnProjekcijaInfo = new System.Windows.Forms.Button();
             this.cmbBrojSjedista = new System.Windows.Forms.ComboBox();
+            this.brnNoviKorisnik = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +85,7 @@
             this.label2.Location = new System.Drawing.Point(85, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 3;
             this.label2.Text = "Korisnik:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -94,7 +95,7 @@
             this.label3.Location = new System.Drawing.Point(58, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 17);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Broj sjedišta:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -104,7 +105,7 @@
             this.label4.Location = new System.Drawing.Point(36, 140);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 17);
-            this.label4.TabIndex = 6;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Datum gledanja:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -124,22 +125,22 @@
             this.cmbKorisnik.FormattingEnabled = true;
             this.cmbKorisnik.Location = new System.Drawing.Point(153, 68);
             this.cmbKorisnik.Name = "cmbKorisnik";
-            this.cmbKorisnik.Size = new System.Drawing.Size(282, 24);
-            this.cmbKorisnik.TabIndex = 3;
+            this.cmbKorisnik.Size = new System.Drawing.Size(246, 24);
+            this.cmbKorisnik.TabIndex = 4;
             // 
             // dtpDatumProjekcije
             // 
             this.dtpDatumProjekcije.Location = new System.Drawing.Point(153, 138);
             this.dtpDatumProjekcije.Name = "dtpDatumProjekcije";
             this.dtpDatumProjekcije.Size = new System.Drawing.Size(282, 22);
-            this.dtpDatumProjekcije.TabIndex = 7;
+            this.dtpDatumProjekcije.TabIndex = 9;
             // 
             // btnProjekcijaInfo
             // 
             this.btnProjekcijaInfo.Location = new System.Drawing.Point(405, 34);
             this.btnProjekcijaInfo.Name = "btnProjekcijaInfo";
             this.btnProjekcijaInfo.Size = new System.Drawing.Size(30, 26);
-            this.btnProjekcijaInfo.TabIndex = 53;
+            this.btnProjekcijaInfo.TabIndex = 2;
             this.btnProjekcijaInfo.Text = "i";
             this.btnProjekcijaInfo.UseVisualStyleBackColor = true;
             this.btnProjekcijaInfo.Click += new System.EventHandler(this.btnProjekcijaInfo_Click);
@@ -151,13 +152,24 @@
             this.cmbBrojSjedista.Location = new System.Drawing.Point(153, 103);
             this.cmbBrojSjedista.Name = "cmbBrojSjedista";
             this.cmbBrojSjedista.Size = new System.Drawing.Size(282, 24);
-            this.cmbBrojSjedista.TabIndex = 54;
+            this.cmbBrojSjedista.TabIndex = 7;
+            // 
+            // brnNoviKorisnik
+            // 
+            this.brnNoviKorisnik.Location = new System.Drawing.Point(405, 66);
+            this.brnNoviKorisnik.Name = "brnNoviKorisnik";
+            this.brnNoviKorisnik.Size = new System.Drawing.Size(30, 26);
+            this.brnNoviKorisnik.TabIndex = 5;
+            this.brnNoviKorisnik.Text = "+";
+            this.brnNoviKorisnik.UseVisualStyleBackColor = true;
+            this.brnNoviKorisnik.Click += new System.EventHandler(this.brnNoviKorisnik_Click);
             // 
             // frmRezervacijeAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 257);
+            this.Controls.Add(this.brnNoviKorisnik);
             this.Controls.Add(this.cmbBrojSjedista);
             this.Controls.Add(this.btnProjekcijaInfo);
             this.Controls.Add(this.dtpDatumProjekcije);
@@ -194,5 +206,6 @@
         private System.Windows.Forms.DateTimePicker dtpDatumProjekcije;
         private System.Windows.Forms.Button btnProjekcijaInfo;
         private System.Windows.Forms.ComboBox cmbBrojSjedista;
+        private System.Windows.Forms.Button brnNoviKorisnik;
     }
 }
