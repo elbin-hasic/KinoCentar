@@ -30,6 +30,7 @@ namespace KinoCentar.API.Controllers
         public async Task<ActionResult<IEnumerable<Projekcija>>> GetProjekcija()
         {
             return await _context.Projekcija
+                        .Include(x => x.Termini).AsNoTracking()
                         .Include(x => x.Film).AsNoTracking()
                         .Include(x => x.Sala).AsNoTracking()
                         .ToListAsync();
@@ -43,6 +44,7 @@ namespace KinoCentar.API.Controllers
             if (string.IsNullOrEmpty(name))
             {
                 return await _context.Projekcija
+                            .Include(x => x.Termini).AsNoTracking()
                             .Include(x => x.Film).AsNoTracking()
                             .Include(x => x.Sala).AsNoTracking()
                             .ToListAsync();
@@ -50,6 +52,7 @@ namespace KinoCentar.API.Controllers
             else
             {
                 return await _context.Projekcija
+                            .Include(x => x.Termini).AsNoTracking()
                             .Include(x => x.Film).AsNoTracking()
                             .Include(x => x.Sala).AsNoTracking()
                             .Where(x => x.Film.Naslov.Contains(name)).ToListAsync();
@@ -63,6 +66,7 @@ namespace KinoCentar.API.Controllers
         {
             var dtn = DateTime.Now.Date;
             return await _context.Projekcija
+                            .Include(x => x.Termini).AsNoTracking()
                             .Include(x => x.Film).AsNoTracking()
                             .Include(x => x.Sala).AsNoTracking()
                             .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn).ToListAsync();
@@ -107,6 +111,7 @@ namespace KinoCentar.API.Controllers
                     if (recommendedRediteljiIds.Any() && recommendedZanroviIds.Any())
                     {
                         recommendedProjekcije = await _context.Projekcija
+                                                        .Include(x => x.Termini).AsNoTracking()
                                                         .Include(x => x.Film).AsNoTracking()
                                                         .Include(x => x.Sala).AsNoTracking()
                                                         .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn &&
@@ -119,6 +124,7 @@ namespace KinoCentar.API.Controllers
                     else if (recommendedRediteljiIds.Any())
                     {
                         recommendedProjekcije = await _context.Projekcija
+                                                        .Include(x => x.Termini).AsNoTracking()
                                                         .Include(x => x.Film).AsNoTracking()
                                                         .Include(x => x.Sala).AsNoTracking()
                                                         .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn &&
@@ -130,6 +136,7 @@ namespace KinoCentar.API.Controllers
                     else
                     {
                         recommendedProjekcije = await _context.Projekcija
+                                                        .Include(x => x.Termini).AsNoTracking()
                                                         .Include(x => x.Film).AsNoTracking()
                                                         .Include(x => x.Sala).AsNoTracking()
                                                         .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn &&
@@ -148,6 +155,7 @@ namespace KinoCentar.API.Controllers
             else
             {
                 return await _context.Projekcija
+                            .Include(x => x.Termini).AsNoTracking()
                             .Include(x => x.Film).AsNoTracking()
                             .Include(x => x.Sala).AsNoTracking()
                             .Where(x => x.VrijediOd.Date <= dtn && x.VrijediDo.Date >= dtn)
@@ -156,11 +164,31 @@ namespace KinoCentar.API.Controllers
             }
         }
 
+        // GET: api/Projekcije/Terms/{projekcijaId}
+        [HttpGet]
+        [Route("Terms/{projekcijaId}")]
+        public async Task<ActionResult<IEnumerable<ProjekcijaTermin>>> GetRezervacijaTerms(int projekcijaId)
+        {
+            var projekcija = await _context.Projekcija
+                                    .Include(x => x.Termini).AsNoTracking()
+                                    .FirstOrDefaultAsync(x => x.Id == projekcijaId);
+            if (projekcija == null)
+            {
+                return NotFound();
+            }
+
+            var termini = projekcija.Termini.ToList();
+
+            return termini;
+        }
+
         // GET: api/Projekcije/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Projekcija>> GetProjekcija(int id)
         {
-            var projekcija = await _context.Projekcija.FindAsync(id);
+            var projekcija = await _context.Projekcija
+                                           .Include(x => x.Termini).AsNoTracking()
+                                           .FirstOrDefaultAsync(x => x.Id == id);
 
             if (projekcija == null)
             {
@@ -182,6 +210,21 @@ namespace KinoCentar.API.Controllers
             if (ProjekcijaExists(projekcija.FilmId, projekcija.VrijediOd, projekcija.VrijediDo, projekcija.Id))
             {
                 return StatusCode((int)HttpStatusCode.Conflict, Messages.projekcija_err);
+            }
+
+            if (projekcija.Termini != null && projekcija.Termini.Any())
+            {
+                foreach (var termin in projekcija.Termini)
+                {
+                    if (termin.Id == 0)
+                    {
+                        _context.ProjekcijaTermin.Add(termin);
+                    }
+                    else
+                    {
+                        _context.Entry(termin).State = EntityState.Modified;
+                    }
+                }
             }
 
             _context.Entry(projekcija).State = EntityState.Modified;

@@ -31,8 +31,8 @@ namespace KinoCentar.API.EntityModels.Extensions
                     if (prodaja.RezervacijeStavke.Any())
                     {
                         var rezervacija = prodaja.RezervacijeStavke.First().Rezervacija;
-                        FilmNaslov = rezervacija.Projekcija.Film.Naslov;
-                        SalaNaziv = rezervacija.Projekcija.Sala.Naziv;
+                        FilmNaslov = rezervacija.ProjekcijaTermin.Projekcija.Film.Naslov;
+                        SalaNaziv = rezervacija.ProjekcijaTermin.Projekcija.Sala.Naziv;
                     }
                 }
                 catch

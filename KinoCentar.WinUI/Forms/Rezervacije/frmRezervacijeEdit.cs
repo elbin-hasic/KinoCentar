@@ -59,7 +59,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             {
                 var projekcije = projekcijeResponse.GetResponseResult<List<ProjekcijaModel>>();
                 cmbProjekcija.DataSource = projekcije;
-                cmbProjekcija.DisplayMember = "FilmNaslov";
+                cmbProjekcija.DisplayMember = "FilmDatumNaslov";
                 cmbProjekcija.ValueMember = "Id";
                 foreach (var projekcijaItem in projekcije)
                 {
@@ -92,6 +92,23 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                 cmbBrojSjedista.SelectedIndex = cmbBrojSjedista.FindStringExact(_r.BrojSjedista.ToString());
             }
 
+            var retTerminiResponse = projekcijeService.GetActionResponse("Terms", projekcija.Id.ToString()).Handle();
+            if (retTerminiResponse.IsSuccessStatusCode)
+            {
+                var termini = retTerminiResponse.GetResponseResult<List<ProjekcijaTerminModel>>();
+                cmbTermin.DataSource = termini;
+                cmbTermin.DisplayMember = "TerminShort";
+                cmbTermin.ValueMember = "Id";
+                foreach (var terminItem in termini)
+                {
+                    if (terminItem.Id == _r.ProjekcijaTerminId)
+                    {
+                        cmbTermin.SelectedItem = terminItem;
+                        break;
+                    }
+                }
+            }
+
             LoadKorisnici();
 
             dtpDatumProjekcije.Value = _r.DatumProjekcije;
@@ -101,7 +118,11 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
         {
             if (_r != null && this.ValidateChildren())
             {
-                _r.ProjekcijaId = ((ProjekcijaModel)cmbProjekcija.SelectedItem).Id;
+                var projekcija = ((ProjekcijaModel)cmbProjekcija.SelectedItem);
+                var projekcijaTermin = ((ProjekcijaTerminModel)cmbTermin.SelectedItem);
+
+                _r.ProjekcijaId = projekcija.Id;
+                _r.ProjekcijaTerminId = projekcijaTermin.Id;
                 _r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
                 _r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
                 _r.DatumProjekcije = dtpDatumProjekcije.Value;

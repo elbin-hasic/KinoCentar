@@ -103,9 +103,15 @@ namespace KinoCentar.API.EntityModels
 
             var dtn = DateTime.Now;
 
+            var ts = new TimeSpan(16, 0, 0);
+            var termini1 = new List<ProjekcijaTermin>();
+            termini1.Add(new ProjekcijaTermin { Termin = ts });
+            var termini2 = new List<ProjekcijaTermin>();
+            termini2.Add(new ProjekcijaTermin { Termin = ts });
+
             var projekcije = new List<Projekcija>();
-            projekcije.Add(new Projekcija { Cijena = 3m, Datum = dtn, VrijediOd = dtn.AddDays(-15), VrijediDo = dtn.AddDays(15), Film = filmovi[0], Sala = sale[0] });
-            projekcije.Add(new Projekcija { Cijena = 4m, Datum = dtn, VrijediOd = dtn.AddDays(-15), VrijediDo = dtn.AddDays(15), Film = filmovi[1], Sala = sale[1] });
+            projekcije.Add(new Projekcija { Cijena = 3m, Datum = dtn, VrijediOd = dtn.AddDays(-15), VrijediDo = dtn.AddDays(15), Film = filmovi[0], Sala = sale[0], Termini = termini1 });
+            projekcije.Add(new Projekcija { Cijena = 4m, Datum = dtn, VrijediOd = dtn.AddDays(-15), VrijediDo = dtn.AddDays(15), Film = filmovi[1], Sala = sale[1], Termini = termini2 });
             context.Projekcija.AddRange(projekcije);
 
             var artikli = new List<Artikal>();

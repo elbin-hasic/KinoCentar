@@ -9,13 +9,23 @@ namespace KinoCentar.Shared.Models
     {
         public int Id { get; set; }
 
-        public int ProjekcijaId { get; set; }
+        public int? ProjekcijaId { get; set; }
+
+        public int ProjekcijaTerminId { get; set; }
 
         public string FilmNaslov
         {
             get
             {
                 return Projekcija?.Film?.Naslov;
+            }
+        }
+
+        public string VrijediOdDoShortDate
+        {
+            get
+            {
+                return Projekcija?.VrijediOdDoShortDate;
             }
         }
 
@@ -64,7 +74,7 @@ namespace KinoCentar.Shared.Models
         {
             get
             {
-                return DatumProjekcije.ToShortDateString();
+                return $"{DatumProjekcije.ToShortDateString()} {ProjekcijaTermin?.Termin:hh\\:mm}";
             }
         }
 
@@ -112,7 +122,15 @@ namespace KinoCentar.Shared.Models
             }
         }
 
-        public ProjekcijaModel Projekcija { get; set; }
+        public ProjekcijaModel Projekcija
+        {
+            get
+            {
+                return ProjekcijaTermin?.Projekcija;
+            }
+        }
+
+        public ProjekcijaTerminModel ProjekcijaTermin { get; set; }
 
         public KorisnikModel Korisnik { get; set; }
     }

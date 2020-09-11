@@ -9,6 +9,7 @@ using KinoCentar.API.EntityModels;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using KinoCentar.Shared;
+using KinoCentar.API.EntityModels.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -30,8 +31,8 @@ namespace KinoCentar.API.Controllers
         {
             return await _context.Rezervacija
                         .Include(x => x.Korisnik).AsNoTracking()
-                        .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                        .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                        .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                        .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                         .ToListAsync();
         }
 
@@ -44,16 +45,16 @@ namespace KinoCentar.API.Controllers
             {
                 return await _context.Rezervacija
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .ToListAsync();
             }
             else
             {
-                return await _context.Rezervacija.Where(x => x.Projekcija.Film.Naslov.Contains(name))
+                return await _context.Rezervacija.Where(x => x.ProjekcijaTermin.Projekcija.Film.Naslov.Contains(name))
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .ToListAsync();
             }
         }
@@ -70,8 +71,8 @@ namespace KinoCentar.API.Controllers
 
             return await _context.Rezervacija
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .Where(x => x.Korisnik.KorisnickoIme.ToLower() == userName.ToLower())
                             .ToListAsync();
         }
@@ -85,8 +86,8 @@ namespace KinoCentar.API.Controllers
             {
                 return await _context.Rezervacija
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .Where(x => x.DatumProdano != null && x.DatumOtkazano != null)
                             .ToListAsync();
             }
@@ -94,8 +95,8 @@ namespace KinoCentar.API.Controllers
             {
                 return await _context.Rezervacija
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .Where(x => x.DatumProdano != null)
                             .ToListAsync();
             }
@@ -103,8 +104,8 @@ namespace KinoCentar.API.Controllers
             {
                 return await _context.Rezervacija
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .Where(x => x.DatumOtkazano != null)
                             .ToListAsync();
             }
@@ -112,19 +113,20 @@ namespace KinoCentar.API.Controllers
             {
                 return await _context.Rezervacija
                             .Include(x => x.Korisnik).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
-                            .Include(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Film).AsNoTracking()
+                            .Include(x => x.ProjekcijaTermin).ThenInclude(x => x.Projekcija).ThenInclude(x => x.Sala).AsNoTracking()
                             .Where(x => x.DatumProdano == null && x.DatumOtkazano == null)
                             .ToListAsync();
             }
         }
 
-        // GET: api/Rezervacije
+        // GET: api/Rezervacije/FreeSeats/{projekcijaId}/{rezervacijaId?}
         [HttpGet]
         [Route("FreeSeats/{projekcijaId}/{rezervacijaId?}")]
         public async Task<ActionResult<IEnumerable<int>>> GetRezervacijaSeats(int projekcijaId, int? rezervacijaId = null)
         {
-            var projekcija = await _context.Projekcija.Include(x => x.Sala).AsNoTracking()
+            var projekcija = await _context.Projekcija
+                                    .Include(x => x.Sala).AsNoTracking()
                                     .FirstOrDefaultAsync(x => x.Id == projekcijaId);
             if (projekcija == null)
             {
@@ -144,12 +146,12 @@ namespace KinoCentar.API.Controllers
             var rezbrojeviSjedista = new List<int>();
             if (rezervacijaId != null)
             {
-                rezbrojeviSjedista = await _context.Rezervacija.Where(x => x.ProjekcijaId == projekcijaId && x.Id != rezervacijaId.Value)
+                rezbrojeviSjedista = await _context.Rezervacija.Where(x => x.ProjekcijaTermin.ProjekcijaId == projekcijaId && x.Id != rezervacijaId.Value)
                                                                .Select(x => x.BrojSjedista).ToListAsync();
             }
             else
             {
-                rezbrojeviSjedista = await _context.Rezervacija.Where(x => x.ProjekcijaId == projekcijaId)
+                rezbrojeviSjedista = await _context.Rezervacija.Where(x => x.ProjekcijaTermin.ProjekcijaId == projekcijaId)
                                                                .Select(x => x.BrojSjedista).ToListAsync();
             }
 
@@ -197,7 +199,7 @@ namespace KinoCentar.API.Controllers
             {
                 rezervacija = await _context.Rezervacija.FirstOrDefaultAsync(x => x.KorisnikId != null &&
                                                               x.KorisnikId == korisnik.Id &&
-                                                              x.ProjekcijaId == projectionId &&
+                                                              x.ProjekcijaTermin.ProjekcijaId == projectionId &&
                                                               x.DatumOtkazano == null && x.DatumProdano == null);
             }
 
@@ -211,14 +213,14 @@ namespace KinoCentar.API.Controllers
 
         // PUT: api/Rezervacije/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRezervacija(int id, Rezervacija rezervacija)
+        public async Task<IActionResult> PutRezervacija(int id, RezervacijaExtension rezervacija)
         {
-            if (id != rezervacija.Id)
+            if (rezervacija.ProjekcijaId == null || id != rezervacija.Id)
             {
                 return BadRequest();
             }
 
-            if (RezervacijaExists(rezervacija.ProjekcijaId, rezervacija.KorisnikId.Value, rezervacija.DatumProjekcije, rezervacija.Id))
+            if (RezervacijaExists(rezervacija.ProjekcijaId.Value, rezervacija.ProjekcijaTerminId, rezervacija.KorisnikId, rezervacija.DatumProjekcije, rezervacija.Id))
             {
                 return StatusCode((int)HttpStatusCode.Conflict, Messages.rezervacija_err);
             }
@@ -272,9 +274,14 @@ namespace KinoCentar.API.Controllers
 
         // POST: api/Rezervacije
         [HttpPost]
-        public async Task<ActionResult<Rezervacija>> PostRezervacija(Rezervacija rezervacija)
+        public async Task<ActionResult<Rezervacija>> PostRezervacija(RezervacijaExtension rezervacija)
         {
-            if (RezervacijaExists(rezervacija.ProjekcijaId, rezervacija.KorisnikId.Value, rezervacija.DatumProjekcije))
+            if (rezervacija.ProjekcijaId == null)
+            {
+                return BadRequest();
+            }
+
+            if (RezervacijaExists(rezervacija.ProjekcijaId.Value, rezervacija.ProjekcijaTerminId, rezervacija.KorisnikId, rezervacija.DatumProjekcije))
             {
                 return StatusCode((int)HttpStatusCode.Conflict, Messages.rezervacija_err);
             }
@@ -306,18 +313,20 @@ namespace KinoCentar.API.Controllers
             return _context.Rezervacija.Any(e => e.Id == id);
         }
 
-        private bool RezervacijaExists(int projekcijaId, int korisnikId, DateTime datumProjekcije, int? id = null)
+        private bool RezervacijaExists(int projekcijaId, int projekcijaTerminId, int? korisnikId, DateTime datumProjekcije, int? id = null)
         {
             if (id != null)
             {
-                return _context.Rezervacija.Any(e => e.ProjekcijaId == projekcijaId && 
+                return _context.Rezervacija.Any(e => e.ProjekcijaTermin.ProjekcijaId == projekcijaId &&
+                                                     e.ProjekcijaTerminId == projekcijaTerminId &&
                                                      e.KorisnikId == korisnikId &&
                                                      e.DatumProjekcije.Date == datumProjekcije.Date &&
                                                      e.Id != id.Value);
             }
             else
             {
-                return _context.Rezervacija.Any(e => e.ProjekcijaId == projekcijaId && 
+                return _context.Rezervacija.Any(e => e.ProjekcijaTermin.ProjekcijaId == projekcijaId &&
+                                                     e.ProjekcijaTerminId == projekcijaTerminId &&
                                                      e.KorisnikId == korisnikId &&
                                                      e.DatumProjekcije.Date == datumProjekcije.Date);
             }

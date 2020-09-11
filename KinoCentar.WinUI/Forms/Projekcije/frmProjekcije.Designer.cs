@@ -41,6 +41,7 @@
             this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VrijediOdShortDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VrijediDoShortDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TerminiPrikaz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjekcije)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +92,8 @@
             this.SalaNaziv,
             this.Cijena,
             this.VrijediOdShortDate,
-            this.VrijediDoShortDate});
+            this.VrijediDoShortDate,
+            this.TerminiPrikaz});
             this.dgvProjekcije.Location = new System.Drawing.Point(0, 75);
             this.dgvProjekcije.MultiSelect = false;
             this.dgvProjekcije.Name = "dgvProjekcije";
@@ -183,6 +185,15 @@
             this.VrijediDoShortDate.ReadOnly = true;
             this.VrijediDoShortDate.Width = 140;
             // 
+            // TerminiPrikaz
+            // 
+            this.TerminiPrikaz.DataPropertyName = "TerminiPrikaz";
+            this.TerminiPrikaz.HeaderText = "Termini";
+            this.TerminiPrikaz.MinimumWidth = 6;
+            this.TerminiPrikaz.Name = "TerminiPrikaz";
+            this.TerminiPrikaz.ReadOnly = true;
+            this.TerminiPrikaz.Width = 125;
+            // 
             // frmProjekcije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -220,5 +231,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
         private System.Windows.Forms.DataGridViewTextBoxColumn VrijediOdShortDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn VrijediDoShortDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TerminiPrikaz;
     }
 }

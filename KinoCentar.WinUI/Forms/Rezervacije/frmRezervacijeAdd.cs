@@ -38,7 +38,7 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             {
                 var projekcije = projekcijeResponse.GetResponseResult<List<ProjekcijaModel>>();
                 cmbProjekcija.DataSource = projekcije;
-                cmbProjekcija.DisplayMember = "FilmNaslov";
+                cmbProjekcija.DisplayMember = "FilmDatumNaslov";
                 cmbProjekcija.ValueMember = "Id";
             }
 
@@ -51,8 +51,10 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             {
                 var r = new RezervacijaModel();
                 var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
+                var projekcijaTermin = (ProjekcijaTerminModel)cmbTermin.SelectedItem;
 
                 r.ProjekcijaId = projekcija.Id;
+                r.ProjekcijaTerminId = projekcijaTermin.Id;
                 r.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
                 r.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
 
@@ -109,8 +111,8 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
             {
                 var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
 
-                dtpDatumProjekcije.MinDate = projekcija.VrijediOd;
                 dtpDatumProjekcije.MaxDate = projekcija.VrijediDo;
+                dtpDatumProjekcije.MinDate = projekcija.VrijediOd;
 
                 var retSjedistaResponse = rezervacijeService.GetActionResponse("FreeSeats", projekcija.Id.ToString()).Handle();
                 if (retSjedistaResponse.IsSuccessStatusCode)
@@ -118,8 +120,17 @@ namespace KinoCentar.WinUI.Forms.Rezervacije
                     var retSjedista = retSjedistaResponse.GetResponseResult<List<int>>();
                     cmbBrojSjedista.DataSource = retSjedista;
                 }
+
+                var retTerminiResponse = projekcijeService.GetActionResponse("Terms", projekcija.Id.ToString()).Handle();
+                if (retTerminiResponse.IsSuccessStatusCode)
+                {
+                    var termini = retTerminiResponse.GetResponseResult<List<ProjekcijaTerminModel>>();
+                    cmbTermin.DataSource = termini;
+                    cmbTermin.DisplayMember = "TerminShort";
+                    cmbTermin.ValueMember = "Id";
+                }
             }
-            catch
+            catch (Exception ex)
             { }
         }
 

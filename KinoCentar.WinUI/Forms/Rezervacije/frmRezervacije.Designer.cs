@@ -41,6 +41,7 @@
             this.SalaNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrojSjedista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VrijediOdDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatumProjekcijeShortDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KorisnikImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsProdano = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -97,6 +98,7 @@
             this.SalaNaziv,
             this.BrojSjedista,
             this.Cijena,
+            this.VrijediOdDo,
             this.DatumProjekcijeShortDate,
             this.KorisnikImePrezime,
             this.IsProdano,
@@ -167,7 +169,7 @@
             this.FilmNaslov.MinimumWidth = 6;
             this.FilmNaslov.Name = "FilmNaslov";
             this.FilmNaslov.ReadOnly = true;
-            this.FilmNaslov.Width = 240;
+            this.FilmNaslov.Width = 220;
             // 
             // SalaNaziv
             // 
@@ -185,7 +187,6 @@
             this.BrojSjedista.MinimumWidth = 6;
             this.BrojSjedista.Name = "BrojSjedista";
             this.BrojSjedista.ReadOnly = true;
-            this.BrojSjedista.Width = 120;
             // 
             // Cijena
             // 
@@ -195,14 +196,23 @@
             this.Cijena.Name = "Cijena";
             this.Cijena.ReadOnly = true;
             // 
+            // VrijediOdDo
+            // 
+            this.VrijediOdDo.DataPropertyName = "VrijediOdDoShortDate";
+            this.VrijediOdDo.HeaderText = "Vrijedi [od - do]";
+            this.VrijediOdDo.MinimumWidth = 6;
+            this.VrijediOdDo.Name = "VrijediOdDo";
+            this.VrijediOdDo.ReadOnly = true;
+            this.VrijediOdDo.Width = 150;
+            // 
             // DatumProjekcijeShortDate
             // 
             this.DatumProjekcijeShortDate.DataPropertyName = "DatumProjekcijeShortDate";
-            this.DatumProjekcijeShortDate.HeaderText = "Rezervisani datum";
+            this.DatumProjekcijeShortDate.HeaderText = "Rezervisani termin";
             this.DatumProjekcijeShortDate.MinimumWidth = 6;
             this.DatumProjekcijeShortDate.Name = "DatumProjekcijeShortDate";
             this.DatumProjekcijeShortDate.ReadOnly = true;
-            this.DatumProjekcijeShortDate.Width = 160;
+            this.DatumProjekcijeShortDate.Width = 150;
             // 
             // KorisnikImePrezime
             // 
@@ -211,7 +221,7 @@
             this.KorisnikImePrezime.MinimumWidth = 6;
             this.KorisnikImePrezime.Name = "KorisnikImePrezime";
             this.KorisnikImePrezime.ReadOnly = true;
-            this.KorisnikImePrezime.Width = 160;
+            this.KorisnikImePrezime.Width = 120;
             // 
             // IsProdano
             // 
@@ -228,7 +238,7 @@
             this.DatumProdano.MinimumWidth = 6;
             this.DatumProdano.Name = "DatumProdano";
             this.DatumProdano.ReadOnly = true;
-            this.DatumProdano.Width = 160;
+            this.DatumProdano.Width = 120;
             // 
             // IsOtkazano
             // 
@@ -245,7 +255,7 @@
             this.DatumOtkazano.MinimumWidth = 6;
             this.DatumOtkazano.Name = "DatumOtkazano";
             this.DatumOtkazano.ReadOnly = true;
-            this.DatumOtkazano.Width = 160;
+            this.DatumOtkazano.Width = 120;
             // 
             // frmRezervacije
             // 
@@ -285,6 +295,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SalaNaziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrojSjedista;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VrijediOdDo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumProjekcijeShortDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn KorisnikImePrezime;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsProdano;

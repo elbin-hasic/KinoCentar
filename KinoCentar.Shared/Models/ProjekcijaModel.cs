@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace KinoCentar.Shared.Models
@@ -16,6 +17,14 @@ namespace KinoCentar.Shared.Models
             get
             {
                 return Film?.Naslov;
+            }
+        }
+
+        public string FilmDatumNaslov
+        {
+            get
+            {
+                return $"{Film?.Naslov} [{VrijediOdDoShortDate}]";
             }
         }
 
@@ -96,5 +105,22 @@ namespace KinoCentar.Shared.Models
         public FilmModel Film { get; set; }
 
         public SalaModel Sala { get; set; }
+
+        public string TerminiPrikaz
+        {
+            get
+            {
+                try
+                {
+                    return string.Join("; ", Termini.Select(x => x.Termin.ToString(@"hh\:mm")).ToList());
+                }
+                catch
+                {
+                    return string.Empty;
+                }                
+            }
+        }
+
+        public List<ProjekcijaTerminModel> Termini { get; set; }
     }
 }

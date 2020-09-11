@@ -52,7 +52,7 @@
             // 
             // btnPrikazi
             // 
-            this.btnPrikazi.Location = new System.Drawing.Point(831, 25);
+            this.btnPrikazi.Location = new System.Drawing.Point(841, 26);
             this.btnPrikazi.Name = "btnPrikazi";
             this.btnPrikazi.Size = new System.Drawing.Size(100, 26);
             this.btnPrikazi.TabIndex = 12;
@@ -78,7 +78,7 @@
             // 
             // dtpDatumDo
             // 
-            this.dtpDatumDo.Location = new System.Drawing.Point(505, 27);
+            this.dtpDatumDo.Location = new System.Drawing.Point(510, 27);
             this.dtpDatumDo.Name = "dtpDatumDo";
             this.dtpDatumDo.Size = new System.Drawing.Size(320, 22);
             this.dtpDatumDo.TabIndex = 15;
@@ -86,7 +86,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(418, 30);
+            this.label1.Location = new System.Drawing.Point(423, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 17);
             this.label1.TabIndex = 14;

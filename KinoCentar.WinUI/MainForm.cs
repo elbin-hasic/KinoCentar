@@ -70,8 +70,8 @@ namespace KinoCentar.WinUI
                         dojmoviToolStripMenuItem.Enabled = true;
                         anketeToolStripMenuItem.Enabled = true;
                         //
-                        rezervacijeToolStripMenuItem.Enabled = true;
-                        prodajaToolStripMenuItem.Enabled = true;
+                        /*rezervacijeToolStripMenuItem.Enabled = true;
+                        prodajaToolStripMenuItem.Enabled = true;*/
                         break;
                     case TipKorisnikaType.Moderator:
                         filmoviToolStripMenuItem.Enabled = true;
@@ -295,6 +295,15 @@ namespace KinoCentar.WinUI
         private void izvjestajiProdajaPoDatumuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frm = new frmIzvjestajiProdajaPoDatumu();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.Show();
+        }
+
+        private void izvjestajiRezervacijePoDatumuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmIzvjestajiRezervacijePoDatumu();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
 

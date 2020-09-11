@@ -17,6 +17,7 @@ using KinoCentar.WinUI.Forms.Projekcije;
 using KinoCentar.WinUI.Forms.Rezervacije;
 using KinoCentar.WinUI.Models.Enums;
 using KinoCentar.Shared.Extensions;
+using KinoCentar.WinUI.Forms.Korisnici;
 
 namespace KinoCentar.WinUI.Forms.Prodaja
 {
@@ -69,19 +70,11 @@ namespace KinoCentar.WinUI.Forms.Prodaja
             {
                 var projekcije = projekcijeResponse.GetResponseResult<List<ProjekcijaModel>>();
                 cmbProjekcija.DataSource = projekcije;
-                cmbProjekcija.DisplayMember = "FilmNaslov";
+                cmbProjekcija.DisplayMember = "FilmDatumNaslov";
                 cmbProjekcija.ValueMember = "Id";
             }
 
-            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
-            if (korisnikResponse.IsSuccessStatusCode)
-            {
-                var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();
-                korisnici.Insert(0, new KorisnikModel());
-                cmbKorisnik.DataSource = korisnici;
-                cmbKorisnik.DisplayMember = "ImePrezime";
-                cmbKorisnik.ValueMember = "Id";
-            }
+            LoadKorisnici();
         }
 
         private void btnSnimi_Click(object sender, EventArgs e)
@@ -106,36 +99,39 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                         break;
                 }
 
-                var p = new ProdajaModel();
-                
-                p.BrojRacuna = txtBrojRacuna.Text;
-                p.Datum = DateTime.Now;
-                p.ArtikliStavke = GetArtikliStavke(); 
-                p.KorisnikId = Global.PrijavljeniKorisnik.Id;
+                if (rezervacijaValid)
+                {
+                    var p = new ProdajaModel();
 
-                if (rezervacijaValid && rezervacija != null)
-                {
-                    p.RezervacijeStavke = new List<ProdajaRezervacijaDodjelaModel>();
-                    p.RezervacijeStavke.Add(new ProdajaRezervacijaDodjelaModel
-                    {
-                        RezervacijaId = rezervacija.Id,
-                        Cijena = rezervacija.Cijena
-                    });
-                }
+                    p.BrojRacuna = txtBrojRacuna.Text;
+                    p.Datum = DateTime.Now;
+                    p.ArtikliStavke = GetArtikliStavke();
+                    p.KorisnikId = Global.PrijavljeniKorisnik.Id;
 
-                HttpResponseMessage response = prodajaService.PostResponse(p).Handle();
-                if (response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show(Messages.add_prodaja_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    if (rezervacijaType == ProdajaRezervacijaType.NovaRezervacija && rezervacijaValid && rezervacija != null)
+                    if (rezervacija != null)
                     {
-                        rezervacijeService.DeleteResponse(rezervacija.Id).Handle();
+                        p.RezervacijeStavke = new List<ProdajaRezervacijaDodjelaModel>();
+                        p.RezervacijeStavke.Add(new ProdajaRezervacijaDodjelaModel
+                        {
+                            RezervacijaId = rezervacija.Id,
+                            Cijena = rezervacija.Cijena
+                        });
                     }
-                }
+
+                    HttpResponseMessage response = prodajaService.PostResponse(p).Handle();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show(Messages.add_prodaja_succ, Messages.msg_succ, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        if (rezervacijaType == ProdajaRezervacijaType.NovaRezervacija && rezervacijaValid && rezervacija != null)
+                        {
+                            rezervacijeService.DeleteResponse(rezervacija.Id).Handle();
+                        }
+                    }
+                }                
             }
         }
 
@@ -179,6 +175,19 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 var projekcijaId = ((ProjekcijaModel)cmbProjekcija.SelectedItem).Id;
                 var frm = new frmProjekcijeEdit(projekcijaId);
                 frm.ShowDialog();
+            }
+            catch
+            { }
+        }
+
+        private void btnNoviKorisnik_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmKorisniciAdd();
+                frm.ShowDialog();
+
+                LoadKorisnici();
             }
             catch
             { }
@@ -234,10 +243,32 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                     cmbBrojSjedista.DataSource = retSjedista;
                 }
 
+                var retTerminiResponse = projekcijeService.GetActionResponse("Terms", projekcija.Id.ToString()).Handle();
+                if (retTerminiResponse.IsSuccessStatusCode)
+                {
+                    var termini = retTerminiResponse.GetResponseResult<List<ProjekcijaTerminModel>>();
+                    cmbTermin.DataSource = termini;
+                    cmbTermin.DisplayMember = "TerminShort";
+                    cmbTermin.ValueMember = "Id";
+                }
+
                 UpdateRezervacijaCijenu(projekcija.Cijena);
             }
             catch
             { }
+        }
+
+        private void LoadKorisnici()
+        {
+            var korisnikResponse = korisniciService.GetActionResponse("Klijenti", "").Handle();
+            if (korisnikResponse.IsSuccessStatusCode)
+            {
+                var korisnici = korisnikResponse.GetResponseResult<List<KorisnikModel>>();
+                korisnici.Insert(0, new KorisnikModel());
+                cmbKorisnik.DataSource = korisnici;
+                cmbKorisnik.DisplayMember = "ImePrezime";
+                cmbKorisnik.ValueMember = "Id";
+            }
         }
 
         #region PrivateMethods
@@ -245,15 +276,22 @@ namespace KinoCentar.WinUI.Forms.Prodaja
         private HttpResponseMessage KreirajNovuRezervaciju()
         {
             var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
+            var projekcijaTermin = (ProjekcijaTerminModel)cmbTermin.SelectedItem;
 
             var model = new RezervacijaModel();
 
             model.ProjekcijaId = projekcija.Id;
-            if (cmbKorisnik.SelectedIndex != 0)
+            model.ProjekcijaTerminId = projekcijaTermin.Id;
+
+            if (cmbKorisnik.SelectedItem != null)
             {
-                model.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
+                var korisnik = ((KorisnikModel)cmbKorisnik.SelectedItem);
+                if (korisnik.Id > 0)
+                {
+                    model.KorisnikId = ((KorisnikModel)cmbKorisnik.SelectedItem).Id;
+                }                
             }
-            if (cmbBrojSjedista.SelectedIndex != 0)
+            if (cmbBrojSjedista.SelectedItem != null)
             {
                 model.BrojSjedista = Convert.ToInt32(cmbBrojSjedista.SelectedItem);
             }
@@ -386,7 +424,10 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 cmbProjekcija.Enabled = false;
                 btnProjekcijaInfo.Enabled = false;
                 cmbKorisnik.Enabled = false;
+                btnNoviKorisnik.Enabled = false;
                 cmbBrojSjedista.Enabled = false;
+                dtpDatumProjekcije.Enabled = false;
+                cmbTermin.Enabled = false;
                 //
                 UpdateRezervacijaCijenu(0);
             }
@@ -398,7 +439,10 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 cmbProjekcija.Enabled = false;
                 btnProjekcijaInfo.Enabled = false;
                 cmbKorisnik.Enabled = false;
+                btnNoviKorisnik.Enabled = false;
                 cmbBrojSjedista.Enabled = false;
+                dtpDatumProjekcije.Enabled = false;
+                cmbTermin.Enabled = false;
                 //
                 var rezervacija = (RezervacijaModel)cmbRezervacija.SelectedItem;
                 if (rezervacija != null)
@@ -414,7 +458,10 @@ namespace KinoCentar.WinUI.Forms.Prodaja
                 cmbProjekcija.Enabled = true;
                 btnProjekcijaInfo.Enabled = true;
                 cmbKorisnik.Enabled = true;
+                btnNoviKorisnik.Enabled = true;
                 cmbBrojSjedista.Enabled = true;
+                dtpDatumProjekcije.Enabled = true;
+                cmbTermin.Enabled = true;
                 //
                 var projekcija = (ProjekcijaModel)cmbProjekcija.SelectedItem;
                 UpdateRezervacijaCijenu(projekcija.Cijena);

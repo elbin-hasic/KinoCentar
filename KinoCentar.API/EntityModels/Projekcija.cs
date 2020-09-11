@@ -9,7 +9,7 @@ namespace KinoCentar.API.EntityModels
     {
         public Projekcija()
         {
-            this.Rezervacije = new HashSet<Rezervacija>();
+            this.Termini = new HashSet<ProjekcijaTermin>();
             this.PosjeteKorisnika = new HashSet<ProjekcijaKorisnikDodjela>();
         }
 
@@ -31,7 +31,7 @@ namespace KinoCentar.API.EntityModels
 
         public virtual Sala Sala { get; set; }
 
-        public virtual ICollection<Rezervacija> Rezervacije { get; set; }
+        public virtual ICollection<ProjekcijaTermin> Termini { get; set; }
 
         public virtual ICollection<ProjekcijaKorisnikDodjela> PosjeteKorisnika { get; set; }
     }

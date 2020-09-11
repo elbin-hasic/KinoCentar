@@ -42,6 +42,8 @@
             this.btnProjekcijaInfo = new System.Windows.Forms.Button();
             this.cmbBrojSjedista = new System.Windows.Forms.ComboBox();
             this.brnNoviKorisnik = new System.Windows.Forms.Button();
+            this.cmbTermin = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(335, 195);
+            this.btnSnimi.Location = new System.Drawing.Point(335, 215);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(100, 30);
             this.btnSnimi.TabIndex = 20;
@@ -67,7 +69,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(229, 195);
+            this.btnOdustani.Location = new System.Drawing.Point(229, 215);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(100, 30);
             this.btnOdustani.TabIndex = 21;
@@ -164,11 +166,32 @@
             this.brnNoviKorisnik.UseVisualStyleBackColor = true;
             this.brnNoviKorisnik.Click += new System.EventHandler(this.brnNoviKorisnik_Click);
             // 
+            // cmbTermin
+            // 
+            this.cmbTermin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTermin.FormattingEnabled = true;
+            this.cmbTermin.Location = new System.Drawing.Point(153, 171);
+            this.cmbTermin.Name = "cmbTermin";
+            this.cmbTermin.Size = new System.Drawing.Size(282, 24);
+            this.cmbTermin.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(91, 174);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Termin:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmRezervacijeAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 257);
+            this.ClientSize = new System.Drawing.Size(482, 281);
+            this.Controls.Add(this.cmbTermin);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.brnNoviKorisnik);
             this.Controls.Add(this.cmbBrojSjedista);
             this.Controls.Add(this.btnProjekcijaInfo);
@@ -207,5 +230,7 @@
         private System.Windows.Forms.Button btnProjekcijaInfo;
         private System.Windows.Forms.ComboBox cmbBrojSjedista;
         private System.Windows.Forms.Button brnNoviKorisnik;
+        private System.Windows.Forms.ComboBox cmbTermin;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -64,6 +64,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtBrojRacuna = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnNoviKorisnik = new System.Windows.Forms.Button();
+            this.cmbTermin = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -98,6 +101,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbTermin);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.btnNoviKorisnik);
             this.groupBox1.Controls.Add(this.dtpDatumProjekcije);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.rbBezRezervacije);
@@ -124,29 +130,30 @@
             // 
             // dtpDatumProjekcije
             // 
-            this.dtpDatumProjekcije.Location = new System.Drawing.Point(120, 226);
+            this.dtpDatumProjekcije.Enabled = false;
+            this.dtpDatumProjekcije.Location = new System.Drawing.Point(120, 233);
             this.dtpDatumProjekcije.Name = "dtpDatumProjekcije";
             this.dtpDatumProjekcije.Size = new System.Drawing.Size(305, 22);
-            this.dtpDatumProjekcije.TabIndex = 69;
+            this.dtpDatumProjekcije.TabIndex = 14;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 229);
+            this.label9.Location = new System.Drawing.Point(3, 236);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(111, 17);
-            this.label9.TabIndex = 68;
+            this.label9.TabIndex = 13;
             this.label9.Text = "Datum gledanja:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rbBezRezervacije
             // 
             this.rbBezRezervacije.AutoSize = true;
-            this.rbBezRezervacije.Location = new System.Drawing.Point(9, 262);
+            this.rbBezRezervacije.Location = new System.Drawing.Point(9, 313);
             this.rbBezRezervacije.Name = "rbBezRezervacije";
-            this.rbBezRezervacije.Size = new System.Drawing.Size(126, 21);
-            this.rbBezRezervacije.TabIndex = 67;
-            this.rbBezRezervacije.Text = "Bez rezervacije";
+            this.rbBezRezervacije.Size = new System.Drawing.Size(117, 21);
+            this.rbBezRezervacije.TabIndex = 15;
+            this.rbBezRezervacije.Text = "Bez projekcije";
             this.rbBezRezervacije.UseVisualStyleBackColor = true;
             this.rbBezRezervacije.CheckedChanged += new System.EventHandler(this.rbBezRezervacije_CheckedChanged);
             // 
@@ -173,18 +180,18 @@
             this.cmbBrojSjedista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBrojSjedista.Enabled = false;
             this.cmbBrojSjedista.FormattingEnabled = true;
-            this.cmbBrojSjedista.Location = new System.Drawing.Point(120, 191);
+            this.cmbBrojSjedista.Location = new System.Drawing.Point(120, 198);
             this.cmbBrojSjedista.Name = "cmbBrojSjedista";
             this.cmbBrojSjedista.Size = new System.Drawing.Size(305, 24);
-            this.cmbBrojSjedista.TabIndex = 64;
+            this.cmbBrojSjedista.TabIndex = 12;
             // 
             // btnProjekcijaInfo
             // 
             this.btnProjekcijaInfo.Enabled = false;
-            this.btnProjekcijaInfo.Location = new System.Drawing.Point(395, 122);
+            this.btnProjekcijaInfo.Location = new System.Drawing.Point(395, 129);
             this.btnProjekcijaInfo.Name = "btnProjekcijaInfo";
             this.btnProjekcijaInfo.Size = new System.Drawing.Size(30, 26);
-            this.btnProjekcijaInfo.TabIndex = 63;
+            this.btnProjekcijaInfo.TabIndex = 7;
             this.btnProjekcijaInfo.Text = "i";
             this.btnProjekcijaInfo.UseVisualStyleBackColor = true;
             this.btnProjekcijaInfo.Click += new System.EventHandler(this.btnProjekcijaInfo_Click);
@@ -194,60 +201,60 @@
             this.cmbKorisnik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbKorisnik.Enabled = false;
             this.cmbKorisnik.FormattingEnabled = true;
-            this.cmbKorisnik.Location = new System.Drawing.Point(120, 156);
+            this.cmbKorisnik.Location = new System.Drawing.Point(120, 163);
             this.cmbKorisnik.Name = "cmbKorisnik";
-            this.cmbKorisnik.Size = new System.Drawing.Size(305, 24);
-            this.cmbKorisnik.TabIndex = 61;
+            this.cmbKorisnik.Size = new System.Drawing.Size(269, 24);
+            this.cmbKorisnik.TabIndex = 9;
             // 
             // cmbProjekcija
             // 
             this.cmbProjekcija.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProjekcija.Enabled = false;
             this.cmbProjekcija.FormattingEnabled = true;
-            this.cmbProjekcija.Location = new System.Drawing.Point(120, 123);
+            this.cmbProjekcija.Location = new System.Drawing.Point(120, 130);
             this.cmbProjekcija.Name = "cmbProjekcija";
             this.cmbProjekcija.Size = new System.Drawing.Size(269, 24);
-            this.cmbProjekcija.TabIndex = 59;
+            this.cmbProjekcija.TabIndex = 6;
             this.cmbProjekcija.SelectedIndexChanged += new System.EventHandler(this.cmbProjekcija_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 194);
+            this.label3.Location = new System.Drawing.Point(25, 201);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 17);
-            this.label3.TabIndex = 62;
+            this.label3.TabIndex = 11;
             this.label3.Text = "Broj sjedišta:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 159);
+            this.label4.Location = new System.Drawing.Point(52, 166);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 17);
-            this.label4.TabIndex = 60;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Korisnik:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(41, 127);
+            this.label5.Location = new System.Drawing.Point(41, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 17);
-            this.label5.TabIndex = 58;
+            this.label5.TabIndex = 5;
             this.label5.Text = "Projekcija:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rbKreirajRezervaciju
             // 
             this.rbKreirajRezervaciju.AutoSize = true;
-            this.rbKreirajRezervaciju.Location = new System.Drawing.Point(9, 93);
+            this.rbKreirajRezervaciju.Location = new System.Drawing.Point(9, 100);
             this.rbKreirajRezervaciju.Name = "rbKreirajRezervaciju";
-            this.rbKreirajRezervaciju.Size = new System.Drawing.Size(143, 21);
-            this.rbKreirajRezervaciju.TabIndex = 57;
-            this.rbKreirajRezervaciju.Text = "Kreiraj rezervaciju";
+            this.rbKreirajRezervaciju.Size = new System.Drawing.Size(114, 21);
+            this.rbKreirajRezervaciju.TabIndex = 4;
+            this.rbKreirajRezervaciju.Text = "Prodaja karte";
             this.rbKreirajRezervaciju.UseVisualStyleBackColor = true;
             this.rbKreirajRezervaciju.CheckedChanged += new System.EventHandler(this.rbKreirajRezervaciju_CheckedChanged);
             // 
@@ -256,7 +263,7 @@
             this.btnRezervacijaInfo.Location = new System.Drawing.Point(395, 52);
             this.btnRezervacijaInfo.Name = "btnRezervacijaInfo";
             this.btnRezervacijaInfo.Size = new System.Drawing.Size(30, 26);
-            this.btnRezervacijaInfo.TabIndex = 56;
+            this.btnRezervacijaInfo.TabIndex = 3;
             this.btnRezervacijaInfo.Text = "i";
             this.btnRezervacijaInfo.UseVisualStyleBackColor = true;
             this.btnRezervacijaInfo.Click += new System.EventHandler(this.btnRezervacijaInfo_Click);
@@ -268,7 +275,7 @@
             this.cmbRezervacija.Location = new System.Drawing.Point(120, 53);
             this.cmbRezervacija.Name = "cmbRezervacija";
             this.cmbRezervacija.Size = new System.Drawing.Size(269, 24);
-            this.cmbRezervacija.TabIndex = 55;
+            this.cmbRezervacija.TabIndex = 2;
             this.cmbRezervacija.SelectedIndexChanged += new System.EventHandler(this.cmbRezervacija_SelectedIndexChanged);
             // 
             // label2
@@ -277,7 +284,7 @@
             this.label2.Location = new System.Drawing.Point(28, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 17);
-            this.label2.TabIndex = 54;
+            this.label2.TabIndex = 1;
             this.label2.Text = "Rezervacija:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -287,10 +294,10 @@
             this.rbIzaberiRezervaciju.Checked = true;
             this.rbIzaberiRezervaciju.Location = new System.Drawing.Point(9, 24);
             this.rbIzaberiRezervaciju.Name = "rbIzaberiRezervaciju";
-            this.rbIzaberiRezervaciju.Size = new System.Drawing.Size(144, 21);
+            this.rbIzaberiRezervaciju.Size = new System.Drawing.Size(257, 21);
             this.rbIzaberiRezervaciju.TabIndex = 0;
             this.rbIzaberiRezervaciju.TabStop = true;
-            this.rbIzaberiRezervaciju.Text = "Izaberi rezervaciju";
+            this.rbIzaberiRezervaciju.Text = "Prodaja karte na osnovu rezervacije";
             this.rbIzaberiRezervaciju.UseVisualStyleBackColor = true;
             this.rbIzaberiRezervaciju.CheckedChanged += new System.EventHandler(this.rbIzaberiRezervaciju_CheckedChanged);
             // 
@@ -441,6 +448,37 @@
             this.label8.Text = "Broj računa:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // btnNoviKorisnik
+            // 
+            this.btnNoviKorisnik.Enabled = false;
+            this.btnNoviKorisnik.Location = new System.Drawing.Point(395, 161);
+            this.btnNoviKorisnik.Name = "btnNoviKorisnik";
+            this.btnNoviKorisnik.Size = new System.Drawing.Size(30, 26);
+            this.btnNoviKorisnik.TabIndex = 10;
+            this.btnNoviKorisnik.Text = "+";
+            this.btnNoviKorisnik.UseVisualStyleBackColor = true;
+            this.btnNoviKorisnik.Click += new System.EventHandler(this.btnNoviKorisnik_Click);
+            // 
+            // cmbTermin
+            // 
+            this.cmbTermin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTermin.Enabled = false;
+            this.cmbTermin.FormattingEnabled = true;
+            this.cmbTermin.Location = new System.Drawing.Point(120, 266);
+            this.cmbTermin.Name = "cmbTermin";
+            this.cmbTermin.Size = new System.Drawing.Size(305, 24);
+            this.cmbTermin.TabIndex = 68;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(58, 269);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 17);
+            this.label10.TabIndex = 67;
+            this.label10.Text = "Termin:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // frmProdajaAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -506,5 +544,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtpDatumProjekcije;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnNoviKorisnik;
+        private System.Windows.Forms.ComboBox cmbTermin;
+        private System.Windows.Forms.Label label10;
     }
 }

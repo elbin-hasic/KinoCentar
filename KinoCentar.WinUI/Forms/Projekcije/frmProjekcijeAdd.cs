@@ -68,6 +68,8 @@ namespace KinoCentar.WinUI.Forms.Projekcije
                 p.VrijediDo = dtpVrijediDo.Value;
                 p.Datum = DateTime.Now;
 
+                p.Termini = GetTermini();
+
                 HttpResponseMessage response = projekcijeService.PostResponse(p).Handle();
                 if (response.IsSuccessStatusCode)
                 {
@@ -75,6 +77,35 @@ namespace KinoCentar.WinUI.Forms.Projekcije
                     this.Close();
                 }
             }
+        }
+
+        private List<ProjekcijaTerminModel> GetTermini()
+        {
+            var termini = new List<ProjekcijaTerminModel>();
+
+            termini.Add(new ProjekcijaTerminModel { Termin = dtpTermin1.Value.TimeOfDay });
+            if (cbTermin2.Checked)
+            {
+                termini.Add(new ProjekcijaTerminModel { Termin = dtpTermin2.Value.TimeOfDay });
+            }
+            if (cbTermin3.Checked)
+            {
+                termini.Add(new ProjekcijaTerminModel { Termin = dtpTermin3.Value.TimeOfDay });
+            }
+            if (cbTermin4.Checked)
+            {
+                termini.Add(new ProjekcijaTerminModel { Termin = dtpTermin4.Value.TimeOfDay });
+            }
+            if (cbTermin5.Checked)
+            {
+                termini.Add(new ProjekcijaTerminModel { Termin = dtpTermin5.Value.TimeOfDay });
+            }
+            if (cbTermin6.Checked)
+            {
+                termini.Add(new ProjekcijaTerminModel { Termin = dtpTermin6.Value.TimeOfDay });
+            }
+
+            return termini;
         }
 
         private void btnOdustani_Click(object sender, EventArgs e)
@@ -137,5 +168,65 @@ namespace KinoCentar.WinUI.Forms.Projekcije
         }
 
         #endregion
+
+        private void cbTermin2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTermin2.Checked)
+            {
+                dtpTermin2.Enabled = true;
+            }
+            else
+            {
+                dtpTermin2.Enabled = false;
+            }
+        }
+
+        private void cbTermin3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTermin3.Checked)
+            {
+                dtpTermin3.Enabled = true;
+            }
+            else
+            {
+                dtpTermin3.Enabled = false;
+            }
+        }
+
+        private void cbTermin4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTermin4.Checked)
+            {
+                dtpTermin4.Enabled = true;
+            }
+            else
+            {
+                dtpTermin4.Enabled = false;
+            }
+        }
+
+        private void cbTermin5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTermin5.Checked)
+            {
+                dtpTermin5.Enabled = true;
+            }
+            else
+            {
+                dtpTermin5.Enabled = false;
+            }
+        }
+
+        private void cbTermin6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTermin6.Checked)
+            {
+                dtpTermin6.Enabled = true;
+            }
+            else
+            {
+                dtpTermin6.Enabled = false;
+            }
+        }
     }
 }

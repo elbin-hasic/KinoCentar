@@ -43,7 +43,21 @@
             this.dtpVrijediOd = new System.Windows.Forms.DateTimePicker();
             this.dtpVrijediDo = new System.Windows.Forms.DateTimePicker();
             this.btnFilmInfo = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpTermin1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermin4 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermin6 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermin5 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermin3 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTermin2 = new System.Windows.Forms.DateTimePicker();
+            this.cbTermin6 = new System.Windows.Forms.CheckBox();
+            this.cbTermin5 = new System.Windows.Forms.CheckBox();
+            this.cbTermin4 = new System.Windows.Forms.CheckBox();
+            this.cbTermin3 = new System.Windows.Forms.CheckBox();
+            this.cbTermin2 = new System.Windows.Forms.CheckBox();
+            this.cbTermin1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +72,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(308, 225);
+            this.btnSnimi.Location = new System.Drawing.Point(308, 352);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(100, 30);
             this.btnSnimi.TabIndex = 20;
@@ -68,7 +82,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(202, 225);
+            this.btnOdustani.Location = new System.Drawing.Point(202, 352);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(100, 30);
             this.btnOdustani.TabIndex = 21;
@@ -172,11 +186,166 @@
             this.btnFilmInfo.UseVisualStyleBackColor = true;
             this.btnFilmInfo.Click += new System.EventHandler(this.btnFilmInfo_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dtpTermin1);
+            this.groupBox1.Controls.Add(this.dtpTermin4);
+            this.groupBox1.Controls.Add(this.dtpTermin6);
+            this.groupBox1.Controls.Add(this.dtpTermin5);
+            this.groupBox1.Controls.Add(this.dtpTermin3);
+            this.groupBox1.Controls.Add(this.dtpTermin2);
+            this.groupBox1.Controls.Add(this.cbTermin6);
+            this.groupBox1.Controls.Add(this.cbTermin5);
+            this.groupBox1.Controls.Add(this.cbTermin4);
+            this.groupBox1.Controls.Add(this.cbTermin3);
+            this.groupBox1.Controls.Add(this.cbTermin2);
+            this.groupBox1.Controls.Add(this.cbTermin1);
+            this.groupBox1.Location = new System.Drawing.Point(38, 200);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(370, 140);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Termini";
+            // 
+            // dtpTermin1
+            // 
+            this.dtpTermin1.CustomFormat = "HH:mm";
+            this.dtpTermin1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermin1.Location = new System.Drawing.Point(112, 23);
+            this.dtpTermin1.Name = "dtpTermin1";
+            this.dtpTermin1.ShowUpDown = true;
+            this.dtpTermin1.Size = new System.Drawing.Size(100, 22);
+            this.dtpTermin1.TabIndex = 2;
+            this.dtpTermin1.Value = new System.DateTime(2020, 9, 11, 0, 0, 0, 0);
+            // 
+            // dtpTermin4
+            // 
+            this.dtpTermin4.CustomFormat = "HH:mm";
+            this.dtpTermin4.Enabled = false;
+            this.dtpTermin4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermin4.Location = new System.Drawing.Point(258, 61);
+            this.dtpTermin4.Name = "dtpTermin4";
+            this.dtpTermin4.ShowUpDown = true;
+            this.dtpTermin4.Size = new System.Drawing.Size(100, 22);
+            this.dtpTermin4.TabIndex = 8;
+            this.dtpTermin4.Value = new System.DateTime(2020, 9, 11, 0, 0, 0, 0);
+            // 
+            // dtpTermin6
+            // 
+            this.dtpTermin6.CustomFormat = "HH:mm";
+            this.dtpTermin6.Enabled = false;
+            this.dtpTermin6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermin6.Location = new System.Drawing.Point(258, 98);
+            this.dtpTermin6.Name = "dtpTermin6";
+            this.dtpTermin6.ShowUpDown = true;
+            this.dtpTermin6.Size = new System.Drawing.Size(100, 22);
+            this.dtpTermin6.TabIndex = 12;
+            this.dtpTermin6.Value = new System.DateTime(2020, 9, 11, 0, 0, 0, 0);
+            // 
+            // dtpTermin5
+            // 
+            this.dtpTermin5.CustomFormat = "HH:mm";
+            this.dtpTermin5.Enabled = false;
+            this.dtpTermin5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermin5.Location = new System.Drawing.Point(112, 98);
+            this.dtpTermin5.Name = "dtpTermin5";
+            this.dtpTermin5.ShowUpDown = true;
+            this.dtpTermin5.Size = new System.Drawing.Size(100, 22);
+            this.dtpTermin5.TabIndex = 10;
+            this.dtpTermin5.Value = new System.DateTime(2020, 9, 11, 0, 0, 0, 0);
+            // 
+            // dtpTermin3
+            // 
+            this.dtpTermin3.CustomFormat = "HH:mm";
+            this.dtpTermin3.Enabled = false;
+            this.dtpTermin3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermin3.Location = new System.Drawing.Point(112, 61);
+            this.dtpTermin3.Name = "dtpTermin3";
+            this.dtpTermin3.ShowUpDown = true;
+            this.dtpTermin3.Size = new System.Drawing.Size(100, 22);
+            this.dtpTermin3.TabIndex = 6;
+            this.dtpTermin3.Value = new System.DateTime(2020, 9, 11, 0, 0, 0, 0);
+            // 
+            // dtpTermin2
+            // 
+            this.dtpTermin2.CustomFormat = "HH:mm";
+            this.dtpTermin2.Enabled = false;
+            this.dtpTermin2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTermin2.Location = new System.Drawing.Point(258, 23);
+            this.dtpTermin2.Name = "dtpTermin2";
+            this.dtpTermin2.ShowUpDown = true;
+            this.dtpTermin2.Size = new System.Drawing.Size(100, 22);
+            this.dtpTermin2.TabIndex = 4;
+            this.dtpTermin2.Value = new System.DateTime(2020, 9, 11, 0, 0, 0, 0);
+            // 
+            // cbTermin6
+            // 
+            this.cbTermin6.AutoSize = true;
+            this.cbTermin6.Location = new System.Drawing.Point(233, 100);
+            this.cbTermin6.Name = "cbTermin6";
+            this.cbTermin6.Size = new System.Drawing.Size(18, 17);
+            this.cbTermin6.TabIndex = 11;
+            this.cbTermin6.UseVisualStyleBackColor = true;
+            this.cbTermin6.CheckedChanged += new System.EventHandler(this.cbTermin6_CheckedChanged);
+            // 
+            // cbTermin5
+            // 
+            this.cbTermin5.AutoSize = true;
+            this.cbTermin5.Location = new System.Drawing.Point(88, 100);
+            this.cbTermin5.Name = "cbTermin5";
+            this.cbTermin5.Size = new System.Drawing.Size(18, 17);
+            this.cbTermin5.TabIndex = 9;
+            this.cbTermin5.UseVisualStyleBackColor = true;
+            this.cbTermin5.CheckedChanged += new System.EventHandler(this.cbTermin5_CheckedChanged);
+            // 
+            // cbTermin4
+            // 
+            this.cbTermin4.AutoSize = true;
+            this.cbTermin4.Location = new System.Drawing.Point(233, 63);
+            this.cbTermin4.Name = "cbTermin4";
+            this.cbTermin4.Size = new System.Drawing.Size(18, 17);
+            this.cbTermin4.TabIndex = 7;
+            this.cbTermin4.UseVisualStyleBackColor = true;
+            this.cbTermin4.CheckedChanged += new System.EventHandler(this.cbTermin4_CheckedChanged);
+            // 
+            // cbTermin3
+            // 
+            this.cbTermin3.AutoSize = true;
+            this.cbTermin3.Location = new System.Drawing.Point(88, 63);
+            this.cbTermin3.Name = "cbTermin3";
+            this.cbTermin3.Size = new System.Drawing.Size(18, 17);
+            this.cbTermin3.TabIndex = 5;
+            this.cbTermin3.UseVisualStyleBackColor = true;
+            this.cbTermin3.CheckedChanged += new System.EventHandler(this.cbTermin3_CheckedChanged);
+            // 
+            // cbTermin2
+            // 
+            this.cbTermin2.AutoSize = true;
+            this.cbTermin2.Location = new System.Drawing.Point(234, 25);
+            this.cbTermin2.Name = "cbTermin2";
+            this.cbTermin2.Size = new System.Drawing.Size(18, 17);
+            this.cbTermin2.TabIndex = 3;
+            this.cbTermin2.UseVisualStyleBackColor = true;
+            this.cbTermin2.CheckedChanged += new System.EventHandler(this.cbTermin2_CheckedChanged);
+            // 
+            // cbTermin1
+            // 
+            this.cbTermin1.AutoSize = true;
+            this.cbTermin1.Checked = true;
+            this.cbTermin1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTermin1.Enabled = false;
+            this.cbTermin1.Location = new System.Drawing.Point(88, 25);
+            this.cbTermin1.Name = "cbTermin1";
+            this.cbTermin1.Size = new System.Drawing.Size(18, 17);
+            this.cbTermin1.TabIndex = 1;
+            this.cbTermin1.UseVisualStyleBackColor = true;
+            // 
             // frmProjekcijeAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 287);
+            this.ClientSize = new System.Drawing.Size(447, 408);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnFilmInfo);
             this.Controls.Add(this.dtpVrijediDo);
             this.Controls.Add(this.dtpVrijediOd);
@@ -196,6 +365,8 @@
             this.Text = "Nova projekcija";
             this.Load += new System.EventHandler(this.frmProjekcijeAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,5 +388,18 @@
         private System.Windows.Forms.DateTimePicker dtpVrijediOd;
         private System.Windows.Forms.MaskedTextBox txtCijena;
         private System.Windows.Forms.Button btnFilmInfo;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox cbTermin6;
+        private System.Windows.Forms.CheckBox cbTermin5;
+        private System.Windows.Forms.CheckBox cbTermin4;
+        private System.Windows.Forms.CheckBox cbTermin3;
+        private System.Windows.Forms.CheckBox cbTermin2;
+        private System.Windows.Forms.CheckBox cbTermin1;
+        private System.Windows.Forms.DateTimePicker dtpTermin4;
+        private System.Windows.Forms.DateTimePicker dtpTermin6;
+        private System.Windows.Forms.DateTimePicker dtpTermin5;
+        private System.Windows.Forms.DateTimePicker dtpTermin3;
+        private System.Windows.Forms.DateTimePicker dtpTermin2;
+        private System.Windows.Forms.DateTimePicker dtpTermin1;
     }
 }

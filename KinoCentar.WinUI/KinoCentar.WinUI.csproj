@@ -135,6 +135,12 @@
     <Compile Include="Forms\Ankete\frmAnketeEdit.Designer.cs">
       <DependentUpon>frmAnketeEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Izvjestaji\frmIzvjestajiRezervacijePoDatumu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Izvjestaji\frmIzvjestajiRezervacijePoDatumu.Designer.cs">
+      <DependentUpon>frmIzvjestajiRezervacijePoDatumu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Prodaja\frmProdaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +372,10 @@
     <EmbeddedResource Include="Forms\Izvjestaji\frmIzvjestajiProdajaPoDatumu.resx">
       <DependentUpon>frmIzvjestajiProdajaPoDatumu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Izvjestaji\frmIzvjestajiRezervacijePoDatumu.resx">
+      <DependentUpon>frmIzvjestajiRezervacijePoDatumu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Izvjestaji\Reports\RezervacijePoDatumuReport.rdlc" />
     <EmbeddedResource Include="Forms\Izvjestaji\Reports\ProdajaPoDatumuReport.rdlc" />
     <EmbeddedResource Include="Forms\Ankete\frmAnketeAdd.resx">
       <DependentUpon>frmAnketeAdd.cs</DependentUpon>
@@ -484,6 +494,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\KinoCentar.Shared.Models.Izvjestaji.ProdajaIzvjestajModel.datasource" />
+    <None Include="Properties\DataSources\KinoCentar.Shared.Models.Izvjestaji.RezervacijaIzvjestajModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

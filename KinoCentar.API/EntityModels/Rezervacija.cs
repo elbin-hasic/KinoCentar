@@ -14,7 +14,7 @@ namespace KinoCentar.API.EntityModels
 
         public int Id { get; set; }
 
-        public int ProjekcijaId { get; set; }
+        public int ProjekcijaTerminId { get; set; }
 
         public int? KorisnikId { get; set; }
 
@@ -30,7 +30,7 @@ namespace KinoCentar.API.EntityModels
 
         public DateTime? DatumOtkazano { get; set; }
 
-        public virtual Projekcija Projekcija { get; set; }
+        public virtual ProjekcijaTermin ProjekcijaTermin { get; set; }
 
         public virtual Korisnik Korisnik { get; set; }
 

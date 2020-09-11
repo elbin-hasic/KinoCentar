@@ -127,7 +127,7 @@ namespace KinoCentar.Mobile.ViewModels
             if (ValidateRezervisi())
             {
                 Rezervacija.KorisnikId = Global.PrijavljeniKorisnik.Id;
-                Rezervacija.ProjekcijaId = Projekcija.Id;
+                //Rezervacija.ProjekcijaId = Projekcija.Id;
                 Rezervacija.Cijena = Projekcija.Cijena;
                 Rezervacija.Datum = DateTime.Now;
 

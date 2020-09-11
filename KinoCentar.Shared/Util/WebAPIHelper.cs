@@ -65,14 +65,21 @@ namespace KinoCentar.Shared.Util
             return client.GetAsync(route + "/" + action + "/" + parameter);
         }
 
-        public HttpResponseMessage GetActionResponse(string action, string p1 = "", string p2 = "")
+        public HttpResponseMessage GetActionResponse(string action, string p1 = "", string p2 = "", string p3 = "")
         {
-            return GetActionResponseAsync(action, p1, p2).Result;
+            return GetActionResponseAsync(action, p1, p2, p3).Result;
         }
 
-        public Task<HttpResponseMessage> GetActionResponseAsync(string action, string p1 = "", string p2 = "")
+        public Task<HttpResponseMessage> GetActionResponseAsync(string action, string p1 = "", string p2 = "", string p3 = "")
         {
-            return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
+            if (!string.IsNullOrEmpty(p3))
+            {
+                return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2 + "/" + p3);
+            }
+            else
+            {
+                return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
+            }
         }
 
         public HttpResponseMessage GetActionSearchResponse(string action, string p1 = "*", string p2 = "*", string p3 = "")
