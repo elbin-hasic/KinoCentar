@@ -40,5 +40,10 @@ namespace KinoCentar.Mobile.Views
         {
             await RootPage.NavigateFromMenu((int)MenuItemType.Obavijesti);
         }
+
+        async void btnAnketa_Clicked(object sender, EventArgs e)
+        {
+            await RootPage.NavigateFromMenu((int)MenuItemType.Anketa);
+        }
     }
 }

@@ -51,6 +51,8 @@
                     <Label Text="{Binding Rezervacija.Cijena, StringFormat='{0} KM'}"></Label>
                     <Label Text="Datum prikazivanja:" Style="{DynamicResource ListItemTextStyle}"></Label>
                     <Label Text="{Binding Rezervacija.DatumProjekcijeFormat}"></Label>
+                    <Label Text="Termin prikazivanja:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Label Text="{Binding Rezervacija.TerminProjekcijeShortDate}"></Label>
 
                     <Button Command="{Binding OtkaziRezervacijuCommand}" 
                             HorizontalOptions="FillAndExpand" 
@@ -59,15 +61,21 @@
                             Text="Otkaži" Margin="0,10,0,0"></Button>
                 </StackLayout>
                 <StackLayout x:Name="rezervacijaNotExists" IsVisible="{Binding RezervacijaNotExists}">
-                    <Label Text="{Binding Projekcija.SalaRasponSjedista, StringFormat='Broj sjedišta: [{0}]'}"></Label>
-                    <Entry x:Name="BrojSjedista" Text="{Binding Rezervacija.BrojSjedista}" Keyboard="Numeric"></Entry>
-                    <Label Text="Molimo upišite broj sjedišta." TextColor="Red" FontSize="13" IsVisible="{Binding RezervacijaValid.BrojSjedistaReqNotValid}" ></Label>
-                    <Label Text="{Binding Projekcija.SalaRasponSjedista, StringFormat='Broj sjedišta mora biti broj i u rasponu: {0}'}" TextColor="Red" FontSize="13" IsVisible="{Binding RezervacijaValid.BrojSjedistaErrNotValid}" ></Label>
+                    <Picker x:Name="rezervacijaBrojSjedista" 
+                            Title="Izaberi broj sjedišta" 
+                            ItemsSource="{Binding BrojeviSjedista}"
+                            SelectedItem="{Binding SelectedBrojSjedista}" />
 
                     <Label Text="{Binding Projekcija.VrijediOdDoShortDate, StringFormat='Datum prikazivanja: [{0}]'}"></Label>
                     <DatePicker x:Name="rezervacijaDatumProjekcije"
                                 Date="{Binding Rezervacija.DatumProjekcije}"></DatePicker>
                     <Label Text="{Binding Projekcija.VrijediOdDoShortDate, StringFormat='Datum prikazivanja mora biti u rasponu: {0}'}" TextColor="Red" FontSize="13" IsVisible="{Binding RezervacijaValid.DatumProjekcijeErrNotValid}" ></Label>
+
+                    <Picker x:Name="rezervacijaTerminProjekcije" 
+                            Title="Izaberi termin" 
+                            ItemsSource="{Binding Projekcija.Termini}"
+                            ItemDisplayBinding="{Binding TerminShort}"
+                            SelectedItem="{Binding SelectedTermin}" />
 
                     <Button Command="{Binding RezervisiCommand}" 
                             HorizontalOptions="FillAndExpand" 

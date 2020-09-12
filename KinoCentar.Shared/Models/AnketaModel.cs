@@ -26,6 +26,18 @@ namespace KinoCentar.Shared.Models
 
         public KorisnikModel Korisnik { get; set; }
 
+        public int? KorisnikAnketaOdgovorId { get; set; }
+
+        public AnketaOdgovorModel KorisnikAnketaOdgovor { get; set; }
+
+        public string KorisnikAnketaOdgovorText
+        {
+            get
+            {
+                return KorisnikAnketaOdgovor?.Odgovor;
+            }
+        }
+
         public List<AnketaOdgovorModel> Odgovori { get; set; }
     }
 }

@@ -170,7 +170,9 @@ namespace KinoCentar.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Rezervacija>> GetRezervacija(int id)
         {
-            var rezervacija = await _context.Rezervacija.FindAsync(id);
+            var rezervacija = await _context.Rezervacija
+                                            .Include(x => x.ProjekcijaTermin)
+                                            .FirstOrDefaultAsync(x => x.Id == id);
 
             if (rezervacija == null)
             {
@@ -197,7 +199,9 @@ namespace KinoCentar.API.Controllers
 
             if (korisnik != null)
             {
-                rezervacija = await _context.Rezervacija.FirstOrDefaultAsync(x => x.KorisnikId != null &&
+                rezervacija = await _context.Rezervacija
+                                            .Include(x => x.ProjekcijaTermin)
+                                            .FirstOrDefaultAsync(x => x.KorisnikId != null &&
                                                               x.KorisnikId == korisnik.Id &&
                                                               x.ProjekcijaTermin.ProjekcijaId == projectionId &&
                                                               x.DatumOtkazano == null && x.DatumProdano == null);
@@ -289,6 +293,8 @@ namespace KinoCentar.API.Controllers
             _context.Rezervacija.Add(rezervacija);
             await _context.SaveChangesAsync();
 
+            rezervacija.ProjekcijaTermin = _context.ProjekcijaTermin.FirstOrDefault(x => x.Id == rezervacija.ProjekcijaTerminId);
+
             return CreatedAtAction("GetRezervacija", new { id = rezervacija.Id }, rezervacija);
         }
 
@@ -321,6 +327,7 @@ namespace KinoCentar.API.Controllers
                                                      e.ProjekcijaTerminId == projekcijaTerminId &&
                                                      e.KorisnikId == korisnikId &&
                                                      e.DatumProjekcije.Date == datumProjekcije.Date &&
+                                                     e.DatumOtkazano == null && e.DatumProdano == null &&
                                                      e.Id != id.Value);
             }
             else
@@ -328,6 +335,7 @@ namespace KinoCentar.API.Controllers
                 return _context.Rezervacija.Any(e => e.ProjekcijaTermin.ProjekcijaId == projekcijaId &&
                                                      e.ProjekcijaTerminId == projekcijaTerminId &&
                                                      e.KorisnikId == korisnikId &&
+                                                     e.DatumOtkazano == null && e.DatumProdano == null &&
                                                      e.DatumProjekcije.Date == datumProjekcije.Date);
             }
         }

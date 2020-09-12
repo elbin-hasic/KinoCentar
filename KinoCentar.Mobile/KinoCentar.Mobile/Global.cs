@@ -26,6 +26,7 @@ namespace KinoCentar.Mobile
 
         public static string ObavijestiRoute = "api/Obavijesti";
         public static string DojmoviRoute = "api/Dojmovi";
+        public static string AnketeRoute = "api/Ankete";
 
         #endregion
     }

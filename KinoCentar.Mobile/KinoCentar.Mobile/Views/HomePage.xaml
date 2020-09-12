@@ -13,6 +13,7 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -61,6 +62,17 @@
                     FontSize="20" FontAttributes="Bold"
                     CornerRadius="10"
                     Clicked="btnObavijesti_Clicked"></Button>
+
+            <Button x:Name="btnAnketa" 
+                    Text="Anketa" 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Margin="10"
+                    BackgroundColor="{StaticResource ButtonPrimary}"
+                    TextColor="{StaticResource ButtonTextPrimary}"
+                    FontSize="20" FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="btnAnketa_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

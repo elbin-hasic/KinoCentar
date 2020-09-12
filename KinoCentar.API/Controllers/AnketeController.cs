@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Net;
+using KinoCentar.API.EntityModels.Extensions;
+using KinoCentar.Shared;
 
 namespace KinoCentar.API.Controllers
 {
@@ -71,6 +73,46 @@ namespace KinoCentar.API.Controllers
             return anketa;
         }
 
+        // GET: api/Ankete/5
+        [HttpGet("Full/{id}/{korisnikId}")]
+        public async Task<ActionResult<AnketaExtension>> GetAnketaFull(int id, int korisnikId)
+        {
+            var anketa = await _context.Anketa
+                                    .Include(x => x.Korisnik).AsNoTracking()
+                                    .Include(x => x.Odgovori).AsNoTracking()
+                                    .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (anketa == null)
+            {
+                return NotFound();
+            }
+
+            var anketaEx = GetAnketaExtension(anketa, korisnikId);
+
+            return anketaEx;
+        }
+
+        // GET: api/Active/{korisnikId}
+        [HttpGet("Active/{korisnikId}")]
+        public async Task<ActionResult<AnketaExtension>> GetActiveAnketa(int korisnikId)
+        {
+            var anketa = await _context.Anketa
+                                    .Include(x => x.Korisnik).AsNoTracking()
+                                    .Include(x => x.Odgovori).AsNoTracking()
+                                .Where(x => x.ZakljucenoDatum == null)
+                                .OrderByDescending(x => x.Id)
+                                .FirstOrDefaultAsync();
+
+            if (anketa == null)
+            {
+                return NotFound();
+            }
+
+            var anketaEx = GetAnketaExtension(anketa, korisnikId);
+
+            return anketaEx;
+        }
+
         // PUT: api/Ankete/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAnketa(int id, Anketa anketa)
@@ -129,10 +171,51 @@ namespace KinoCentar.API.Controllers
                 }
             }
 
+            var dtn = DateTime.Now;
+
+            var ankete = await _context.Anketa.Where(x => x.ZakljucenoDatum == null).ToListAsync();
+            foreach (var item in ankete)
+            {
+                item.ZakljucenoDatum = dtn;
+            }
+
             _context.Anketa.Add(anketa);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAnketa", new { id = anketa.Id }, anketa);
+        }
+
+        // POST: api/Ankete/UserAnswer
+        [HttpPost]
+        [Route("UserAnswer")]
+        public async Task<ActionResult<AnketaExtension>> PostAnketaKorisnikOdgovor(AnketaOdgovorKorisnikDodjela anketaKorisnikOdgovor)
+        {
+            if (AnketaKorisnikOdgovorExists(anketaKorisnikOdgovor.KorisnikId, anketaKorisnikOdgovor.AnketaOdgovorId))
+            {
+                return StatusCode((int)HttpStatusCode.Conflict, Messages.anketaKorisnikOdgovor_err);
+            }
+
+            var anketaOdgovor = await _context.AnketaOdgovor.FirstOrDefaultAsync(x => x.Id == anketaKorisnikOdgovor.AnketaOdgovorId);
+            if (anketaOdgovor == null)
+            {
+                return NotFound();
+            }
+
+            var anketa = await _context.Anketa
+                                        .Include(x => x.Korisnik).AsNoTracking()
+                                        .Include(x => x.Odgovori).AsNoTracking()
+                                    .FirstOrDefaultAsync(x => x.Id == anketaOdgovor.AnketaId);
+            if (anketa == null)
+            {
+                return NotFound();
+            }
+
+            _context.AnketaOdgovorKorisnikDodjela.Add(anketaKorisnikOdgovor);
+            await _context.SaveChangesAsync();
+
+            var anketaEx = GetAnketaExtension(anketa, anketaKorisnikOdgovor.KorisnikId);
+
+            return CreatedAtAction("GetAnketaFull", new { id = anketa.Id, korisnikId = anketaKorisnikOdgovor.KorisnikId }, anketaEx);
         }
 
         // PUT: api/Ankete/5
@@ -173,9 +256,33 @@ namespace KinoCentar.API.Controllers
             return anketa;
         }
 
+        private AnketaExtension GetAnketaExtension(Anketa anketa, int korisnikId)
+        {
+            var anketaEx = new AnketaExtension(anketa);
+
+            var korisnikOdgovor = _context.AnketaOdgovorKorisnikDodjela
+                                            .Include(x => x.AnketaOdgovor).AsNoTracking()
+                                        .Where(x => x.AnketaOdgovor.AnketaId == anketaEx.Id &&
+                                                    x.KorisnikId == korisnikId)
+                                        .FirstOrDefault();
+            if (korisnikOdgovor != null)
+            {
+                anketaEx.KorisnikAnketaOdgovorId = korisnikOdgovor.AnketaOdgovorId;
+                anketaEx.KorisnikAnketaOdgovor = korisnikOdgovor.AnketaOdgovor;
+            }
+
+            return anketaEx;
+        }
+
         private bool AnketaExists(int id)
         {
             return _context.Anketa.Any(e => e.Id == id);
+        }
+
+        private bool AnketaKorisnikOdgovorExists(int korisnikId, int anketaOdgovorId)
+        {
+            return _context.AnketaOdgovorKorisnikDodjela.Any(e => e.KorisnikId == korisnikId && 
+                                                                  e.AnketaOdgovorId == anketaOdgovorId);
         }
     }
 }

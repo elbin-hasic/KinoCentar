@@ -4,14 +4,16 @@ using KinoCentar.API.EntityModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KinoCentar.API.Migrations
 {
     [DbContext(typeof(KinoCentarDbContext))]
-    partial class KinoCentarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200912131426_add_anketa_korisnik_odgovori")]
+    partial class add_anketa_korisnik_odgovori
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

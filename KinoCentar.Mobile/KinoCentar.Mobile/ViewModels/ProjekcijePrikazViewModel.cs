@@ -6,6 +6,7 @@ using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -81,6 +82,41 @@ namespace KinoCentar.Mobile.ViewModels
             set { SetProperty(ref dojamExists, value); }
         }
 
+        int selectedBrojSjedista;
+        public int SelectedBrojSjedista
+        {
+            get { return selectedBrojSjedista; }
+            set
+            {
+                if (selectedBrojSjedista != value)
+                {
+                    selectedBrojSjedista = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        ProjekcijaTerminModel selectedTermin;
+        public ProjekcijaTerminModel SelectedTermin
+        {
+            get { return selectedTermin; }
+            set
+            {
+                if (selectedTermin != value)
+                {
+                    selectedTermin = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        List<int> brojeviSjedista = new List<int>();
+        public List<int> BrojeviSjedista
+        {
+            get { return brojeviSjedista; }
+            set { SetProperty(ref brojeviSjedista, value); }
+        }
+
         public ProjekcijePrikazViewModel(ProjekcijaModel projekcija)
         {
             Projekcija = projekcija;
@@ -108,6 +144,22 @@ namespace KinoCentar.Mobile.ViewModels
                 Dojam = dojmoviResponse.GetResponseResult<DojamModel>();
             }
 
+            var retSjedistaResponse = rezervacijeService.GetActionResponse("FreeSeats", Projekcija.Id.ToString()).Handle();
+            if (retSjedistaResponse.IsSuccessStatusCode)
+            {
+                var retSjedista = retSjedistaResponse.GetResponseResult<List<int>>();
+                if (retSjedista.Any())
+                {
+                    BrojeviSjedista = retSjedista;
+                    SelectedBrojSjedista = BrojeviSjedista[0];
+                }                
+            }
+
+            if (Projekcija.Termini != null && Projekcija.Termini.Any())
+            {
+                SelectedTermin = Projekcija.Termini[0];
+            }
+
             if (Rezervacija == null)
             {
                 Rezervacija = new RezervacijaModel();
@@ -127,7 +179,9 @@ namespace KinoCentar.Mobile.ViewModels
             if (ValidateRezervisi())
             {
                 Rezervacija.KorisnikId = Global.PrijavljeniKorisnik.Id;
-                //Rezervacija.ProjekcijaId = Projekcija.Id;
+                Rezervacija.ProjekcijaId = Projekcija.Id;
+                Rezervacija.ProjekcijaTerminId = SelectedTermin.Id;
+                Rezervacija.BrojSjedista = SelectedBrojSjedista;
                 Rezervacija.Cijena = Projekcija.Cijena;
                 Rezervacija.Datum = DateTime.Now;
 
@@ -194,7 +248,7 @@ namespace KinoCentar.Mobile.ViewModels
         {
             bool isValid = true;
 
-            if (Rezervacija.BrojSjedista < 1 || Rezervacija.BrojSjedista > Projekcija.Sala.BrojSjedista)
+            /*if (Rezervacija.BrojSjedista < 1 || Rezervacija.BrojSjedista > Projekcija.Sala.BrojSjedista)
             {
                 RezervacijaValid.BrojSjedistaErrNotValid = true;
                 isValid = false;
@@ -202,7 +256,7 @@ namespace KinoCentar.Mobile.ViewModels
             else
             {
                 RezervacijaValid.BrojSjedistaErrNotValid = false;
-            }
+            }*/
 
             if (Rezervacija.DatumProjekcije.Date < Projekcija.VrijediOd.Date || Rezervacija.DatumProjekcije.Date > Projekcija.VrijediDo.Date)
             {

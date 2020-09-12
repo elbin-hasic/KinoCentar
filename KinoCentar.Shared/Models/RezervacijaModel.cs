@@ -74,7 +74,15 @@ namespace KinoCentar.Shared.Models
         {
             get
             {
-                return $"{DatumProjekcije.ToShortDateString()} {ProjekcijaTermin?.Termin:hh\\:mm}";
+                return $"{DatumProjekcije.ToShortDateString()} {ProjekcijaTermin?.TerminShort}";
+            }
+        }
+
+        public string TerminProjekcijeShortDate
+        {
+            get
+            {
+                return ProjekcijaTermin?.TerminShort;
             }
         }
 

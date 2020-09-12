@@ -11,6 +11,7 @@ namespace KinoCentar.Mobile.Models
         Preporuceno,
         Rezervacije,
         Obavijesti,
+        Anketa,
         //
         UrediProfil
     }

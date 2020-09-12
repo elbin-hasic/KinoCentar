@@ -61,6 +61,15 @@ namespace KinoCentar.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navedeni korisnik već je dao odgovor za navedenu anketu!.
+        /// </summary>
+        public static string anketaKorisnikOdgovor_err {
+            get {
+                return ResourceManager.GetString("anketaKorisnikOdgovor_err", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artikal sa navedenim imenom već postoji!.
         /// </summary>
         public static string artikal_err {

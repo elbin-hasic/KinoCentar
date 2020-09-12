@@ -7,6 +7,11 @@ namespace KinoCentar.API.EntityModels
 {
     public class AnketaOdgovor
     {
+        public AnketaOdgovor()
+        {
+            this.OdgovoriKorisnika = new HashSet<AnketaOdgovorKorisnikDodjela>();
+        }
+
         public int Id { get; set; }
 
         public int AnketaId { get; set; }
@@ -19,5 +24,7 @@ namespace KinoCentar.API.EntityModels
         public int UkupnoIzabrano { get; set; }
 
         public virtual Anketa Anketa { get; set; }
+
+        public virtual ICollection<AnketaOdgovorKorisnikDodjela> OdgovoriKorisnika { get; set; }
     }
 }
