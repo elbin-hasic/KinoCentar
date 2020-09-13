@@ -84,6 +84,11 @@ namespace KinoCentar.WinUI.Forms.Korisnici
             txtEmail.Text = _k.Email;            
             txtKorisnickoIme.Text = _k.KorisnickoIme;
 
+            if (_k.DatumRodjenja != null)
+            {
+                dtpDatumRodjenja.Value = _k.DatumRodjenja.Value;
+            }
+
             if (_k.SlikaThumb != null)
             {
                 pbSlikaThumb.Image = (Bitmap)((new ImageConverter()).ConvertFrom(_k.SlikaThumb));

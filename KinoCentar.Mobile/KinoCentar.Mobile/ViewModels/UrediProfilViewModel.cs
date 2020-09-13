@@ -1,10 +1,13 @@
 ﻿using KinoCentar.Mobile.Extensions;
+using KinoCentar.Mobile.Models;
 using KinoCentar.Mobile.Models.Validations;
+using KinoCentar.Mobile.Views;
 using KinoCentar.Shared.Extensions;
 using KinoCentar.Shared.Models;
 using KinoCentar.Shared.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -27,10 +30,18 @@ namespace KinoCentar.Mobile.ViewModels
             Email = ".",
             KorisnickoIme = "."
         };
+
         public KorisnikModel Korisnik
         {
             get { return korisnik; }
             set { SetProperty(ref korisnik, value); }
+        }
+
+        byte[] korisnikUploadSlika = null;
+        public byte[] KorisnikUploadSlika
+        {
+            get { return korisnikUploadSlika; }
+            set { SetProperty(ref korisnikUploadSlika, value); }
         }
 
         KorisnikValidModel korisnikValid = new KorisnikValidModel();
@@ -71,6 +82,12 @@ namespace KinoCentar.Mobile.ViewModels
                     Korisnik.LozinkaHash = UIHelper.GenerateHash(Korisnik.LozinkaSalt, password);
                 }
 
+                if (KorisnikUploadSlika != null)
+                {
+                    Korisnik.Slika = KorisnikUploadSlika;
+                    Korisnik.SlikaThumb = KorisnikUploadSlika;
+                }                
+
                 var response = korisniciService.PutResponse(Korisnik.Id, Korisnik).Handle();
                 if (response.IsSuccessStatusCode)
                 {
@@ -78,6 +95,7 @@ namespace KinoCentar.Mobile.ViewModels
                     Global.PrijavljeniKorisnik = Korisnik;
                     korisniciService = new WebAPIHelper(Global.ApiAddress, Global.KorisniciRoute, Global.PrijavljeniKorisnik);
                     await Application.Current.MainPage.DisplayAlert("Uspješno ste uredili profil.", "Poruka o uspjehu", "OK");
+                    Application.Current.MainPage = new MainPage();
                 }
             }            
 

@@ -38,6 +38,26 @@
             <Label Text="Molimo upišite Vašu lozinku." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.LozinkaReqNotValid}"></Label>
             <Label Text="Lozinka treba da sadrži najmanje 6 karaktera (kombinacija slova i brojeva)." TextColor="Red" FontSize="13" IsVisible="{Binding KorisnikValid.LozinkaErrNotValid}"></Label>
 
+            <Label Text="Profilna slika (max: 128x128 px)"></Label>
+            <Grid x:Name="UploadImgGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Entry x:Name="KorisnikSlikaPath" Text="" IsEnabled="False"
+                       Grid.Row="0" Grid.Column="0"></Entry>
+                <Button x:Name="ButtonIzaberiSliku"
+                        BackgroundColor="{StaticResource ButtonPrimary}"
+                        TextColor="{StaticResource ButtonTextPrimary}"
+                        Text="Izaberi sliku"
+                        Grid.Row="0" Grid.Column="1"
+                        Clicked="ButtonIzaberiSliku_Clicked"></Button>
+            </Grid>
+            
             <Button Command="{Binding SnimiCommand}" 
                         HorizontalOptions="FillAndExpand" 
                         BackgroundColor="{StaticResource ButtonPrimary}"
