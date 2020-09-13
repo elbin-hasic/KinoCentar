@@ -106,5 +106,17 @@ namespace KinoCentar.WinUI.Forms.Ankete
             catch (Exception ex)
             { }
         }
+
+        private void btnPrikazi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new frmAnketeDetails(Convert.ToInt32(dgvAnkete.SelectedRows[0].Cells[0].Value));
+                frm.ShowDialog();
+                BindGrid();
+            }
+            catch
+            { }
+        }
     }
 }

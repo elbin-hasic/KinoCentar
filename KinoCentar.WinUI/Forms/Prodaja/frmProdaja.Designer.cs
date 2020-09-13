@@ -31,25 +31,25 @@
             this.btnNovi = new System.Windows.Forms.Button();
             this.btnBrisi = new System.Windows.Forms.Button();
             this.dgvProdaja = new System.Windows.Forms.DataGridView();
-            this.btnTrazi = new System.Windows.Forms.Button();
-            this.txtBrojRacunaPretraga = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnPrikazi = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrojRacuna = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UkupnaCijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KorisnikImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnTrazi = new System.Windows.Forms.Button();
+            this.txtBrojRacunaPretraga = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnPrikazi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdaja)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNovi
             // 
             this.btnNovi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNovi.Location = new System.Drawing.Point(858, 25);
+            this.btnNovi.Location = new System.Drawing.Point(964, 25);
             this.btnNovi.Name = "btnNovi";
             this.btnNovi.Size = new System.Drawing.Size(100, 26);
-            this.btnNovi.TabIndex = 3;
+            this.btnNovi.TabIndex = 4;
             this.btnNovi.Text = "Nova";
             this.btnNovi.UseVisualStyleBackColor = true;
             this.btnNovi.Click += new System.EventHandler(this.btnNovi_Click);
@@ -88,43 +88,6 @@
             this.dgvProdaja.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProdaja.Size = new System.Drawing.Size(1182, 677);
             this.dgvProdaja.TabIndex = 10;
-            // 
-            // btnTrazi
-            // 
-            this.btnTrazi.Location = new System.Drawing.Point(429, 25);
-            this.btnTrazi.Name = "btnTrazi";
-            this.btnTrazi.Size = new System.Drawing.Size(100, 26);
-            this.btnTrazi.TabIndex = 9;
-            this.btnTrazi.Text = "Traži";
-            this.btnTrazi.UseVisualStyleBackColor = true;
-            this.btnTrazi.Click += new System.EventHandler(this.btnTrazi_Click);
-            // 
-            // txtBrojRacunaPretraga
-            // 
-            this.txtBrojRacunaPretraga.Location = new System.Drawing.Point(103, 27);
-            this.txtBrojRacunaPretraga.Name = "txtBrojRacunaPretraga";
-            this.txtBrojRacunaPretraga.Size = new System.Drawing.Size(320, 22);
-            this.txtBrojRacunaPretraga.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Broj računa:";
-            // 
-            // btnPrikazi
-            // 
-            this.btnPrikazi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrikazi.Location = new System.Drawing.Point(964, 25);
-            this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(100, 26);
-            this.btnPrikazi.TabIndex = 4;
-            this.btnPrikazi.Text = "Prikaži";
-            this.btnPrikazi.UseVisualStyleBackColor = true;
-            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
             // 
             // Id
             // 
@@ -171,6 +134,43 @@
             this.KorisnikImePrezime.Name = "KorisnikImePrezime";
             this.KorisnikImePrezime.ReadOnly = true;
             this.KorisnikImePrezime.Width = 160;
+            // 
+            // btnTrazi
+            // 
+            this.btnTrazi.Location = new System.Drawing.Point(429, 25);
+            this.btnTrazi.Name = "btnTrazi";
+            this.btnTrazi.Size = new System.Drawing.Size(100, 26);
+            this.btnTrazi.TabIndex = 9;
+            this.btnTrazi.Text = "Traži";
+            this.btnTrazi.UseVisualStyleBackColor = true;
+            this.btnTrazi.Click += new System.EventHandler(this.btnTrazi_Click);
+            // 
+            // txtBrojRacunaPretraga
+            // 
+            this.txtBrojRacunaPretraga.Location = new System.Drawing.Point(103, 27);
+            this.txtBrojRacunaPretraga.Name = "txtBrojRacunaPretraga";
+            this.txtBrojRacunaPretraga.Size = new System.Drawing.Size(320, 22);
+            this.txtBrojRacunaPretraga.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Broj računa:";
+            // 
+            // btnPrikazi
+            // 
+            this.btnPrikazi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrikazi.Location = new System.Drawing.Point(858, 25);
+            this.btnPrikazi.Name = "btnPrikazi";
+            this.btnPrikazi.Size = new System.Drawing.Size(100, 26);
+            this.btnPrikazi.TabIndex = 3;
+            this.btnPrikazi.Text = "Prikaži";
+            this.btnPrikazi.UseVisualStyleBackColor = true;
+            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
             // 
             // frmProdaja
             // 

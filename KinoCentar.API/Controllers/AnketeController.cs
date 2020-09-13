@@ -61,8 +61,8 @@ namespace KinoCentar.API.Controllers
         public async Task<ActionResult<Anketa>> GetAnketa(int id)
         {
             var anketa = await _context.Anketa
-                                    .Include(x => x.Korisnik).AsNoTracking()
-                                    .Include(x => x.Odgovori).AsNoTracking()
+                                        .Include(x => x.Korisnik).AsNoTracking()
+                                        .Include(x => x.Odgovori).AsNoTracking()
                                     .FirstOrDefaultAsync(x => x.Id == id);
 
             if (anketa == null)
@@ -73,13 +73,13 @@ namespace KinoCentar.API.Controllers
             return anketa;
         }
 
-        // GET: api/Ankete/5
-        [HttpGet("Full/{id}/{korisnikId}")]
-        public async Task<ActionResult<AnketaExtension>> GetAnketaFull(int id, int korisnikId)
+        // GET: api/Ankete/AnketaForUser/{id}/{korisnikId}
+        [HttpGet("AnketaForUser/{id}/{korisnikId}")]
+        public async Task<ActionResult<AnketaExtension>> GetAnketaForUser(int id, int korisnikId)
         {
             var anketa = await _context.Anketa
-                                    .Include(x => x.Korisnik).AsNoTracking()
-                                    .Include(x => x.Odgovori).AsNoTracking()
+                                        .Include(x => x.Korisnik).AsNoTracking()
+                                        .Include(x => x.Odgovori).AsNoTracking()
                                     .FirstOrDefaultAsync(x => x.Id == id);
 
             if (anketa == null)
@@ -201,6 +201,8 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
+            anketaOdgovor.UkupnoIzabrano = anketaOdgovor.UkupnoIzabrano + 1;
+
             var anketa = await _context.Anketa
                                         .Include(x => x.Korisnik).AsNoTracking()
                                         .Include(x => x.Odgovori).AsNoTracking()
@@ -215,7 +217,7 @@ namespace KinoCentar.API.Controllers
 
             var anketaEx = GetAnketaExtension(anketa, anketaKorisnikOdgovor.KorisnikId);
 
-            return CreatedAtAction("GetAnketaFull", new { id = anketa.Id, korisnikId = anketaKorisnikOdgovor.KorisnikId }, anketaEx);
+            return CreatedAtAction("GetAnketaForUser", new { id = anketa.Id, korisnikId = anketaKorisnikOdgovor.KorisnikId }, anketaEx);
         }
 
         // PUT: api/Ankete/5

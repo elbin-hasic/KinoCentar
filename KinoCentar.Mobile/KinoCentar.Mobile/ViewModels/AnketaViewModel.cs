@@ -62,7 +62,7 @@ namespace KinoCentar.Mobile.ViewModels
 
         public async Task Init()
         {
-            var response = anketaService.GetActionResponse("Active", Global.PrijavljeniKorisnik.Id.ToString()).Handle();
+            var response = anketaService.GetActionResponse("Active", Global.PrijavljeniKorisnik.Id.ToString()).HandleNotFound();
             if (response.IsSuccessStatusCode)
             {
                 Anketa = response.GetResponseResult<AnketaModel>();

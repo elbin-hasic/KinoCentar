@@ -41,6 +41,7 @@
             this.Datum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZakljucenoDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnZakljucaj = new System.Windows.Forms.Button();
+            this.btnPrikazi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAnkete)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             this.btnUredi.Location = new System.Drawing.Point(858, 25);
             this.btnUredi.Name = "btnUredi";
             this.btnUredi.Size = new System.Drawing.Size(100, 26);
-            this.btnUredi.TabIndex = 4;
+            this.btnUredi.TabIndex = 5;
             this.btnUredi.Text = "Uredi";
             this.btnUredi.UseVisualStyleBackColor = true;
             this.btnUredi.Click += new System.EventHandler(this.btnUredi_Click);
@@ -87,7 +88,7 @@
             this.btnNovi.Location = new System.Drawing.Point(752, 25);
             this.btnNovi.Name = "btnNovi";
             this.btnNovi.Size = new System.Drawing.Size(100, 26);
-            this.btnNovi.TabIndex = 3;
+            this.btnNovi.TabIndex = 4;
             this.btnNovi.Text = "Nova";
             this.btnNovi.UseVisualStyleBackColor = true;
             this.btnNovi.Click += new System.EventHandler(this.btnNovi_Click);
@@ -98,7 +99,7 @@
             this.btnBrisi.Location = new System.Drawing.Point(1070, 25);
             this.btnBrisi.Name = "btnBrisi";
             this.btnBrisi.Size = new System.Drawing.Size(100, 26);
-            this.btnBrisi.TabIndex = 5;
+            this.btnBrisi.TabIndex = 7;
             this.btnBrisi.Text = "Briši";
             this.btnBrisi.UseVisualStyleBackColor = true;
             this.btnBrisi.Click += new System.EventHandler(this.btnBrisi_Click);
@@ -179,10 +180,21 @@
             this.btnZakljucaj.Location = new System.Drawing.Point(964, 25);
             this.btnZakljucaj.Name = "btnZakljucaj";
             this.btnZakljucaj.Size = new System.Drawing.Size(100, 26);
-            this.btnZakljucaj.TabIndex = 7;
+            this.btnZakljucaj.TabIndex = 6;
             this.btnZakljucaj.Text = "Zaključaj";
             this.btnZakljucaj.UseVisualStyleBackColor = true;
             this.btnZakljucaj.Click += new System.EventHandler(this.btnZakljucaj_Click);
+            // 
+            // btnPrikazi
+            // 
+            this.btnPrikazi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrikazi.Location = new System.Drawing.Point(646, 25);
+            this.btnPrikazi.Name = "btnPrikazi";
+            this.btnPrikazi.Size = new System.Drawing.Size(100, 26);
+            this.btnPrikazi.TabIndex = 3;
+            this.btnPrikazi.Text = "Prikaži";
+            this.btnPrikazi.UseVisualStyleBackColor = true;
+            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
             // 
             // frmAnkete
             // 
@@ -190,6 +202,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1182, 753);
+            this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.btnZakljucaj);
             this.Controls.Add(this.dgvAnkete);
             this.Controls.Add(this.btnBrisi);
@@ -223,5 +236,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Datum;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZakljucenoDatum;
         private System.Windows.Forms.Button btnZakljucaj;
+        private System.Windows.Forms.Button btnPrikazi;
     }
 }
