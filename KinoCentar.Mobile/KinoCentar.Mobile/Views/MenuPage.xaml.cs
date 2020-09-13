@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,11 +15,18 @@ namespace KinoCentar.Mobile.Views
     {
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
+
         public MenuPage()
         {
             InitializeComponent();
 
             korisnickoImeLabel.Text = Global.PrijavljeniKorisnik?.ImePrezime;
+
+            if (Global.PrijavljeniKorisnik.SlikaThumb != null)
+            {
+                korisnikImage.Source = ImageSource.FromStream(() => new MemoryStream(Global.PrijavljeniKorisnik.SlikaThumb));
+                korisnikImage.HeightRequest = 124;
+            }
 
             menuItems = new List<HomeMenuItem>
             {

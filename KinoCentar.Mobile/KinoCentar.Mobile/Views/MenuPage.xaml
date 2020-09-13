@@ -9,6 +9,9 @@
              
     <StackLayout VerticalOptions="FillAndExpand">
         <StackLayout Padding="20" BackgroundColor="#ddd">
+            <StackLayout>
+                <Image x:Name="korisnikImage"></Image>
+            </StackLayout>
             <Label x:Name="korisnickoImeLabel" FontSize="Medium" 
                     HorizontalOptions="Center" VerticalOptions="Center"/>
             <Label Text="Uredi profil" FontSize="14" TextColor="#E42E4B"
