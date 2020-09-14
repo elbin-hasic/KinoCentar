@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using KinoCentar.Shared.Models.Enums;
 using System.Net;
 using KinoCentar.Shared;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -234,10 +235,17 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            _context.Korisnik.Remove(korisnik);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Korisnik.Remove(korisnik);
+                await _context.SaveChangesAsync();
 
-            return korisnik;
+                return korisnik;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private bool KorisnikExists(int id)

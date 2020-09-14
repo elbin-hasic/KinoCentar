@@ -9,6 +9,7 @@ using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Net;
 using KinoCentar.Shared;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -311,10 +312,17 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            _context.Projekcija.Remove(projekcija);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Projekcija.Remove(projekcija);
+                await _context.SaveChangesAsync();
 
-            return projekcija;
+                return projekcija;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private bool ProjekcijaExists(int id)

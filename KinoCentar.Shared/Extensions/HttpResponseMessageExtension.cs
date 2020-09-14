@@ -44,6 +44,22 @@ namespace KinoCentar.Shared.Extensions
             }
         }
 
+        public static string ReadLastExceptionMessage(this Exception error)
+        {
+            Exception realerror = error.ReadLastException();
+            return realerror.Message;
+        }
+
+        public static Exception ReadLastException(this Exception error)
+        {
+            Exception realerror = error;
+            
+            while (realerror.InnerException != null)
+                realerror = realerror.InnerException;
+
+            return realerror;
+        }
+
         private static bool IsValidJson(string strInput)
         {
             strInput = strInput.Trim();

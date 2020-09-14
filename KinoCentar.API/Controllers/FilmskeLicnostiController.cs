@@ -9,6 +9,7 @@ using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
 using System.Net;
 using KinoCentar.Shared;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -151,10 +152,17 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            _context.FilmskaLicnost.Remove(filmskaLicnost);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.FilmskaLicnost.Remove(filmskaLicnost);
+                await _context.SaveChangesAsync();
 
-            return filmskaLicnost;
+                return filmskaLicnost;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private bool FilmskaLicnostExists(int id)

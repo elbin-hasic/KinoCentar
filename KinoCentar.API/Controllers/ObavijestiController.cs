@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using KinoCentar.Shared.Extensions;
+using System.Net;
 
 namespace KinoCentar.API.Controllers
 {
@@ -108,10 +110,17 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            _context.Obavijest.Remove(obavijest);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Obavijest.Remove(obavijest);
+                await _context.SaveChangesAsync();
 
-            return obavijest;
+                return obavijest;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private bool ObavijestExists(int id)

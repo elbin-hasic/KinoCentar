@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Net;
 using KinoCentar.API.EntityModels.Extensions;
 using KinoCentar.Shared;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -252,10 +253,16 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            _context.Anketa.Remove(anketa);
-            await _context.SaveChangesAsync();
-
-            return anketa;
+            try
+            {
+                _context.Anketa.Remove(anketa);
+                await _context.SaveChangesAsync();
+                return anketa;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private AnketaExtension GetAnketaExtension(Anketa anketa, int korisnikId)

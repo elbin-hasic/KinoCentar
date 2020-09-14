@@ -11,6 +11,7 @@ using KinoCentar.API.EntityModels.Extensions;
 using System.Web.Http.Description;
 using Microsoft.AspNetCore.Authorization;
 using KinoCentar.Shared;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -184,16 +185,23 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            var datumProvjera = prodaja.Datum.AddMinutes(10);
-            if (datumProvjera < DateTime.Now)
+            try
             {
-                return StatusCode((int)HttpStatusCode.Conflict, Messages.prodaja_del_err);
+                var datumProvjera = prodaja.Datum.AddMinutes(10);
+                if (datumProvjera < DateTime.Now)
+                {
+                    return StatusCode((int)HttpStatusCode.Conflict, Messages.prodaja_del_err);
+                }
+
+                _context.Prodaja.Remove(prodaja);
+                await _context.SaveChangesAsync();
+
+                return prodaja;
             }
-
-            _context.Prodaja.Remove(prodaja);
-            await _context.SaveChangesAsync();
-
-            return prodaja;
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private string GenerateBrojRacuna()

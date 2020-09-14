@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KinoCentar.API.EntityModels;
 using Microsoft.AspNetCore.Authorization;
+using KinoCentar.API.EntityModels;
+using KinoCentar.Shared;
+using KinoCentar.Shared.Extensions;
 
 namespace KinoCentar.API.Controllers
 {
@@ -146,10 +149,17 @@ namespace KinoCentar.API.Controllers
                 return NotFound();
             }
 
-            _context.Dojam.Remove(dojam);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Dojam.Remove(dojam);
+                await _context.SaveChangesAsync();
 
-            return dojam;
+                return dojam;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, ex.ReadLastExceptionMessage());
+            }
         }
 
         private bool DojamExists(int id)
