@@ -329,6 +329,11 @@ namespace KinoCentar.API.Controllers
 
         private bool RezervacijaExists(int projekcijaId, int projekcijaTerminId, int? korisnikId, DateTime datumProjekcije, int? id = null)
         {
+            if (korisnikId == null)
+            {
+                return false;
+            }
+
             if (id != null)
             {
                 return _context.Rezervacija.Any(e => e.ProjekcijaTermin.ProjekcijaId == projekcijaId &&
