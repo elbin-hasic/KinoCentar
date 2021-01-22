@@ -116,6 +116,16 @@ namespace KinoCentar.Shared.Util
             return client.PostAsync(route, jsonObject);
         }
 
+        public HttpResponseMessage PostActionResponse(string action, string parameter = "")
+        {
+            return PostActionResponseAsync(action, parameter).Result;
+        }
+
+        public Task<HttpResponseMessage> PostActionResponseAsync(string action, string parameter = "")
+        {
+            return client.PostAsync(route + "/" + action + "/" + parameter, null);
+        }
+
         public HttpResponseMessage PostActionResponse(string action, Object newObject)
         {
             return PostActionResponseAsync(action, newObject).Result;
