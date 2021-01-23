@@ -55,31 +55,21 @@ namespace KinoCentar.Shared.Util
             return client.GetAsync(route + "/" + parameter);
         }
 
-        public HttpResponseMessage GetActionResponse(string action, string parameter = "")
+        public HttpResponseMessage GetActionResponse(string action, params string[] parameters)
         {
-            return GetActionResponseAsync(action, parameter).Result;
+            return GetActionResponseAsync(action, parameters).Result;
         }
 
-        public Task<HttpResponseMessage> GetActionResponseAsync(string action, string parameter = "")
+        public Task<HttpResponseMessage> GetActionResponseAsync(string action, params string[] parameters)
         {
-            return client.GetAsync(route + "/" + action + "/" + parameter);
-        }
+            string actionParameters = string.Empty;
 
-        public HttpResponseMessage GetActionResponse(string action, string p1 = "", string p2 = "", string p3 = "")
-        {
-            return GetActionResponseAsync(action, p1, p2, p3).Result;
-        }
-
-        public Task<HttpResponseMessage> GetActionResponseAsync(string action, string p1 = "", string p2 = "", string p3 = "")
-        {
-            if (!string.IsNullOrEmpty(p3))
+            foreach (var p in parameters)
             {
-                return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2 + "/" + p3);
+                actionParameters += "/" + p;
             }
-            else
-            {
-                return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2);
-            }
+
+            return client.GetAsync(route + "/" + action + actionParameters);
         }
 
         public HttpResponseMessage GetActionSearchResponse(string action, string p1 = "*", string p2 = "*", string p3 = "")
