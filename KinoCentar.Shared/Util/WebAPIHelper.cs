@@ -2,11 +2,13 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace KinoCentar.Shared.Util
 {
@@ -91,6 +93,33 @@ namespace KinoCentar.Shared.Util
             return client.GetAsync(route + "/" + action + "/" + p1 + "/" + p2 + "/" + p3);
         }
 
+        public HttpResponseMessage GetActionResponse(string action, Object newObject)
+        {
+            return GetActionResponseAsync(action, newObject).Result;
+        }
+
+        public Task<HttpResponseMessage> GetActionResponseAsync(string action, Object newObject)
+        {
+            string queryString = GetQueryString(newObject);
+            if (!string.IsNullOrEmpty(queryString))
+            {
+                return client.GetAsync(route + "/" + action + "?" + queryString);
+            }
+            else
+            {
+                return client.GetAsync(route + "/" + action);
+            }
+        }
+
+        private string GetQueryString(object obj)
+        {
+            var properties = from p in obj.GetType().GetProperties()
+                             where p.GetValue(obj, null) != null
+                             select p.Name + "=" + HttpUtility.UrlEncode(p.GetValue(obj, null).ToString());
+
+            return String.Join("&", properties.ToArray());
+        }
+
         #endregion
 
         #region POST
@@ -114,6 +143,23 @@ namespace KinoCentar.Shared.Util
         public Task<HttpResponseMessage> PostActionResponseAsync(string action, string parameter = "")
         {
             return client.PostAsync(route + "/" + action + "/" + parameter, null);
+        }
+
+        public HttpResponseMessage PostActionResponse(string action, params string[] parameters)
+        {
+            return PostActionResponseAsync(action, parameters).Result;
+        }
+
+        public Task<HttpResponseMessage> PostActionResponseAsync(string action, params string[] parameters)
+        {
+            string actionParameters = string.Empty;
+
+            foreach (var p in parameters)
+            {
+                actionParameters += "/" + p;
+            }
+
+            return client.PostAsync(route + "/" + action + actionParameters, null);
         }
 
         public HttpResponseMessage PostActionResponse(string action, Object newObject)
